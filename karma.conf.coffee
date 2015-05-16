@@ -43,7 +43,7 @@ module.exports = (config) ->
 
     colors: true
 
-    reporters: ['coverage']
+    reporters: ['progress', 'coverage']
 
     coverageReporter:
       type: "lcov"
