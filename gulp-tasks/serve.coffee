@@ -1,5 +1,7 @@
 module.exports = (gulp, $, configs) ->
-  gulp.task 'serve', ['clean', 'coffee', 'scss', 'jade'], ->
+  depedencies = ['clean', 'constant', 'coffee', 'scss', 'jade']
+
+  gulp.task 'serve', depedencies, ->
     options =
       notify: false
       port: 9000

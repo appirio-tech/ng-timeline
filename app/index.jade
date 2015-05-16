@@ -1,4 +1,5 @@
 - var scripts = []
+- scripts.push('constants')
 - scripts.push('timeline.module')
 - scripts.push('timeline.routes')
 - scripts.push('timeline-api.service')
@@ -17,9 +18,6 @@
 doctype html
 html(ng-app='timeline')
   head
-
-    // removeIf(production)
-
     script(type="text/javascript", src="/bower_components/sinon/index.js")
 
     script(type="text/javascript", src="/bower_components/auto-config-fake-server/dist/auto-config-fake-server.js")
@@ -30,8 +28,6 @@ html(ng-app='timeline')
       AutoConfigFakeServer.fakeServer.autoRespond = true;
 
       AutoConfigFakeServer.consume('/bower_components/work-api-schema/work-api-schema.json');
-
-    // endRemoveIf(production)
 
     title Timeline
 
@@ -58,9 +54,4 @@ html(ng-app='timeline')
 
     each path in scripts
       script(src="scripts/#{path}.js", type="text/javascript")
-
-    script.
-      angular.module("app.constants", [])
-
-      .constant("apiUrl", "https://api.topcoder-dev.com/v3/")
 
