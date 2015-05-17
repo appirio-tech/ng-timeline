@@ -3,15 +3,16 @@ karma = require('karma').server
 module.exports = (gulp, $, configs) ->
   runTest = (singleRun = true) ->
     preprocessors                      = {}
-    preprocessors[configs.coffeeFiles] = 'coffee'
+    preprocessors[configs.coffeeFiles] = 'coverage'
     preprocessors[configs.specFiles]   = 'coffee'
     preprocessors['**/*.json']         = 'json_fixtures'
 
     options =
-      configFile   : configs.karmaConfig
-      singleRun    : singleRun
-      preprocessors: preprocessors
-      files        : configs.karmaFiles
+      configFile      : configs.karmaConfig
+      singleRun       : singleRun
+      preprocessors   : preprocessors
+      files           : configs.karmaFiles
+      coverageReporter: configs.coverageReporter
 
     karma.start options
 

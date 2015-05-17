@@ -19,17 +19,20 @@ karmaFiles = [
 ]
 
 configs =
-  coffeeFiles : 'app/**/*.coffee'
-  jadeFiles   : 'app/**/*.jade'
-  scssFiles   : 'app/**/*.scss'
-  specFiles   : 'tests/specs/**/*.coffee'
-  tempFolder  : '.tmp'
-  appFolder   : 'app'
-  distFolder  : 'dist'
-  karmaFiles  : karmaFiles
-  karmaConfig : __dirname + '/karma.conf.coffee'
-  constants   :
+  coffeeFiles   : 'app/**/*.coffee'
+  jadeFiles     : 'app/**/*.jade'
+  scssFiles     : 'app/**/*.scss'
+  specFiles     : 'tests/specs/**/*.coffee'
+  tempFolder    : '.tmp'
+  appFolder     : 'app'
+  distFolder    : 'dist'
+  karmaFiles    : karmaFiles
+  karmaConfig   : __dirname + '/karma.conf.coffee'
+  constants     :
     apiUrl: 'https://api.topcoder-dev.com/v3/'
+  coverageReporter:
+    type: 'lcov'
+    dir: 'coverage'
 
 tasks = [
   'coffee'
@@ -40,6 +43,7 @@ tasks = [
   'build'
   'test'
   'constants'
+  'coveralls'
 ]
 
 for task in tasks

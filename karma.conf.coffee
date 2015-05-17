@@ -45,10 +45,6 @@ module.exports = (config) ->
 
     reporters: ['progress', 'coverage']
 
-    coverageReporter:
-      type: "lcov"
-      dir: "coverage/"
-
     coffeePreprocessor:
       options:
         bare: false
