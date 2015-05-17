@@ -1,5 +1,5 @@
 module.exports = (gulp, $, configs) ->
-  depedencies = ['clean', 'constant', 'coffee', 'scss', 'jade']
+  depedencies = ['constant', 'coffee', 'scss', 'jade']
 
   gulp.task 'serve', depedencies, ->
     options =

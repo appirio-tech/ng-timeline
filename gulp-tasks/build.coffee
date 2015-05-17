@@ -1,8 +1,6 @@
 module.exports = (gulp, $, configs) ->
-  gulp.task 'build', ['jade', 'scss', 'coffee'], ->
-    options =
-      title: 'build'
-      gzip: true
+  gulp.task 'build', ['constant', 'jade', 'scss', 'coffee'], ->
+    src  = gulp.src configs.tempFolder + '/**/*.*'
+    dest = gulp.dest configs.distFolder
 
-    size = $.size options
-    gulp.src(configs.distFolder + '/**/*').pipe size
+    src.pipe dest

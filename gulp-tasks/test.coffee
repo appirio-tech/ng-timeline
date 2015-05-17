@@ -1,5 +1,3 @@
-karma = require('karma').server
-
 module.exports = (gulp, $, configs) ->
   runTest = (singleRun = true) ->
     preprocessors                      = {}
@@ -14,7 +12,7 @@ module.exports = (gulp, $, configs) ->
       files           : configs.karmaFiles
       coverageReporter: configs.coverageReporter
 
-    karma.start options
+    $.karma.start options
 
   gulp.task 'test', ['constants'], ->
     runTest()

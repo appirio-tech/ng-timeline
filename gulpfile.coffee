@@ -1,6 +1,7 @@
 gulp          = require 'gulp'
 $             = require('gulp-load-plugins')()
 $.browserSync = require 'browser-sync'
+$.karma       = require('karma').server
 
 schema = pattern: 'bower_components/work-api-schema/*.json'
 
