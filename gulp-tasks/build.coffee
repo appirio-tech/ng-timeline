@@ -1,5 +1,5 @@
 module.exports = (gulp, $, configs) ->
-  gulp.task 'build', ['constant', 'jade', 'scss', 'coffee'], ->
+  gulp.task 'build', ['constants', 'jade', 'scss', 'coffee'], ->
     src  = gulp.src configs.tempFolder + '/**/*.*'
     dest = gulp.dest configs.distFolder
 
