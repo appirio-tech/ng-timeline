@@ -9,6 +9,7 @@ describe 'TimelineController', ->
 
     $httpBackend.flush()
 
-  it 'should have createdDates array', ->
-    expect(vm.createdDates.length).to.be.equal 11
+  it 'should have vm.email completed and passed', ->
+    expect(vm.email.completed).to.be.ok
+    expect(vm.email.passed).to.be.ok
 

@@ -1,7 +1,7 @@
 module.exports = (gulp, $, configs) ->
-  runTest = (singleRun = true) ->
+  runTest = (singleRun = true, coverage = true) ->
     preprocessors                      = {}
-    preprocessors[configs.coffeeFiles] = 'coverage'
+    preprocessors[configs.coffeeFiles] = if coverage then 'coverage' else 'coffee'
     preprocessors[configs.specFiles]   = 'coffee'
     preprocessors['**/*.json']         = 'json_fixtures'
 
@@ -18,4 +18,4 @@ module.exports = (gulp, $, configs) ->
     runTest()
 
   gulp.task 'test-server', ['constants'], ->
-    runTest false
+    runTest false, false
