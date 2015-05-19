@@ -15,12 +15,5 @@ describe 'TimelineService', ->
   it "should have an array of events", ->
     expect(timeline.events.length).to.be.ok
 
-  it "should have a submitted date", ->
-    expect(timeline.submittedDate).to.be.equal '2015-05-05T20:53:41.467Z'
-
-  it "should have a quoted date", ->
-    expect(timeline.quotedDate).to.be.equal '2015-05-05T20:53:41.467Z'
-
-  it "should have a copiloted date", ->
-    expect(timeline.coPilotedDate).to.be.equal '2015-05-05T20:53:41.467Z'
-
+  it "should have 11 created dates"
+    expect(timeline.createdDates.length).to.be.equal 11

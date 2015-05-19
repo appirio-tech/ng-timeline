@@ -1,19 +1,38 @@
 'use strict'
 
+eventTypes = [
+  'copilot-assigned'
+  'created'
+  'submitted'
+  'quote-created'
+  'email-verified'
+  'payment-accepted'
+  'challenge-feedback-provided'
+  'challenge-submission'
+  'challenge-member-registered'
+  'challenge-finalists-selected'
+  'state-change'
+  'launched'
+  'checkpoint1'
+  'finalists'
+  'final-design'
+  'winner'
+  'final-feedback'
+  'completed'
+]
+
 srv = (TimelineAPIService) ->
   getEvents = (params, onSuccess) ->
     resource = TimelineAPIService.query params
 
     resource.$promise.then (response) ->
-      submittedDate = getCreatedAt 'submitted', response
-      quotedDate    = getCreatedAt 'quote-created', response
-      coPilotedDate = getCreatedAt 'copilot-assigned', response
+      createdDates = {}
+      for eventType in eventTypes
+        createdDates[eventType] = getCreatedAt eventType, response
 
       timeline =
-        events       : response
-        submittedDate: submittedDate
-        quotedDate   : quotedDate
-        coPilotedDate: coPilotedDate
+        events      : response
+        createdDates: createdDates
 
       onSuccess? timeline
 

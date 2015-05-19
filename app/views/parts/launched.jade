@@ -1,4 +1,4 @@
-li.milestone
+li.milestone(ng-class="{ completed: vm.launched.completed, passed: vm.launched.passed }")
   section.checkpoint
     .progress
       .percent 25%
@@ -15,16 +15,3 @@ li.milestone
     .lead-after
 
     label Project Launched
-
-li.no-progress
-  section.checkpoint
-    .point
-
-    .lead-after
-
-    label Others have joined the project.
-
-  .avatar-box
-    .avatar
-
-    span <a href="#">Appulous9000</a> and 6 others have joined the project.

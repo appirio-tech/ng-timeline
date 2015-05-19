@@ -1,0 +1,14 @@
+li.no-progress(ng-class="{ completed: vm.joined.completed, passed: vm.joined.passed }")
+  section.checkpoint
+    .point
+
+    .lead-after
+
+    label(ng-hide="vm.coPilot.completed") Meet others
+
+    label(ng-show="vm.coPilot.completed") Others have joined the project.
+
+  .avatar-box(ng-show="vm.coPilot.completed")
+    .avatar
+
+    span <a href="#">Appulous9000</a> and 6 others have joined the project.

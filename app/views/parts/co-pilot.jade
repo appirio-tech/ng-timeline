@@ -1,4 +1,4 @@
-li(ng-class="{ completed: vm.coPilotedDate }")
+li(ng-class="{ completed: vm.coPilot.completed, passed: vm.coPilot.passed }")
   section.checkpoint
     .progress
       .percent 22%
@@ -13,13 +13,13 @@ li(ng-class="{ completed: vm.coPilotedDate }")
 
     .lead-after
 
-    label(ng-hide="vm.paymentAddedDate || vm.coPilotedDate") Assign Co-Pilot
+    label(ng-hide="vm.payment.completed || vm.coPilot.completed") Assign Co-Pilot
 
-    label(ng-hide="vm.coPilotedDate") We are choosing a Co-Pilot best suited for your project.
+    label(ng-hide="vm.coPilot.completed") We are choosing a Co-Pilot best suited for your project.
 
-    label(ng-show="vm.coPilotedDate") Co-Pilot Assigned
+    label(ng-show="vm.coPilot.completed") Co-Pilot Assigned
 
-  .avatar-box(ng-show="vm.coPilotedDate")
+  .avatar-box(ng-show="vm.coPilot.completed")
     .avatar
 
     span Hi I'm John. I'll be your project manager.
