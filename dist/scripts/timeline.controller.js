@@ -7,7 +7,7 @@
     vm = this;
     mapEvents = [['submitted', 'submitted'], ['email', 'email-verified'], ['quote', 'quote-created'], ['payment', 'payment-accepted'], ['coPilot', 'copilot-assigned'], ['launched', 'launched'], ['joined', 'challenge-member-registered'], ['submissions', 'challenge-submission'], ['feedback', 'challenge-feedback-provided'], ['checkpoint1', 'checkpoint1'], ['finalists', 'finalists'], ['finalistsSelected', 'challenge-finalists-selected'], ['finalDesign', 'final-design'], ['winner', 'winner'], ['finalFeedback', 'final-feedback'], ['completed', 'completed']];
     activate = function() {
-      var j, len, mapEvent, params, workId;
+      var j, len, mapEvent, params;
       for (j = 0, len = mapEvents.length; j < len; j++) {
         mapEvent = mapEvents[j];
         vm[mapEvent[0]] = {
@@ -15,7 +15,9 @@
           completed: false
         };
       }
-      params = workId = $stateParams.workId;
+      params = {
+        workId: $stateParams.workId
+      };
       return TimelineService.getEvents(params, onSuccess);
     };
     onSuccess = function(timeline) {

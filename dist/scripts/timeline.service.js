@@ -7,8 +7,11 @@
   srv = function(TimelineAPIService) {
     var findEvent, getCreatedAt, getEvents;
     getEvents = function(params, onSuccess) {
-      var resource;
-      resource = TimelineAPIService.query(params);
+      var queryParams, resource;
+      queryParams = {
+        filter: 'sourceObjectId=' + params.workId
+      };
+      resource = TimelineAPIService.query(queryParams);
       resource.$promise.then(function(response) {
         var createdDates, eventType, i, len, timeline;
         createdDates = {};
