@@ -23,10 +23,14 @@ eventTypes = [
 
 srv = (TimelineAPIService) ->
   getEvents = (params, onSuccess) ->
-    resource = TimelineAPIService.query params
+    queryParams =
+      filter: 'sourceObjectId=' + params.workId
+
+    resource = TimelineAPIService.query queryParams
 
     resource.$promise.then (response) ->
       createdDates = {}
+
       for eventType in eventTypes
         createdDates[eventType] = getCreatedAt eventType, response
 

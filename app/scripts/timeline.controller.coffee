@@ -28,7 +28,7 @@ TimelineController = (TimelineService, $stateParams) ->
         completed: false
 
     params =
-      workId = $stateParams.workId
+      workId: $stateParams.workId
 
     TimelineService.getEvents params, onSuccess
 
