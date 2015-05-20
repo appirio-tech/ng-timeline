@@ -54,6 +54,10 @@
         background-color: white !important;
       }
 
+      &:last-child::after {
+        height: $point-width / 2;
+      }
+
       &:last-child {
         padding-bottom: 0;
 
