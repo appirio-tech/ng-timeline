@@ -56,4 +56,4 @@ srv = (TimelineAPIService) ->
 
 srv.$inject = ['TimelineAPIService']
 
-angular.module('timeline').factory 'TimelineService', srv
+angular.module('appirio-tech-timeline').factory 'TimelineService', srv

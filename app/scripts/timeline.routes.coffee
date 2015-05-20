@@ -12,6 +12,6 @@ config = ($stateProvider) ->
 
 config.$inject = ['$stateProvider']
 
-angular.module('timeline').config(config).run()
+angular.module('appirio-tech-timeline').config(config).run()
 
 

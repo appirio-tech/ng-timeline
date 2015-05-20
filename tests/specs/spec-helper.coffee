@@ -11,7 +11,7 @@ window.__karma__.loaded = ->
   AutoConfigFakeServer.consume schema, window.__karma__.start
 
 beforeEach ->
-  module 'timeline'
+  module 'appirio-tech-timeline'
 
 # Transfer fakeserver responses to $httpBackend
 beforeEach inject ($httpBackend) ->

@@ -49,5 +49,5 @@ TimelineController = (TimelineService, $stateParams) ->
 
 TimelineController.$inject = ['TimelineService', '$stateParams']
 
-angular.module('timeline').controller 'TimelineController', TimelineController
+angular.module('appirio-tech-timeline').controller 'TimelineController', TimelineController
 

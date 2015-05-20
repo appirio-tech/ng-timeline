@@ -1,3 +1,3 @@
 'use strict'
 
-angular.module 'timeline', ['ui.router', 'ngResource', 'app.constants']
+angular.module 'appirio-tech-timeline', ['ui.router', 'ngResource', 'app.constants']
