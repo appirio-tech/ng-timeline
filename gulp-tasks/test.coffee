@@ -3,7 +3,6 @@ module.exports = (gulp, $, configs) ->
     preprocessors                      = {}
     preprocessors[configs.coffeeFiles] = if coverage then 'coverage' else 'coffee'
     preprocessors[configs.specFiles]   = 'coffee'
-    preprocessors['**/*.json']         = 'json_fixtures'
 
     options =
       configFile      : configs.karmaConfig
@@ -14,8 +13,8 @@ module.exports = (gulp, $, configs) ->
 
     $.karma.start options
 
-  gulp.task 'test', ['constants'], ->
+  gulp.task 'test', ['constants', 'fixtures'], ->
     runTest()
 
-  gulp.task 'test-server', ['constants'], ->
+  gulp.task 'test-server', ['constants', 'fixtures'], ->
     runTest false, false

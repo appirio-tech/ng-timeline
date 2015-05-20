@@ -3,8 +3,6 @@ $             = require('gulp-load-plugins')()
 $.browserSync = require 'browser-sync'
 $.karma       = require('karma').server
 
-schema = pattern: 'bower_components/work-api-schema/*.json'
-
 karmaFiles = [
   'bower_components/angular/angular.js'
   'bower_components/angular-mocks/angular-mocks.js'
@@ -13,10 +11,14 @@ karmaFiles = [
   'bower_components/auto-config-fake-server/dist/auto-config-fake-server.js'
   'tests/specs/spec-helper.coffee'
   '.tmp/scripts/constants.js'
+  '.tmp/scripts/json-fixtures.js'
   'app/scripts/**/*.module.coffee'
   'app/scripts/**/*.coffee'
   'tests/specs/**/*.coffee'
-  schema
+]
+
+fixtureFiles = [
+  'bower_components/work-api-schema/work-api-schema.json'
 ]
 
 configs =
@@ -28,6 +30,7 @@ configs =
   appFolder     : 'app'
   distFolder    : 'dist'
   karmaFiles    : karmaFiles
+  fixtureFiles  : fixtureFiles
   karmaConfig   : __dirname + '/karma.conf.coffee'
   constants     :
     apiUrl: 'https://api.topcoder-dev.com/v3/'
@@ -45,6 +48,7 @@ tasks = [
   'test'
   'constants'
   'coveralls'
+  'fixtures'
 ]
 
 for task in tasks
