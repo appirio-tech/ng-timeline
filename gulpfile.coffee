@@ -3,37 +3,44 @@ $             = require('gulp-load-plugins')()
 $.browserSync = require 'browser-sync'
 $.karma       = require('karma').server
 
-karmaFiles = [
-  'bower_components/angular/angular.js'
-  'bower_components/angular-mocks/angular-mocks.js'
-  'bower_components/angular-resource/angular-resource.js'
-  'bower_components/angular-ui-router/release/angular-ui-router.js'
-  'bower_components/auto-config-fake-server/dist/auto-config-fake-server.js'
-  'tests/specs/spec-helper.coffee'
-  '.tmp/scripts/constants.js'
-  '.tmp/scripts/json-fixtures.js'
-  'app/scripts/**/*.module.coffee'
-  'app/scripts/**/*.coffee'
-  'tests/specs/**/*.coffee'
-]
+karmaConfig =
+  configFile  : __dirname + '/karma.conf.coffee'
+  coverage    : 'app/**/*.coffee'
+  # Dont include coverage files
+  coffeeFiles : [
+    'tests/specs/**/*.coffee'
+  ]
+  files: [
+    'bower_components/angular/angular.js'
+    'bower_components/angular-mocks/angular-mocks.js'
+    'bower_components/angular-resource/angular-resource.js'
+    'bower_components/angular-ui-router/release/angular-ui-router.js'
+    'bower_components/auto-config-fake-server/dist/auto-config-fake-server.js'
+    'tests/specs/helper.coffee'
+    '.tmp/scripts/constants.js'
+    '.tmp/scripts/json-fixtures.js'
+    'app/scripts/**/*.module.coffee'
+    'app/**/*.coffee'
+    'tests/specs/**/*.coffee'
+  ]
 
 fixtureFiles = [
-  'bower_components/work-api-schema/work-api-schema.json'
+  'bower_components/appirio-tech-api-schemas/v3.json'
 ]
 
 configs =
-  coffeeFiles   : 'app/**/*.coffee'
-  jadeFiles     : 'app/**/*.jade'
-  scssFiles     : 'app/**/*.scss'
-  specFiles     : 'tests/specs/**/*.coffee'
-  tempFolder    : '.tmp'
-  appFolder     : 'app'
-  distFolder    : 'dist'
-  karmaFiles    : karmaFiles
-  fixtureFiles  : fixtureFiles
-  karmaConfig   : __dirname + '/karma.conf.coffee'
-  constants     :
+  coffeeFiles     : 'app/**/*.coffee'
+  jadeFiles       : 'app/**/*.jade'
+  scssFiles       : 'app/**/*.scss'
+  scssIncludePaths: require('node-neat').includePaths
+  tempFolder      : '.tmp'
+  appFolder       : 'app'
+  distFolder      : 'dist'
+  karma           : karmaConfig
+  fixtureFiles    : fixtureFiles
+  constants:
     apiUrl: 'https://api.topcoder-dev.com/v3/'
+    apiUrlV2: 'https://api.topcoder-dev.com/v2/'
   coverageReporter:
     type: 'lcov'
     dir: 'coverage'
@@ -46,13 +53,13 @@ tasks = [
   'serve'
   'build'
   'test'
-  'constants'
+  'ng-constant'
   'coveralls'
   'fixtures'
 ]
 
 for task in tasks
-  module = require('./gulp-tasks/' + task)
+  module = require('./node_modules/appirio-gulp-tasks/tasks/' + task)
   module gulp, $, configs
 
 gulp.task 'default', ['clean'], ->
