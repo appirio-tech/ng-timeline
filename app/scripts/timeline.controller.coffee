@@ -1,7 +1,10 @@
 'use strict'
 
 TimelineController = (TimelineService, $stateParams) ->
-  vm        = this
+  vm               = this
+  vm.coPilotHandle = null
+  vm.members       = []
+
   mapEvents = [
     ['submitted', 'submitted']
     ['email', 'email-verified']
@@ -30,10 +33,14 @@ TimelineController = (TimelineService, $stateParams) ->
     params =
       workId: $stateParams.workId
 
-    TimelineService.getEvents params, onSuccess
+    TimelineService.getEvents params, onChange
 
-  onSuccess = (timeline) ->
+  onChange = (timeline) ->
     setStatus timeline
+
+    vm.coPilotHandle    = timeline.coPilot
+    vm.members          = timeline.members
+    vm.coPilotAvatarUrl = timeline.coPilotAvatarUrl
 
   setStatus = (timeline) ->
     for mapEvent in mapEvents

@@ -20,6 +20,6 @@ li(ng-class="{ completed: vm.coPilot.completed, passed: vm.coPilot.passed }")
     label(ng-show="vm.coPilot.completed") Co-Pilot Assigned
 
   .avatar-box(ng-show="vm.coPilot.completed")
-    .avatar
+    img.avatar(src="{{ vm.coPilotAvatarUrl }}")
 
-    span Hi I'm John. I'll be your project manager.
+    span Hi I'm {{ vm.coPilotHandle }}. I'll be your project manager.

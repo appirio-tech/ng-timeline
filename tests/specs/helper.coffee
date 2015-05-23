@@ -16,9 +16,14 @@ window.__karma__.loaded = ->
 
   AutoConfigFakeServer.fakeServer.respondImmediately = true
 
-  schema = FIXTURES['bower_components/appirio-tech-api-schemas/v3.json']
+  schemas = [
+    FIXTURES['bower_components/appirio-tech-api-schemas/v3.json']
+    FIXTURES['bower_components/appirio-tech-api-schemas/v2.json']
+  ]
 
-  AutoConfigFakeServer.consume schema, window.__karma__.start
+  AutoConfigFakeServer.consume schemas
+
+  window.__karma__.start()
 
 beforeEach ->
   module 'appirio-tech-timeline'

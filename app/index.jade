@@ -3,6 +3,7 @@
 - scripts.push('timeline.module')
 - scripts.push('timeline.routes')
 - scripts.push('timeline-api.service')
+- scripts.push('user-api.service')
 - scripts.push('timeline.controller')
 - scripts.push('timeline.service')
 
@@ -11,9 +12,9 @@
 - bowers.push('angular-resource/angular-resource')
 - bowers.push('angular-ui-router/release/angular-ui-router')
 
-- var cssPaths = ['reset', 'timeline', 'submissions']
+- var cssPaths   = ['reset', 'timeline', 'submissions']
 - var landscapes = ['timeline', 'submissions']
-- var desktops = []
+- var desktops   = []
 
 doctype html
 html(ng-app='appirio-tech-timeline')
@@ -22,14 +23,19 @@ html(ng-app='appirio-tech-timeline')
 
     script(type="text/javascript", src="/bower_components/sinon/index.js")
 
-    script(type="text/javascript", src="/bower_components/auto-config-fake-server/dist/auto-config-fake-server.js")
+    script(type="text/javascript", src="/bower_components/auto-config-fake-server/dist/scripts/auto-config-fake-server.js")
 
     script(type="text/javascript").
       AutoConfigFakeServer.init();
 
       AutoConfigFakeServer.fakeServer.autoRespond = true;
 
-      AutoConfigFakeServer.consume(FIXTURES['bower_components/work-api-schema/work-api-schema.json']);
+      schemas = [
+        FIXTURES['bower_components/appirio-tech-api-schemas/v3.json'],
+        FIXTURES['bower_components/appirio-tech-api-schemas/v2.json']
+      ];
+
+      AutoConfigFakeServer.consume(schemas);
 
     title Timeline
 

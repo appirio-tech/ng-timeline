@@ -21,8 +21,8 @@ eventTypes = [
   'completed'
 ]
 
-srv = (TimelineAPIService) ->
-  getEvents = (params, onSuccess) ->
+srv = (TimelineAPIService, UserAPIService, avatarUrl) ->
+  getEvents = (params, onChange) ->
     queryParams =
       filter: 'sourceObjectId=' + params.workId
 
@@ -30,6 +30,8 @@ srv = (TimelineAPIService) ->
 
     resource.$promise.then (response) ->
       createdDates = {}
+      coPilot = getCoPilot response
+      members = getMembers response
 
       for eventType in eventTypes
         createdDates[eventType] = getCreatedAt eventType, response
@@ -37,8 +39,21 @@ srv = (TimelineAPIService) ->
       timeline =
         events      : response
         createdDates: createdDates
+        coPilot     : coPilot
+        members     : members
 
-      onSuccess? timeline
+      if coPilot
+        userParams =
+          handle: coPilot
+
+        coPilotUser = UserAPIService.get userParams
+
+        coPilotUser.$promise.then (response) ->
+          timeline.coPilotAvatarUrl = avatarUrl + response?.photoLink
+
+          onChange? timeline
+
+      onChange? timeline
 
     resource.$promise.catch ->
       # need handle error
@@ -52,12 +67,33 @@ srv = (TimelineAPIService) ->
 
     false
 
+  findAllEvents = (type, events) ->
+    foundEvents = []
+
+    for e in events
+      foundEvents.push(e) if e.eventSubType == type
+
+    foundEvents
+
+  getCoPilot = (events) ->
+    coPilotEvent = findEvent 'copilot-assigned', events
+    coPilotEvent?.sourceObjectContent?.handle
+
+  getMembers = (events) ->
+    members = []
+    memberEvents = findAllEvents 'challenge-member-registered', events
+
+    for memberEvent in memberEvents
+      members.push memberEvent?.sourceObjectContent?.handle
+
+    members
+
   getCreatedAt = (type, events) ->
     e = findEvent type, events
     e?.createdAt
 
   getEvents: getEvents
 
-srv.$inject = ['TimelineAPIService']
+srv.$inject = ['TimelineAPIService', 'UserAPIService', 'avatarUrl']
 
 angular.module('appirio-tech-timeline').factory 'TimelineService', srv

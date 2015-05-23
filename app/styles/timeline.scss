@@ -11,13 +11,13 @@
     display         : table;
 
     .avatar {
-      display         : inline-block;
-      width           : 35px;
-      height          : 35px;
-      background-color: black;
-      border-radius   : 35px;
-      margin-right    : 6px;
-      vertical-align  : middle;
+      display       : inline-block;
+      width         : 35px;
+      height        : 35px;
+      border        : 1px solid grey;
+      border-radius : 35px;
+      margin-right  : 6px;
+      vertical-align: middle;
     }
   }
 

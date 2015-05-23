@@ -15,7 +15,7 @@ karmaConfig =
     'bower_components/angular-mocks/angular-mocks.js'
     'bower_components/angular-resource/angular-resource.js'
     'bower_components/angular-ui-router/release/angular-ui-router.js'
-    'bower_components/auto-config-fake-server/dist/auto-config-fake-server.js'
+    'bower_components/auto-config-fake-server/dist/scripts/auto-config-fake-server.js'
     'tests/specs/helper.coffee'
     '.tmp/scripts/constants.js'
     '.tmp/scripts/json-fixtures.js'
@@ -26,6 +26,7 @@ karmaConfig =
 
 fixtureFiles = [
   'bower_components/appirio-tech-api-schemas/v3.json'
+  'bower_components/appirio-tech-api-schemas/v2.json'
 ]
 
 configs =
@@ -39,8 +40,9 @@ configs =
   karma           : karmaConfig
   fixtureFiles    : fixtureFiles
   constants:
-    apiUrl: 'https://api.topcoder-dev.com/v3/'
-    apiUrlV2: 'https://api.topcoder-dev.com/v2/'
+    apiUrl   : 'https://api.topcoder-dev.com/v3/' # slash is grandfathered in from river
+    apiUrlV2 : 'https://api.topcoder-dev.com/v2' # Should not end in slash
+    avatarUrl: 'http://www.topcoder.com' # Should not end in slash
   coverageReporter:
     type: 'lcov'
     dir: 'coverage'
