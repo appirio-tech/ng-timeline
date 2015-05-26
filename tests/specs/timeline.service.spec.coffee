@@ -22,6 +22,9 @@ describe 'TimelineService', ->
   it 'should have a co-pilot of `Batman9000`', ->
     expect(timeline.coPilot).to.be.equal 'Batman9000'
 
+  it 'should have an avatar url of `Batman9000`', ->
+    expect(timeline.avatars['Batman9000']).to.be.equal 'http://www.topcoder.com/i/m/cardiboy_big.jpg'
+
   it 'should have 1 members', ->
     expect(timeline.members.length).to.be.equal 1
 

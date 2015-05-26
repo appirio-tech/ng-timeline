@@ -39,6 +39,11 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL) ->
 
     buildAvatar timeline, coPilot, onChange if coPilot
 
+    if members.length
+      lastMember = members[members.length - 1]
+
+      buildAvatar timeline, lastMember, onChange
+
     onChange? timeline
 
   buildAvatar = (timeline, handle, onChange) ->
