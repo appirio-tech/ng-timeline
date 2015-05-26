@@ -1,11 +1,11 @@
 'use strict'
 
-srv = ($resource, apiUrlV2) ->
-  url     = apiUrlV2 + '/users/:handle'
+srv = ($resource, API_URL_V2) ->
+  url     = API_URL_V2 + '/users/:handle'
   params  = handle: '@handle'
 
   $resource url, params
 
-srv.$inject = ['$resource', 'apiUrlV2']
+srv.$inject = ['$resource', 'API_URL_V2']
 
 angular.module('appirio-tech-timeline').factory 'UserAPIService', srv

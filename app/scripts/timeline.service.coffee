@@ -21,7 +21,42 @@ eventTypes = [
   'completed'
 ]
 
-srv = (TimelineAPIService, UserAPIService, avatarUrl) ->
+srv = (TimelineAPIService, UserAPIService, AVATAR_URL) ->
+  buildTimeline = (events, onChange) ->
+    createdDates = {}
+    coPilot = getCoPilot events
+    members = getMembers events
+
+    for eventType in eventTypes
+      createdDates[eventType] = getCreatedAt eventType, events
+
+    timeline =
+      events      : events
+      createdDates: createdDates
+      coPilot     : coPilot
+      members     : members
+
+    buildAvatar timeline, 'coPilot', onChange if coPilot
+
+    onChange? timeline
+
+  buildAvatar = (timeline, key, onChange) ->
+    userParams =
+    handle: timeline[key]
+
+    user = UserAPIService.get userParams
+
+    user.$promise.then (response) ->
+      timeline[key + 'AvatarUrl'] = AVATAR_URL + response?.photoLink
+
+      onChange? timeline
+
+    user.$promise.catch ->
+      # need handle error
+
+    user.$promise.finally ->
+      # need handle finally
+
   getEvents = (params, onChange) ->
     queryParams =
       filter: 'sourceObjectId=' + params.workId
@@ -29,31 +64,7 @@ srv = (TimelineAPIService, UserAPIService, avatarUrl) ->
     resource = TimelineAPIService.query queryParams
 
     resource.$promise.then (response) ->
-      createdDates = {}
-      coPilot = getCoPilot response
-      members = getMembers response
-
-      for eventType in eventTypes
-        createdDates[eventType] = getCreatedAt eventType, response
-
-      timeline =
-        events      : response
-        createdDates: createdDates
-        coPilot     : coPilot
-        members     : members
-
-      if coPilot
-        userParams =
-          handle: coPilot
-
-        coPilotUser = UserAPIService.get userParams
-
-        coPilotUser.$promise.then (response) ->
-          timeline.coPilotAvatarUrl = avatarUrl + response?.photoLink
-
-          onChange? timeline
-
-      onChange? timeline
+      buildTimeline response, onChange
 
     resource.$promise.catch ->
       # need handle error
@@ -94,6 +105,6 @@ srv = (TimelineAPIService, UserAPIService, avatarUrl) ->
 
   getEvents: getEvents
 
-srv.$inject = ['TimelineAPIService', 'UserAPIService', 'avatarUrl']
+srv.$inject = ['TimelineAPIService', 'UserAPIService', 'AVATAR_URL']
 
 angular.module('appirio-tech-timeline').factory 'TimelineService', srv

@@ -41,8 +41,8 @@ configs =
   fixtureFiles    : fixtureFiles
   constants:
     apiUrl   : 'https://api.topcoder-dev.com/v3/' # slash is grandfathered in from river
-    apiUrlV2 : 'https://api.topcoder-dev.com/v2' # Should not end in slash
-    avatarUrl: 'http://www.topcoder.com' # Should not end in slash
+    API_URL_V2 : 'https://api.topcoder-dev.com/v2' # Should not end in slash
+    AVATAR_URL: 'http://www.topcoder.com' # Should not end in slash
   coverageReporter:
     type: 'lcov'
     dir: 'coverage'
