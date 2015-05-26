@@ -38,9 +38,9 @@ TimelineController = (TimelineService, $stateParams) ->
   onChange = (timeline) ->
     setStatus timeline
 
-    vm.coPilotHandle    = timeline.coPilot
-    vm.members          = timeline.members
-    vm.coPilotAvatarUrl = timeline.coPilotAvatarUrl
+    vm.coPilotHandle = timeline.coPilot
+    vm.members       = timeline.members
+    vm.avatars       = timeline.avatars
 
   setStatus = (timeline) ->
     for mapEvent in mapEvents

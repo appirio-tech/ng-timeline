@@ -35,19 +35,20 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL) ->
       createdDates: createdDates
       coPilot     : coPilot
       members     : members
+      avatars     : {}
 
-    buildAvatar timeline, 'coPilot', onChange if coPilot
+    buildAvatar timeline, coPilot, onChange if coPilot
 
     onChange? timeline
 
-  buildAvatar = (timeline, key, onChange) ->
+  buildAvatar = (timeline, handle, onChange) ->
     userParams =
-    handle: timeline[key]
+      handle: handle
 
     user = UserAPIService.get userParams
 
     user.$promise.then (response) ->
-      timeline[key + 'AvatarUrl'] = AVATAR_URL + response?.photoLink
+      timeline.avatars[handle] = AVATAR_URL + response?.photoLink
 
       onChange? timeline
 
