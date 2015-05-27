@@ -15,6 +15,6 @@ li(ng-class="{ completed: vm.finalFeedback.completed, passed: vm.finalFeedback.p
 
     label(ng-hide="vm.finalFeedback.completed") Final Feedback
 
-    label(ng-show="vm.finalFeedback.completed") Feedback given to AppBomber34
+    label(ng-show="vm.finalFeedback.completed") Feedback given to {{ vm.feedback2Handle }}
 
   p(ng-show="vm.finalFeedback.completed && !vm.complete.completed") Awaiting final design changes.

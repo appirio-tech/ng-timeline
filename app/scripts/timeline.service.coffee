@@ -21,21 +21,29 @@ eventTypes = [
   'completed'
 ]
 
-srv = (TimelineAPIService, UserAPIService, AVATAR_URL) ->
+srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
   buildTimeline = (events, onChange) ->
-    createdDates = {}
-    coPilot = getCoPilot events
-    members = getMembers events
+    createdDates     = {}
+    coPilot          = getHandle events, 'copilot-assigned'
+    submission       = getHandle events, 'challenge-submission'
+    feedback         = getHandle events, 'challenge-feedback-provided'
+    feedback2        = getHandle events, 'final-feedback'
+    members          = getMembers events
+    submissionThumbs = getSubmissionThumbs events
 
     for eventType in eventTypes
       createdDates[eventType] = getCreatedAt eventType, events
 
     timeline =
-      events      : events
-      createdDates: createdDates
-      coPilot     : coPilot
-      members     : members
-      avatars     : {}
+      events          : events
+      createdDates    : createdDates
+      coPilot         : coPilot
+      members         : members
+      avatars         : {}
+      submission      : submission
+      submissionThumbs: submissionThumbs
+      feedback        : feedback
+      feedback2       : feedback2
 
     buildAvatar timeline, coPilot, onChange if coPilot
 
@@ -78,6 +86,18 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL) ->
     resource.$promise.finally ->
       # need handle finally
 
+  getSubmissionThumbs = (events) ->
+    thumbs = []
+    submissionEvents = findAllEvents 'challenge-submission', events
+
+    for submissionEvent in submissionEvents
+      thumbUrl = SUBMISSION_URL + '/?module=DownloadSubmission&sbmid='
+      thumbUrl +=  submissionEvent?.sourceObjectContent?.submissionId + '&sbt=tiny'
+
+      thumbs.push thumbUrl
+
+    thumbs
+
   findEvent = (type, events) ->
     for e in events
       return e if e.eventSubType == type
@@ -92,9 +112,9 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL) ->
 
     foundEvents
 
-  getCoPilot = (events) ->
-    coPilotEvent = findEvent 'copilot-assigned', events
-    coPilotEvent?.sourceObjectContent?.handle
+  getHandle = (events, type) ->
+    event = findEvent type, events
+    event?.sourceObjectContent?.handle
 
   getMembers = (events) ->
     members = []
@@ -111,6 +131,6 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL) ->
 
   getEvents: getEvents
 
-srv.$inject = ['TimelineAPIService', 'UserAPIService', 'AVATAR_URL']
+srv.$inject = ['TimelineAPIService', 'UserAPIService', 'AVATAR_URL', 'SUBMISSION_URL']
 
 angular.module('appirio-tech-timeline').factory 'TimelineService', srv
