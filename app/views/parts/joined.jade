@@ -9,9 +9,9 @@ li.no-progress(ng-class="{ completed: vm.joined.completed, passed: vm.joined.pas
     label(ng-show="vm.coPilot.completed") Members have joined the project.
 
   .avatar-box(ng-show="vm.coPilot.completed")
-    .avatar
+    img.avatar(src="{{ vm.avatars[vm.members[vm.members.length - 1]] }}")
 
-    span <a href="#">{{ vm.members[0] }}</a> 
+    span <a href="#">{{ vm.members[vm.members.length - 1] }}</a> 
 
     span(ng-show="vm.members.length > 1") and {{ vm.members.length }} others
 
