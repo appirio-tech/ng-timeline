@@ -47,29 +47,28 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
 
     buildAvatar timeline, coPilot, onChange if coPilot
 
-    if members.length
-      lastMember = members[members.length - 1]
-
-      buildAvatar timeline, lastMember, onChange
+    for member in members
+      buildAvatar timeline, member.handle, onChange
 
     onChange? timeline
 
   buildAvatar = (timeline, handle, onChange) ->
-    userParams =
-      handle: handle
+    unless timeline.avatars[handle]
+      userParams =
+        handle: handle
 
-    user = UserAPIService.get userParams
+      user = UserAPIService.get userParams
 
-    user.$promise.then (response) ->
-      timeline.avatars[handle] = AVATAR_URL + response?.photoLink
+      user.$promise.then (response) ->
+        timeline.avatars[handle] = AVATAR_URL + response?.photoLink
 
-      onChange? timeline
+        onChange? timeline
 
-    user.$promise.catch ->
-      # need handle error
+      user.$promise.catch ->
+        # need handle error
 
-    user.$promise.finally ->
-      # need handle finally
+      user.$promise.finally ->
+        # need handle finally
 
   getEvents = (params, onChange) ->
     queryParams =
@@ -121,7 +120,9 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
     memberEvents = findAllEvents 'challenge-member-registered', events
 
     for memberEvent in memberEvents
-      members.push memberEvent?.sourceObjectContent?.handle
+      members.push
+        handle: memberEvent?.sourceObjectContent?.handle
+        joined: memberEvent?.createdAt
 
     members
 

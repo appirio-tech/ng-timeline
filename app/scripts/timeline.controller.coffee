@@ -46,7 +46,7 @@ TimelineController = (TimelineService, $stateParams) ->
     vm.members          = timeline.members
     vm.avatars          = timeline.avatars
     vm.submissionHandle = timeline.submission
-    vm.submissionThumbs  = timeline.submissionThumbs
+    vm.submissionThumbs = timeline.submissionThumbs
     vm.feedbackHandle   = timeline.feedback
     vm.feedback2Handle  = timeline.feedback2
 

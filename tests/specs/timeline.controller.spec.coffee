@@ -38,7 +38,7 @@ describe 'TimelineController', ->
     expect(vm.coPilotHandle).to.be.equal 'Batman9000'
 
   it 'should have a first member of `Batman9000`', ->
-    expect(vm.members[0]).to.be.equal 'Batman9000'
+    expect(vm.members[0].handle).to.be.equal 'Batman9000'
 
   it 'should have a avatar url `http://www.topcoder.com/i/m/cardiboy_big.jpg`', ->
     expect(vm.avatars['Batman9000']).to.be.equal 'http://www.topcoder.com/i/m/cardiboy_big.jpg'

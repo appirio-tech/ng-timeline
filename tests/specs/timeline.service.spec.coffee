@@ -29,7 +29,7 @@ describe 'TimelineService', ->
     expect(timeline.members.length).to.be.equal 1
 
   it 'should have a member of `Batman9000`', ->
-    expect(timeline.members[0]).to.be.equal 'Batman9000'
+    expect(timeline.members[0].handle).to.be.equal 'Batman9000'
 
   it 'should have a submission of `Batman9000`', ->
     expect(timeline.submission).to.be.equal 'Batman9000'
