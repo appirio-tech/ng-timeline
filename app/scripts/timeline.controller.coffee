@@ -1,9 +1,13 @@
 'use strict'
 
 TimelineController = (TimelineService, $stateParams) ->
-  vm               = this
-  vm.coPilotHandle = null
-  vm.members       = []
+  vm                  = this
+  vm.coPilotHandle    = null
+  vm.members          = []
+  vm.avatars          = {}
+  vm.submissionHandle = null
+  vm.feedbackHandle   = null
+  vm.feedback2Handle  = null
 
   mapEvents = [
     ['submitted', 'submitted']
@@ -38,13 +42,17 @@ TimelineController = (TimelineService, $stateParams) ->
   onChange = (timeline) ->
     setStatus timeline
 
-    vm.coPilotHandle = timeline.coPilot
-    vm.members       = timeline.members
-    vm.avatars       = timeline.avatars
+    vm.coPilotHandle    = timeline.coPilot
+    vm.members          = timeline.members
+    vm.avatars          = timeline.avatars
+    vm.submissionHandle = timeline.submission
+    vm.submissionThumbs = timeline.submissionThumbs
+    vm.feedbackHandle   = timeline.feedback
+    vm.feedback2Handle  = timeline.feedback2
 
   setStatus = (timeline) ->
     for mapEvent in mapEvents
-      vm[mapEvent[0]].completed = timeline.createdDates[mapEvent[1]]?
+      vm[mapEvent[0]].completed = timeline.createdDates?[mapEvent[1]]
 
     for mapEvent, i in mapEvents
       if mapEvents[i + 1]

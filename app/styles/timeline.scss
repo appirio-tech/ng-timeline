@@ -7,7 +7,6 @@
   .avatar-box {
     padding         : 4px;
     background-color: white;
-    border          : 1px solid grey;
     display         : table;
 
     .avatar {
@@ -19,11 +18,16 @@
       margin-right  : 6px;
       vertical-align: middle;
     }
+
+    p {
+      display       : inline-block;
+      width         : 240px;
+      vertical-align: middle;
+    }
   }
 
   > ul {
     position : relative;
-    max-width: 500px;
 
     > li {
       $point-width     : 27px;
@@ -149,6 +153,10 @@
 
         .point {
           background-color: green;
+
+          &.notification {
+            background-color: red;
+          }
         }
 
         .progress {

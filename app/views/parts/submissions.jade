@@ -15,17 +15,12 @@ li.submissions(ng-class="{ completed: vm.submissions.completed, passed: vm.submi
 
     label(ng-hide="vm.submissions.completed") Recieve submissions
 
-    label(ng-show="vm.submissions.completed") Updates from Appulous9000
+    label(ng-show="vm.submissions.completed") Submission Recieved from 
 
-  time.time(ng-show="vm.submissions.completed") 12:30pm April 5 2015
+      a(href="#") {{ vm.submissionHandle }} 
 
-  a.view-details(href="3", ng-show="vm.submissions.completed") View Submission Details
+      time.time(ng-show="vm.submissions.completed") {{ vm.submissions.completed #{dateFilter} }}
 
   ul(ng-show="vm.submissions.completed")
-    li
-
-    li
-
-    li
-
-    li
+    li(ng-repeat="submissionThumb in vm.submissionThumbs")
+      img(ng-src="{{ submissionThumb }}")
