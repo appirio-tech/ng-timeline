@@ -7,23 +7,27 @@
   .avatar-box {
     padding         : 4px;
     background-color: white;
-    border          : 1px solid grey;
     display         : table;
 
     .avatar {
-      display         : inline-block;
-      width           : 35px;
-      height          : 35px;
-      background-color: black;
-      border-radius   : 35px;
-      margin-right    : 6px;
-      vertical-align  : middle;
+      display       : inline-block;
+      width         : 35px;
+      height        : 35px;
+      border        : 1px solid grey;
+      border-radius : 35px;
+      margin-right  : 6px;
+      vertical-align: middle;
+    }
+
+    p {
+      display       : inline-block;
+      width         : 240px;
+      vertical-align: middle;
     }
   }
 
   > ul {
     position : relative;
-    max-width: 500px;
 
     > li {
       $point-width     : 27px;
@@ -149,6 +153,10 @@
 
         .point {
           background-color: green;
+
+          &.notification {
+            background-color: red;
+          }
         }
 
         .progress {

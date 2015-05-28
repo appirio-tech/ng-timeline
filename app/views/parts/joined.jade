@@ -1,4 +1,7 @@
-li.no-progress(ng-class="{ completed: vm.joined.completed, passed: vm.joined.passed }")
+li.no-progress(
+  ng-class="{ completed: vm.joined.completed, passed: vm.joined.passed }",
+  ng-repeat="member in vm.members track by $index"
+)
   section.checkpoint
     .point
 
@@ -6,9 +9,14 @@ li.no-progress(ng-class="{ completed: vm.joined.completed, passed: vm.joined.pas
 
     label(ng-hide="vm.coPilot.completed") Meet others
 
-    label(ng-show="vm.coPilot.completed") Others have joined the project.
+    label(ng-show="vm.coPilot.completed")
+      .avatar-box(ng-show="vm.coPilot.completed")
+        img.avatar(ng-src="{{ vm.avatars[member.handle] }}")
 
-  .avatar-box(ng-show="vm.coPilot.completed")
-    .avatar
+        span <a href="#">{{ member.handle }}</a> 
 
-    span <a href="#">Appulous9000</a> and 6 others have joined the project.
+        span has joined the project. 
+
+        time {{ member.joined | date : "h:mma MMMM d, y" }}
+
+
