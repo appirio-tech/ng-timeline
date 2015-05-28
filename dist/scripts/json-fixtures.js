@@ -1,10 +1,10 @@
 window.FIXTURES = {
-    "bower_components/work-api-schema/work-api-schema.json": {
+    "bower_components/appirio-tech-api-schemas/v3.json": {
         "swagger": "2.0",
         "info": {
-                "description": "Move your app forward with the Uber API",
-                "version": "1.0.0",
-                "title": "Uber API"
+                "description": "",
+                "version": "",
+                "title": ""
         },
         "host": "api.topcoder-dev.com",
         "basePath": "/v3/events",
@@ -17,23 +17,8 @@ window.FIXTURES = {
         "paths": {
                 "": {
                         "get": {
-                                "tags": [
-                                        "abc"
-                                ],
-                                "summary": "This is a Summary",
-                                "description": "This is a description",
-                                "parameters": [
-                                        {
-                                                "name": "filter",
-                                                "in": "query",
-                                                "description": "This is a description",
-                                                "required": true,
-                                                "type": "string"
-                                        }
-                                ],
                                 "responses": {
                                         "200": {
-                                                "description": "This is a description",
                                                 "schema": {
                                                         "type": "object",
                                                         "items": {
@@ -139,8 +124,10 @@ window.FIXTURES = {
                                         ]
                                 },
                                 "sourceObjectContent": {
-                                        "type": "string",
-                                        "sample": "{\"version\":14,\"id\":\"1427467795351:af449f69-e4ed-4325-a184-c9be1da5dd46\",\"modifiedBy\":\"40097202\",\"modifiedAt\":1430859249850,\"createdBy\":\"40097202\",\"createdAt\":1427467795351,\"name\":\"name used for test\",\"summary\":\"testing of the summary\",\"requestType\":\"Design&Code\",\"ownerId\":\"40097202\",\"competitorApps\":[\"comp 0\",\"comp 1\",\"comp 3\",\"comp 4\"],\"usageDescription\":\"usage - updated now\",\"features\":[{\"name\":\"feature1.0\",\"description\":\"desc1\"},{\"name\":\"feature2\",\"description\":\"desc2.0\"}],\"costEstimate\":{\"low\":\"3600\",\"high\":\"4400\"},\"status\":\"submitted\",\"statusNotes\":null,\"copilotId\":\"co-pilot\",\"quotedAmount\":null}"
+                                        "type": "object",
+                                        "items": {
+                                                "$ref": "#/definitions/SourceObjectContent"
+                                        }
                                 },
                                 "userId": {
                                         "type": "string"
@@ -150,7 +137,42 @@ window.FIXTURES = {
                                 }
                         }
                 },
-                "SourceObjectContent": {},
+                "SourceObjectContent": {
+                        "properties": {
+                                "copilotId": {
+                                        "type": "string"
+                                },
+                                "challengeId": {
+                                        "type": "string"
+                                },
+                                "submissionId": {
+                                        "type": "string",
+                                        "sample": "200703"
+                                },
+                                "submissionType": {
+                                        "type": "string",
+                                        "enum": [
+                                                "final",
+                                                "checkpoint"
+                                        ]
+                                },
+                                "handle": {
+                                        "type": "string",
+                                        "sample": "Batman9000"
+                                },
+                                "submissionDate": {
+                                        "type": "string",
+                                        "sample": "2015-05-05T20:53:41.467Z"
+                                },
+                                "submissionStatus": {
+                                        "type": "string"
+                                },
+                                "registrationDate": {
+                                        "type": "string",
+                                        "sample": "2015-05-05T20:53:41.467Z"
+                                }
+                        }
+                },
                 "Error": {
                         "properties": {
                                 "code": {
@@ -162,6 +184,70 @@ window.FIXTURES = {
                                 },
                                 "fields": {
                                         "type": "string"
+                                }
+                        }
+                }
+        }
+},
+    "bower_components/appirio-tech-api-schemas/v2.json": {
+        "swagger": "2.0",
+        "info": {
+                "description": "Move your app forward with the Uber API",
+                "version": "1.0.0",
+                "title": "Uber API"
+        },
+        "host": "api.topcoder-dev.com",
+        "basePath": "/v2",
+        "schemes": [
+                "https"
+        ],
+        "produces": [
+                "application/json"
+        ],
+        "paths": {
+                "/users/{handle}": {
+                        "get": {
+                                "responses": {
+                                        "200": {
+                                                "schema": {
+                                                        "type": "object",
+                                                        "items": {
+                                                                "$ref": "#/definitions/User"
+                                                        }
+                                                }
+                                        },
+                                        "default": {
+                                                "description": "Unexpected error",
+                                                "schema": {
+                                                        "$ref": "#/definitions/Error"
+                                                }
+                                        }
+                                }
+                        }
+                }
+        },
+        "definitions": {
+                "User": {
+                        "properties": {
+                                "handle": {
+                                        "type": "string",
+                                        "sample": "CardioBoy"
+                                },
+                                "country": {
+                                        "type": "string",
+                                        "sample": "Idonesia"
+                                },
+                                "memberSince": {
+                                        "type": "string",
+                                        "sample": "2008-10-15T05:08:00.000-0400"
+                                },
+                                "quote": {
+                                        "type": "string",
+                                        "sample": "Don't forget your roots."
+                                },
+                                "photoLink": {
+                                        "type": "string",
+                                        "sample": "/i/m/cardiboy_big.jpg"
                                 }
                         }
                 }

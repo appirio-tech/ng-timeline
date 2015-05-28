@@ -3,8 +3,14 @@
   var TimelineController;
 
   TimelineController = function(TimelineService, $stateParams) {
-    var activate, mapEvents, onSuccess, setStatus, vm;
+    var activate, mapEvents, onChange, setStatus, vm;
     vm = this;
+    vm.coPilotHandle = null;
+    vm.members = [];
+    vm.avatars = {};
+    vm.submissionHandle = null;
+    vm.feedbackHandle = null;
+    vm.feedback2Handle = null;
     mapEvents = [['submitted', 'submitted'], ['email', 'email-verified'], ['quote', 'quote-created'], ['payment', 'payment-accepted'], ['coPilot', 'copilot-assigned'], ['launched', 'launched'], ['joined', 'challenge-member-registered'], ['submissions', 'challenge-submission'], ['feedback', 'challenge-feedback-provided'], ['checkpoint1', 'checkpoint1'], ['finalists', 'finalists'], ['finalistsSelected', 'challenge-finalists-selected'], ['finalDesign', 'final-design'], ['winner', 'winner'], ['finalFeedback', 'final-feedback'], ['completed', 'completed']];
     activate = function() {
       var j, len, mapEvent, params;
@@ -18,16 +24,23 @@
       params = {
         workId: $stateParams.workId
       };
-      return TimelineService.getEvents(params, onSuccess);
+      return TimelineService.getEvents(params, onChange);
     };
-    onSuccess = function(timeline) {
-      return setStatus(timeline);
+    onChange = function(timeline) {
+      setStatus(timeline);
+      vm.coPilotHandle = timeline.coPilot;
+      vm.members = timeline.members;
+      vm.avatars = timeline.avatars;
+      vm.submissionHandle = timeline.submission;
+      vm.submissionThumbs = timeline.submissionThumbs;
+      vm.feedbackHandle = timeline.feedback;
+      return vm.feedback2Handle = timeline.feedback2;
     };
     setStatus = function(timeline) {
-      var i, j, k, len, len1, mapEvent, results;
+      var i, j, k, len, len1, mapEvent, ref, results;
       for (j = 0, len = mapEvents.length; j < len; j++) {
         mapEvent = mapEvents[j];
-        vm[mapEvent[0]].completed = timeline.createdDates[mapEvent[1]] != null;
+        vm[mapEvent[0]].completed = (ref = timeline.createdDates) != null ? ref[mapEvent[1]] : void 0;
       }
       results = [];
       for (i = k = 0, len1 = mapEvents.length; k < len1; i = ++k) {
