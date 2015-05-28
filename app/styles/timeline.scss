@@ -18,11 +18,16 @@
       margin-right  : 6px;
       vertical-align: middle;
     }
+
+    p {
+      display       : inline-block;
+      width         : 240px;
+      vertical-align: middle;
+    }
   }
 
   > ul {
     position : relative;
-    max-width: 500px;
 
     > li {
       $point-width     : 27px;
@@ -148,6 +153,10 @@
 
         .point {
           background-color: green;
+
+          &.notification {
+            background-color: red;
+          }
         }
 
         .progress {

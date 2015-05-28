@@ -6,4 +6,6 @@ li.no-progress(ng-class="{ completed: vm.feedback.completed, passed: vm.feedback
 
     label(ng-hide="vm.feedback.completed") Give Feedback?
 
-    label(ng-show="vm.feedback.completed") Feedback given to {{ vm.feedbackHandle }}
+    label(ng-show="vm.feedback.completed") Feedback given to 
+
+      a(href="#") {{ vm.feedbackHandle }}

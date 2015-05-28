@@ -15,6 +15,8 @@ li.no-progress(
 
         span <a href="#">{{ member.handle }}</a> 
 
-        span has joined the project.
+        span has joined the project. 
+
+        time {{ member.joined | date : "h:mma MMMM d, y" }}
 
 
