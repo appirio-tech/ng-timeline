@@ -5,6 +5,7 @@
   },
   "devDependencies": {
     "appirio-gulp-tasks": "0.0.6",
+    "appirio-work-styles": "0.0.1",
     "autoprefixer-core": "^4.0.2",
     "browser-sync": "^1.8.2",
     "coffee-script": "^1.9.2",

@@ -1,14 +1,20 @@
 language: node_js
 node_js:
-  - "0.10.25"
+- 0.10.25
 install:
-  - npm install -g gulp
-  - npm install -g bower
-  - npm install
-  - bower install
+- npm install -g gulp
+- npm install -g bower
+- npm install
+- bower install
 script:
-  - gulp test
-  - gulp build
+- gulp test
+- gulp build
 sudo: false
 after_success:
-  - gulp coveralls
+- gulp coveralls
+deploy:
+  provider: npm
+  api_key:
+    secure: ffpdRFEARMrhiuiCFb5z2t0hukspY+0sVYB+EcOxLjLwnIueEuExy3IL1E9sSqTKQQqyrYO1TPVrW4XvB0xWBa/Msp3xfWZzIoYlobizbDd14aLkhVV9SVowvbAUmofQBQEEKsrUW82BQMuA5+H/kgcpDVao2cIB7GWw0A0UyT4=
+  on:
+    tags: true
