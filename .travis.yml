@@ -12,9 +12,3 @@ script:
 sudo: false
 after_success:
 - gulp coveralls
-deploy:
-  provider: npm
-  api_key:
-    secure: ffpdRFEARMrhiuiCFb5z2t0hukspY+0sVYB+EcOxLjLwnIueEuExy3IL1E9sSqTKQQqyrYO1TPVrW4XvB0xWBa/Msp3xfWZzIoYlobizbDd14aLkhVV9SVowvbAUmofQBQEEKsrUW82BQMuA5+H/kgcpDVao2cIB7GWw0A0UyT4=
-  on:
-    tags: true
