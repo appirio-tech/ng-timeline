@@ -94,7 +94,7 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
 
     for submissionEvent in submissionEvents
       thumbUrl = SUBMISSION_URL + '/?module=DownloadSubmission&sbmid='
-      thumbUrl +=  submissionEvent?.sourceObjectContent?.submissionId + '&sbt=tiny'
+      thumbUrl +=  submissionEvent?.sourceObjectContent?.submissionId + '&sbt=tiny' # + '^.^'
 
       thumbs.push thumbUrl
 
