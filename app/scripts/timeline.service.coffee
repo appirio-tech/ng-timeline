@@ -60,7 +60,7 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
       user = UserAPIService.get userParams
 
       user.$promise.then (response) ->
-        timeline.avatars[handle] = AVATAR_URL + response?.photoLink + '^.^'
+        timeline.avatars[handle] = AVATAR_URL + response?.photoLink
 
         onChange? timeline
 
@@ -77,8 +77,8 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
     resource = TimelineAPIService.query queryParams
 
     resource.$promise.then (response) ->
-      for item in resource
-        item.sourceObjectContent.handle += '1'
+      #for item in resource
+        #item.sourceObjectContent.handle += '1'
 
       buildTimeline response, onChange
 
@@ -94,7 +94,7 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
 
     for submissionEvent in submissionEvents
       thumbUrl = SUBMISSION_URL + '/?module=DownloadSubmission&sbmid='
-      thumbUrl +=  submissionEvent?.sourceObjectContent?.submissionId + '&sbt=tiny' + '^.^'
+      thumbUrl +=  submissionEvent?.sourceObjectContent?.submissionId + '&sbt=tiny'
 
       thumbs.push thumbUrl
 
