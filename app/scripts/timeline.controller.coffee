@@ -37,7 +37,7 @@ TimelineController = (TimelineService, $stateParams) ->
     params =
       workId: $stateParams.workId
 
-    TimelineService.getEvents params, onChange
+    TimelineService.getEvents params, onChange  # look in Timeline-api.service
 
   onChange = (timeline) ->
     setStatus timeline

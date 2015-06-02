@@ -77,6 +77,9 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
     resource = TimelineAPIService.query queryParams
 
     resource.$promise.then (response) ->
+      #for item in resource
+        #item.sourceObjectContent.handle += '1'
+
       buildTimeline response, onChange
 
     resource.$promise.catch ->
