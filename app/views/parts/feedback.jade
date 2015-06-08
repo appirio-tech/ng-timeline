@@ -1,5 +1,14 @@
-li.no-progress(ng-class="{ completed: vm.feedback.completed, passed: vm.feedback.passed }")
+li(ng-class="{ completed: vm.feedback.completed, passed: vm.feedback.passed }")
   section.checkpoint
+    .progress
+      .percent 65%
+
+      .status Complete
+
+      .day Day 14
+
+    .lead
+
     .point
 
     .lead-after
