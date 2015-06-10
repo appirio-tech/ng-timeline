@@ -45,6 +45,7 @@ configs.coverageReporter =
 ##
 ## Normally, you wouldnt need to edit below this line ##
 ##
+
 gulpTaskPath             = './node_modules/appirio-gulp-tasks'
 configs.karma.configFile = __dirname + '/' + gulpTaskPath + '/karma.conf.coffee'
 configs.karma.basePath   = __dirname
@@ -81,7 +82,4 @@ for task in tasks
 
 gulp.task 'default', ['clean'], ->
   gulp.start 'build'
-
-
-
 

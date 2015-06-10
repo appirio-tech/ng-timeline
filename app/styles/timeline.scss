@@ -1,12 +1,13 @@
 @import "work-includes";
+@import "variables";
 
 .layout-main.timeline {
-  padding: 15px 20px;
+  background-color: #E6E1E1;
+  padding         : 15px 20px;
 
   .avatar-box {
-    padding         : 4px;
-    background-color: white;
-    display         : table;
+    padding: 4px;
+    display: table;
 
     .avatar {
       display       : inline-block;
@@ -29,14 +30,6 @@
     position : relative;
 
     > li {
-      $point-width     : 27px;
-      $big-point-width : 37px;
-      $timeline-width  : 3px;
-      $spacing         : 20px;
-      $head-width      : $point-width/2 + $timeline-width/2;
-      $head-width-big  : $big-point-width/2 + $timeline-width/2;
-      $lead-after-width: 10px;
-
       border-left   : $timeline-width solid grey;
       color         : grey;
       padding-bottom: $point-width;
@@ -72,7 +65,6 @@
       .checkpoint {
         margin-left: -$head-width;
         white-space: nowrap;
-        overflow   : hidden;
         z-index    : 1;
         position   : relative;
 
@@ -94,12 +86,10 @@
         }
 
         .point {
-          $border-width: 3px;
-
           width           : $point-width;
           height          : $point-width;
-          line-height     : $point-width - ($border-width * 2);
-          border          : $border-width solid white;
+          line-height     : $point-width - ($point-border-width * 2);
+          border          : $point-border-width solid white;
           border-radius   : 50%;
           background-color: grey;
           text-align      : center;

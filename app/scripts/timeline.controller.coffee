@@ -1,13 +1,14 @@
 'use strict'
 
 TimelineController = (TimelineService, $stateParams) ->
-  vm                  = this
-  vm.coPilotHandle    = null
-  vm.members          = []
-  vm.avatars          = {}
-  vm.submissionHandle = null
-  vm.feedbackHandle   = null
-  vm.feedback2Handle  = null
+  vm                     = this
+  vm.coPilotHandle       = null
+  vm.members             = []
+  vm.avatars             = {}
+  vm.submissionHandle    = null
+  vm.feedbackHandle      = null
+  vm.feedback2Handle     = null
+  vm.showMessagingWidget = false
 
   mapEvents = [
     { key: 'submitted', value: 'submitted' }
