@@ -14,11 +14,13 @@ configs.karma =
     'tests/specs/**/*.coffee'
   ]
   files: [
+    'bower_components/sinon/index.js'
     'bower_components/angular/angular.js'
     'bower_components/angular-mocks/angular-mocks.js'
     'bower_components/angular-resource/angular-resource.js'
     'bower_components/angular-ui-router/release/angular-ui-router.js'
     'bower_components/auto-config-fake-server/dist/auto-config-fake-server.js'
+    'bower_components/appirio-tech-messaging/dist/main.js'
     'tests/specs/helper.coffee'
     '.tmp/scripts/constants.js'
     '.tmp/scripts/json-fixtures.js'
