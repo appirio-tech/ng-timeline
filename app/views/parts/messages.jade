@@ -1,10 +1,12 @@
 li.notification.messages.no-progress
   section.checkpoint
-    .point.tooltip-item 6
+    .point.tooltip-item
+      .button.clean(ng-click="vm.showMessagingWidget = true") 6
+
       .tooltip(ng-class="{active: vm.showMessagingWidget}")
         button.clean.close(ng-click="vm.showMessagingWidget = false") x
 
-        p Lorem ipsum doldae oluptate aperiam unde voluptates quas.
+        messaging.widget Lorem ipsum doldae oluptate aperiam unde voluptates quas.
 
     .lead-after
 
@@ -18,7 +20,7 @@ li.notification.messages.no-progress
 
   ul.links
     li
-      button.clean(ng-click="vm.showMessagingWidget = !vm.showMessagingWidget") View
+      button.clean(ng-click="vm.showMessagingWidget = true") View
 
     li
       a(href="#") View full thread
