@@ -1,26 +1,88 @@
 @import "work-includes";
+@import "variables";
 
 .layout-main.timeline {
   ul li.messages {
+    position: relative;
+    z-index : 10;
+
     section.checkpoint {
       label .message {
-        max-width: 200px;
+        max-width    : 200px;
+        display      : inline-block;
+        white-space  : nowrap;
+        overflow     : hidden;
+        text-overflow: ellipsis;
       }
     }
 
     textarea {
       padding  : 4px;
       width    : 100%;
-      max-width: 300px;
       display  : inline-block;
     }
 
-    button {
-      background-color: blue;
-      height          : 30px;
-      color           : white;
-      display         : inline-block;
-      vertical-align  :  top;
+    .links{
+      button {
+        text-decoration: underline;
+        color: blue;
+      }
+    }
+
+    ul.links {
+      li {
+        display: inline-block;
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .tooltip-item {
+    $arrow-size: 15px;
+
+    .tooltip {
+      @include transition (all 0.2s ease-in-out);
+      @include font-line(16);
+
+      text-align   : initial;
+      white-space  : initial;
+      position     : relative;
+      background   : white;
+      border-radius: 4px;
+      box-shadow   : 0 2px 2px silver;
+      color        : black;
+      opacity      : 0;
+      padding      : 24px 12px 8px 12px;
+      visibility   : hidden;
+      z-index      : 10;
+      top          : 0;
+      left         : 0;
+      margin-top   : $arrow-size;
+
+      .close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 6px 10px
+      }
+
+      &.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      &:before {
+        $arrow-size: 15px;
+
+        position   : absolute;
+        color      : white;
+        content    : '▲';
+        font-size  : $arrow-size;
+        margin-left: ($point-width / 2) - ($arrow-size / 2) - ($timeline-width / 2);
+        margin-top : -$arrow-size;
+        top        : 0;
+        left       : 0;
+      }
     }
   }
 }

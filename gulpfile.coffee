@@ -14,11 +14,14 @@ configs.karma =
     'tests/specs/**/*.coffee'
   ]
   files: [
+    'bower_components/sinon/index.js'
     'bower_components/angular/angular.js'
+    'bower_components/angular-scroll/angular-scroll.js'
     'bower_components/angular-mocks/angular-mocks.js'
     'bower_components/angular-resource/angular-resource.js'
     'bower_components/angular-ui-router/release/angular-ui-router.js'
-    'bower_components/auto-config-fake-server/dist/scripts/auto-config-fake-server.js'
+    'bower_components/auto-config-fake-server/dist/auto-config-fake-server.js'
+    'bower_components/appirio-tech-messaging/dist/main.js'
     'tests/specs/helper.coffee'
     '.tmp/scripts/constants.js'
     '.tmp/scripts/json-fixtures.js'
@@ -30,12 +33,13 @@ configs.karma =
 configs.fixtureFiles = [
   'bower_components/appirio-tech-api-schemas/v3.json'
   'bower_components/appirio-tech-api-schemas/v2.json'
+  'bower_components/appirio-tech-api-schemas/v3-messages.json'
 ]
 
 configs.constants =
-  apiUrl        : 'https://api.topcoder-dev.com/v3/' # slash is grandfathered in from river
-  API_URL_V2    : 'https://api.topcoder-dev.com/v2' # Should not end in slash
-  AVATAR_URL    : 'http://www.topcoder.com' # Should not end in slash
+  API_URL       : 'https://api.topcoder-dev.com/v3'
+  API_URL_V2    : 'https://api.topcoder-dev.com/v2'
+  AVATAR_URL    : 'http://www.topcoder.com'
   SUBMISSION_URL: 'https://studio.topcoder.com'
 
 configs.coverageReporter =
@@ -45,6 +49,7 @@ configs.coverageReporter =
 ##
 ## Normally, you wouldnt need to edit below this line ##
 ##
+
 gulpTaskPath             = './node_modules/appirio-gulp-tasks'
 configs.karma.configFile = __dirname + '/' + gulpTaskPath + '/karma.conf.coffee'
 configs.karma.basePath   = __dirname
@@ -81,7 +86,4 @@ for task in tasks
 
 gulp.task 'default', ['clean'], ->
   gulp.start 'build'
-
-
-
 

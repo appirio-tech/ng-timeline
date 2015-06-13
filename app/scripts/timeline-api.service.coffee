@@ -5,8 +5,8 @@ transformResponse = (response) ->
 
   parsed?.result?.content || []
 
-srv = ($resource, apiUrl) ->
-  url     = apiUrl + 'events'
+srv = ($resource, API_URL) ->
+  url     = API_URL + '/events'
   params  = filter: 'sourceObjectId%3D@workId'
   actions =
     query:
@@ -16,6 +16,6 @@ srv = ($resource, apiUrl) ->
 
   $resource url, params, actions
 
-srv.$inject = ['$resource', 'apiUrl']
+srv.$inject = ['$resource', 'API_URL']
 
 angular.module('appirio-tech-timeline').factory 'TimelineAPIService', srv
