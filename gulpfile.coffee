@@ -7,6 +7,33 @@ configs =
   appFolder       : 'app'
   distFolder      : 'dist'
 
+configs.buildFiles =
+  concat:
+    'main.js': [
+      '.tmp/scripts/timeline.module.js',
+      '.tmp/scripts/templates.js',
+      '.tmp/scripts/timeline.controller.js',
+      '.tmp/scripts/timeline.service.js',
+      '.tmp/scripts/template-api.service.js',
+      '.tmp/scripts/user-api.service.js'
+    ]
+    'main.css': [
+      '.tmp/styles/timeline.css'
+      '.tmp/styles/messages.css'
+      '.tmp/styles/submissions.css'
+    ]
+    'main.landscape.css': [
+      '.tmp/styles/timeline.landscape.css'
+      '.tmp/styles/submissions.landscape.css'
+    ]
+
+configs.templateCache =
+  files : [
+    '.tmp/views/timeline.html'
+  ]
+  root  : 'views/'
+  module: 'appirio-tech-timeline'
+
 configs.karma =
   coverage    : 'app/**/*.coffee'
   # Dont include coverage files
