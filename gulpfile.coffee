@@ -16,6 +16,7 @@ configs.karma =
   files: [
     'bower_components/sinon/index.js'
     'bower_components/angular/angular.js'
+    'bower_components/angular-scroll/angular-scroll.js'
     'bower_components/angular-mocks/angular-mocks.js'
     'bower_components/angular-resource/angular-resource.js'
     'bower_components/angular-ui-router/release/angular-ui-router.js'
