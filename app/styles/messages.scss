@@ -19,7 +19,6 @@
     textarea {
       padding  : 4px;
       width    : 100%;
-      max-width: 300px;
       display  : inline-block;
     }
 
@@ -52,9 +51,8 @@
       border-radius: 4px;
       box-shadow   : 0 2px 2px silver;
       color        : black;
-      width        : 260px;
       opacity      : 0;
-      padding      : 8px 12px;
+      padding      : 24px 12px 8px 12px;
       visibility   : hidden;
       z-index      : 10;
       top          : 0;
