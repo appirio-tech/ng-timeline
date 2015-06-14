@@ -1,14 +1,22 @@
 'use strict'
 
 config = ($stateProvider) ->
-  state =
+  states = {}
+
+  states['timeline'] =
     url         : '/timeline/:workId'
     title       : 'Timeline'
     controller  : 'TimelineController'
     controllerAs: 'vm'
     templateUrl : 'views/timeline.html'
 
-  $stateProvider.state 'timeline', state
+  states['messaging'] =
+    url         : '/messaging/:id'
+    title       : 'Messaging'
+    templateUrl : 'views/messaging.html'
+
+  for key, state of states
+    $stateProvider.state key, state
 
 config.$inject = ['$stateProvider']
 
