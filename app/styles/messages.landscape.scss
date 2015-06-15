@@ -2,9 +2,13 @@
 @import "variables";
 
 .layout-main.timeline {
-  .tooltip-item {
-    .tooltip {
-      width: 360px;
+  ul li.messages {
+    section.checkpoint {
+      .point {
+        .tooltip {
+          width: 360px;
+        }
+      }
     }
   }
 }
