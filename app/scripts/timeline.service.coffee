@@ -25,11 +25,10 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
   buildTimeline = (events, onChange) ->
     createdDates     = {}
     coPilot          = getHandle events, 'copilot-assigned'
-    submission       = getHandle events, 'challenge-submission'
+    submissions      = getSubmissions events
     feedback         = getHandle events, 'challenge-feedback-provided'
     feedback2        = getHandle events, 'final-feedback'
     members          = getMembers events
-    submissionThumbs = getSubmissionThumbs events
 
     for eventType in eventTypes
       createdDates[eventType] = getCreatedAt eventType, events
@@ -40,8 +39,7 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
       coPilot         : coPilot
       members         : members
       avatars         : {}
-      submission      : submission
-      submissionThumbs: submissionThumbs
+      submissions     : submissions
       feedback        : feedback
       feedback2       : feedback2
 
@@ -85,17 +83,20 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
     resource.$promise.finally ->
       # need handle finally
 
-  getSubmissionThumbs = (events) ->
-    thumbs = []
+  getSubmissions = (events) ->
+    submissions      = []
     submissionEvents = findAllEvents 'challenge-submission', events
 
     for submissionEvent in submissionEvents
-      thumbUrl = SUBMISSION_URL + '/?module=DownloadSubmission&sbmid='
-      thumbUrl +=  submissionEvent?.sourceObjectContent?.submissionId + '&sbt=tiny'
+      submission =
+        handle: submissionEvent?.sourceObjectContent?.handle
+        url: SUBMISSION_URL + '/?module=DownloadSubmission&sbmid='
 
-      thumbs.push thumbUrl
+      submission.url += submissionEvent?.sourceObjectContent?.submissionId
 
-    thumbs
+      submissions.push submission
+
+    submissions
 
   findEvent = (type, events) ->
     for e in events

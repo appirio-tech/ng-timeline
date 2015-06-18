@@ -5,10 +5,12 @@ TimelineController = (TimelineService, $stateParams) ->
   vm.coPilotHandle       = null
   vm.members             = []
   vm.avatars             = {}
-  vm.submissionHandle    = null
+  vm.submissions         = null
   vm.feedbackHandle      = null
   vm.feedback2Handle     = null
   vm.showMessagingWidget = false
+  vm.completed           = {}
+  vm.passed              = {}
 
   vm.expanded =
     submitted       : false
@@ -55,18 +57,17 @@ TimelineController = (TimelineService, $stateParams) ->
     vm.coPilotHandle    = timeline.coPilot
     vm.members          = timeline.members
     vm.avatars          = timeline.avatars
-    vm.submissionHandle = timeline.submission
-    vm.submissionThumbs = timeline.submissionThumbs
+    vm.submissions      = timeline.submissions
     vm.feedbackHandle   = timeline.feedback
     vm.feedback2Handle  = timeline.feedback2
 
   setStatus = (timeline) ->
     for mapEvent in mapEvents
-      vm[mapEvent.key].completed = timeline.createdDates?[mapEvent.value]
+      vm.completed[mapEvent.key] = timeline.createdDates?[mapEvent.value]
 
     for mapEvent, i in mapEvents
       if mapEvents[i + 1]
-        vm[mapEvent.key].passed = vm[mapEvents[i + 1].key].completed
+        vm.passed[mapEvent.key] = vm[mapEvents[i + 1].key].completed
 
   activate()
 

@@ -1,5 +1,5 @@
 li.milestone.completed.passed(
-  ng-class="{ completed: vm.submitted.completed, expanded: vm.expanded.submitted }"
+  ng-class="{ completed: vm.completed.submitted, expanded: vm.expanded.submitted }"
   ng-click="vm.expanded.submitted = !vm.expanded.submitted"
 )
   section.checkpoint
@@ -19,6 +19,6 @@ li.milestone.completed.passed(
     label
       h4 Project Submitted
 
-      time {{ vm.submitted.completed | date }}
+      time {{ vm.completed.submitted | date }}
 
   hr

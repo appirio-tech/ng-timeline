@@ -1,4 +1,4 @@
-li.submissions(ng-class="{ completed: vm.submissions.completed, passed: vm.submissions.passed }")
+li.submissions(ng-class="{ completed: vm.completed.submissions, passed: vm.passed.submissions }")
   section.checkpoint
     .progress
       .percent 55%
@@ -13,14 +13,11 @@ li.submissions(ng-class="{ completed: vm.submissions.completed, passed: vm.submi
 
     .lead-after
 
-    label(ng-hide="vm.submissions.completed") Recieve submissions
+    label(ng-hide="vm.completed.submissions") Recieve submissions
 
-    label(ng-show="vm.submissions.completed") Submission Recieved from 
+    label(ng-show="vm.completed.submissions") Submission Recieved from 
 
       a(href="#") {{ vm.submissionHandle }} 
 
-      time.time(ng-show="vm.submissions.completed") {{ vm.submissions.completed #{dateFilter} }}
+      time.time(ng-show="vm.completed.submissions") {{ vm.completed.submissions #{dateFilter} }}
 
-  ul(ng-show="vm.submissions.completed")
-    li(ng-repeat="submissionThumb in vm.submissionThumbs")
-      img(ng-src="{{ submissionThumb }}")

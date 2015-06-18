@@ -10,10 +10,10 @@ li.notification.messages.no-progress.completed
 
     .lead-after
 
-    label(ng-hide="vm.coPilot.completed") Messages
+    label(ng-hide="vm.completed.coPilot") Messages
 
-    label(ng-show="vm.coPilot.completed")
-      .avatar-box(ng-show="vm.coPilot.completed")
+    label(ng-show="vm.completed.coPilot")
+      .avatar-box(ng-show="vm.completed.coPilot")
         img.avatar(ng-src="{{ vm.avatars[member.handle] }}")
 
         span.message Maybe it's best if we stick with the current logo and Maybe it's best if we stick with the current logo and

@@ -1,4 +1,4 @@
-li(ng-class="{ completed: vm.feedback.completed, passed: vm.feedback.passed }")
+li(ng-class="{ completed: vm.completed.feedback, passed: vm.passed.feedback }")
   section.checkpoint
     .progress
       .percent 65%
@@ -13,8 +13,8 @@ li(ng-class="{ completed: vm.feedback.completed, passed: vm.feedback.passed }")
 
     .lead-after
 
-    label(ng-hide="vm.feedback.completed") Give Feedback?
+    label(ng-hide="vm.completed.feedback") Give Feedback?
 
-    label(ng-show="vm.feedback.completed") Feedback given to 
+    label(ng-show="vm.completed.feedback") Feedback given to 
 
       a(href="#") {{ vm.feedbackHandle }}

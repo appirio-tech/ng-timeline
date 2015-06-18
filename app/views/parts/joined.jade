@@ -1,5 +1,5 @@
 li(
-  ng-class="{ completed: vm.joined.completed, passed: vm.joined.passed, expanded: vm.expanded.launched }"
+  ng-class="{ completed: vm.completed.joined, passed: vm.passed.joined, expanded: vm.expanded.launched }"
 )
   section.checkpoint
     .progress
@@ -15,8 +15,8 @@ li(
 
     .lead-after
 
-    label(ng-hide="vm.coPilot.completed") Meet others
+    label(ng-hide="vm.completed.coPilot") Meet others
 
-    label(ng-show="vm.coPilot.completed") {{ vm.members.length }} member(s) have joined.
+    label(ng-show="vm.completed.coPilot") {{ vm.members.length }} member(s) have joined.
 
 

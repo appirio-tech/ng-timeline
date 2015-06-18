@@ -1,4 +1,4 @@
-li(ng-class="{ completed: vm.payment.completed, passed: vm.payment.passed }")
+li(ng-class="{ completed: vm.completed.payment, passed: vm.passed .payment}")
   section.checkpoint
     .progress
       .percent 20%
@@ -13,6 +13,6 @@ li(ng-class="{ completed: vm.payment.completed, passed: vm.payment.passed }")
 
     .lead-after
 
-    label(ng-hide="vm.payment.completed") Add Payment Method
+    label(ng-hide="vm.completed.payment") Add Payment Method
 
-    label(ng-show="vm.payment.completed") Payment Method Accepted.
+    label(ng-show="vm.completed.payment") Payment Method Accepted.
