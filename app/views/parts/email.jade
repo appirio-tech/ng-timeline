@@ -1,4 +1,6 @@
-li(ng-class="{ completed: vm.email.completed, passed: vm.email.passed, info: !vm.email.completed }")
+li(
+  ng-class="{ completed: vm.email.completed, passed: vm.email.passed, info: !vm.email.completed, expanded: vm.expanded.submitted }"
+)
   section.checkpoint
     .progress
       .percent 6%

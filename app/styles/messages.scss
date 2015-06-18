@@ -8,11 +8,8 @@
 
     section.checkpoint {
       label .message {
-        max-width    : 200px;
-        display      : inline-block;
-        white-space  : nowrap;
-        overflow     : hidden;
-        text-overflow: ellipsis;
+        @include ellipsis(100%);
+        max-width: 166px;
       }
 
       .point {

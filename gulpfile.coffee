@@ -27,6 +27,9 @@ configs.buildFiles =
       '.tmp/styles/submissions.landscape.css'
       '.tmp/styles/messages.landscape.css'
     ]
+    'main.desktop.css': [
+      '.tmp/styles/timeline.desktop.css'
+    ]
 
 configs.templateCache =
   files : [

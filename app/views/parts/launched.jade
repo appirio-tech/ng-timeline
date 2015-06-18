@@ -1,4 +1,7 @@
-li.milestone(ng-class="{ completed: vm.launched.completed, passed: vm.launched.passed }")
+li.milestone(
+  ng-class="{ completed: vm.launched.completed, passed: vm.launched.passed, expanded: vm.expanded.launched }"
+  ng-click="vm.expanded.launched = !vm.expanded.launched"
+)
   section.checkpoint
     .progress
       .percent 25%
@@ -14,4 +17,9 @@ li.milestone(ng-class="{ completed: vm.launched.completed, passed: vm.launched.p
 
     .lead-after
 
-    label Project Launched
+    label
+      h4 Project Launched
+
+      time May 5, 2015
+
+  hr

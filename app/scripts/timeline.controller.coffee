@@ -10,6 +10,13 @@ TimelineController = (TimelineService, $stateParams) ->
   vm.feedback2Handle     = null
   vm.showMessagingWidget = false
 
+  vm.expanded =
+    submitted       : false
+    launched        : false
+    submissions     : false
+    finalSubmissions: false
+    chooseWinner    : false
+
   mapEvents = [
     { key: 'submitted', value: 'submitted' }
     { key: 'email', value: 'email-verified' }
@@ -40,6 +47,8 @@ TimelineController = (TimelineService, $stateParams) ->
 
     TimelineService.getEvents params, onChange
 
+    vm
+
   onChange = (timeline) ->
     setStatus timeline
 
@@ -60,8 +69,6 @@ TimelineController = (TimelineService, $stateParams) ->
         vm[mapEvent.key].passed = vm[mapEvents[i + 1].key].completed
 
   activate()
-
-  vm
 
 TimelineController.$inject = [
   'TimelineService'

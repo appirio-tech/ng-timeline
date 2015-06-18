@@ -1,4 +1,6 @@
-li(ng-class="{ completed: vm.joined.completed, passed: vm.joined.passed }")
+li(
+  ng-class="{ completed: vm.joined.completed, passed: vm.joined.passed, expanded: vm.expanded.launched }"
+)
   section.checkpoint
     .progress
       .percent 35%

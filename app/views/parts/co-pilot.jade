@@ -1,4 +1,6 @@
-li(ng-class="{ completed: vm.coPilot.completed, passed: vm.coPilot.passed }")
+li(
+  ng-class="{ completed: vm.coPilot.completed, passed: vm.coPilot.passed, expanded: vm.expanded.submitted }"
+)
   section.checkpoint
     .progress
       .percent 5%

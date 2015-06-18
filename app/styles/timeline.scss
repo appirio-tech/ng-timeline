@@ -9,20 +9,18 @@
     padding: 4px;
     display: table;
 
+    @include vertical-align-middle();
+
     .avatar {
-      display       : inline-block;
       width         : 35px;
       height        : 35px;
       border        : 1px solid grey;
       border-radius : 35px;
       margin-right  : 6px;
-      vertical-align: middle;
     }
 
     p {
-      display       : inline-block;
       width         : 240px;
-      vertical-align: middle;
     }
   }
 
@@ -34,6 +32,7 @@
       color         : grey;
       padding-bottom: $point-width;
       margin-left   : $head-width-big;
+      display       : block;
 
       // this will be used to hide the extra borders
       &::before, &:last-child::after {
@@ -63,8 +62,15 @@
       }
 
       .checkpoint {
+        overflow  : hidden;
+
+        @include transition (all 0.2s ease-in-out);
+
+        &:focus {
+          background-color: red;
+        }
+
         margin-left: -$head-width;
-        white-space: nowrap;
         z-index    : 1;
         position   : relative;
 
@@ -101,8 +107,21 @@
         }
 
         label {
-          white-space: initial;
-          width      : 80%; // dont know why but this fixes overflow issue
+          width: 65%;
+
+          @include ellipsis(65%);
+
+          h4 {
+            font-size: 20px;
+            display  : inline-block;
+            width    :  50%;
+          }
+
+          time {
+            width     : 50%;
+            text-align: right;
+            display: none;
+          }
         }
       }
 
@@ -112,22 +131,44 @@
         margin-top: 10px;
       }
 
+      > hr:nth-child(n + 2) {
+        background-color: #ccc;
+        margin-top: 0;
+      }
+
+      &.expanded {
+        display: block;
+      }
+
       &.milestone {
+        display: block;
+
         .checkpoint {
           margin-left: -$head-width-big;
 
           .lead-after {
             margin-left: $spacing - ($big-point-width/2 - $point-width/2);
           }
-
-          label {
-            font-size: 20px;
-          }
         }
 
         .point {
-          width : $big-point-width;
-          height: $big-point-width;
+          width       : $big-point-width;
+          height      : $big-point-width;
+          border-width: $big-point-border-width;
+
+          &:before {
+            content: '‐';
+            line-height: $big-point-width - ($big-point-border-width * 2);
+            font-size: 30px;
+          }
+        }
+
+        &.expanded {
+          .point {
+            &:before {
+              content: '+';
+            }
+          }
         }
       }
 
