@@ -37,11 +37,11 @@ describe 'TimelineController', ->
   it 'should have a coPilotHandle of `Batman9000`', ->
     expect(vm.coPilotHandle).to.be.equal 'Batman9000'
 
-  it 'should have a first member of `Batman9000`', ->
-    expect(vm.members[0].handle).to.be.equal 'Batman9000'
+  it 'should have a first member of `exampleHandle`', ->
+    expect(vm.members[0].handle).to.be.equal 'exampleHandle'
 
   it 'should have a avatar url `http://www.topcoder.com/i/m/cardiboy_big.jpg`', ->
     expect(vm.avatars['Batman9000']).to.be.equal 'http://www.topcoder.com/i/m/cardiboy_big.jpg'
 
   it 'should have a submission thumb url', ->
-    expect(vm.submissionThumbs[0]).to.be.equal 'https://studio.topcoder.com/?module=DownloadSubmission&sbmid=200703&sbt=tiny'
+    expect(vm.submissionThumbs[0]).to.be.equal 'https://studio.topcoder.com/?module=DownloadSubmission&sbmid=1234&sbt=tiny'

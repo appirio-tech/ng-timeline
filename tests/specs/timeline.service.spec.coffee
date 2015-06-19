@@ -28,8 +28,8 @@ describe 'TimelineService', ->
   it 'should have 1 members', ->
     expect(timeline.members.length).to.be.equal 1
 
-  it 'should have a member of `Batman9000`', ->
-    expect(timeline.members[0].handle).to.be.equal 'Batman9000'
+  it 'should have a member of `exampleHandle`', ->
+    expect(timeline.members[0].handle).to.be.equal 'exampleHandle'
 
   it 'should have a submission of `Batman9000`', ->
     expect(timeline.submission).to.be.equal 'Batman9000'
@@ -38,4 +38,4 @@ describe 'TimelineService', ->
     expect(timeline.feedback).to.be.equal 'Batman9000'
 
   it 'should have a submission thumb url', ->
-    expect(timeline.submissionThumbs[0]).to.be.equal 'https://studio.topcoder.com/?module=DownloadSubmission&sbmid=200703&sbt=tiny'
+    expect(timeline.submissionThumbs[0]).to.be.equal 'https://studio.topcoder.com/?module=DownloadSubmission&sbmid=1234&sbt=tiny'

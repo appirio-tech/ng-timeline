@@ -25,9 +25,9 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
   buildTimeline = (events, onChange) ->
     createdDates     = {}
     coPilot          = getField events, 'copilot-assigned', 'copilotId'
-    submission       = 'abc' # placeholders
-    feedback         = 'abc'
-    feedback2        = 'abc'
+    submission       = 'Batman9000' # placeholders
+    feedback         = 'Batman9000'
+    feedback2        = 'Batman9000'
     members          = getField events, 'Registration', 'registrants'
     submissionThumbs = getSubmissionThumbs events
 
