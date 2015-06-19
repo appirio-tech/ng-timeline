@@ -87,7 +87,7 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
 
   getSubmissionThumbs = (events) ->
     thumbs = []
-    submissions = getField events, 'Submission', 'submissions'
+    submissions = (getField events, 'Submission', 'submissions') or []
 
     for submission in submissions
       thumbUrl = SUBMISSION_URL + '/?module=DownloadSubmission&sbmid='
