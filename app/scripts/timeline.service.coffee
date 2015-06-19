@@ -8,8 +8,8 @@ eventTypes = [
   'email-verified'
   'payment-accepted'
   'challenge-feedback-provided'
-  'challenge-submission'
-  'challenge-member-registered'
+  'Submission'
+  'Registration'
   'challenge-finalists-selected'
   'state-change'
   'launched'
@@ -25,9 +25,9 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
   buildTimeline = (events, onChange) ->
     createdDates     = {}
     coPilot          = getField events, 'copilot-assigned', 'copilotId'
-    submission       = 'abc' #getHandle events, 'challenge-submission'
-    feedback         = 'abc' #getHandle events, 'challenge-feedback-provided'
-    feedback2        = 'abc' #getHandle events, 'final-feedback'
+    submission       = 'abc' # placeholders
+    feedback         = 'abc'
+    feedback2        = 'abc'
     members          = getField events, 'Registration', 'registrants'
     submissionThumbs = getSubmissionThumbs events
 
