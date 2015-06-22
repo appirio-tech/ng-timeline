@@ -103,14 +103,6 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
 
     false
 
-  findAllEvents = (type, events) ->
-    foundEvents = []
-
-    for e in events
-      foundEvents.push(e) if e.eventSubType == type
-
-    foundEvents
-
   getField = (events, type, field) ->
     event = findEvent type, events
     event?.sourceObjectContent?[field]
