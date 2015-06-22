@@ -8,8 +8,8 @@ eventTypes = [
   'email-verified'
   'payment-accepted'
   'challenge-feedback-provided'
-  'challenge-submission'
-  'challenge-member-registered'
+  'Submission'
+  'Registration'
   'challenge-finalists-selected'
   'state-change'
   'launched'
@@ -24,11 +24,11 @@ eventTypes = [
 srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
   buildTimeline = (events, onChange) ->
     createdDates     = {}
-    coPilot          = getHandle events, 'copilot-assigned'
-    submission       = getHandle events, 'challenge-submission'
-    feedback         = getHandle events, 'challenge-feedback-provided'
-    feedback2        = getHandle events, 'final-feedback'
-    members          = getMembers events
+    coPilot          = getField events, 'copilot-assigned', 'copilotId'
+    submission       = 'Batman9000' # placeholders
+    feedback         = 'Batman9000'
+    feedback2        = 'Batman9000'
+    members          = getField events, 'Registration', 'registrants'
     submissionThumbs = getSubmissionThumbs events
 
     for eventType in eventTypes
@@ -87,11 +87,11 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
 
   getSubmissionThumbs = (events) ->
     thumbs = []
-    submissionEvents = findAllEvents 'challenge-submission', events
+    submissions = (getField events, 'Submission', 'submissions') or []
 
-    for submissionEvent in submissionEvents
+    for submission in submissions
       thumbUrl = SUBMISSION_URL + '/?module=DownloadSubmission&sbmid='
-      thumbUrl +=  submissionEvent?.sourceObjectContent?.submissionId + '&sbt=tiny'
+      thumbUrl +=  submission?.submissionId + '&sbt=tiny'
 
       thumbs.push thumbUrl
 
@@ -103,28 +103,9 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
 
     false
 
-  findAllEvents = (type, events) ->
-    foundEvents = []
-
-    for e in events
-      foundEvents.push(e) if e.eventSubType == type
-
-    foundEvents
-
-  getHandle = (events, type) ->
+  getField = (events, type, field) ->
     event = findEvent type, events
-    event?.sourceObjectContent?.handle
-
-  getMembers = (events) ->
-    members = []
-    memberEvents = findAllEvents 'challenge-member-registered', events
-
-    for memberEvent in memberEvents
-      members.push
-        handle: memberEvent?.sourceObjectContent?.handle
-        joined: memberEvent?.createdAt
-
-    members
+    event?.sourceObjectContent?[field]
 
   getCreatedAt = (type, events) ->
     e = findEvent type, events

@@ -17,8 +17,8 @@ TimelineController = (TimelineService, $stateParams) ->
     { key: 'payment', value: 'payment-accepted' }
     { key: 'coPilot', value: 'copilot-assigned' }
     { key: 'launched', value: 'launched' }
-    { key: 'joined', value: 'challenge-member-registered' }
-    { key: 'submissions', value: 'challenge-submission' }
+    { key: 'joined', value: 'Registration' }
+    { key: 'submissions', value: 'Submission' }
     { key: 'feedback', value: 'challenge-feedback-provided' }
     { key: 'checkpoint1', value: 'checkpoint1' }
     { key: 'finalists', value: 'finalists' }
