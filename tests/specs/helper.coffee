@@ -20,6 +20,7 @@ window.__karma__.loaded = ->
     FIXTURES['bower_components/appirio-tech-api-schemas/v3.json']
     FIXTURES['bower_components/appirio-tech-api-schemas/v3-messages.json']
     FIXTURES['bower_components/appirio-tech-api-schemas/v2.json']
+    FIXTURES['bower_components/appirio-tech-api-schemas/v3-threads.json']
   ]
 
   AutoConfigFakeServer.consume schemas

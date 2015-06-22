@@ -9,6 +9,8 @@ TimelineController = (TimelineService, $stateParams) ->
   vm.feedbackHandle      = null
   vm.feedback2Handle     = null
   vm.showMessagingWidget = false
+  vm.unreadCount         = null
+  vm.workId              = null
 
   mapEvents = [
     { key: 'submitted', value: 'submitted' }
@@ -35,8 +37,12 @@ TimelineController = (TimelineService, $stateParams) ->
         passed   : false
         completed: false
 
+    vm.workId = $stateParams.workId
+
     params =
       workId: $stateParams.workId
+
+    TimelineService.getUnreadCount params, setUnreadCount
 
     TimelineService.getEvents params, onChange
 
@@ -58,6 +64,9 @@ TimelineController = (TimelineService, $stateParams) ->
     for mapEvent, i in mapEvents
       if mapEvents[i + 1]
         vm[mapEvent.key].passed = vm[mapEvents[i + 1].key].completed
+
+  setUnreadCount = (unreadCount) ->
+    vm.unreadCount = unreadCount
 
   activate()
 

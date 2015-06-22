@@ -9,16 +9,16 @@
   "devDependencies": {
     "angular-mocks": "1.4.x",
     "sinon": "http://sinonjs.org/releases/sinon-1.12.1.js",
+    "appirio-tech-api-schemas": "git@github.com:appirio-tech/api-schemas#messaging",
+    "auto-config-fake-server": "1.x.x",
     "angular-ui-router": "0.2.x"
   },
   "dependencies": {
     "angular": "1.4.x",
     "angular-ui-router": "0.2.x",
     "angular-resource": "1.4.x",
-    "appirio-tech-api-schemas": "git@github.com:appirio-tech/api-schemas#2.x.x",
-    "auto-config-fake-server": "1.2.x",
-    "appirio-tech-ng-auth": "git@github.com:appirio-tech/ng-auth#0.0.x",
-    "appirio-tech-messaging": "git@github.com:appirio-tech/messaging#0.0.x"
+    "appirio-tech-messaging": "git@github.com:appirio-tech/messaging#updated-api",
+    "moment": "^2.10.x"
   },
   "ignore": [
     "**/*",

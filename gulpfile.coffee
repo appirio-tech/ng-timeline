@@ -42,6 +42,7 @@ configs.karma =
     'tests/specs/**/*.coffee'
   ]
   files: [
+    'bower_components/moment/moment.js',
     'bower_components/sinon/index.js'
     'bower_components/angular/angular.js'
     'bower_components/angular-scroll/angular-scroll.js'
@@ -62,13 +63,18 @@ configs.fixtureFiles = [
   'bower_components/appirio-tech-api-schemas/v3.json'
   'bower_components/appirio-tech-api-schemas/v2.json'
   'bower_components/appirio-tech-api-schemas/v3-messages.json'
+  'bower_components/appirio-tech-api-schemas/v3-threads.json'
+  'bower_components/appirio-tech-api-schemas/v3-users.json'
 ]
 
 configs.constants =
-  API_URL       : 'https://api.topcoder-dev.com/v3'
-  API_URL_V2    : 'https://api.topcoder-dev.com/v2'
-  AVATAR_URL    : 'http://www.topcoder.com'
-  SUBMISSION_URL: 'https://studio.topcoder.com'
+  API_URL         : 'https://api.topcoder-dev.com/v3'
+  API_URL_V2      : 'https://api.topcoder-dev.com/v2'
+  AVATAR_URL      : 'http://www.topcoder.com'
+  SUBMISSION_URL  : 'https://studio.topcoder.com'
+  AUTH0_CLIENT_ID : 'abc123'
+  AUTH0_DOMAIN    : 'topcoder-dev.auth0.com'
+  AUTH0_TOKEN_NAME: 'userJWTToken'
 
 configs.coverageReporter =
   type: 'lcov'
