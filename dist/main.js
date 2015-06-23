@@ -13,8 +13,8 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
   'use strict';
   var TimelineController;
 
-  TimelineController = function(TimelineService, $stateParams) {
-    var activate, mapEvents, onChange, setStatus, setUnreadCount, vm;
+  TimelineController = function(TimelineService, $stateParams, UserV3Service, ThreadsAPIService) {
+    var activate, getOrCreateThread, mapEvents, onChange, setStatus, setUnreadCount, vm;
     vm = this;
     vm.coPilotHandle = null;
     vm.members = [];
@@ -92,15 +92,37 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
       TimelineService.getUnreadCount(params, setUnreadCount);
       return TimelineService.getEvents(params, onChange);
     };
+    getOrCreateThread = function() {
+      return UserV3Service.getCurrentUser(function(user) {
+        var params, publishers, resource, thread;
+        publishers = [vm.coPilotHandle, user.handle];
+        params = {
+          clientIdentifier: vm.workId,
+          context: 'work',
+          subject: vm.workName,
+          publishers: publishers,
+          subscribers: publishers
+        };
+        thread = new ThreadsAPIService(params);
+        resource = thread.$save();
+        return resource.then(function(response) {
+          var ref, ref1;
+          return vm.threadId = response != null ? (ref = response.result) != null ? (ref1 = ref.content) != null ? ref1.id : void 0 : void 0 : void 0;
+        });
+      });
+    };
     onChange = function(timeline) {
       setStatus(timeline);
-      vm.coPilotHandle = timeline.coPilot;
+      vm.coPilotHandle = timeline.coPilotHandle;
       vm.members = timeline.members;
       vm.avatars = timeline.avatars;
       vm.submissionHandle = timeline.submission;
       vm.submissionThumbs = timeline.submissionThumbs;
       vm.feedbackHandle = timeline.feedback;
-      return vm.feedback2Handle = timeline.feedback2;
+      vm.feedback2Handle = timeline.feedback2;
+      if (vm.coPilotHandle) {
+        return getOrCreateThread();
+      }
     };
     setStatus = function(timeline) {
       var i, j, k, len, len1, mapEvent, ref, results;
@@ -126,7 +148,7 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
     return vm;
   };
 
-  TimelineController.$inject = ['TimelineService', '$stateParams'];
+  TimelineController.$inject = ['TimelineService', '$stateParams', 'UserV3Service', 'ThreadsAPIService'];
 
   angular.module('appirio-tech-timeline').controller('TimelineController', TimelineController);
 
@@ -138,12 +160,13 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
 
   eventTypes = ['copilot-assigned', 'created', 'submitted', 'quote-created', 'email-verified', 'payment-accepted', 'challenge-feedback-provided', 'Submission', 'Registration', 'challenge-finalists-selected', 'state-change', 'launched', 'checkpoint1', 'finalists', 'final-design', 'winner', 'final-feedback', 'completed'];
 
-  srv = function(TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL, ThreadsAPIService) {
-    var buildAvatar, buildTimeline, findEvent, getCreatedAt, getEvents, getField, getSubmissionThumbs, getUnreadCount;
+  srv = function(TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL, ThreadsAPIService, UserV3APIService) {
+    var buildAvatar, buildTimeline, findEvent, getCopilotHandle, getCreatedAt, getEvents, getField, getSubmissionThumbs, getUnreadCount;
     buildTimeline = function(events, onChange) {
-      var coPilot, createdDates, eventType, feedback, feedback2, i, j, len, len1, member, members, submission, submissionThumbs, timeline;
+      var coPilotId, createdDates, eventType, feedback, feedback2, i, j, len, len1, member, members, submission, submissionThumbs, timeline, workName;
       createdDates = {};
-      coPilot = getField(events, 'copilot-assigned', 'copilotId');
+      coPilotId = getField(events, 'copilot-assigned', 'copilotId');
+      workName = getField(events, 'created', 'name');
       submission = 'Batman9000';
       feedback = 'Batman9000';
       feedback2 = 'Batman9000';
@@ -155,8 +178,9 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
       }
       timeline = {
         events: events,
+        workName: workName,
         createdDates: createdDates,
-        coPilot: coPilot,
+        coPilotId: coPilotId,
         members: members,
         avatars: {},
         submission: submission,
@@ -164,14 +188,24 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
         feedback: feedback,
         feedback2: feedback2
       };
-      if (coPilot) {
-        buildAvatar(timeline, coPilot, onChange);
+      if (timeline.coPilotId) {
+        getCopilotHandle(timeline, onChange);
       }
       for (j = 0, len1 = members.length; j < len1; j++) {
         member = members[j];
         buildAvatar(timeline, member.handle, onChange);
       }
       return typeof onChange === "function" ? onChange(timeline) : void 0;
+    };
+    getCopilotHandle = function(timeline, onChange) {
+      var params;
+      params = {
+        id: timeline.coPilotId
+      };
+      return UserV3APIService.get(params, function(response) {
+        timeline.coPilotHandle = response.handle;
+        return buildAvatar(timeline, timeline.coPilotHandle, onChange);
+      });
     };
     buildAvatar = function(timeline, handle, onChange) {
       var user, userParams;
@@ -249,7 +283,7 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
     };
   };
 
-  srv.$inject = ['TimelineAPIService', 'UserAPIService', 'AVATAR_URL', 'SUBMISSION_URL', 'ThreadsAPIService'];
+  srv.$inject = ['TimelineAPIService', 'UserAPIService', 'AVATAR_URL', 'SUBMISSION_URL', 'ThreadsAPIService', 'UserV3APIService'];
 
   angular.module('appirio-tech-timeline').factory('TimelineService', srv);
 

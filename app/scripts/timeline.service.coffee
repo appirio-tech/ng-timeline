@@ -21,10 +21,18 @@ eventTypes = [
   'completed'
 ]
 
-srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL, ThreadsAPIService) ->
+srv = (
+  TimelineAPIService
+  UserAPIService
+  AVATAR_URL
+  SUBMISSION_URL
+  ThreadsAPIService
+  UserV3APIService
+) ->
   buildTimeline = (events, onChange) ->
     createdDates     = {}
-    coPilot          = getField events, 'copilot-assigned', 'copilotId'
+    coPilotId        = getField events, 'copilot-assigned', 'copilotId'
+    workName         = getField events, 'created', 'name'
     submission       = 'Batman9000' # placeholders
     feedback         = 'Batman9000'
     feedback2        = 'Batman9000'
@@ -36,8 +44,9 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL, ThreadsAP
 
     timeline =
       events          : events
+      workName        : workName
       createdDates    : createdDates
-      coPilot         : coPilot
+      coPilotId       : coPilotId
       members         : members
       avatars         : {}
       submission      : submission
@@ -45,12 +54,21 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL, ThreadsAP
       feedback        : feedback
       feedback2       : feedback2
 
-    buildAvatar timeline, coPilot, onChange if coPilot
+    getCopilotHandle timeline, onChange if timeline.coPilotId
 
     for member in members
       buildAvatar timeline, member.handle, onChange
 
     onChange? timeline
+
+  getCopilotHandle = (timeline, onChange) ->
+    params =
+      id: timeline.coPilotId
+
+    UserV3APIService.get params, (response) ->
+      timeline.coPilotHandle = response.handle
+
+      buildAvatar timeline, timeline.coPilotHandle, onChange
 
   buildAvatar = (timeline, handle, onChange) ->
     unless timeline.avatars[handle]
@@ -128,6 +146,13 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL, ThreadsAP
   getEvents     : getEvents
   getUnreadCount: getUnreadCount
 
-srv.$inject = ['TimelineAPIService', 'UserAPIService', 'AVATAR_URL', 'SUBMISSION_URL', 'ThreadsAPIService']
+srv.$inject = [
+  'TimelineAPIService'
+  'UserAPIService'
+  'AVATAR_URL'
+  'SUBMISSION_URL'
+  'ThreadsAPIService'
+  'UserV3APIService'
+]
 
 angular.module('appirio-tech-timeline').factory 'TimelineService', srv

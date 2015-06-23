@@ -1,6 +1,6 @@
 'use strict'
 
-TimelineController = (TimelineService, $stateParams) ->
+TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPIService) ->
   vm                     = this
   vm.coPilotHandle       = null
   vm.members             = []
@@ -46,16 +46,39 @@ TimelineController = (TimelineService, $stateParams) ->
 
     TimelineService.getEvents params, onChange
 
+  getOrCreateThread = ->
+    #TODO: get rid of this call
+    UserV3Service.getCurrentUser (user) ->
+      publishers = [
+        vm.coPilotHandle
+        user.handle
+      ]
+
+      params =
+        clientIdentifier: vm.workId
+        context         : 'work'
+        subject         : vm.workName
+        publishers      : publishers
+        subscribers     : publishers
+
+      thread  = new ThreadsAPIService params
+      resource = thread.$save()
+
+      resource.then (response) ->
+        vm.threadId = response?.result?.content?.id
+
   onChange = (timeline) ->
     setStatus timeline
 
-    vm.coPilotHandle    = timeline.coPilot
+    vm.coPilotHandle    = timeline.coPilotHandle
     vm.members          = timeline.members
     vm.avatars          = timeline.avatars
     vm.submissionHandle = timeline.submission
     vm.submissionThumbs = timeline.submissionThumbs
     vm.feedbackHandle   = timeline.feedback
     vm.feedback2Handle  = timeline.feedback2
+
+    getOrCreateThread() if vm.coPilotHandle
 
   setStatus = (timeline) ->
     for mapEvent in mapEvents
@@ -75,6 +98,8 @@ TimelineController = (TimelineService, $stateParams) ->
 TimelineController.$inject = [
   'TimelineService'
   '$stateParams'
+  'UserV3Service'
+  'ThreadsAPIService'
 ]
 
 angular.module('appirio-tech-timeline').controller 'TimelineController', TimelineController
