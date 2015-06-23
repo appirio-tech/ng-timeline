@@ -16,7 +16,7 @@
     "angular": "1.4.x",
     "angular-ui-router": "0.2.x",
     "angular-resource": "1.4.x",
-    "appirio-tech-messaging": "git@github.com:appirio-tech/messaging#1.x.x",
+    "appirio-tech-messaging": "git@github.com:appirio-tech/messaging#master",
     "moment": "^2.10.x"
   },
   "ignore": [

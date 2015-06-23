@@ -10,7 +10,6 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
   vm.feedback2Handle     = null
   vm.showMessagingWidget = false
   vm.unreadCount         = null
-  vm.workId              = null
 
   mapEvents = [
     { key: 'submitted', value: 'submitted' }
@@ -37,12 +36,8 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
         passed   : false
         completed: false
 
-    vm.workId = $stateParams.workId
-
     params =
       workId: $stateParams.workId
-
-    TimelineService.getUnreadCount params, setUnreadCount
 
     TimelineService.getEvents params, onChange
 
@@ -55,7 +50,7 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
       ]
 
       params =
-        clientIdentifier: vm.workId
+        clientIdentifier: $stateParams.workId
         context         : 'work'
         subject         : vm.workName
         publishers      : publishers
@@ -66,6 +61,8 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
 
       resource.then (response) ->
         vm.threadId = response?.result?.content?.id
+        #TODO: get rid of this call since we should be able to get unread count some where else
+        TimelineService.getUnreadCount vm.threadId, user.handle, setUnreadCount
 
   onChange = (timeline) ->
     setStatus timeline

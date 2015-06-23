@@ -129,18 +129,21 @@ srv = (
     e = findEvent type, events
     e?.createdAt
 
-  getUnreadCount = (messageParams, setUnreadCount) ->
-    if messageParams
-      resource = ThreadsAPIService.get messageParams
+  getUnreadCount = (threadId, subscriberId, callback) ->
+    params =
+      id          : threadId
+      subscriberId: subscriberId
 
-      resource.$promise.then (response) ->
-        setUnreadCount response.unreadCount
+    resource = ThreadsAPIService.get params
 
-      resource.$promise.catch ->
-        # need handle error
+    resource.$promise.then (response) ->
+      callback response.unreadCount
 
-      resource.$promise.finally ->
-        # need handle finally
+    resource.$promise.catch ->
+      # need handle error
+
+    resource.$promise.finally ->
+      # need handle finally
 
 
   getEvents     : getEvents

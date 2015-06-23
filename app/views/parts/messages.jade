@@ -1,12 +1,12 @@
 li.notification.messages.no-progress.completed
   section.checkpoint
-    .point.notification
+    .point(ng-class="{'notification': vm.unreadCount > 0}")
       button.count.clean(ng-click="vm.showMessagingWidget = true" title="You have {{ vm.unreadCount }} new messages.") {{ vm.unreadCount }}
 
       .tooltip(ng-class="{active: vm.showMessagingWidget}")
         button.clean.close(ng-click="vm.showMessagingWidget = false") x
 
-        messaging.widget(thread-id="{{ vm.workId }}")
+        messaging.widget(thread-id="{{ vm.threadId }}")
 
     .lead-after
 
@@ -23,4 +23,4 @@ li.notification.messages.no-progress.completed
       button.clean(ng-click="vm.showMessagingWidget = true") View
 
     li
-      a(ui-sref="messaging({ id: vm.workId })") View full thread
+      a(ui-sref="messaging({ id: vm.threadId })") View full thread
