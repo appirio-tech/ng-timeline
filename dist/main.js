@@ -1,16 +1,20 @@
 (function() {
   'use strict';
-  angular.module('appirio-tech-timeline', ['ui.router', 'ngResource', 'app.constants', 'appirio-tech-messaging']);
+  var dependencies;
+
+  dependencies = ['ui.router', 'ngResource', 'app.constants', 'appirio-tech-messaging'];
+
+  angular.module('appirio-tech-timeline', dependencies);
 
 }).call(this);
 
-angular.module("appirio-tech-timeline").run(["$templateCache", function($templateCache) {$templateCache.put("views/timeline.html","<h1>Project Timeline</h1><hr/><ul><li ng-class=\"{ completed: vm.submitted.completed }\" class=\"milestone completed passed\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">0%</div><div class=\"status\">Complete</div><div class=\"day\">Day 1</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label>Project Submitted</label></section><p><time>{{ vm.submitted.completed | date }}</time></p></li><li ng-class=\"{ completed: vm.email.completed, passed: vm.email.passed, info: !vm.email.completed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">6%</div><div class=\"status\">Complete</div><div class=\"day\">Day 1</div></div><div class=\"lead\"></div><div class=\"point\"><div class=\"info\">!</div></div><div class=\"lead-after\"></div><label ng-hide=\"vm.email.completed\">We sent an email to johndoe@example.com. <br /> Click the link in the email to verify your email address.</label><label ng-show=\"vm.email.completed\">Thanks! Your email is verified.</label></section><a href=\"#\" ng-hide=\"vm.email.completed\" class=\"resend\">Re-send Email</a></li><li ng-class=\"{ completed: vm.quote.completed, passed: vm.quote.passed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">15%</div><div class=\"status\">Complete</div><div class=\"day\">Day 1</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label ng-hide=\"vm.quote.completed\">Generate Quote</label><label ng-show=\"vm.quote.completed\">Quote has been generated.</label></section><p ng-show=\"vm.quote.completed &amp;&amp; !vm.payment.completed\"><a href=\"#\">View quote and pay to continue.</a></p><p ng-show=\"vm.quote.completed &amp;&amp; !vm.payment.completed\"><em>Co-Pilot will not be assigned until your payment has been approved.</em></p></li><li ng-class=\"{ completed: vm.payment.completed, passed: vm.payment.passed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">20%</div><div class=\"status\">Complete</div><div class=\"day\">Day 1</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label ng-hide=\"vm.payment.completed\">Add Payment Method</label><label ng-show=\"vm.payment.completed\">Payment Method Accepted.</label></section></li><li ng-class=\"{ completed: vm.coPilot.completed, passed: vm.coPilot.passed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">5%</div><div class=\"status\">Complete</div><div class=\"day\">Day 1</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label ng-show=\"!vm.payment.completed &amp;&amp; !vm.coPilot.completed\">Assign Co-Pilot</label><label ng-show=\"!vm.payment.completed &amp;&amp; vm.coPilot.completed\">We are choosing a Co-Pilot best suited for your project.</label><label ng-show=\"vm.coPilot.completed\">Co-Pilot Assigned</label></section><div ng-show=\"vm.coPilot.completed\" class=\"avatar-box\"><img src=\"{{ vm.avatars[vm.coPilotHandle] }}\" class=\"avatar\"/><span>Hi I\'m </span><a href=\"#\">{{ vm.coPilotHandle }}</a><span>. I\'ll be your project manager.</span></div></li><li ng-class=\"{ completed: vm.launched.completed, passed: vm.launched.passed }\" class=\"milestone\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">25%</div><div class=\"status\">Complete</div><div class=\"day\">Day 1</div></div><div class=\"lead\"></div><div class=\"point\"><div class=\"info\">!</div></div><div class=\"lead-after\"></div><label>Project Launched</label></section></li><li class=\"notification messages no-progress completed\"><section class=\"checkpoint\"><div class=\"point notification\"><button ng-click=\"vm.showMessagingWidget = true\" class=\"count clean\">6</button><div ng-class=\"{active: vm.showMessagingWidget}\" class=\"tooltip\"><button ng-click=\"vm.showMessagingWidget = false\" class=\"clean close\">x</button><messaging thread-id=\"123\" created-by=\"Batman\" class=\"widget\"></messaging></div></div><div class=\"lead-after\"></div><label ng-hide=\"vm.coPilot.completed\">Messages</label><label ng-show=\"vm.coPilot.completed\"><div ng-show=\"vm.coPilot.completed\" class=\"avatar-box\"><img ng-src=\"{{ vm.avatars[member.handle] }}\" class=\"avatar\"/><span class=\"message\">Maybe it\'s best if we stick with the current logo and Maybe it\'s best if we stick with the current logo and</span></div></label></section><ul class=\"links\"><li><button ng-click=\"vm.showMessagingWidget = true\" class=\"clean\">View</button></li><li><a ui-sref=\"messaging({id: 123})\">View full thread</a></li></ul></li><li ng-class=\"{ completed: vm.joined.completed, passed: vm.joined.passed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">35%</div><div class=\"status\">Complete</div><div class=\"day\">Day 1</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label ng-hide=\"vm.coPilot.completed\">Meet others</label><label ng-show=\"vm.coPilot.completed\">{{ vm.members.length }} member(s) have joined.</label></section></li><li ng-class=\"{ completed: vm.submissions.completed, passed: vm.submissions.passed }\" class=\"submissions\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">55%</div><div class=\"status\">Complete</div><div class=\"day\">Day 8</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label ng-hide=\"vm.submissions.completed\">Recieve submissions</label><label ng-show=\"vm.submissions.completed\">Submission Recieved from <a href=\"#\">{{ vm.submissionHandle }} </a><time ng-show=\"vm.submissions.completed\" class=\"time\">{{ vm.submissions.completed | date : &quot;h:mma MMMM d, y&quot; }}</time></label></section><ul ng-show=\"vm.submissions.completed\"><li ng-repeat=\"submissionThumb in vm.submissionThumbs\"><img ng-src=\"{{ submissionThumb }}\"/></li></ul></li><li ng-class=\"{ completed: vm.checkpoint1.completed, passed: vm.checkpoint1.passed }\" class=\"milestone\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">55%</div><div class=\"status\">Complete</div><div class=\"day\">Day 14</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label>Checkpoint 1</label></section></li><li ng-class=\"{ completed: vm.feedback.completed, passed: vm.feedback.passed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">65%</div><div class=\"status\">Complete</div><div class=\"day\">Day 14</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label ng-hide=\"vm.feedback.completed\">Give Feedback?</label><label ng-show=\"vm.feedback.completed\">Feedback given to <a href=\"#\">{{ vm.feedbackHandle }}</a></label></section></li><li ng-class=\"{ completed: vm.finalists.completed, passed: vm.finalists.passed }\" class=\"milestone\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">50%</div><div class=\"status\">Complete</div><div class=\"day\">Day 14</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label>Select Finalists</label></section><a href=\"\" ng-show=\"vm.finalists.completed &amp;&amp; !vm.finalistsSelected.completed\">View submissions and select finalists</a></li><li ng-show=\"vm.finalistsSelected.completed\" ng-class=\"{ passed: vm.finalistsSelected.passed }\" class=\"no-progress completed\"><section class=\"checkpoint\"><div class=\"point\"></div><div class=\"lead-after\"></div><label>You selected 4 finalists</label></section></li><li ng-class=\"{ completed: vm.finalDesign.completed, passed: vm.finalDesign.passed }\" class=\"milestone\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">70%</div><div class=\"status\">Complete</div><div class=\"day\">Day 20</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label>Final Design Phase</label></section></li><li ng-class=\"{ completed: vm.winner.completed, passed: vm.winner.passed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">85%</div><div class=\"status\">Complete</div><div class=\"day\">Day 20</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label>Choose Winner!</label></section></li><li ng-class=\"{ completed: vm.finalFeedback.completed, passed: vm.finalFeedback.passed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">95%</div><div class=\"status\">Complete</div><div class=\"day\">Day 20</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label ng-hide=\"vm.finalFeedback.completed\">Final Feedback</label><label ng-show=\"vm.finalFeedback.completed\">Feedback given to <a href=\"#\">{{ vm.feedback2Handle }}</a></label></section><p ng-show=\"vm.finalFeedback.completed &amp;&amp; !vm.complete.completed\">Awaiting final design changes.</p></li><li ng-class=\"{ completed: vm.completed.completed, passed: vm.completed.passed }\" class=\"milestone\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">100%</div><div class=\"status\">Complete</div><div class=\"day\">Day 20</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label>Project Complete</label></section></li></ul>");}]);
+angular.module("appirio-tech-timeline").run(["$templateCache", function($templateCache) {$templateCache.put("views/timeline.html","<h1>Project Timeline</h1><hr/><ul><li ng-class=\"{ completed: vm.submitted.completed }\" class=\"milestone completed passed\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">0%</div><div class=\"status\">Complete</div><div class=\"day\">Day 1</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label>Project Submitted</label></section><p><time>{{ vm.submitted.completed | date }}</time></p></li><li ng-class=\"{ completed: vm.email.completed, passed: vm.email.passed, info: !vm.email.completed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">6%</div><div class=\"status\">Complete</div><div class=\"day\">Day 1</div></div><div class=\"lead\"></div><div class=\"point\"><div class=\"info\">!</div></div><div class=\"lead-after\"></div><label ng-hide=\"vm.email.completed\">We sent an email to johndoe@example.com. <br /> Click the link in the email to verify your email address.</label><label ng-show=\"vm.email.completed\">Thanks! Your email is verified.</label></section><a href=\"#\" ng-hide=\"vm.email.completed\" class=\"resend\">Re-send Email</a></li><li ng-class=\"{ completed: vm.quote.completed, passed: vm.quote.passed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">15%</div><div class=\"status\">Complete</div><div class=\"day\">Day 1</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label ng-hide=\"vm.quote.completed\">Generate Quote</label><label ng-show=\"vm.quote.completed\">Quote has been generated.</label></section><p ng-show=\"vm.quote.completed &amp;&amp; !vm.payment.completed\"><a href=\"#\">View quote and pay to continue.</a></p><p ng-show=\"vm.quote.completed &amp;&amp; !vm.payment.completed\"><em>Co-Pilot will not be assigned until your payment has been approved.</em></p></li><li ng-class=\"{ completed: vm.payment.completed, passed: vm.payment.passed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">20%</div><div class=\"status\">Complete</div><div class=\"day\">Day 1</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label ng-hide=\"vm.payment.completed\">Add Payment Method</label><label ng-show=\"vm.payment.completed\">Payment Method Accepted.</label></section></li><li ng-class=\"{ completed: vm.coPilot.completed, passed: vm.coPilot.passed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">5%</div><div class=\"status\">Complete</div><div class=\"day\">Day 1</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label ng-show=\"!vm.payment.completed &amp;&amp; !vm.coPilot.completed\">Assign Co-Pilot</label><label ng-show=\"!vm.payment.completed &amp;&amp; vm.coPilot.completed\">We are choosing a Co-Pilot best suited for your project.</label><label ng-show=\"vm.coPilot.completed\">Co-Pilot Assigned</label></section><div ng-show=\"vm.coPilot.completed\" class=\"avatar-box\"><img src=\"{{ vm.avatars[vm.coPilotHandle] }}\" class=\"avatar\"/><span>Hi I\'m </span><a href=\"#\">{{ vm.coPilotHandle }}</a><span>. I\'ll be your project manager.</span></div></li><li ng-class=\"{ completed: vm.launched.completed, passed: vm.launched.passed }\" class=\"milestone\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">25%</div><div class=\"status\">Complete</div><div class=\"day\">Day 1</div></div><div class=\"lead\"></div><div class=\"point\"><div class=\"info\">!</div></div><div class=\"lead-after\"></div><label>Project Launched</label></section></li><li class=\"notification messages no-progress completed\"><section class=\"checkpoint\"><div class=\"point notification\"><button ng-click=\"vm.showMessagingWidget = true\" title=\"You have {{ vm.unreadCount }} new messages.\" class=\"count clean\">{{ vm.unreadCount }}</button><div ng-class=\"{active: vm.showMessagingWidget}\" class=\"tooltip\"><button ng-click=\"vm.showMessagingWidget = false\" class=\"clean close\">x</button><messaging thread-id=\"{{ vm.workId }}\" class=\"widget\"></messaging></div></div><div class=\"lead-after\"></div><label ng-hide=\"vm.coPilot.completed\">Messages</label><label ng-show=\"vm.coPilot.completed\"><div ng-show=\"vm.coPilot.completed\" class=\"avatar-box\"><img ng-src=\"{{ vm.avatars[member.handle] }}\" class=\"avatar\"/><span class=\"message\">Maybe it\'s best if we stick with the current logo and Maybe it\'s best if we stick with the current logo and</span></div></label></section><ul class=\"links\"><li><button ng-click=\"vm.showMessagingWidget = true\" class=\"clean\">View</button></li><li><a ui-sref=\"messaging\">View full thread</a></li></ul></li><li ng-class=\"{ completed: vm.joined.completed, passed: vm.joined.passed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">35%</div><div class=\"status\">Complete</div><div class=\"day\">Day 1</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label ng-hide=\"vm.coPilot.completed\">Meet others</label><label ng-show=\"vm.coPilot.completed\">{{ vm.members.length }} member(s) have joined.</label></section></li><li ng-class=\"{ completed: vm.submissions.completed, passed: vm.submissions.passed }\" class=\"submissions\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">55%</div><div class=\"status\">Complete</div><div class=\"day\">Day 8</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label ng-hide=\"vm.submissions.completed\">Recieve submissions</label><label ng-show=\"vm.submissions.completed\">Submission Recieved from <a href=\"#\">{{ vm.submissionHandle }} </a><time ng-show=\"vm.submissions.completed\" class=\"time\">{{ vm.submissions.completed | date : &quot;h:mma MMMM d, y&quot; }}</time></label></section><ul ng-show=\"vm.submissions.completed\"><li ng-repeat=\"submissionThumb in vm.submissionThumbs\"><img ng-src=\"{{ submissionThumb }}\"/></li></ul></li><li ng-class=\"{ completed: vm.checkpoint1.completed, passed: vm.checkpoint1.passed }\" class=\"milestone\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">55%</div><div class=\"status\">Complete</div><div class=\"day\">Day 14</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label>Checkpoint 1</label></section></li><li ng-class=\"{ completed: vm.feedback.completed, passed: vm.feedback.passed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">65%</div><div class=\"status\">Complete</div><div class=\"day\">Day 14</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label ng-hide=\"vm.feedback.completed\">Give Feedback?</label><label ng-show=\"vm.feedback.completed\">Feedback given to <a href=\"#\">{{ vm.feedbackHandle }}</a></label></section></li><li ng-class=\"{ completed: vm.finalists.completed, passed: vm.finalists.passed }\" class=\"milestone\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">50%</div><div class=\"status\">Complete</div><div class=\"day\">Day 14</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label>Select Finalists</label></section><a href=\"\" ng-show=\"vm.finalists.completed &amp;&amp; !vm.finalistsSelected.completed\">View submissions and select finalists</a></li><li ng-show=\"vm.finalistsSelected.completed\" ng-class=\"{ passed: vm.finalistsSelected.passed }\" class=\"no-progress completed\"><section class=\"checkpoint\"><div class=\"point\"></div><div class=\"lead-after\"></div><label>You selected 4 finalists</label></section></li><li ng-class=\"{ completed: vm.finalDesign.completed, passed: vm.finalDesign.passed }\" class=\"milestone\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">70%</div><div class=\"status\">Complete</div><div class=\"day\">Day 20</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label>Final Design Phase</label></section></li><li ng-class=\"{ completed: vm.winner.completed, passed: vm.winner.passed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">85%</div><div class=\"status\">Complete</div><div class=\"day\">Day 20</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label>Choose Winner!</label></section></li><li ng-class=\"{ completed: vm.finalFeedback.completed, passed: vm.finalFeedback.passed }\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">95%</div><div class=\"status\">Complete</div><div class=\"day\">Day 20</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label ng-hide=\"vm.finalFeedback.completed\">Final Feedback</label><label ng-show=\"vm.finalFeedback.completed\">Feedback given to <a href=\"#\">{{ vm.feedback2Handle }}</a></label></section><p ng-show=\"vm.finalFeedback.completed &amp;&amp; !vm.complete.completed\">Awaiting final design changes.</p></li><li ng-class=\"{ completed: vm.completed.completed, passed: vm.completed.passed }\" class=\"milestone\"><section class=\"checkpoint\"><div class=\"progress\"><div class=\"percent\">100%</div><div class=\"status\">Complete</div><div class=\"day\">Day 20</div></div><div class=\"lead\"></div><div class=\"point\"></div><div class=\"lead-after\"></div><label>Project Complete</label></section></li></ul>");}]);
 (function() {
   'use strict';
   var TimelineController;
 
   TimelineController = function(TimelineService, $stateParams) {
-    var activate, mapEvents, onChange, setStatus, vm;
+    var activate, mapEvents, onChange, setStatus, setUnreadCount, vm;
     vm = this;
     vm.coPilotHandle = null;
     vm.members = [];
@@ -19,6 +23,8 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
     vm.feedbackHandle = null;
     vm.feedback2Handle = null;
     vm.showMessagingWidget = false;
+    vm.unreadCount = null;
+    vm.workId = null;
     mapEvents = [
       {
         key: 'submitted',
@@ -40,10 +46,10 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
         value: 'launched'
       }, {
         key: 'joined',
-        value: 'challenge-member-registered'
+        value: 'Registration'
       }, {
         key: 'submissions',
-        value: 'challenge-submission'
+        value: 'Submission'
       }, {
         key: 'feedback',
         value: 'challenge-feedback-provided'
@@ -79,9 +85,11 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
           completed: false
         };
       }
+      vm.workId = $stateParams.workId;
       params = {
         workId: $stateParams.workId
       };
+      TimelineService.getUnreadCount(params, setUnreadCount);
       return TimelineService.getEvents(params, onChange);
     };
     onChange = function(timeline) {
@@ -111,6 +119,9 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
       }
       return results;
     };
+    setUnreadCount = function(unreadCount) {
+      return vm.unreadCount = unreadCount;
+    };
     activate();
     return vm;
   };
@@ -125,18 +136,18 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
   'use strict';
   var eventTypes, srv;
 
-  eventTypes = ['copilot-assigned', 'created', 'submitted', 'quote-created', 'email-verified', 'payment-accepted', 'challenge-feedback-provided', 'challenge-submission', 'challenge-member-registered', 'challenge-finalists-selected', 'state-change', 'launched', 'checkpoint1', 'finalists', 'final-design', 'winner', 'final-feedback', 'completed'];
+  eventTypes = ['copilot-assigned', 'created', 'submitted', 'quote-created', 'email-verified', 'payment-accepted', 'challenge-feedback-provided', 'Submission', 'Registration', 'challenge-finalists-selected', 'state-change', 'launched', 'checkpoint1', 'finalists', 'final-design', 'winner', 'final-feedback', 'completed'];
 
-  srv = function(TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) {
-    var buildAvatar, buildTimeline, findAllEvents, findEvent, getCreatedAt, getEvents, getHandle, getMembers, getSubmissionThumbs;
+  srv = function(TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL, ThreadsAPIService) {
+    var buildAvatar, buildTimeline, findEvent, getCreatedAt, getEvents, getField, getSubmissionThumbs, getUnreadCount;
     buildTimeline = function(events, onChange) {
       var coPilot, createdDates, eventType, feedback, feedback2, i, j, len, len1, member, members, submission, submissionThumbs, timeline;
       createdDates = {};
-      coPilot = getHandle(events, 'copilot-assigned');
-      submission = getHandle(events, 'challenge-submission');
-      feedback = getHandle(events, 'challenge-feedback-provided');
-      feedback2 = getHandle(events, 'final-feedback');
-      members = getMembers(events);
+      coPilot = getField(events, 'copilot-assigned', 'copilotId');
+      submission = 'Batman9000';
+      feedback = 'Batman9000';
+      feedback2 = 'Batman9000';
+      members = getField(events, 'Registration', 'registrants');
       submissionThumbs = getSubmissionThumbs(events);
       for (i = 0, len = eventTypes.length; i < len; i++) {
         eventType = eventTypes[i];
@@ -190,13 +201,13 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
       return resource.$promise["finally"](function() {});
     };
     getSubmissionThumbs = function(events) {
-      var i, len, ref, submissionEvent, submissionEvents, thumbUrl, thumbs;
+      var i, len, submission, submissions, thumbUrl, thumbs;
       thumbs = [];
-      submissionEvents = findAllEvents('challenge-submission', events);
-      for (i = 0, len = submissionEvents.length; i < len; i++) {
-        submissionEvent = submissionEvents[i];
+      submissions = (getField(events, 'Submission', 'submissions')) || [];
+      for (i = 0, len = submissions.length; i < len; i++) {
+        submission = submissions[i];
         thumbUrl = SUBMISSION_URL + '/?module=DownloadSubmission&sbmid=';
-        thumbUrl += (submissionEvent != null ? (ref = submissionEvent.sourceObjectContent) != null ? ref.submissionId : void 0 : void 0) + '&sbt=tiny';
+        thumbUrl += (submission != null ? submission.submissionId : void 0) + '&sbt=tiny';
         thumbs.push(thumbUrl);
       }
       return thumbs;
@@ -211,46 +222,34 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
       }
       return false;
     };
-    findAllEvents = function(type, events) {
-      var e, foundEvents, i, len;
-      foundEvents = [];
-      for (i = 0, len = events.length; i < len; i++) {
-        e = events[i];
-        if (e.eventSubType === type) {
-          foundEvents.push(e);
-        }
-      }
-      return foundEvents;
-    };
-    getHandle = function(events, type) {
+    getField = function(events, type, field) {
       var event, ref;
       event = findEvent(type, events);
-      return event != null ? (ref = event.sourceObjectContent) != null ? ref.handle : void 0 : void 0;
-    };
-    getMembers = function(events) {
-      var i, len, memberEvent, memberEvents, members, ref;
-      members = [];
-      memberEvents = findAllEvents('challenge-member-registered', events);
-      for (i = 0, len = memberEvents.length; i < len; i++) {
-        memberEvent = memberEvents[i];
-        members.push({
-          handle: memberEvent != null ? (ref = memberEvent.sourceObjectContent) != null ? ref.handle : void 0 : void 0,
-          joined: memberEvent != null ? memberEvent.createdAt : void 0
-        });
-      }
-      return members;
+      return event != null ? (ref = event.sourceObjectContent) != null ? ref[field] : void 0 : void 0;
     };
     getCreatedAt = function(type, events) {
       var e;
       e = findEvent(type, events);
       return e != null ? e.createdAt : void 0;
     };
+    getUnreadCount = function(messageParams, setUnreadCount) {
+      var resource;
+      if (messageParams) {
+        resource = ThreadsAPIService.get(messageParams);
+        resource.$promise.then(function(response) {
+          return setUnreadCount(response.unreadCount);
+        });
+        resource.$promise["catch"](function() {});
+        return resource.$promise["finally"](function() {});
+      }
+    };
     return {
-      getEvents: getEvents
+      getEvents: getEvents,
+      getUnreadCount: getUnreadCount
     };
   };
 
-  srv.$inject = ['TimelineAPIService', 'UserAPIService', 'AVATAR_URL', 'SUBMISSION_URL'];
+  srv.$inject = ['TimelineAPIService', 'UserAPIService', 'AVATAR_URL', 'SUBMISSION_URL', 'ThreadsAPIService'];
 
   angular.module('appirio-tech-timeline').factory('TimelineService', srv);
 

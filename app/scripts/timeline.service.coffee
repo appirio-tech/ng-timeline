@@ -21,7 +21,7 @@ eventTypes = [
   'completed'
 ]
 
-srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
+srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL, ThreadsAPIService) ->
   buildTimeline = (events, onChange) ->
     createdDates     = {}
     coPilot          = getField events, 'copilot-assigned', 'copilotId'
@@ -111,8 +111,23 @@ srv = (TimelineAPIService, UserAPIService, AVATAR_URL, SUBMISSION_URL) ->
     e = findEvent type, events
     e?.createdAt
 
-  getEvents: getEvents
+  getUnreadCount = (messageParams, setUnreadCount) ->
+    if messageParams
+      resource = ThreadsAPIService.get messageParams
 
-srv.$inject = ['TimelineAPIService', 'UserAPIService', 'AVATAR_URL', 'SUBMISSION_URL']
+      resource.$promise.then (response) ->
+        setUnreadCount response.unreadCount
+
+      resource.$promise.catch ->
+        # need handle error
+
+      resource.$promise.finally ->
+        # need handle finally
+
+
+  getEvents     : getEvents
+  getUnreadCount: getUnreadCount
+
+srv.$inject = ['TimelineAPIService', 'UserAPIService', 'AVATAR_URL', 'SUBMISSION_URL', 'ThreadsAPIService']
 
 angular.module('appirio-tech-timeline').factory 'TimelineService', srv

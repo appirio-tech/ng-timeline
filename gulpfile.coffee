@@ -42,6 +42,7 @@ configs.karma =
     'tests/specs/**/*.coffee'
   ]
   files: [
+    'bower_components/moment/moment.js',
     'bower_components/sinon/index.js'
     'bower_components/angular/angular.js'
     'bower_components/angular-scroll/angular-scroll.js'
@@ -50,6 +51,11 @@ configs.karma =
     'bower_components/angular-ui-router/release/angular-ui-router.js'
     'bower_components/auto-config-fake-server/dist/auto-config-fake-server.js'
     'bower_components/appirio-tech-messaging/dist/main.js'
+    'bower_components/a0-angular-storage/dist/angular-storage.js'
+    'bower_components/angular-jwt/dist/angular-jwt.js'
+    'bower_components/auth0.js/build/auth0.js'
+    'bower_components/auth0-angular/build/auth0-angular.js'
+    'bower_components/appirio-tech-ng-auth/dist/main.js'
     'tests/specs/helper.coffee'
     '.tmp/scripts/constants.js'
     '.tmp/scripts/json-fixtures.js'
@@ -62,13 +68,18 @@ configs.fixtureFiles = [
   'bower_components/appirio-tech-api-schemas/v3.json'
   'bower_components/appirio-tech-api-schemas/v2.json'
   'bower_components/appirio-tech-api-schemas/v3-messages.json'
+  'bower_components/appirio-tech-api-schemas/v3-threads.json'
+  'bower_components/appirio-tech-api-schemas/v3-users.json'
 ]
 
 configs.constants =
-  API_URL       : 'https://api.topcoder-dev.com/v3'
-  API_URL_V2    : 'https://api.topcoder-dev.com/v2'
-  AVATAR_URL    : 'http://www.topcoder.com'
-  SUBMISSION_URL: 'https://studio.topcoder.com'
+  API_URL         : 'https://api.topcoder-dev.com/v3'
+  API_URL_V2      : 'https://api.topcoder-dev.com/v2'
+  AVATAR_URL      : 'http://www.topcoder.com'
+  SUBMISSION_URL  : 'https://studio.topcoder.com'
+  AUTH0_CLIENT_ID : 'abc123'
+  AUTH0_DOMAIN    : 'topcoder-dev.auth0.com'
+  AUTH0_TOKEN_NAME: 'userJWTToken'
 
 configs.coverageReporter =
   type: 'lcov'
