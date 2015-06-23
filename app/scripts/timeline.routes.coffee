@@ -11,7 +11,7 @@ config = ($stateProvider) ->
     templateUrl : 'views/timeline.html'
 
   states['messaging'] =
-    url         : '/messaging'
+    url         : '/messaging/:id'
     title       : 'Messaging'
     templateUrl : 'views/messaging.html'
 
