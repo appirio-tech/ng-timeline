@@ -92,7 +92,7 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
     getOrCreateThread = function() {
       return UserV3Service.getCurrentUser(function(user) {
         var params, publishers, resource, thread;
-        publishers = [vm.coPilotHandle, user.handle];
+        publishers = [vm.coPilotId, user.id];
         params = {
           clientIdentifier: $stateParams.workId,
           context: 'work',
@@ -105,20 +105,21 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
         return resource.then(function(response) {
           var ref, ref1;
           vm.threadId = response != null ? (ref = response.result) != null ? (ref1 = ref.content) != null ? ref1.id : void 0 : void 0 : void 0;
-          return TimelineService.getUnreadCount(vm.threadId, user.handle, setUnreadCount);
+          return TimelineService.getUnreadCount(vm.threadId, user.id, setUnreadCount);
         });
       });
     };
     onChange = function(timeline) {
       setStatus(timeline);
       vm.coPilotHandle = timeline.coPilotHandle;
+      vm.coPilotId = timeline.coPilotId;
       vm.members = timeline.members;
       vm.avatars = timeline.avatars;
       vm.submissionHandle = timeline.submission;
       vm.submissionThumbs = timeline.submissionThumbs;
       vm.feedbackHandle = timeline.feedback;
       vm.feedback2Handle = timeline.feedback2;
-      if (vm.coPilotHandle) {
+      if (vm.coPilotId) {
         return getOrCreateThread();
       }
     };
