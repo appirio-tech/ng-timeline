@@ -45,8 +45,8 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
     #TODO: get rid of this call
     UserV3Service.getCurrentUser (user) ->
       publishers = [
-        vm.coPilotHandle
-        user.handle
+        vm.coPilotId
+        user.id
       ]
 
       params =
@@ -62,12 +62,13 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
       resource.then (response) ->
         vm.threadId = response?.result?.content?.id
         #TODO: get rid of this call since we should be able to get unread count some where else
-        TimelineService.getUnreadCount vm.threadId, user.handle, setUnreadCount
+        TimelineService.getUnreadCount vm.threadId, user.id, setUnreadCount
 
   onChange = (timeline) ->
     setStatus timeline
 
     vm.coPilotHandle    = timeline.coPilotHandle
+    vm.coPilotId        = timeline.coPilotId
     vm.members          = timeline.members
     vm.avatars          = timeline.avatars
     vm.submissionHandle = timeline.submission
@@ -75,7 +76,7 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
     vm.feedbackHandle   = timeline.feedback
     vm.feedback2Handle  = timeline.feedback2
 
-    getOrCreateThread() if vm.coPilotHandle
+    getOrCreateThread() if vm.coPilotId
 
   setStatus = (timeline) ->
     for mapEvent in mapEvents
