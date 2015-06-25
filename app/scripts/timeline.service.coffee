@@ -38,6 +38,7 @@ srv = (
     feedback         = 'Batman9000'
     feedback2        = 'Batman9000'
     members          = getField events, 'Registration', 'registrants'
+    members          = members || []
     quotedAmount     = getField events, 'quote-created', 'quotedAmount'
     submissionThumbs = getSubmissionThumbs events
 
