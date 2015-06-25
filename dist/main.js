@@ -346,6 +346,26 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
   'use strict';
   var srv;
 
+  srv = function($resource, API_URL) {
+    var params, url;
+    url = API_URL + '/copilots/:copilotId/projects/:projectId';
+    params = {
+      copilotId: '@copilotId',
+      projectId: '@projectId'
+    };
+    return $resource(url, params);
+  };
+
+  srv.$inject = ['$resource', 'API_URL'];
+
+  angular.module('appirio-tech-timeline').factory('CoPilotAPIService', srv);
+
+}).call(this);
+
+(function() {
+  'use strict';
+  var srv;
+
   srv = function($resource, API_URL_V2) {
     var params, url;
     url = API_URL_V2 + '/users/:handle';

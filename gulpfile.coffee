@@ -15,6 +15,7 @@ configs.buildFiles =
       '.tmp/scripts/timeline.controller.js',
       '.tmp/scripts/timeline.service.js',
       '.tmp/scripts/timeline-api.service.js',
+      '.tmp/scripts/copilot-api.service.js',
       '.tmp/scripts/user-api.service.js'
     ]
     'main.css': [
