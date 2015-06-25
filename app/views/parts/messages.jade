@@ -1,4 +1,4 @@
-li.notification.messages.no-progress.completed
+li.notification.messages.no-progress.completed(ng-show="vm.showMessages")
   section.checkpoint
     .point(ng-class="{'notification': vm.unreadCount > 0}")
       button.count.clean(ng-click="vm.showMessagingWidget = true" title="You have {{ vm.unreadCount }} new messages.") {{ vm.unreadCount }}

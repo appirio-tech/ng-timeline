@@ -102,8 +102,9 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
       if mapEvents[i + 1]
         vm[mapEvent.key].passed = vm[mapEvents[i + 1].key].completed
 
-  setUnreadCount = (unreadCount) ->
-    vm.unreadCount = unreadCount
+  setUnreadCount = (response) ->
+    vm.unreadCount = response.unreadCount
+    vm.showMessages = true if response.messages.length
 
   activate()
 

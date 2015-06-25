@@ -141,7 +141,7 @@ srv = (
     resource = ThreadsAPIService.get params
 
     resource.$promise.then (response) ->
-      callback response.unreadCount
+      callback response
 
     resource.$promise.catch ->
       # need handle error
