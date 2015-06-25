@@ -188,6 +188,7 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
       feedback = 'Batman9000';
       feedback2 = 'Batman9000';
       members = getField(events, 'Registration', 'registrants');
+      members = members || [];
       quotedAmount = getField(events, 'quote-created', 'quotedAmount');
       submissionThumbs = getSubmissionThumbs(events);
       for (i = 0, len = eventTypes.length; i < len; i++) {
