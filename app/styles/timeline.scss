@@ -35,6 +35,16 @@
       padding-bottom: $point-width;
       margin-left   : $head-width-big;
 
+      .quote {
+        label {
+          font-weight: bold;
+          margin-right: 10px;
+        }
+        button {
+          margin: 4px;
+        }
+      }
+
       // this will be used to hide the extra borders
       &::before, &:last-child::after {
         content         : "";

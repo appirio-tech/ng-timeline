@@ -1,6 +1,6 @@
 'use strict'
 
-TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPIService) ->
+TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPIService, CoPilotAPIService) ->
   vm                     = this
   vm.coPilotHandle       = null
   vm.members             = []
@@ -14,10 +14,11 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
   mapEvents = [
     { key: 'submitted', value: 'submitted' }
     { key: 'email', value: 'email-verified' }
-    { key: 'quote', value: 'quote-created' }
-    { key: 'payment', value: 'payment-accepted' }
     { key: 'coPilot', value: 'copilot-assigned' }
-    { key: 'launched', value: 'launched' }
+    { key: 'quote', value: 'quote-created' }
+    { key: 'quoteAccepted', value: 'work-estimate-approved' }
+    { key: 'payment', value: 'payment-accepted' }
+    { key: 'launched', value: 'work-project-launched' }
     { key: 'joined', value: 'Registration' }
     { key: 'submissions', value: 'Submission' }
     { key: 'feedback', value: 'challenge-feedback-provided' }
@@ -40,6 +41,8 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
       workId: $stateParams.workId
 
     TimelineService.getEvents params, onChange
+
+    vm.acceptQuote = acceptQuote
 
   getOrCreateThread = ->
     #TODO: get rid of this call
@@ -64,6 +67,18 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
         #TODO: get rid of this call since we should be able to get unread count some where else
         TimelineService.getUnreadCount vm.threadId, user.id, setUnreadCount
 
+  acceptQuote = ->
+    params =
+      copilotId: vm.coPilotId
+      projectId: $stateParams.workId
+      approved : true
+
+    copilot  = new CoPilotAPIService params
+    resource = copilot.$save()
+
+    resource.then (response) ->
+      vm.quoteAccepted.completed = true
+
   onChange = (timeline) ->
     setStatus timeline
 
@@ -75,6 +90,7 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
     vm.submissionThumbs = timeline.submissionThumbs
     vm.feedbackHandle   = timeline.feedback
     vm.feedback2Handle  = timeline.feedback2
+    vm.quotedAmount     = timeline.quotedAmount
 
     getOrCreateThread() if vm.coPilotId
 
@@ -98,6 +114,7 @@ TimelineController.$inject = [
   '$stateParams'
   'UserV3Service'
   'ThreadsAPIService'
+  'CoPilotAPIService'
 ]
 
 angular.module('appirio-tech-timeline').controller 'TimelineController', TimelineController

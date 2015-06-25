@@ -5,6 +5,7 @@ eventTypes = [
   'created'
   'submitted'
   'quote-created'
+  'work-estimate-approved'
   'email-verified'
   'payment-accepted'
   'challenge-feedback-provided'
@@ -12,7 +13,7 @@ eventTypes = [
   'Registration'
   'challenge-finalists-selected'
   'state-change'
-  'launched'
+  'work-project-launched'
   'checkpoint1'
   'finalists'
   'final-design'
@@ -37,6 +38,7 @@ srv = (
     feedback         = 'Batman9000'
     feedback2        = 'Batman9000'
     members          = getField events, 'Registration', 'registrants'
+    quotedAmount     = getField events, 'quote-created', 'quotedAmount'
     submissionThumbs = getSubmissionThumbs events
 
     for eventType in eventTypes
@@ -46,6 +48,7 @@ srv = (
       events          : events
       workName        : workName
       createdDates    : createdDates
+      quotedAmount    : quotedAmount
       coPilotId       : coPilotId
       members         : members
       avatars         : {}

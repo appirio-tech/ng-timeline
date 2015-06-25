@@ -15,15 +15,4 @@ li(ng-class="{ completed: vm.coPilot.completed, passed: vm.coPilot.passed }")
 
     label(ng-show="!vm.payment.completed && !vm.coPilot.completed") Assign Co-Pilot
 
-    label(ng-show="!vm.payment.completed && vm.coPilot.completed") We are choosing a Co-Pilot best suited for your project.
-
     label(ng-show="vm.coPilot.completed") Co-Pilot Assigned
-
-  .avatar-box(ng-show="vm.coPilot.completed")
-    img.avatar(src="{{ vm.avatars[vm.coPilotHandle] }}")
-
-    span Hi I'm 
-
-    a(href="#") {{ vm.coPilotHandle }}
-
-    span . I'll be your project manager.
