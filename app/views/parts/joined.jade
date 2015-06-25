@@ -1,6 +1,6 @@
 li(
   ng-class="{ completed: vm.completed.joined, passed: vm.passed.joined, expanded: vm.expanded.launched }"
-)
+).joined
   section.checkpoint
     .progress
       .percent 35%
@@ -11,12 +11,24 @@ li(
 
     .lead
 
-    .point
+    .point.icon
 
     .lead-after
 
     label(ng-hide="vm.completed.coPilot") Meet others
 
-    label(ng-show="vm.completed.coPilot") {{ vm.members.length }} member(s) have joined.
+    label(ng-show="vm.completed.coPilot")
+      .carat
 
+      span {{ vm.members.length }} member(s) have joined.
 
+  .members
+    button(type="button").clean.close x
+
+    ul
+      li(ng-repeat="member in vm.members track by $index")
+        img.avatar(ng-src="{{ vm.avatars[member.handle] }}")
+
+        a {{ member.handle }} 
+
+        | joined the project.

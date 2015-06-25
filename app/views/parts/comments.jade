@@ -1,0 +1,17 @@
+li.comment.messages.no-progress.completed
+  section.checkpoint
+    .point.comment.icon
+      button.count.clean(ng-click="vm.showMessagingWidget = true") 6
+        .notification 6
+
+      .tooltip(ng-class="{active: vm.showMessagingWidget}")
+        button.clean.close(ng-click="vm.showMessagingWidget = false") x
+
+        messaging.widget(thread-id="123" created-by="Batman")
+
+    .lead-after
+
+    label
+      img.avatar(ng-src="{{ vm.avatars[member.handle] }}")
+
+      | Batman99 commented on project requirements

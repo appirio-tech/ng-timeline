@@ -9,15 +9,12 @@ li.submissions(ng-class="{ completed: vm.completed.submissions, passed: vm.passe
 
     .lead
 
-    .point
+    .point.icon
 
     .lead-after
 
-    label(ng-hide="vm.completed.submissions") Recieve submissions
+    label
+      img.avatar(ng-src="{{ vm.avatars[member.handle] }}")
 
-    label(ng-show="vm.completed.submissions") Submission Recieved from 
-
-      a(href="#") {{ vm.submissionHandle }} 
-
-      time.time(ng-show="vm.completed.submissions") {{ vm.completed.submissions #{dateFilter} }}
+      | Batman99 submitted files to your project.
 

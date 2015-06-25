@@ -5,23 +5,14 @@
   background-color: #E6E1E1;
   padding         : 15px 20px;
 
-  .avatar-box {
-    padding: 4px;
-    display: table;
-
-    @include vertical-align-middle();
-
-    .avatar {
-      width         : 35px;
-      height        : 35px;
-      border        : 1px solid grey;
-      border-radius : 35px;
-      margin-right  : 6px;
-    }
-
-    p {
-      width         : 240px;
-    }
+  .avatar {
+    width         : 35px;
+    height        : 35px;
+    border        : 1px solid grey;
+    border-radius : 35px;
+    margin-right  : 6px;
+    display       : inline-block;
+    vertical-align: middle;
   }
 
   > ul {
@@ -100,6 +91,25 @@
           background-color: grey;
           text-align      : center;
           color           : #fff;
+
+          &.icon {
+            border-radius   : 4px;
+            background-color: white;
+            color           : black;
+            box-shadow      : 3px 2px 4px 0px rgba(0, 0, 0, 0.75);
+          }
+
+          .notification {
+            position        : absolute;
+            top             : -8px;
+            right           : -8px;
+            background-color: red;
+            padding         : 1px 3px;
+            border-radius   : 3px;
+            color           : white;
+
+            @include font-line(12);
+          }
 
           .info {
             display: none;
@@ -183,11 +193,6 @@
 
         .point {
           background-color: green;
-
-          &.notification {
-            background-color: red;
-            color: white;
-          }
         }
 
         .progress {

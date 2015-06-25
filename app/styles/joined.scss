@@ -1,0 +1,28 @@
+@import "work-includes";
+@import "variables";
+
+.layout-main.timeline {
+  ul li.joined {
+    .carat {
+      width       : 0;
+      height      : 0;
+      border-left : 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top  : 8px solid blue;
+      display     : inline-block;
+      margin-right: 10px;
+    }
+
+    .members {
+      background-color: white;
+      padding         : 4px;
+      border-radius   : 4px;
+
+      .close {
+        position: absolute;
+        right: 4px;
+        display: inline-block;
+      }
+    }
+  }
+}
