@@ -30,6 +30,6 @@ li(ng-class="{ completed: vm.quote.completed, passed: vm.quote.passed }")
 
     //-   span.time 21 days
 
-    button(ng-click="vm.acceptQuote()") accept
-
-    button reject
+    .container
+      button.success(ng-click="vm.acceptQuote()") accept
+      button.danger reject
