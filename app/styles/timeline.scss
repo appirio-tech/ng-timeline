@@ -8,6 +8,7 @@
   .avatar-box {
     padding: 4px;
     display: table;
+    @include ellipsis(100%);
 
     .avatar {
       display       : inline-block;
