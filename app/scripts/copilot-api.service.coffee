@@ -1,7 +1,7 @@
 'use strict'
 
 srv = ($resource, API_URL) ->
-  url     = API_URL + '/copilots/:copilotId/projects/:projectId'
+  url     = API_URL + '/copilots/:copilotId/projects/:projectId/approved'
   params  =
     copilotId: '@copilotId'
     projectId: '@projectId'

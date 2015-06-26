@@ -352,7 +352,7 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
 
   srv = function($resource, API_URL) {
     var params, url;
-    url = API_URL + '/copilots/:copilotId/projects/:projectId';
+    url = API_URL + '/copilots/:copilotId/projects/:projectId/approved';
     params = {
       copilotId: '@copilotId',
       projectId: '@projectId'
