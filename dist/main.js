@@ -229,6 +229,9 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
       };
       return UserV3APIService.get(params, function(response) {
         timeline.coPilotHandle = response.handle;
+        if (typeof onChange === "function") {
+          onChange(timeline);
+        }
         return buildAvatar(timeline, timeline.coPilotHandle, onChange);
       });
     };

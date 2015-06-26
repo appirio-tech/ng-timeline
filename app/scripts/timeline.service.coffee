@@ -72,6 +72,8 @@ srv = (
     UserV3APIService.get params, (response) ->
       timeline.coPilotHandle = response.handle
 
+      onChange? timeline
+
       buildAvatar timeline, timeline.coPilotHandle, onChange
 
   buildAvatar = (timeline, handle, onChange) ->
