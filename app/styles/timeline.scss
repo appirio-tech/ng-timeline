@@ -37,13 +37,25 @@
       margin-left   : $head-width-big;
 
       .quote {
+
+        .container {
+          width: 385px;
+          padding: 5px;
+          background-color: #fff;
+          border: 1px solid grey;
+          border-radius: 3px;
+        }
+
         label {
           font-weight: bold;
           margin-right: 10px;
         }
+
         button {
-          margin: 4px;
+          margin: 5px;
+          width: 175px;
         }
+
       }
 
       // this will be used to hide the extra borders
