@@ -15,7 +15,9 @@ li(ng-class="{ completed: vm.quote.completed, passed: vm.quote.passed }")
 
     label(ng-hide="vm.quote.completed") Generate Quote
 
-    label(ng-show="vm.quote.completed") Quote has been generated.
+    label(ng-show="vm.quote.completed && !vm.quoteAccepted.completed") Quote has been generated.
+
+    label(ng-show="vm.quoteAccepted.completed") Quote accepted
 
   .quote(ng-show="vm.quote.completed && !vm.quoteAccepted.completed")
     .cost
