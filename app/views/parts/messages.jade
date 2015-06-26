@@ -4,11 +4,6 @@ li.notification.messages.no-progress.completed
       button.count.clean(ng-click="vm.showMessagingWidget = true")
         .notification 6
 
-      .tooltip(ng-class="{active: vm.showMessagingWidget}")
-        button.clean.close(ng-click="vm.showMessagingWidget = false") x
-
-        messaging.widget(thread-id="123" created-by="Batman")
-
     .lead-after
 
     label
@@ -22,3 +17,8 @@ li.notification.messages.no-progress.completed
 
     li
       a(ui-sref="messaging({id: 123})") View full thread
+
+  .expandable-content(ng-class="{active: vm.showMessagingWidget}")
+    button.clean.close(ng-click="vm.showMessagingWidget = false") x
+
+    messaging.widget(thread-id="123" created-by="Batman")

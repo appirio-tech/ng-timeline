@@ -15,6 +15,35 @@
     vertical-align: middle;
   }
 
+  .carat {
+    display     : inline-block;
+    margin-right: 10px;
+
+    @include triangle($carat-width, blue, down);
+  }
+
+  .expandable-content {
+    background-color: white;
+    padding         : 4px;
+    border-radius   : 4px;
+    position        : relative;
+
+    .close {
+      position: absolute;
+      right   : 4px;
+      top     : -20px;
+      display : inline-block;
+    }
+
+    &:before {
+      content : "";
+      position: absolute;
+      top     : -$carat-width/2;
+
+      @include triangle($carat-width, white, up);
+    }
+  }
+
   > ul {
     position : relative;
 
@@ -52,93 +81,14 @@
         }
       }
 
-      .checkpoint {
-        overflow  : hidden;
-
-        @include transition (all 0.2s ease-in-out);
-
-        &:focus {
-          background-color: red;
-        }
-
-        margin-left: -$head-width;
-        z-index    : 1;
-        position   : relative;
-
-        > * {
-          display       : inline-block;
-          vertical-align: middle;
-        }
-
-        .progress, .lead {
-          display: none;
-        }
-
-        .lead-after {
-          border-top   : $lead-after-width solid transparent;
-          border-bottom: $lead-after-width solid transparent;
-          border-right : $lead-after-width solid blue;
-          margin-left  : $spacing;
-          visibility   : hidden;
-        }
-
-        .point {
-          width           : $point-width;
-          height          : $point-width;
-          line-height     : $point-width - ($point-border-width * 2);
-          border          : $point-border-width solid white;
-          border-radius   : 50%;
-          background-color: grey;
-          text-align      : center;
-          color           : #fff;
-
-          &.icon {
-            border-radius   : 4px;
-            background-color: white;
-            color           : black;
-            box-shadow      : 3px 2px 4px 0px rgba(0, 0, 0, 0.75);
-          }
-
-          .notification {
-            position        : absolute;
-            top             : -8px;
-            right           : -8px;
-            background-color: red;
-            padding         : 1px 3px;
-            border-radius   : 3px;
-            color           : white;
-
-            @include font-line(12);
-          }
-
-          .info {
-            display: none;
-          }
-        }
-
-        label {
-          width: 65%;
-
-          @include ellipsis(65%);
-
-          h4 {
-            font-size: 20px;
-            display  : inline-block;
-            width    :  50%;
-          }
-
-          time {
-            width     : 50%;
-            text-align: right;
-            display: none;
-          }
-        }
-      }
-
       > *:nth-child(n + 2) {
         display: block;
-        margin-left: $spacing + $lead-after-width + ($point-width/2);
+        margin-left: $spacing + $lead-after-width + $point-width/2;
         margin-top: 10px;
+      }
+
+      .expandable-content {
+        margin-left: $spacing + $lead-after-width + $point-width/2 - $carat-width/3;
       }
 
       > hr:nth-child(n + 2) {
@@ -152,34 +102,6 @@
 
       &.milestone {
         display: block;
-
-        .checkpoint {
-          margin-left: -$head-width-big;
-
-          .lead-after {
-            margin-left: $spacing - ($big-point-width/2 - $point-width/2);
-          }
-        }
-
-        .point {
-          width       : $big-point-width;
-          height      : $big-point-width;
-          border-width: $big-point-border-width;
-
-          &:before {
-            content: '‐';
-            line-height: $big-point-width - ($big-point-border-width * 2);
-            font-size: 30px;
-          }
-        }
-
-        &.expanded {
-          .point {
-            &:before {
-              content: '+';
-            }
-          }
-        }
       }
 
       &.passed {
@@ -199,41 +121,6 @@
           .percent {
             color: green;
           }
-        }
-      }
-
-      &.no-progress {
-        .checkpoint {
-          margin-left: -$head-width;
-        }
-      }
-
-      &.info {
-        .checkpoint {
-          .point {
-            background-color: blue;
-
-            .info {
-              display: block;
-            }
-          }
-
-          .lead-after {
-            visibility: visible;
-          }
-
-          label {
-            padding: 5px;
-          }
-        }
-
-        a {
-          color: blue;
-        }
-
-        label {
-          background-color: blue;
-          color           : white;
         }
       }
     }

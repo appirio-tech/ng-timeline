@@ -37,17 +37,17 @@
           background-color: grey;
           display         : inline-block;
         }
-
-        label {
-          time {
-            display: inline-block;
-          }
-        }
       }
 
       &.milestone {
         .checkpoint {
           margin-left: -$lc-head-width-big;
+
+          label {
+            time {
+              display: inline-block;
+            }
+          }
         }
       }
     }

@@ -15,10 +15,28 @@ li(ng-class="{ completed: vm.completed.quote, passed: vm.passed.quote}")
 
     label(ng-hide="vm.completed.quote") Generate Quote
 
-    label(ng-show="vm.completed.quote") Quote has been generated.
+    label(ng-show="vm.completed.quote")
+      .carat
+
+      | Quote has been generated.
 
   p(ng-show="vm.completed.quote && !vm.completed.payment")
     a(href="#") View quote and pay to continue.
 
-  p(ng-show="vm.completed.quote && !vm.completed.payment")
-    em Co-Pilot will not be assigned until your payment has been approved.
+  .expandable-content
+    button(type="button").clean.close x
+
+    .price
+      span.label Cost:
+
+      | $12,000
+
+    .time
+      span.label Time:
+
+      | 21 Days
+
+    button Accept
+
+    Button Reject
+
