@@ -104,7 +104,9 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
 
   setUnreadCount = (response) ->
     vm.unreadCount = response.unreadCount
-    vm.showMessages = true if response.messages.length
+    if response.messages.length
+      vm.showMessages = true
+      vm.lastMessage = response.messages[response.messages.length - 1]?.body
 
   activate()
 

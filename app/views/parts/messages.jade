@@ -10,7 +10,11 @@ li.notification.messages.no-progress.completed(ng-show="vm.showMessages")
 
     .lead-after
 
-    label Messages
+    label
+      .avatar-box
+        img.avatar(ng-src="http://www.topcoder.com/i/m/cardiboy_big.jpg")
+
+        | {{ vm.lastMessage }}
 
   ul.links
     li
