@@ -1,4 +1,4 @@
-li(ng-class="{ completed: vm.completed.quote, passed: vm.passed.quote}")
+li.quote(ng-class="{ completed: vm.completed.quote, passed: vm.passed.quote}")
   section.checkpoint
     .progress
       .percent 15%
@@ -26,17 +26,21 @@ li(ng-class="{ completed: vm.completed.quote, passed: vm.passed.quote}")
   .expandable-content
     button(type="button").clean.close x
 
-    .price
-      span.label Cost:
+    ul
+      li
+        label Cost:
+        | 
+        | $12,000
 
-      | $12,000
+      li
+        label Time:
+        | 
+        | 21 Days
 
-    .time
-      span.label Time:
+    ul
+      li.accept
+        button Accept
 
-      | 21 Days
-
-    button Accept
-
-    Button Reject
+      li.Reject
+        Button Reject
 

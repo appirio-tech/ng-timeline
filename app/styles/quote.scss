@@ -1,0 +1,32 @@
+@import "work-includes";
+@import "variables";
+
+.layout-main.timeline {
+  ul li.quote {
+    .expandable-content {
+      ul {
+        display: flex;
+        margin-top: 10px;
+
+        li {
+          margin-left: 10px;
+
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+      .accept {
+        button {
+          background-color: blue;
+          color: white;
+        }
+      }
+    }
+  }
+}

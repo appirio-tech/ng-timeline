@@ -64,7 +64,9 @@
 
     label {
       width: 65%;
+      font-weight: none;
 
+      @include source-sans();
       @include ellipsis(65%);
 
       time {
