@@ -1,6 +1,6 @@
 'use strict'
 
-TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPIService, CoPilotAPIService) ->
+TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPIService, CoPilotAPIService, AuthService, $scope) ->
   vm                     = this
   vm.coPilotHandle       = null
   vm.members             = []
@@ -10,6 +10,8 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
   vm.feedback2Handle     = null
   vm.showMessagingWidget = false
   vm.unreadCount         = null
+  vm.showMessages        = true
+  vm.subscriberId        = null
 
   mapEvents = [
     { key: 'submitted', value: 'submitted' }
@@ -45,11 +47,13 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
     vm.acceptQuote = acceptQuote
 
   getOrCreateThread = ->
-    #TODO: get rid of this call
-    UserV3Service.getCurrentUser (user) ->
+    $scope.$watch UserV3Service.getCurrentUser, ->
+      user = UserV3Service.getCurrentUser()
+      vm.subscriberId = user.id if user
+
       publishers = [
         vm.coPilotId
-        user.id
+        vm.subscriberId
       ]
 
       params =
@@ -65,7 +69,7 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
       resource.then (response) ->
         vm.threadId = response?.result?.content?.id
         #TODO: get rid of this call since we should be able to get unread count some where else
-        TimelineService.getUnreadCount vm.threadId, user.id, setUnreadCount
+        TimelineService.getUnreadCount vm.threadId, vm.subscriberId, setUnreadCount
 
   acceptQuote = ->
     params =
@@ -118,6 +122,8 @@ TimelineController.$inject = [
   'UserV3Service'
   'ThreadsAPIService'
   'CoPilotAPIService'
+  'AuthService'
+  '$scope'
 ]
 
 angular.module('appirio-tech-timeline').controller 'TimelineController', TimelineController

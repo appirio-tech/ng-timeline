@@ -16,7 +16,8 @@
     "angular": "1.4.x",
     "angular-ui-router": "0.2.x",
     "angular-resource": "1.4.x",
-    "appirio-tech-messaging": "git@github.com:appirio-tech/messaging#1.x.x",
+    "appirio-tech-messaging": "git@github.com:appirio-tech/messaging#DEM-766",
+    "appirio-tech-ng-auth": "git@github.com:appirio-tech/ng-auth#DEM-657",
     "moment": "^2.10.x"
   },
   "ignore": [
