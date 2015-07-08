@@ -229,11 +229,12 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
       return typeof onChange === "function" ? onChange(timeline) : void 0;
     };
     getCopilotHandle = function(timeline, onChange) {
-      var params;
+      var params, resource;
       params = {
         id: timeline.coPilotId
       };
-      return UserV3APIService.get(params, function(response) {
+      resource = UserV3APIService.get(params);
+      return resource.$promise.then(function(response) {
         timeline.coPilotHandle = response.handle;
         if (typeof onChange === "function") {
           onChange(timeline);

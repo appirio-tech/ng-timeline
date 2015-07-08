@@ -69,7 +69,9 @@ srv = (
     params =
       id: timeline.coPilotId
 
-    UserV3APIService.get params, (response) ->
+    resource = UserV3APIService.get params
+
+    resource.$promise.then (response) ->
       timeline.coPilotHandle = response.handle
 
       onChange? timeline
