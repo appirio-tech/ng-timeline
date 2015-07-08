@@ -10,15 +10,16 @@ configs =
 configs.buildFiles =
   concat:
     'main.js': [
-      '.tmp/scripts/timeline.module.js',
-      '.tmp/scripts/templates.js',
-      '.tmp/scripts/timeline.controller.js',
-      '.tmp/scripts/timeline.service.js',
-      '.tmp/scripts/timeline-api.service.js',
+      '.tmp/scripts/timeline.module.js'
+      '.tmp/scripts/templates.js'
+      '.tmp/scripts/timeline.controller.js'
+      '.tmp/scripts/timeline.service.js'
+      '.tmp/scripts/timeline-api.service.js'
       '.tmp/scripts/user-api.service.js'
     ]
     'main.css': [
       '.tmp/styles/timeline.css'
+      '.tmp/styles/checkpoint.css'
       '.tmp/styles/messages.css'
       '.tmp/styles/submissions.css'
     ]
@@ -26,6 +27,9 @@ configs.buildFiles =
       '.tmp/styles/timeline.landscape.css'
       '.tmp/styles/submissions.landscape.css'
       '.tmp/styles/messages.landscape.css'
+    ]
+    'main.desktop.css': [
+      '.tmp/styles/timeline.desktop.css'
     ]
 
 configs.templateCache =

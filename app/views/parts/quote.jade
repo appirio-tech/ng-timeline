@@ -1,4 +1,4 @@
-li(ng-class="{ completed: vm.quote.completed, passed: vm.quote.passed }")
+li.quote(ng-class="{ completed: vm.completed.quote, passed: vm.passed.quote}")
   section.checkpoint
     .progress
       .percent 15%
@@ -13,12 +13,34 @@ li(ng-class="{ completed: vm.quote.completed, passed: vm.quote.passed }")
 
     .lead-after
 
-    label(ng-hide="vm.quote.completed") Generate Quote
+    label(ng-hide="vm.completed.quote") Generate Quote
 
-    label(ng-show="vm.quote.completed") Quote has been generated.
+    label(ng-show="vm.completed.quote")
+      .carat
 
-  p(ng-show="vm.quote.completed && !vm.payment.completed")
+      | Quote has been generated.
+
+  p(ng-show="vm.completed.quote && !vm.completed.payment")
     a(href="#") View quote and pay to continue.
 
-  p(ng-show="vm.quote.completed && !vm.payment.completed")
-    em Co-Pilot will not be assigned until your payment has been approved.
+  .expandable-content
+    button(type="button").clean.close x
+
+    ul
+      li
+        label Cost:
+        | 
+        | $12,000
+
+      li
+        label Time:
+        | 
+        | 21 Days
+
+    ul
+      li.accept
+        button Accept
+
+      li.Reject
+        Button Reject
+

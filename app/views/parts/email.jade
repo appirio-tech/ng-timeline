@@ -1,4 +1,6 @@
-li(ng-class="{ completed: vm.email.completed, passed: vm.email.passed, info: !vm.email.completed }")
+li(
+  ng-class="{ completed: vm.completed.email, passed: vm.passed.email, info: !vm.completed.email, expanded: vm.expanded.submitted }"
+)
   section.checkpoint
     .progress
       .percent 6%
@@ -14,8 +16,8 @@ li(ng-class="{ completed: vm.email.completed, passed: vm.email.passed, info: !vm
 
     .lead-after
 
-    label(ng-hide="vm.email.completed") We sent an email to johndoe@example.com. <br /> Click the link in the email to verify your email address.
+    label(ng-hide="vm.completed.email") We sent an email to johndoe@example.com. <br /> Click the link in the email to verify your email address.
 
-    label(ng-show="vm.email.completed") Thanks! Your email is verified.
+    label(ng-show="vm.completed.email") Thanks! Your email is verified.
 
-  a.resend(href="#", ng-hide="vm.email.completed") Re-send Email
+  a.resend(href="#", ng-hide="vm.completed.email") Re-send Email

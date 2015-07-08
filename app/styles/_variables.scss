@@ -1,12 +1,14 @@
-$point-width       : 27px;
-$point-border-width: 3px;
-$big-point-width   : 37px;
-$timeline-width    : 3px;
-$spacing           : 20px; // spacing between progress/leads/point
-$progress-width    : 80px;
-$lead-width        : 20px;
-$lead-after-width  : 10px;
-$head-width        : $point-width/2 + $timeline-width/2;
-$head-width-big    : $big-point-width/2 + $timeline-width/2;
-$lc-head-width     : $spacing + $progress-width + $lead-width + $point-width/2 + $timeline-width/2;
-$lc-head-width-big : $spacing + $progress-width + $lead-width + $big-point-width/2 + $timeline-width/2;
+$point-width           : 20px;
+$point-border-width    : 0px;
+$big-point-width       : 37px;
+$big-point-border-width: 3px;
+$timeline-width        : 3px;
+$spacing               : 20px; // spacing between progress/leads/point
+$progress-width        : 80px;
+$lead-width            : 20px;
+$lead-after-width      : 10px;
+$head-width            : $point-width/2 + $timeline-width/2;
+$head-width-big        : $big-point-width/2 + $timeline-width/2;
+$lc-head-width         : $spacing + $progress-width + $lead-width + $point-width/2 + $timeline-width/2;
+$lc-head-width-big     : $spacing + $progress-width + $lead-width + $big-point-width/2 + $timeline-width/2;
+$carat-width           : 16px;

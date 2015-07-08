@@ -5,7 +5,7 @@
   },
   "devDependencies": {
     "appirio-gulp-tasks": "0.x.x",
-    "appirio-work-styles": "0.x.x",
+    "appirio-work-styles": "git@github.com:appirio-tech/work-styles#master",
     "gulp": "^3.8.11"
   }
 }
