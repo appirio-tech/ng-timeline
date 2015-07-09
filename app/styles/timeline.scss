@@ -2,6 +2,7 @@
 @import "variables";
 
 .layout-main.timeline {
+  @include span-columns(11)
   background-color: #E6E1E1;
   padding         : 15px 20px;
 
