@@ -7,5 +7,7 @@
     "appirio-gulp-tasks": "0.x.x",
     "appirio-work-styles": "git@github.com:appirio-tech/work-styles#master",
     "gulp": "^3.8.11"
+    "node-bourbon": "^4.2.1-beta1",
+    "node-neat": "^1.7.1-beta1"
   }
 }
