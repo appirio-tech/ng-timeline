@@ -17,7 +17,7 @@
     "angular-resource": "1.4.x",
     "appirio-tech-api-schemas": "2.x.x",
     "auto-config-fake-server": "1.2.x",
-    "appirio-tech-messaging": "2.x.x"
+    "appirio-tech-ng-messaging": "2.x.x"
   },
   "ignore": [
     "**/*",
