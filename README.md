@@ -1,5 +1,5 @@
 # timeline
-[![Build Status](https://magnum.travis-ci.com/appirio-tech/timeline.svg?token=sjYcnNqPWxBpKgooh32F)](https://magnum.travis-ci.com/appirio-tech/timeline)
+[![Build Status](https://travis-ci.org/appirio-tech/timeline.svg)](https://travis-ci.org/appirio-tech/timeline)
 [![Coverage Status](https://coveralls.io/repos/appirio-tech/timeline/badge.svg?branch=master&t=BJiqmL)](https://coveralls.io/r/appirio-tech/timeline?branch=master)
 
 ## Documentation
