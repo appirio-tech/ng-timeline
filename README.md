@@ -4,3 +4,6 @@
 
 ## Documentation
 https://appirio.atlassian.net/wiki/display/ProdDevOverview/Project+Timeline
+
+## Development
+gulp build
