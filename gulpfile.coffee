@@ -63,9 +63,9 @@ configs.karma =
   ]
 
 configs.fixtureFiles = [
-  'bower_components/appirio-tech-api-schemas/v3.json'
-  'bower_components/appirio-tech-api-schemas/v2.json'
-  'bower_components/appirio-tech-api-schemas/v3-messages.json'
+  'bower_components/appirio-tech-api-schemas/swagger/v3-events.json'
+  'bower_components/appirio-tech-api-schemas/swagger/v2.json'
+  'bower_components/appirio-tech-api-schemas/swagger/v3-messages.json'
 ]
 
 configs.constants =

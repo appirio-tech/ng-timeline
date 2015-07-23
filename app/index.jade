@@ -15,7 +15,7 @@
 - bowers.push('moment/moment')
 - bowers.push('angular-scroll/angular-scroll')
 
-- bowerCssFiles = ['appirio-tech-messaging/dist/main']
+- bowerCssFiles = ['appirio-tech-ng-messaging/dist/main']
 
 - var cssPaths   = ['main', 'timeline', 'checkpoint', 'messages', 'quote']
 - var landscapes = ['timeline', 'messages']
@@ -36,9 +36,9 @@ html(ng-app='appirio-tech-timeline')
       AutoConfigFakeServer.fakeServer.autoRespond = true;
 
       schemas = [
-        FIXTURES['bower_components/appirio-tech-api-schemas/v3.json'],
-        FIXTURES['bower_components/appirio-tech-api-schemas/v2.json'],
-        FIXTURES['bower_components/appirio-tech-api-schemas/v3-messages.json']
+        FIXTURES['bower_components/appirio-tech-api-schemas/swagger/v3-events.json'],
+        FIXTURES['bower_components/appirio-tech-api-schemas/swagger/v2.json'],
+        FIXTURES['bower_components/appirio-tech-api-schemas/swagger/v3-messages.json']
       ];
 
       AutoConfigFakeServer.consume(schemas);
