@@ -1,0 +1,43 @@
+- var examples = ['constants', 'example.module', 'routes', 'example-templates']
+
+- var scripts = []
+- scripts.push('timeline.module')
+- scripts.push('timeline-api.service')
+- scripts.push('user-api.service')
+- scripts.push('timeline.controller')
+- scripts.push('timeline.service')
+
+- var bowers = []
+- bowers.push('angular/angular')
+- bowers.push('angular-resource/angular-resource')
+- bowers.push('angular-ui-router/release/angular-ui-router')
+- bowers.push('appirio-tech-ng-messaging/dist/main')
+- bowers.push('moment/moment')
+- bowers.push('angular-scroll/angular-scroll')
+
+= "\n"
+// build:js lib.js
+= "\n"
+each path in bowers
+  script(src="bower_components/#{path}.js", type="text/javascript")
+  = "\n"
+// endbuild
+= "\n"
+
+// build:js main.js
+= "\n"
+each path in scripts
+  script(src="scripts/#{path}.js", type="text/javascript")
+  = "\n"
+= "\n"
+// endbuild
+= "\n"
+
+// build:js example.js
+= "\n"
+each path in examples
+  script(src="scripts/#{path}.js", type="text/javascript")
+  = "\n"
+= "\n"
+// endbuild
+= "\n"

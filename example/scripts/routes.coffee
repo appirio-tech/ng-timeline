@@ -4,10 +4,8 @@ config = ($stateProvider) ->
   states = {}
 
   states['timeline'] =
-    url         : '/timeline/:workId'
+    url         : '/'
     title       : 'Timeline'
-    controller  : 'TimelineController'
-    controllerAs: 'vm'
     templateUrl : 'views/timeline.html'
 
   states['messaging'] =
@@ -20,6 +18,6 @@ config = ($stateProvider) ->
 
 config.$inject = ['$stateProvider']
 
-angular.module('appirio-tech-timeline').config(config).run()
+angular.module('example').config(config).run()
 
 
