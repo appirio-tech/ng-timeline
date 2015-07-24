@@ -4,7 +4,7 @@ dependencies = [
   'ui.router'
   'ngResource'
   'app.constants'
-  'appirio-tech-timeline'
+  'appirio-tech-ng-timeline'
 ]
 
 angular.module 'example', dependencies

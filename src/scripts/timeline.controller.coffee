@@ -39,42 +39,13 @@ TimelineController = (TimelineService, $stateParams) ->
   ]
 
   activate = ->
-    for mapEvent in mapEvents
-      vm[mapEvent.key] =
-        passed   : false
-        completed: false
-
-    params =
-      workId: $stateParams.workId
-
-    TimelineService.getEvents params, onChange
-
     vm
-
-  onChange = (timeline) ->
-    setStatus timeline
-
-    vm.coPilotHandle    = timeline.coPilot
-    vm.members          = timeline.members
-    vm.avatars          = timeline.avatars
-    vm.submissions      = timeline.submissions
-    vm.feedbackHandle   = timeline.feedback
-    vm.feedback2Handle  = timeline.feedback2
-
-  setStatus = (timeline) ->
-    for mapEvent in mapEvents
-      vm.completed[mapEvent.key] = timeline.createdDates?[mapEvent.value]
-
-    for mapEvent, i in mapEvents
-      if mapEvents[i + 1]
-        vm.passed[mapEvent.key] = vm[mapEvents[i + 1].key].completed
 
   activate()
 
 TimelineController.$inject = [
-  'TimelineService'
   '$stateParams'
 ]
 
-angular.module('appirio-tech-timeline').controller 'TimelineController', TimelineController
+angular.module('appirio-tech-ng-timeline').controller 'TimelineController', TimelineController
 

@@ -4,17 +4,15 @@ configs =
 configs.templateCache = []
 configs.templateCache.push
   files : [
-    '.tmp/views/timeline.html'
+    '.tmp/views/timeline.directive.html'
   ]
   root  : 'views/'
-  module: 'appirio-tech-timeline'
+  module: 'appirio-tech-ng-timeline'
 
 configs.templateCache.push
   fileName: 'example-templates.js'
   files : [
-    '.tmp/views/submissions.html'
-    '.tmp/views/submission-detail.html'
-    '.tmp/views/submission-slides.html'
+    '.tmp/views/timeline.html'
   ]
   root  : 'views/'
   module: 'example'

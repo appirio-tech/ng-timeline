@@ -7,4 +7,4 @@ dependencies = [
   'appirio-tech-messaging'
 ]
 
-angular.module 'appirio-tech-timeline', dependencies
+angular.module 'appirio-tech-ng-timeline', dependencies
