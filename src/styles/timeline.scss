@@ -9,7 +9,7 @@ timeline {
   .avatar {
     width         : 35px;
     height        : 35px;
-    border        : 1px solid grey;
+    border        : 1px solid $primary-color-light;
     border-radius : 35px;
     margin-right  : 6px;
     display       : inline-block;
@@ -20,7 +20,7 @@ timeline {
     display     : inline-block;
     margin-right: 10px;
 
-    @include triangle($carat-width, blue, down);
+    @include triangle($carat-width, $color-info, down);
   }
 
   .expandable-content {
@@ -49,8 +49,8 @@ timeline {
     position : relative;
 
     > li {
-      border-left   : $timeline-width solid grey;
-      color         : grey;
+      border-left   : $timeline-width solid $primary-color-light;
+      color         : $primary-color;
       padding-bottom: $point-width;
       margin-left   : $head-width-big;
       display       : block;
@@ -62,7 +62,7 @@ timeline {
         width           : $timeline-width;
         margin-left     : -$timeline-width;
         height          : $point-width;
-        background-color: grey;
+        background-color: $primary-color-light;
         z-index         : 0;
       }
 
@@ -106,21 +106,21 @@ timeline {
       }
 
       &.passed {
-        border-color: green;
+        border-color: $color-success;
       }
 
       &.completed {
         &::before {
-          background-color: green;
+          background-color: $color-success;
         }
 
         .point {
-          background-color: green;
+          background-color: $color-success;
         }
 
         .progress {
           .percent {
-            color: green;
+            color: $color-success;
           }
         }
       }

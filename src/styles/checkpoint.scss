@@ -3,17 +3,13 @@
 
 timeline {
   .checkpoint {
+    @include transition (all 0.2s ease-in-out);
+    @include flex-center();
+
     margin-left: -$head-width;
     z-index    : 1;
     position   : relative;
-    overflow  : hidden;
-
-    @include transition (all 0.2s ease-in-out);
-
-    > * {
-      display       : inline-block;
-      vertical-align: middle;
-    }
+    overflow   : hidden;
 
     .progress, .lead {
       display: none;
@@ -22,7 +18,7 @@ timeline {
     .lead-after {
       border-top   : $lead-after-width solid transparent;
       border-bottom: $lead-after-width solid transparent;
-      border-right : $lead-after-width solid blue;
+      border-right : $lead-after-width solid $color-info;
       margin-left  : $spacing;
       visibility   : hidden;
     }
@@ -49,7 +45,7 @@ timeline {
         position        : absolute;
         top             : -8px;
         right           : -8px;
-        background-color: red;
+        background-color: $color-danger;
         padding         : 1px 3px;
         border-radius   : 3px;
         color           : white;
@@ -63,11 +59,11 @@ timeline {
     }
 
     label {
-      width: 65%;
-      font-weight: none;
-
       @include source-sans();
       @include ellipsis(65%);
+
+      width      : 65%;
+      font-weight: none;
 
       time {
         margin-left: 10px;
@@ -131,7 +127,7 @@ timeline {
   .info {
     .checkpoint {
       .point {
-        background-color: blue;
+        background-color: $color-info;
 
         .info {
           display: block;
@@ -143,16 +139,16 @@ timeline {
       }
 
       label {
-        padding: 5px;
+        padding: $spacing-small;
       }
     }
 
     a {
-      color: blue;
+      color: $color-info;
     }
 
     label {
-      background-color: blue;
+      background-color: $color-info;
       color           : white;
     }
   }
