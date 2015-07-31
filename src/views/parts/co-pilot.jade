@@ -1,5 +1,5 @@
 li(
-  ng-class="{ completed: vm.completed.coPilot, passed: vm.passed.coPilot, expanded: vm.expanded.submitted }"
+  ng-class="{ completed: 1, passed: 1, expanded: 1 }"
 )
   section.checkpoint
     .progress
@@ -15,14 +15,14 @@ li(
 
     .lead-after
 
-    label(ng-show="!vm.completed.payment && !vm.completed.coPilot") Assign Co-Pilot
+    label(ng-show="1") Assign Co-Pilot
 
-    label(ng-show="!vm.completed.payment && vm.completed.coPilot") We are choosing a Co-Pilot best suited for your project.
+    label(ng-show="1") We are choosing a Co-Pilot best suited for your project.
 
-    label(ng-show="vm.completed.coPilot") Co-Pilot Assigned
+    label(ng-show="1") Co-Pilot Assigned
       time 12:30pm April 5 2015
 
-  .avatar-box(ng-show="vm.completed.coPilot")
+  .avatar-box(ng-show="1")
     img.avatar(src="{{ vm.avatars[vm.coPilotHandle] }}")
 
     | Hi I'm 
