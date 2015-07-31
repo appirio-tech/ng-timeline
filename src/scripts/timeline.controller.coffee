@@ -3,6 +3,7 @@
 TimelineController = (TimelineService, $stateParams) ->
   vm        = this
   vm.events = {}
+
   vm.events.confirmEmail =
     address: 'john@example.com'
     created: '12:30pm April 5 2015'
@@ -19,8 +20,17 @@ TimelineController = (TimelineService, $stateParams) ->
     total   : 12000
     duration: 21
 
-  vm.launch =
+  vm.events.launch =
     created: '12:30pm April 5 2015'
+
+  vm.events.members = []
+
+  [0, 1, 2, 3, 4].forEach (i) ->
+    vm.events.members.push
+      created: '12:30pm April 5 2015'
+      handle: "Batman #{i}"
+      avatar: ''
+
 
 
   vm.coPilotHandle       = null

@@ -1,5 +1,5 @@
 li.milestone(
-  ng-class="{ completed: vm.completed.launched, passed: vm.passed.launched, expanded: vm.expanded.launched }"
+  ng-class="{ completed: vm.events.launch.created, passed: vm.events.launch.created, expanded: vm.expanded.launched }"
   ng-click="vm.expanded.launched = !vm.expanded.launched"
 )
   section.checkpoint
@@ -20,6 +20,6 @@ li.milestone(
     label
       h4 Project Launched
 
-      time May 5, 2015
+      time {{ vm.events.launch.created }}
 
   hr
