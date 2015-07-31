@@ -15,9 +15,12 @@ TimelineController = (TimelineService, $stateParams) ->
     created: '12:30pm April 5 2015'
 
   vm.events.payment =
-    created: '12:30pm April 5 2015'
-    total: 12000
+    created : '12:30pm April 5 2015'
+    total   : 12000
     duration: 21
+
+  vm.launch =
+    created: '12:30pm April 5 2015'
 
 
   vm.coPilotHandle       = null
