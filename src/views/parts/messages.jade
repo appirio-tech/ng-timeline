@@ -1,24 +1,24 @@
-li.notification.messages.no-progress.completed
+li.notification.messages.no-progress.completed.passed(ng-repeat="message in vm.events.launch.messages track by $index")
   section.checkpoint
     .point.icon
       button.count.clean(ng-click="vm.showMessagingWidget = true")
-        .notification 6
+        .notification {{ message.notification }}
 
     .lead-after
 
     label
-      img.avatar(ng-src="{{ vm.avatars[member.handle] }}")
+      avatar(url="{{ message.avatar }}")
 
-      | Maybe it's best if we stick with the current logo and Maybe it's best if we stick with the current logo and
+      | {{ message.message }}
 
   ul.links
     li
       button.clean(ng-click="vm.showMessagingWidget = true") View
 
     li
-      a(ui-sref="messaging({id: 123})") View full thread
+      a(ui-sref="messaging({ id: message.threadId })") View full thread
 
-  .expandable-content(ng-class="{active: vm.showMessagingWidget}")
+  .expandable-content(ng-class="{ active: vm.showMessagingWidget }")
     button.clean.close(ng-click="vm.showMessagingWidget = false") x
 
-    messaging.widget(thread-id="123" subscriber-id="Batman")
+    messaging.widget(thread-id="{{ message.threadId }}" subscriber-id="Batman")

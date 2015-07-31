@@ -22,6 +22,8 @@ TimelineController = (TimelineService, $stateParams) ->
 
   vm.events.launch =
     created: '12:30pm April 5 2015'
+    comments: []
+    messages: []
 
   vm.events.members = []
 
@@ -31,6 +33,18 @@ TimelineController = (TimelineService, $stateParams) ->
       handle: "Batman #{i}"
       avatar: ''
 
+    vm.events.launch.comments.push
+      avatar: ''
+      handle: "Batman #{i}"
+      notification: 5
+      threadId: "abc123"
+
+    vm.events.launch.messages.push
+      avatar: ''
+      handle: "Batman #{i}"
+      notification: 5
+      threadId: "abc123"
+      message: 'Maybe its best if we stick with something something something something.'
 
 
   vm.coPilotHandle       = null

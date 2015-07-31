@@ -1,12 +1,12 @@
-li.comment.messages.no-progress.completed
+li.comment.messages.no-progress.completed.passed(ng-repeat="comment in vm.events.launch.comments track by $index")
   section.checkpoint
     .point.comment.icon
       button.count.clean(ng-click="vm.showMessagingWidget = true")
-        .notification 6
+        .notification {{ comment.notification }}
 
     .lead-after
 
     label
-      img.avatar(ng-src="{{ vm.avatars[member.handle] }}")
+      avatar(ng-src="{{ comment.avatar }}")
 
-      | Batman99 commented on project requirements
+      | {{ comment.handle }} commented on project requirements
