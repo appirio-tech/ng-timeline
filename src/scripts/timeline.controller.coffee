@@ -23,11 +23,29 @@ TimelineController = (TimelineService, $stateParams) ->
   vm.events.launch =
     created: '12:30pm April 5 2015'
     comments: []
-    messages: []
 
   vm.events.members = []
 
-  [0, 1, 2, 3, 4].forEach (i) ->
+  vm.events.submissions =
+    created: '12:30pm April 5 2015'
+    submissions: []
+    comments: []
+
+  vm.events.finalSubmissions =
+    created: '12:30pm April 5 2015'
+    submissions: []
+    comments: []
+
+  vm.messages = []
+
+  vm.messages.push
+    avatar: ''
+    handle: "Batman"
+    notification: 5
+    threadId: "abc123"
+    message: 'Maybe its best if we stick with something something something something.'
+
+  [0, 1].forEach (i) ->
     vm.events.members.push
       created: '12:30pm April 5 2015'
       handle: "Batman #{i}"
@@ -38,24 +56,29 @@ TimelineController = (TimelineService, $stateParams) ->
       handle: "Batman #{i}"
       notification: 5
       threadId: "abc123"
+      fileName: 'Project Requirement'
 
-    vm.events.launch.messages.push
+    vm.events.submissions.submissions.push
+      avatar: ''
+      handle: "Batman #{i}"
+
+    vm.events.submissions.comments.push
       avatar: ''
       handle: "Batman #{i}"
       notification: 5
-      threadId: "abc123"
-      message: 'Maybe its best if we stick with something something something something.'
+      threadId: 'abc123'
+      fileName: 'some-picture.jpg'
 
+    vm.events.finalSubmissions.submissions.push
+      avatar: ''
+      handle: "Batman #{i}"
 
-  vm.coPilotHandle       = null
-  vm.members             = []
-  vm.avatars             = {}
-  vm.submissions         = null
-  vm.feedbackHandle      = null
-  vm.feedback2Handle     = null
-  vm.showMessagingWidget = false
-  vm.completed           = {}
-  vm.passed              = {}
+    vm.events.finalSubmissions.comments.push
+      avatar: ''
+      handle: "Batman #{i}"
+      notification: 5
+      threadId: 'abc123'
+      fileName: 'some-picture.jpg'
 
   vm.expanded =
     submitted       : false
@@ -63,25 +86,6 @@ TimelineController = (TimelineService, $stateParams) ->
     submissions     : false
     finalSubmissions: false
     chooseWinner    : false
-
-  mapEvents = [
-    { key: 'submitted', value: 'submitted' }
-    { key: 'email', value: 'email-verified' }
-    { key: 'quote', value: 'quote-created' }
-    { key: 'payment', value: 'payment-accepted' }
-    { key: 'coPilot', value: 'copilot-assigned' }
-    { key: 'launched', value: 'launched' }
-    { key: 'joined', value: 'challenge-member-registered' }
-    { key: 'submissions', value: 'challenge-submission' }
-    { key: 'feedback', value: 'challenge-feedback-provided' }
-    { key: 'checkpoint1', value: 'checkpoint1' }
-    { key: 'finalists', value: 'finalists' }
-    { key: 'finalistsSelected', value: 'challenge-finalists-selected' }
-    { key: 'finalDesign', value: 'final-design' }
-    { key: 'winner', value: 'winner' }
-    { key: 'finalFeedback', value: 'final-feedback' }
-    { key: 'completed', value: 'completed' }
-  ]
 
   activate = ->
     vm

@@ -1,0 +1,13 @@
+section.checkpoint
+  .point.comment.icon
+    button.count.clean(ng-click="vm.showMessagingWidget = true")
+      .notification {{ comment.notification }}
+
+  .lead-after
+
+  label
+    avatar(ng-src="{{ comment.avatar }}")
+
+    | {{ comment.handle }} commented on 
+
+    a(href="#") {{ comment.fileName }}

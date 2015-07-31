@@ -1,20 +1,3 @@
-li.submissions(ng-class="{ completed: vm.completed.submissions, passed: vm.passed.submissions }")
-  section.checkpoint
-    .progress
-      .percent 55%
-
-      .status Complete
-
-      .day Day 8
-
-    .lead
-
-    .point.icon
-
-    .lead-after
-
-    label
-      img.avatar(ng-src="{{ vm.avatars[member.handle] }}")
-
-      | Batman99 submitted files to your project.
+li.submissions.completed.no-progress.passed(ng-repeat="submission in vm.events.submissions.submissions track by $index")
+  include submission
 

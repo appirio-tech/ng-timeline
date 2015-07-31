@@ -1,4 +1,4 @@
-li.notification.messages.no-progress.completed.passed(ng-repeat="message in vm.events.launch.messages track by $index")
+li.notification.messages.no-progress.completed.passed(ng-repeat="message in vm.messages track by $index")
   section.checkpoint
     .point.icon
       button.count.clean(ng-click="vm.showMessagingWidget = true")
@@ -22,3 +22,4 @@ li.notification.messages.no-progress.completed.passed(ng-repeat="message in vm.e
     button.clean.close(ng-click="vm.showMessagingWidget = false") x
 
     messaging.widget(thread-id="{{ message.threadId }}" subscriber-id="Batman")
+
