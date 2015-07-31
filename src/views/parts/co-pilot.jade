@@ -1,5 +1,5 @@
 li(
-  ng-class="{ completed: 1, passed: 1, expanded: 1 }"
+  ng-class="{ completed: vm.events.assignCopilot.created, passed: 0, expanded: 1 }"
 )
   section.checkpoint
     .progress
@@ -15,18 +15,18 @@ li(
 
     .lead-after
 
-    label(ng-show="1") Assign Co-Pilot
+    label(ng-hide="vm.events.assignCopilot.created") Assign Co-Pilot
 
-    label(ng-show="1") We are choosing a Co-Pilot best suited for your project.
+    label(ng-show="vm.events.confirmEmail.created && !vm.events.assignCopilot.created") We are choosing a Co-Pilot best suited for your project.
 
-    label(ng-show="1") Co-Pilot Assigned
-      time 12:30pm April 5 2015
+    label(ng-show="vm.events.assignCopilot.created") Co-Pilot Assigned
+      time {{ vm.events.assignCopilot.created }}
 
-  .avatar-box(ng-show="1")
-    img.avatar(src="{{ vm.avatars[vm.coPilotHandle] }}")
+  .avatar-box(ng-show="vm.events.assignCopilot.avatar")
+    avatar(url="{{ vm.events.assignCopilot.avatar }}")
 
     | Hi I'm 
 
-    a(href="#") {{ vm.coPilotHandle }}
+    a(href="#") {{ vm.events.assignCopilot.handle }}
 
     |. I'll be your project manager.

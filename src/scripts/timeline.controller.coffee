@@ -4,13 +4,12 @@ TimelineController = (TimelineService, $stateParams) ->
   vm        = this
   vm.events = {}
   vm.events.confirmEmail =
-    emailAddress: 'john@example.com'
+    address: 'john@example.com'
     created: '12:30pm April 5 2015'
 
   vm.events.assignCopilot =
-    completed: true
     created: '12:30pm April 5 2015'
-    coPilotHandle: 'Batman'
+    handle: 'Batman'
 
 
   vm.coPilotHandle       = null
