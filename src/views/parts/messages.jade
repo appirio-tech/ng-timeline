@@ -1,8 +1,7 @@
 li.notification.messages.no-progress.completed.passed(ng-repeat="message in vm.messages track by $index")
   section.checkpoint
-    .point.icon
-      button.count.clean(ng-click="vm.showMessagingWidget = true")
-        .notification {{ message.notification }}
+    button.point.count.clean(ng-click="vm.showMessagingWidget = true")
+      .notification {{ message.notification }}
 
     .lead-after
 

@@ -118,6 +118,10 @@ timeline {
           background-color: $color-success;
         }
 
+        button.point {
+          background-color: white;
+        }
+
         .progress {
           .percent {
             color: $color-success;

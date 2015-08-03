@@ -1,4 +1,4 @@
-li.milestone(ng-class="{ completed: vm.completed.finalists, passed: vm.passed.finalists }")
+li.milestone(ng-class="{ completed: vm.events.chooseWinner.created, passed: vm.events.chooseWinner.created }")
   section.checkpoint
     .progress
       .percent 50%
@@ -14,7 +14,7 @@ li.milestone(ng-class="{ completed: vm.completed.finalists, passed: vm.passed.fi
     .lead-after
 
     label
-      h4 Select Finalists
+      h4 Choose Winner!
 
       time May 5, 2015
 

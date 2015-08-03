@@ -36,6 +36,13 @@ TimelineController = (TimelineService, $stateParams) ->
     submissions: []
     comments: []
 
+  vm.events.chooseWinner =
+    created: '12:30pm April 5 2015'
+    winner:
+      created: '12:30pm April 5 2015'
+      avatar: ''
+      handle: 'Batman'
+
   vm.messages = []
 
   vm.messages.push

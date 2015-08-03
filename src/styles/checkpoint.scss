@@ -34,27 +34,27 @@ timeline {
       color           : #fff;
       position        : relative;
 
-      &.icon {
-        border-radius   : 4px;
-        background-color: white;
-        color           : black;
-        box-shadow      : 3px 2px 4px 0px rgba(0, 0, 0, 0.75);
-      }
-
-      .notification {
-        position        : absolute;
-        top             : -8px;
-        right           : -8px;
-        background-color: $color-danger;
-        padding         : 1px 3px;
-        border-radius   : 3px;
-        color           : white;
-
-        @include font-line(12);
-      }
-
       .info {
         display: none;
+      }
+    }
+
+    button.point {
+      position: relative;
+
+      border-radius   : 4px;
+      color           : black;
+      box-shadow      : 3px 2px 4px 0px rgba(0, 0, 0, 0.75);
+
+      .notification {
+        background-color: $color-danger;
+        color           : white;
+        position        : absolute;
+        top             : -6px;
+        right           : -6px;
+        padding         : 0px 4px;
+        border-radius   : $border-radius;
+        font-size       : $font-size-small;
       }
     }
 
