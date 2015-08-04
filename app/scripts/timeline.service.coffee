@@ -96,7 +96,7 @@ srv = (
 
   getEvents = (params, onChange) ->
     queryParams =
-      filter: 'sourceObjectId=' + params.workId
+      workId: params.workId
 
     resource = TimelineAPIService.query queryParams
 

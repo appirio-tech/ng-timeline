@@ -254,7 +254,7 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
     getEvents = function(params, onChange) {
       var queryParams, resource;
       queryParams = {
-        filter: 'sourceObjectId=' + params.workId
+        workId: params.workId
       };
       resource = TimelineAPIService.query(queryParams);
       resource.$promise.then(function(response) {
