@@ -86,6 +86,7 @@ TimelineController = ($scope, TimelineService, $stateParams, UserV3Service, Thre
 
     vm.coPilotHandle    = timeline.coPilotHandle
     vm.coPilotId        = timeline.coPilotId
+    vm.workName         = timeline.workName
     vm.members          = timeline.members
     vm.avatars          = timeline.avatars
     vm.submissionHandle = timeline.submission

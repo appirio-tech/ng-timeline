@@ -131,6 +131,7 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
       setStatus(timeline);
       vm.coPilotHandle = timeline.coPilotHandle;
       vm.coPilotId = timeline.coPilotId;
+      vm.workName = timeline.workName;
       vm.members = timeline.members;
       vm.avatars = timeline.avatars;
       vm.submissionHandle = timeline.submission;
