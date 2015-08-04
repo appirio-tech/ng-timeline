@@ -1,6 +1,6 @@
 'use strict'
 
-TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPIService, CoPilotAPIService) ->
+TimelineController = ($scope, TimelineService, $stateParams, UserV3Service, ThreadsAPIService, CoPilotAPIService) ->
   vm                     = this
   vm.coPilotHandle       = null
   vm.members             = []
@@ -46,7 +46,9 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
 
   getOrCreateThread = ->
     #TODO: get rid of this call
-    UserV3Service.getCurrentUser (user) ->
+    $scope.$watch UserV3Service.getCurrentUser, (user) ->
+      vm.subscriberId = user.id
+
       publishers = [
         vm.coPilotId
         user.id
@@ -113,6 +115,7 @@ TimelineController = (TimelineService, $stateParams, UserV3Service, ThreadsAPISe
   vm
 
 TimelineController.$inject = [
+  '$scope'
   'TimelineService'
   '$stateParams'
   'UserV3Service'
