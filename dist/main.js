@@ -332,9 +332,9 @@ angular.module("appirio-tech-timeline").run(["$templateCache", function($templat
 
   srv = function($resource, API_URL) {
     var actions, params, url;
-    url = API_URL + '/events';
+    url = API_URL + '/work/:workId/events';
     params = {
-      filter: 'sourceObjectId%3D@workId'
+      workId: '@workId'
     };
     actions = {
       query: {
