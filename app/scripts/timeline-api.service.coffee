@@ -6,8 +6,9 @@ transformResponse = (response) ->
   parsed?.result?.content || []
 
 srv = ($resource, API_URL) ->
-  url     = API_URL + '/events'
-  params  = filter: 'sourceObjectId%3D@workId'
+  url     = API_URL + '/work/:workId/events'
+  params  =
+    workId: '@workId'
   actions =
     query:
       method           :'GET'
