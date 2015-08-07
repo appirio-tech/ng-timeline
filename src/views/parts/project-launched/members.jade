@@ -1,5 +1,6 @@
 li(
   ng-class="{ completed: vm.events.members.length, passed: 1, expanded: vm.expanded.launched }"
+  ng-show="vm.expanded.launched"
 )
   section.checkpoint
     .progress

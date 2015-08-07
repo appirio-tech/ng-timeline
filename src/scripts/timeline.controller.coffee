@@ -110,11 +110,11 @@ TimelineController = (TimelineService, $stateParams) ->
       ]
 
   vm.expanded =
-    submitted       : false
-    launched        : false
-    submissions     : false
-    finalDesigns: false
-    chooseWinner    : false
+    submitted     : false
+    launched      : false
+    designConcepts: false
+    finalDesigns  : false
+    finalFixes    : false
 
   activate = ->
     vm

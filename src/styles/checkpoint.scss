@@ -90,7 +90,7 @@ timeline {
         border-width: $big-point-border-width;
 
         &:before {
-          content: '‐';
+          content: '+';
           line-height: $big-point-width - ($big-point-border-width * 2);
           font-size: 30px;
         }
@@ -116,7 +116,7 @@ timeline {
       .checkpoint {
         .point {
           &:before {
-            content: '+';
+            content: '-';
           }
         }
       }

@@ -60,31 +60,31 @@ timeline {
       display       : block;
 
       // this will be used to hide the extra borders
-      &::before, &:last-child::after {
-        content         : "";
-        position        : absolute;
-        width           : $timeline-width;
-        margin-left     : -$timeline-width;
-        height          : $point-width;
-        background-color: $primary-color-light;
-        z-index         : 0;
-      }
+      // &::before, &:last-child::after {
+      //   content         : "";
+      //   position        : absolute;
+      //   width           : $timeline-width;
+      //   margin-left     : -$timeline-width;
+      //   height          : $point-width;
+      //   background-color: $primary-color-light;
+      //   z-index         : 0;
+      // }
 
-      &:first-child::before, &:last-child::after {
-        background-color: white !important;
-      }
+      // &:first-child::before, &:last-child::after {
+      //   background-color: white !important;
+      // }
 
-      &:last-child::after {
-        height: $point-width / 2;
-      }
+      // &:last-child::after {
+      //   height: $point-width / 2;
+      // }
 
-      &:last-child {
-        padding-bottom: 0;
+      // &:last-child {
+      //   padding-bottom: 0;
 
-        &::after {
-          margin-top: -10px;
-        }
-      }
+      //   &::after {
+      //     margin-top: -10px;
+      //   }
+      // }
 
       > *:nth-child(n + 2) {
         margin-left: $spacing + $lead-after-width + $point-width/2;

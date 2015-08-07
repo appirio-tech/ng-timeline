@@ -1,4 +1,7 @@
-li.milestone(ng-class="{ completed: vm.events.finalDesigns.created, passed: vm.events.finalDesigns.created }")
+li.milestone(
+  ng-class="{ completed: vm.events.finalDesigns.created, passed: vm.events.finalDesigns.created, expanded: vm.expanded.finalDesigns }"
+  ng-click="vm.expanded.finalDesigns = !vm.expanded.finalDesigns"
+)
   section.checkpoint
     .progress
       .percent 70%

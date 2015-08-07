@@ -1,4 +1,7 @@
-li(ng-class="{ completed: vm.events.payment.created, passed: vm.events.launch.created }")
+li(
+  ng-class="{ completed: vm.events.payment.created, passed: vm.events.launch.created }"
+  ng-show="vm.expanded.submitted"
+)
   section.checkpoint
     .progress
       .percent 20%

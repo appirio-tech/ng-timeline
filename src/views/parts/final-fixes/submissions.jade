@@ -1,4 +1,6 @@
-li.submissions.completed.no-progress.passed
+li.submissions.completed.no-progress.passed(
+  ng-show="vm.expanded.finalFixes"
+)
   section.checkpoint
     a(href="{{ vm.events.finalFixes.submissionUrl }}")
       button.point.count.clean(ng-click="vm.showMessagingWidget = true" title="download files")
