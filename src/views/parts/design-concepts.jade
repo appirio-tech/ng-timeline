@@ -1,4 +1,4 @@
-li.milestone(ng-class="{ completed: vm.events.submissions.created, passed: vm.events.submissions.created }")
+li.milestone(ng-class="{ completed: vm.events.designConcepts.created, passed: vm.events.designConcepts.created }")
   section.checkpoint
     .progress
       .percent 55%
@@ -16,11 +16,13 @@ li.milestone(ng-class="{ completed: vm.events.submissions.created, passed: vm.ev
     label
       h4 Design Concepts
 
-      time {{ vm.events.submissions.created }}
+      time {{ vm.events.designConcepts.created }}
 
   hr
 
 include design-concepts/submissions
 
-li.comment.messages.no-progress.completed.passed(ng-repeat="comment in vm.events.submissions.comments track by $index")
+li.comment.no-progress.completed.passed(ng-repeat="comment in vm.events.designConcepts.comments track by $index")
   include comment
+
+include design-concepts/winners

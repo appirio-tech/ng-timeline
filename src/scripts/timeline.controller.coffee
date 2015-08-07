@@ -26,22 +26,44 @@ TimelineController = (TimelineService, $stateParams) ->
 
   vm.events.members = []
 
-  vm.events.submissions =
+  vm.events.designConcepts =
     created: '12:30pm April 5 2015'
-    submissions: []
+    submissionUrl: 'http://www.google.com'
+    submissionAvatars: [
+      'http://www.freakpic.in/wp-content/uploads/2014/10/funny-avatar-6-300x300.jpg'
+      'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRxtTgmLDFyV4Y4XEK8kDZFK2Niq1AQ0NemIYK79M3rWZ8sgvBVPsns7g'
+      'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTgQhu21jX-_dmf2q0npjBFskOzUyy2waoYS3h1C6zzkICmwQz98NSjVQ'
+    ]
     comments: []
+    winnerAvatars: [
+      'http://www.freakpic.in/wp-content/uploads/2014/10/funny-avatar-6-300x300.jpg'
+      'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRxtTgmLDFyV4Y4XEK8kDZFK2Niq1AQ0NemIYK79M3rWZ8sgvBVPsns7g'
+      'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTgQhu21jX-_dmf2q0npjBFskOzUyy2waoYS3h1C6zzkICmwQz98NSjVQ'
+    ]
 
-  vm.events.finalSubmissions =
+  vm.events.finalDesigns =
     created: '12:30pm April 5 2015'
-    submissions: []
-    comments: []
+    submissionUrl: 'http://www.google.com'
+    submissionAvatars: [
+      'http://www.freakpic.in/wp-content/uploads/2014/10/funny-avatar-6-300x300.jpg'
+      'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRxtTgmLDFyV4Y4XEK8kDZFK2Niq1AQ0NemIYK79M3rWZ8sgvBVPsns7g'
+      'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTgQhu21jX-_dmf2q0npjBFskOzUyy2waoYS3h1C6zzkICmwQz98NSjVQ'
+    ]
+    winnerAvatars: [
+      'http://www.freakpic.in/wp-content/uploads/2014/10/funny-avatar-6-300x300.jpg'
+      'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRxtTgmLDFyV4Y4XEK8kDZFK2Niq1AQ0NemIYK79M3rWZ8sgvBVPsns7g'
+      'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTgQhu21jX-_dmf2q0npjBFskOzUyy2waoYS3h1C6zzkICmwQz98NSjVQ'
+    ]
 
-  vm.events.chooseWinner =
+  vm.events.finalFixes =
+    created         : '12:30pm April 5 2015'
+    submissionUrl   : 'http://www.google.com'
+    submissionAvatar: 'http://www.freakpic.in/wp-content/uploads/2014/10/funny-avatar-6-300x300.jpg'
+    comments        : []
+    winnerAvatar    : 'http://www.freakpic.in/wp-content/uploads/2014/10/funny-avatar-6-300x300.jpg'
+
+  vm.events.completed =
     created: '12:30pm April 5 2015'
-    winner:
-      created: '12:30pm April 5 2015'
-      avatar: ''
-      handle: 'Batman'
 
   vm.messages = []
 
@@ -65,33 +87,33 @@ TimelineController = (TimelineService, $stateParams) ->
       threadId: "abc123"
       fileName: 'Project Requirement'
 
-    vm.events.submissions.submissions.push
-      avatar: ''
-      handle: "Batman #{i}"
-
-    vm.events.submissions.comments.push
+    vm.events.designConcepts.comments.push
       avatar: ''
       handle: "Batman #{i}"
       notification: 5
       threadId: 'abc123'
-      fileName: 'some-picture.jpg'
+      thumbnails: [
+        'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQeNwaztw8GRj92kWle4aR_aZL3S67eSDhr0BHlvCZCjq0IYV5o'
+        'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTefWG90x9rpWeS5eWCNMu1EJx5VU2x8pAr0ARSg7Meq92DtkdYnSkVMg'
+        'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQlmG6IREY5HXEU8bW6cpAMZv1KhlbfGnOSTe-qwc44aOzAfAujYoxN8w'
+      ]
 
-    vm.events.finalSubmissions.submissions.push
-      avatar: ''
-      handle: "Batman #{i}"
-
-    vm.events.finalSubmissions.comments.push
+    vm.events.finalFixes.comments.push
       avatar: ''
       handle: "Batman #{i}"
       notification: 5
       threadId: 'abc123'
-      fileName: 'some-picture.jpg'
+      thumbnails: [
+        'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQeNwaztw8GRj92kWle4aR_aZL3S67eSDhr0BHlvCZCjq0IYV5o'
+        'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTefWG90x9rpWeS5eWCNMu1EJx5VU2x8pAr0ARSg7Meq92DtkdYnSkVMg'
+        'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQlmG6IREY5HXEU8bW6cpAMZv1KhlbfGnOSTe-qwc44aOzAfAujYoxN8w'
+      ]
 
   vm.expanded =
     submitted       : false
     launched        : false
     submissions     : false
-    finalSubmissions: false
+    finalDesigns: false
     chooseWinner    : false
 
   activate = ->

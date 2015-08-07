@@ -1,8 +1,0 @@
-@import "work-includes";
-@import "variables";
-
-timeline .winners {
-  ul.winners {
-    @include flex-center();
-  }
-}

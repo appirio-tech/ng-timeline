@@ -6,6 +6,10 @@ timeline {
   background-color: #E6E1E1;
   padding         : 15px 20px;
 
+  .avatars, .files {
+     @include flex-center();
+  }
+
   .avatar {
     width         : 35px;
     height        : 35px;
@@ -83,7 +87,6 @@ timeline {
       }
 
       > *:nth-child(n + 2) {
-        display: block;
         margin-left: $spacing + $lead-after-width + $point-width/2;
         margin-top: 10px;
       }
@@ -118,7 +121,7 @@ timeline {
           background-color: $color-success;
         }
 
-        button.point {
+        button.point, a.point {
           background-color: white;
         }
 

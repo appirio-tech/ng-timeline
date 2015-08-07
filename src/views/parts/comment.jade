@@ -14,16 +14,7 @@ section.checkpoint
 p Ok, I'll give the yellow buttons at the top a try and see how it looks.
 
 ul.files
-  li
-    img(src="https://cdn3.iconfinder.com/data/icons/fillies-small/64/photo-512.png")
-
-  li
-    img(src="https://cdn3.iconfinder.com/data/icons/fillies-small/64/photo-512.png")
-
-  li
-    img(src="https://cdn3.iconfinder.com/data/icons/fillies-small/64/photo-512.png")
-
-  li
-    img(src="https://cdn3.iconfinder.com/data/icons/fillies-small/64/photo-512.png")
+  li(ng-repeat="thumbnail in comment.thumbnails track by $index")
+    img(ng-src="{{ thumbnail }} ")
 
 a(href="#") view message

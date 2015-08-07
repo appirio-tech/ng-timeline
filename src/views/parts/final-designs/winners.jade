@@ -6,14 +6,6 @@ li.winners.completed.no-progress.passed
 
     label Congratulations you have confirmed your winners for the final design phase.
 
-  ul.winners
-    li
-      avatar(ng-src="{{ submisison['avatar'] }}")
-    li
-      avatar(ng-src="{{ submisison['avatar'] }}")
-    li
-      avatar(ng-src="{{ submisison['avatar'] }}")
-    li
-      avatar(ng-src="{{ submisison['avatar'] }}")
-    li
-      avatar(ng-src="{{ submisison['avatar'] }}")
+  ul.avatars
+    li(ng-repeat="avatar in vm.events.designConcepts.winnerAvatars track by $index")
+      avatar(avatar-url="{{ avatar }}")

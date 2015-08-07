@@ -16,14 +16,14 @@ li.milestone(ng-class="{ completed: vm.events.finalFixes.created, passed: vm.eve
     label
       h4 Final Fixes
 
-      time {{ vm.events.finalSubmissions.created }}
+      time {{ vm.events.finalFixes.created }}
 
   hr
 
-li.comment.messages.no-progress.completed.passed
-  include comment
-
 include final-fixes/submissions
+
+li.comment.no-progress.completed.passed(ng-repeat="comment in vm.events.finalFixes.comments track by $index")
+  include comment
 
 include final-fixes/completed
 

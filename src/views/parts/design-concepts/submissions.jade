@@ -1,22 +1,17 @@
 li.submissions.completed.no-progress.passed
   section.checkpoint
-    button.point.count.clean(ng-click="vm.showMessagingWidget = true" title="download files")
-      .icon.download.smallest
+    a(href="{{ vm.events.designConcepts.submissionUrl }}")
+      button.point.count.clean(ng-click="vm.showMessagingWidget = true" title="download files")
+        .icon.download.smallest
 
     .lead-after
 
     label
-      avatar(ng-src="{{ submisison['avatar'] }}")
+      ul.avatars
+        li(ng-repeat="avatarUrl in vm.events.designConcepts.submissionAvatars track by $index")
+          avatar(avatar-url="{{ avatarUrl }}")
 
-      avatar(ng-src="{{ submisison['avatar'] }}")
-
-      avatar(ng-src="{{ submisison['avatar'] }}")
-
-      avatar(ng-src="{{ submisison['avatar'] }}")
-
-      avatar(ng-src="{{ submisison['avatar'] }}")
-
-  p 12 people have submitted design concepts to your project.
+  p {{ vm.events.designConcepts.submissionAvatars.length }} people have submitted design concepts to your project.
 
   p
     a(href="#") View all submissions

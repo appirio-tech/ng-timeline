@@ -1,12 +1,13 @@
 li.submissions.completed.no-progress.passed
   section.checkpoint
-    button.point.count.clean(ng-click="vm.showMessagingWidget = true" title="download files")
-      .icon.download.smallest
+    a(href="{{ vm.events.finalFixes.submissionUrl }}")
+      button.point.count.clean(ng-click="vm.showMessagingWidget = true" title="download files")
+        .icon.download.smallest
 
     .lead-after
 
     label
-      avatar(ng-src="{{ submisison['avatar'] }}")
+      avatar(avatar-url="{{  vm.events.finalFixes.submissionAvatar }}")
 
   p 1 person have submitted design concepts to your project.
 

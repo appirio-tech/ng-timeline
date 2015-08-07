@@ -1,4 +1,4 @@
-li.milestone(ng-class="{ completed: vm.events.finalSubmissions.created, passed: vm.events.finalSubmissions.created }")
+li.milestone(ng-class="{ completed: vm.events.finalDesigns.created, passed: vm.events.finalDesigns.created }")
   section.checkpoint
     .progress
       .percent 70%
@@ -16,7 +16,7 @@ li.milestone(ng-class="{ completed: vm.events.finalSubmissions.created, passed: 
     label
       h4 Final Designs
 
-      time {{ vm.events.finalSubmissions.created }}
+      time {{ vm.events.finalDesigns.created }}
 
   hr
 
