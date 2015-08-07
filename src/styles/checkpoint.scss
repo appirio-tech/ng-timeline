@@ -47,14 +47,15 @@ timeline {
       box-shadow      : 3px 2px 4px 0px rgba(0, 0, 0, 0.75);
 
       .notification {
+        @include font-line($font-size-small);
+
         background-color: $color-danger;
         color           : white;
         position        : absolute;
         top             : -6px;
         right           : -6px;
-        padding         : 0px 4px;
+        padding         : 2px 3px;
         border-radius   : $border-radius;
-        font-size       : $font-size-small;
       }
 
       .icon {
