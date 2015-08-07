@@ -2,11 +2,28 @@ section.checkpoint
   button.clean.point(ng-click="vm.showMessagingWidget = true")
     .notification {{ comment.notification }}
 
+    .icon.envelope.smallest
+
   .lead-after
 
   label
     avatar(ng-src="{{ comment.avatar }}")
 
-    | {{ comment.handle }} commented on 
+    | {{ comment.handle }}
 
-    a(href="#") {{ comment.fileName }}
+p Ok, I'll give the yellow buttons at the top a try and see how it looks.
+
+ul.files
+  li
+    img(src="https://cdn3.iconfinder.com/data/icons/fillies-small/64/photo-512.png")
+
+  li
+    img(src="https://cdn3.iconfinder.com/data/icons/fillies-small/64/photo-512.png")
+
+  li
+    img(src="https://cdn3.iconfinder.com/data/icons/fillies-small/64/photo-512.png")
+
+  li
+    img(src="https://cdn3.iconfinder.com/data/icons/fillies-small/64/photo-512.png")
+
+a(href="#") view message

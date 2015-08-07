@@ -14,8 +14,13 @@ li.milestone(ng-class="{ completed: vm.events.submissions.created, passed: vm.ev
     .lead-after
 
     label
-      h4 Submissions Due
+      h4 Design Concepts
 
       time {{ vm.events.submissions.created }}
 
   hr
+
+include design-concepts/submissions
+
+li.comment.messages.no-progress.completed.passed(ng-repeat="comment in vm.events.submissions.comments track by $index")
+  include comment

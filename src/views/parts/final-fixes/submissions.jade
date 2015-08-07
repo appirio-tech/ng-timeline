@@ -1,0 +1,14 @@
+li.submissions.completed.no-progress.passed
+  section.checkpoint
+    button.point.count.clean(ng-click="vm.showMessagingWidget = true" title="download files")
+      .icon.download.smallest
+
+    .lead-after
+
+    label
+      avatar(ng-src="{{ submisison['avatar'] }}")
+
+  p 1 person have submitted design concepts to your project.
+
+  p
+    a(href="#") View all submissions

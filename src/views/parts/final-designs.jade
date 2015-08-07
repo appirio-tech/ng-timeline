@@ -14,8 +14,14 @@ li.milestone(ng-class="{ completed: vm.events.finalSubmissions.created, passed: 
     .lead-after
 
     label
-      h4 Final Submissions Due
+      h4 Final Designs
 
       time {{ vm.events.finalSubmissions.created }}
 
   hr
+
+include final-designs/submissions
+
+include final-designs/winners
+
+
