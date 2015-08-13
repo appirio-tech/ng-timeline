@@ -17,7 +17,7 @@ ul.links
     a(ui-sref="messaging({ id: message.threadId })") View full thread
 
 .expandable-content(ng-class="{ active: vm.showMessagingWidget }")
-  button.clean.close(ng-click="vm.showMessagingWidget = false") x
+  button.clean.close(ng-click="vm.showMessagingWidget = false") &times;
 
   messaging.widget(thread-id="{{ message.threadId }}" subscriber-id="Batman")
 

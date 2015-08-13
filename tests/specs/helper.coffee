@@ -16,22 +16,11 @@ window.__karma__.loaded = ->
 
   AutoConfigFakeServer.fakeServer.respondImmediately = true
 
-<<<<<<< HEAD
   schemas = [
-    FIXTURES['bower_components/appirio-tech-api-schemas/v3.json']
-    FIXTURES['bower_components/appirio-tech-api-schemas/v3-messages.json']
-    FIXTURES['bower_components/appirio-tech-api-schemas/v2.json']
-    FIXTURES['bower_components/appirio-tech-api-schemas/v3-threads.json']
-    FIXTURES['bower_components/appirio-tech-api-schemas/v3-users.json']
-  ]
-=======
-  schemas = []
+    FIXTURES['bower_components/appirio-tech-api-schemas/apiary/submissiondraft.json']
+  ];
 
-  for path, fixture of FIXTURES
-    schemas.push fixture
->>>>>>> df5ac85065e87630aeacfb6400639636869a3443
-
-  AutoConfigFakeServer.consume schemas
+  AutoConfigFakeServer.consume(schemas)
 
   window.__karma__.start()
 

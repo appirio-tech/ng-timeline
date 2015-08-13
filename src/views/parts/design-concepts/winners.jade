@@ -6,8 +6,8 @@ li.winners.completed.no-progress.passed(
 
     .lead-after
 
-    label Congratulations you have confirmed your winners for the final design phase.
+    label Congratulations! You have confirmed your winners for the design concepts phase.
 
   ul.avatars
-    li(ng-repeat="avatar in vm.events.finalDesigns.winnerAvatars track by $index")
+    li(ng-repeat="avatar in vm.events.designConcepts.winnerAvatars track by $index")
       avatar(avatar-url="{{ avatar }}")
