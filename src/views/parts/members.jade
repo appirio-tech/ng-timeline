@@ -1,0 +1,32 @@
+li(
+  ng-class="{ completed: vm.events.members.length, passed: 1, expanded: vm.expanded.launched }"
+)
+  section.checkpoint
+    .progress
+      .percent 35%
+
+      .status Complete
+
+      .day Day 1
+
+    .lead
+
+    .point.icon
+
+    .lead-after
+
+    label
+      .carat
+
+      span {{ vm.members.length }} member(s) have joined.
+
+  .expandable-content
+    button(type="button").clean.close x
+
+    ul
+      li(ng-repeat="member in vm.events.members track by $index")
+        avatar(url="{{ member.avatar }}")
+
+        a {{ member.handle }} 
+
+        | joined the project.

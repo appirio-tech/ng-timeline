@@ -1,0 +1,47 @@
+- var examples = []
+- examples.push('constants')
+- examples.push('example.module')
+- examples.push('routes')
+- examples.push('example-templates')
+
+- var scripts = []
+- scripts.push('timeline.module')
+- scripts.push('templates')
+- scripts.push('timeline.directive')
+- scripts.push('timeline.controller')
+
+- var bowers = []
+- bowers.push('angular/angular')
+- bowers.push('angular-resource/angular-resource')
+- bowers.push('angular-ui-router/release/angular-ui-router')
+- bowers.push('appirio-tech-ng-messaging/dist/main')
+- bowers.push('appirio-tech-ng-ui-components/dist/main')
+- bowers.push('moment/moment')
+- bowers.push('angular-scroll/angular-scroll')
+
+= "\n"
+// build:js lib.js
+= "\n"
+each path in bowers
+  script(src="bower_components/#{path}.js", type="text/javascript")
+  = "\n"
+// endbuild
+= "\n"
+
+// build:js main.js
+= "\n"
+each path in scripts
+  script(src="scripts/#{path}.js", type="text/javascript")
+  = "\n"
+= "\n"
+// endbuild
+= "\n"
+
+// build:js example.js
+= "\n"
+each path in examples
+  script(src="scripts/#{path}.js", type="text/javascript")
+  = "\n"
+= "\n"
+// endbuild
+= "\n"

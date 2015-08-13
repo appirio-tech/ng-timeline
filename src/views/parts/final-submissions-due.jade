@@ -1,0 +1,21 @@
+li.milestone(ng-class="{ completed: vm.events.finalSubmissions.created, passed: vm.events.finalSubmissions.created }")
+  section.checkpoint
+    .progress
+      .percent 70%
+
+      .status Complete
+
+      .day Day 20
+
+    .lead
+
+    .point
+
+    .lead-after
+
+    label
+      h4 Final Submissions Due
+
+      time {{ vm.events.finalSubmissions.created }}
+
+  hr

@@ -1,0 +1,23 @@
+li(
+  ng-class="{ completed: vm.events.confirmEmail.created, passed: vm.events.assignCopilot.created }"
+)
+  section.checkpoint
+    .progress
+      .percent 6%
+
+      .status Complete
+
+      .day Day 1
+
+    .lead
+
+    .point
+      .info !
+
+    .lead-after
+
+    label(ng-hide="vm.events.confirmEmail.created") We sent an email to {{ vm.events.confirmEmail.address }}. <br /> Click the link in the email to verify your email address.
+
+    label(ng-show="vm.events.confirmEmail.created") Thanks! Your email is verified.
+
+  a.resend(href="#", ng-hide="vm.events.confirmEmail.created") Re-send Email

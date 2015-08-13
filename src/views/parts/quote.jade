@@ -1,0 +1,46 @@
+li.quote(ng-class="{ completed: vm.events.quote.created, passed: vm.events.payment.created }")
+  section.checkpoint
+    .progress
+      .percent 15%
+
+      .status Complete
+
+      .day Day 1
+
+    .lead
+
+    .point
+
+    .lead-after
+
+    label(ng-hide="vm.events.quote.created") Generate Quote
+
+    label(ng-show="vm.events.quote.created")
+      .carat
+
+      | Quote has been generated.
+
+  p(ng-show="vm.events.quote.created && !vm.events.payment.created")
+    a(href="#") View quote and pay to continue.
+
+  .expandable-content
+    button(type="button").clean.close x
+
+    ul
+      li
+        label Cost:
+        | 
+        | ${{ vm.events.payment.total }}
+
+      li
+        label Time:
+        | 
+        | {{ vm.events.payment.duration }} Days
+
+    ul
+      li.accept
+        button.info Accept
+
+      li
+        button Reject
+

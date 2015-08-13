@@ -1,0 +1,55 @@
+@import "work-includes";
+@import "variables";
+
+timeline {
+  padding: 15px 20px;
+
+  > ul {
+    > li {
+      &:first-child::before, &:last-child::after {
+        margin-top : -3px;
+      }
+
+      &:last-child {
+        padding-bottom: 0;
+
+        &::after {
+          margin-top: -6px;
+        }
+      }
+
+      margin-left: $lc-head-width-big;
+
+      .checkpoint {
+        margin-left: -$lc-head-width;
+
+        .progress {
+          width         : $progress-width;
+          text-align    : right;
+          text-transform: uppercase;
+          display       : inline-block;
+        }
+
+        .lead {
+          width           : $lead-width;
+          margin          : 0 $spacing/2;
+          height          : 2px;
+          background-color: grey;
+          display         : inline-block;
+        }
+      }
+
+      &.milestone {
+        .checkpoint {
+          margin-left: -$lc-head-width-big;
+
+          label {
+            time {
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+  }
+}

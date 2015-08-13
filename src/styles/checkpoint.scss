@@ -1,0 +1,155 @@
+@import "work-includes";
+@import "variables";
+
+timeline {
+  .checkpoint {
+    @include transition (all 0.2s ease-in-out);
+    @include flex-center();
+
+    margin-left: -$head-width;
+    z-index    : 1;
+    position   : relative;
+    overflow   : hidden;
+
+    .progress, .lead {
+      display: none;
+    }
+
+    .lead-after {
+      border-top   : $lead-after-width solid transparent;
+      border-bottom: $lead-after-width solid transparent;
+      border-right : $lead-after-width solid $color-info;
+      margin-left  : $spacing;
+      visibility   : hidden;
+    }
+
+    .point {
+      width           : $point-width;
+      height          : $point-width;
+      line-height     : $point-width - ($point-border-width * 2);
+      border          : $point-border-width solid white;
+      border-radius   : 50%;
+      background-color: grey;
+      text-align      : center;
+      color           : #fff;
+      position        : relative;
+
+      .info {
+        display: none;
+      }
+    }
+
+    button.point {
+      position: relative;
+
+      border-radius   : 4px;
+      color           : black;
+      box-shadow      : 3px 2px 4px 0px rgba(0, 0, 0, 0.75);
+
+      .notification {
+        background-color: $color-danger;
+        color           : white;
+        position        : absolute;
+        top             : -6px;
+        right           : -6px;
+        padding         : 0px 4px;
+        border-radius   : $border-radius;
+        font-size       : $font-size-small;
+      }
+    }
+
+    label {
+      @include source-sans();
+      @include ellipsis(65%);
+
+      width      : 65%;
+      font-weight: none;
+
+      time {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .milestone {
+    .checkpoint {
+      margin-left: -$head-width-big;
+
+      .lead-after {
+        margin-left: $spacing - ($big-point-width/2 - $point-width/2);
+      }
+
+      .point {
+        width       : $big-point-width;
+        height      : $big-point-width;
+        border-width: $big-point-border-width;
+
+        &:before {
+          content: '‐';
+          line-height: $big-point-width - ($big-point-border-width * 2);
+          font-size: 30px;
+        }
+      }
+
+      label {
+        h4 {
+          font-size: 20px;
+          display  : inline-block;
+          width    :  50%;
+        }
+
+        time {
+          width      : 50%;
+          text-align : right;
+          margin-left: 0;
+          display    : none;
+        }
+      }
+    }
+
+    &.expanded {
+      .checkpoint {
+        .point {
+          &:before {
+            content: '+';
+          }
+        }
+      }
+    }
+  }
+
+  .no-progress {
+    .checkpoint {
+      margin-left: -$head-width;
+    }
+  }
+
+  .info {
+    .checkpoint {
+      .point {
+        background-color: $color-info;
+
+        .info {
+          display: block;
+        }
+      }
+
+      .lead-after {
+        visibility: visible;
+      }
+
+      label {
+        padding: $spacing-small;
+      }
+    }
+
+    a {
+      color: $color-info;
+    }
+
+    label {
+      background-color: $color-info;
+      color           : white;
+    }
+  }
+}

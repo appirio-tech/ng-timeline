@@ -1,0 +1,34 @@
+- var portraitCSS  = ['main', 'timeline', 'checkpoint', 'messages', 'quote']
+- var landscapeCSS = ['timeline', 'messages']
+- var desktopCSS   = []
+
+link(href="styles/main.css", rel="stylesheet")
+
+link(href="bower_components/appirio-tech-ng-messaging/dist/main.css", rel="stylesheet")
+
+// build:css main.css
+= "\n"
+each path in portraitCSS
+  = "\n"
+  link(href="styles/#{path}.css", rel="stylesheet")
+  = "\n"
+= "\n"
+// endbuild
+= "\n"
+
+// build:css styles/mobile-landscape.css media="(min-width: 568px)"
+= "\n"
+each path in landscapeCSS
+  link(href="styles/#{path}.landscape.css", rel="stylesheet", media="(min-width: 568px)")
+  = "\n"
+// endbuild
+= "\n"
+
+// build:css styles/desktop.css media="(min-width: 767px)"
+= "\n"
+each path in desktopCSS
+  link(href="styles/#{path}.desktop.css", rel="stylesheet", media="(min-width: 767px)")
+  = "\n"
+
+// endbuild
+= "\n"

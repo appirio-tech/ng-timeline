@@ -1,0 +1,24 @@
+li.milestone.completed.passed(
+  ng-class="{ completed: vm.completed.submitted, expanded: vm.expanded.submitted }"
+  ng-click="vm.expanded.submitted = !vm.expanded.submitted"
+)
+  section.checkpoint
+    .progress
+      .percent 0%
+
+      .status Complete
+
+      .day Day 1
+
+    .lead
+
+    .point
+
+    .lead-after
+
+    label
+      h4 Project Submitted
+
+      time {{ vm.completed.submitted | date }}
+
+  hr

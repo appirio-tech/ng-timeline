@@ -1,0 +1,14 @@
+@import "work-includes";
+@import "variables";
+
+timeline {
+  ul li.messages {
+    section.checkpoint {
+      .point {
+        .tooltip {
+          width: 360px;
+        }
+      }
+    }
+  }
+}

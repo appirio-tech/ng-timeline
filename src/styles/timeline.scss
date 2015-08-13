@@ -1,0 +1,133 @@
+@import "work-includes";
+@import "variables";
+
+timeline {
+  display         : block;
+  background-color: #E6E1E1;
+  padding         : 15px 20px;
+
+  .avatar {
+    width         : 35px;
+    height        : 35px;
+    border        : 1px solid $primary-color-light;
+    border-radius : 35px;
+    margin-right  : 6px;
+    display       : inline-block;
+    vertical-align: middle;
+  }
+
+  .carat {
+    display     : inline-block;
+    margin-right: 10px;
+
+    @include triangle($carat-width, $color-info, down);
+  }
+
+  .expandable-content {
+    background-color: white;
+    padding         : 10px;
+    border-radius   : 4px;
+    position        : relative;
+
+    .close {
+      position: absolute;
+      right   : 4px;
+      top     : -20px;
+      display : inline-block;
+    }
+
+    &:before {
+      content : "";
+      position: absolute;
+      top     : -$carat-width/2;
+
+      @include triangle($carat-width, white, up);
+    }
+  }
+
+  > ul {
+    position : relative;
+
+    > li {
+      border-left   : $timeline-width solid $primary-color-light;
+      color         : $primary-color;
+      padding-bottom: $point-width;
+      margin-left   : $head-width-big;
+      display       : block;
+
+      // this will be used to hide the extra borders
+      &::before, &:last-child::after {
+        content         : "";
+        position        : absolute;
+        width           : $timeline-width;
+        margin-left     : -$timeline-width;
+        height          : $point-width;
+        background-color: $primary-color-light;
+        z-index         : 0;
+      }
+
+      &:first-child::before, &:last-child::after {
+        background-color: white !important;
+      }
+
+      &:last-child::after {
+        height: $point-width / 2;
+      }
+
+      &:last-child {
+        padding-bottom: 0;
+
+        &::after {
+          margin-top: -10px;
+        }
+      }
+
+      > *:nth-child(n + 2) {
+        display: block;
+        margin-left: $spacing + $lead-after-width + $point-width/2;
+        margin-top: 10px;
+      }
+
+      .expandable-content {
+        margin-left: $spacing + $lead-after-width + $point-width/2 - $carat-width/3;
+      }
+
+      > hr:nth-child(n + 2) {
+        background-color: #ccc;
+        margin-top: 0;
+      }
+
+      &.expanded {
+        display: block;
+      }
+
+      &.milestone {
+        display: block;
+      }
+
+      &.passed {
+        border-color: $color-success;
+      }
+
+      &.completed {
+        &::before {
+          background-color: $color-success;
+        }
+
+        .point {
+          background-color: $color-success;
+        }
+
+        button.point {
+          background-color: white;
+        }
+
+        .progress {
+          .percent {
+            color: $color-success;
+          }
+        }
+      }
+    }
+  }
+}

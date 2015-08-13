@@ -1,0 +1,18 @@
+li(ng-class="{ completed: vm.events.payment.created, passed: vm.events.launch.created }")
+  section.checkpoint
+    .progress
+      .percent 20%
+
+      .status Complete
+
+      .day Day 1
+
+    .lead
+
+    .point
+
+    .lead-after
+
+    label(ng-hide="vm.events.payment.created") Add Payment Method
+
+    label(ng-show="vm.events.payment.created") Payment Method Accepted.
