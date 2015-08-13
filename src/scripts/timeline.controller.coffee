@@ -20,7 +20,6 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
     resource = TimelineAPIService.get params
     resource.$promise.then (data) ->
       vm.events = data
-      console.log('vm events', vm.events)
 
     vm
 
