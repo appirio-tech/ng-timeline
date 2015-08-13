@@ -23,3 +23,8 @@ li.milestone(
       time {{ vm.events.launch.created }}
 
   hr
+
+include project-launched/members
+
+li.notification.messages.no-progress.completed.passed(ng-show="vm.expanded.launched")
+  include messages

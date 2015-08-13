@@ -1,0 +1,17 @@
+li.submissions.completed.no-progress.passed(
+  ng-show="vm.expanded.finalFixes"
+)
+  section.checkpoint
+    a(href="{{ vm.events.finalFixes.submissionUrl }}")
+      button.point.count.clean(ng-click="vm.showMessagingWidget = true" title="download files")
+        .icon.download.smallest
+
+    .lead-after
+
+    label
+      avatar(avatar-url="{{  vm.events.finalFixes.submissionAvatar }}")
+
+  p 1 person have submitted design concepts to your project.
+
+  p
+    a(href="#") View all submissions

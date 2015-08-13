@@ -1,0 +1,35 @@
+li.milestone(
+  ng-class="{ completed: vm.events.finalFixes.created, passed: vm.events.finalFixes.created, expanded: vm.expanded.finalFixes }"
+  ng-click="vm.expanded.finalFixes = !vm.expanded.finalFixes"
+)
+  section.checkpoint
+    .progress
+      .percent 70%
+
+      .status Complete
+
+      .day Day 20
+
+    .lead
+
+    .point
+
+    .lead-after
+
+    label
+      h4 Final Fixes
+
+      time {{ vm.events.finalFixes.created }}
+
+  hr
+
+include final-fixes/submissions
+
+li.comment.no-progress.completed.passed(
+  ng-repeat="comment in vm.events.finalFixes.comments track by $index"
+  ng-show="vm.expanded.finalFixes"
+)
+  include comment
+
+include final-fixes/completed
+

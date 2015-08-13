@@ -1,0 +1,18 @@
+li.submissions.completed.no-progress.passed(
+  ng-show="vm.expanded.finalDesigns"
+)
+  section.checkpoint
+    button.point.count.clean(ng-click="vm.showMessagingWidget = true" title="download files")
+      .icon.download.smallest
+
+    .lead-after
+
+    label
+      ul.avatars
+        li(ng-repeat="avatarUrl in vm.events.finalDesigns.submissionAvatars track by $index")
+          avatar(avatar-url="{{ avatarUrl }}")
+
+  p {{ vm.events.finalDesigns.submissionAvatars.length }} people have submitted design concepts to your project.
+
+  p
+    a(href="#") View all submissions

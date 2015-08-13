@@ -33406,14 +33406,12 @@ angular.module('ui.router.state')
   'use strict';
   var dependencies;
 
-  dependencies = ['ui.router', 'ngResource', 'app.constants', 'duScroll'];
+  dependencies = ['ui.router', 'ngResource', 'app.constants', 'duScroll', 'appirio-tech-ng-ui-components'];
 
   angular.module('appirio-tech-messaging', dependencies);
 
 }).call(this);
 
-angular.module("appirio-tech-messaging").run(["$templateCache", function($templateCache) {$templateCache.put("views/messaging.directive.html","<ul class=\"messages\"><li ng-repeat=\"message in vm.messaging.messages track by $index\"><img ng-src=\"{{ vm.messaging.avatars[message.publisherId] }}\" class=\"avatar\"/><img ng-src=\"http://www.topcoder.com/i/m/cardiboy_big.jpg\" ng-show=\"vm.currentUser == message.publisherId\" class=\"avatar\"/><svg class=\"avatar\" ng-hide=\"vm.currentUser == message.publisherId\" version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 512 512\" enable-background=\"new 0 0 512 512\" xml:space=\"preserve\"><path fill=\"#020201\" d=\"M454.426,392.582c-5.439-16.32-15.298-32.782-29.839-42.362c-27.979-18.572-60.578-28.479-92.099-39.085 c-7.604-2.664-15.33-5.568-22.279-9.7c-6.204-3.686-8.533-11.246-9.974-17.886c-0.636-3.512-1.026-7.116-1.228-10.661 c22.857-31.267,38.019-82.295,38.019-124.136c0-65.298-36.896-83.495-82.402-83.495c-45.515,0-82.403,18.17-82.403,83.468 c0,43.338,16.255,96.5,40.489,127.383c-0.221,2.438-0.511,4.876-0.95,7.303c-1.444,6.639-3.77,14.058-9.97,17.743 c-6.957,4.133-14.682,6.756-22.287,9.42c-31.521,10.605-64.119,19.957-92.091,38.529c-14.549,9.58-24.403,27.159-29.838,43.479 c-5.597,16.938-7.886,37.917-7.541,54.917h205.958h205.974C462.313,430.5,460.019,409.521,454.426,392.582z\"/></svg><div class=\"message\"><p>{{ message.body }}</p><ul class=\"attachments\"><li ng-repeat=\"attachment in message.attachments track by $index\"><a href=\"#\">{{ message.attachments.originalUrl }}</a></li></ul><time>{{ message.createdAt | timeLapse }}</time></div></li><a id=\"messaging-bottom-{{ vm.threadId }}\"></a></ul><form ng-submit=\"vm.sendMessage()\"><textarea placeholder=\"Send a message&hellip;\" ng-model=\"vm.newMessage\"></textarea><button type=\"submit\" class=\"enter\">Enter</button><button type=\"button\" class=\"attach\"><div class=\"icon\"></div><span>Add Attachment</span></button></form>");
-$templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in vm.threads track by $index\"><a ui-sref=\"messaging({ id: thread.id })\"><header><h4>{{ thread.subject }}</h4><time>{{ thread.messages[0].createdAt | timeLapse }}</time></header><main><img ng-src=\"{{ vm.avatars[thread.messages[0].publisherId] }}\" ng-show=\"vm.avatars[thread.messages[0].publisherId]\" class=\"avatar\"/><svg class=\"avatar\" ng-hide=\"vm.avatars[thread.messages[0].publisherId]\" version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 512 512\" enable-background=\"new 0 0 512 512\" xml:space=\"preserve\"><path fill=\"#020201\" d=\"M454.426,392.582c-5.439-16.32-15.298-32.782-29.839-42.362c-27.979-18.572-60.578-28.479-92.099-39.085 c-7.604-2.664-15.33-5.568-22.279-9.7c-6.204-3.686-8.533-11.246-9.974-17.886c-0.636-3.512-1.026-7.116-1.228-10.661 c22.857-31.267,38.019-82.295,38.019-124.136c0-65.298-36.896-83.495-82.402-83.495c-45.515,0-82.403,18.17-82.403,83.468 c0,43.338,16.255,96.5,40.489,127.383c-0.221,2.438-0.511,4.876-0.95,7.303c-1.444,6.639-3.77,14.058-9.97,17.743 c-6.957,4.133-14.682,6.756-22.287,9.42c-31.521,10.605-64.119,19.957-92.091,38.529c-14.549,9.58-24.403,27.159-29.838,43.479 c-5.597,16.938-7.886,37.917-7.541,54.917h205.958h205.974C462.313,430.5,460.019,409.521,454.426,392.582z\"/></svg><div ng-show=\"thread.unreadCount &gt; 0\" class=\"notification\">{{ thread.unreadCount }}</div><div class=\"message\"><div class=\"co-pilot\">{{ thread.messages[0].publisherId }}:</div><p>{{ thread.messages[0].body }}</p></div></main></a></li></ul><div ng-show=\"vm.threads.length == 0\" class=\"none\">None</div>");}]);
 (function() {
   'use strict';
   var MessagingController;
@@ -33471,51 +33469,6 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
   MessagingController.$inject = ['$scope', 'MessagingService'];
 
   angular.module('appirio-tech-messaging').controller('MessagingController', MessagingController);
-
-}).call(this);
-
-(function() {
-  'use strict';
-  var directive;
-
-  directive = function(MessagingService) {
-    var link;
-    link = function(scope, element, attrs) {
-      var showLast;
-      showLast = function(newValue, oldValue) {
-        var $messageList, bottom, messageList, uls;
-        if (newValue) {
-          scope.showLast = false;
-          uls = element.find('ul');
-          messageList = uls[0];
-          $messageList = angular.element(messageList);
-          bottom = messageList.scrollHeight;
-          if (newValue === 'scroll') {
-            return $messageList.scrollTopAnimated(bottom);
-          } else {
-            return $messageList.scrollTop(bottom);
-          }
-        }
-      };
-      showLast(true);
-      return scope.$watch('showLast', showLast);
-    };
-    return {
-      restrict: 'E',
-      templateUrl: 'views/messaging.directive.html',
-      link: link,
-      controller: 'MessagingController',
-      controllerAs: 'vm',
-      scope: {
-        threadId: '@threadId',
-        subscriberId: '@subscriberId'
-      }
-    };
-  };
-
-  directive.$inject = ['MessagingService'];
-
-  angular.module('appirio-tech-messaging').directive('messaging', directive);
 
 }).call(this);
 
@@ -33594,6 +33547,73 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
 
 (function() {
   'use strict';
+  var directive;
+
+  directive = function(MessagingService) {
+    var link;
+    link = function(scope, element, attrs) {
+      var showLast;
+      showLast = function(newValue, oldValue) {
+        var $messageList, bottom, messageList, uls;
+        if (newValue) {
+          scope.showLast = false;
+          uls = element.find('ul');
+          messageList = uls[0];
+          $messageList = angular.element(messageList);
+          bottom = messageList.scrollHeight;
+          if (newValue === 'scroll') {
+            return $messageList.scrollTopAnimated(bottom);
+          } else {
+            return $messageList.scrollTop(bottom);
+          }
+        }
+      };
+      showLast(true);
+      return scope.$watch('showLast', showLast);
+    };
+    return {
+      restrict: 'E',
+      templateUrl: 'views/messaging.directive.html',
+      link: link,
+      controller: 'MessagingController',
+      controllerAs: 'vm',
+      scope: {
+        threadId: '@threadId',
+        subscriberId: '@subscriberId'
+      }
+    };
+  };
+
+  directive.$inject = ['MessagingService'];
+
+  angular.module('appirio-tech-messaging').directive('messaging', directive);
+
+}).call(this);
+
+(function() {
+  'use strict';
+  var directive;
+
+  directive = function(MessagingService) {
+    return {
+      restrict: 'E',
+      templateUrl: 'views/threads.directive.html',
+      controller: 'ThreadsController',
+      controllerAs: 'vm',
+      scope: {
+        subscriberId: '@subscriberId'
+      }
+    };
+  };
+
+  directive.$inject = ['MessagingService'];
+
+  angular.module('appirio-tech-messaging').directive('threads', directive);
+
+}).call(this);
+
+(function() {
+  'use strict';
   var srv, transformResponse;
 
   transformResponse = function(response) {
@@ -33624,23 +33644,80 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
 
 (function() {
   'use strict';
-  var directive;
+  var srv;
 
-  directive = function(MessagingService) {
-    return {
-      restrict: 'E',
-      templateUrl: 'views/threads.directive.html',
-      controller: 'ThreadsController',
-      controllerAs: 'vm',
-      scope: {
-        subscriberId: '@subscriberId'
+  srv = function($resource, API_URL_V2) {
+    var params, url;
+    url = API_URL_V2 + '/users/:handle';
+    params = {
+      handle: '@handle'
+    };
+    return $resource(url, params);
+  };
+
+  srv.$inject = ['$resource', 'API_URL_V2'];
+
+  angular.module('appirio-tech-messaging').factory('UserAPIService', srv);
+
+}).call(this);
+
+(function() {
+  'use strict';
+  var srv;
+
+  srv = function(ThreadsAPIService, AVATAR_URL, UserAPIService) {
+    var buildAvatar, get;
+    get = function(subscriberId, onChange) {
+      var queryParams, resource, threadsVm;
+      queryParams = {
+        subscriberId: subscriberId
+      };
+      threadsVm = {
+        threads: [],
+        totalUnreadCount: {},
+        avatars: {}
+      };
+      resource = ThreadsAPIService.query(queryParams);
+      resource.$promise.then(function(response) {
+        var i, j, len, len1, message, ref, ref1, thread;
+        threadsVm.threads = response.threads;
+        ref = threadsVm.threads;
+        for (i = 0, len = ref.length; i < len; i++) {
+          thread = ref[i];
+          ref1 = thread.messages;
+          for (j = 0, len1 = ref1.length; j < len1; j++) {
+            message = ref1[j];
+            buildAvatar(message.publisherId, threadsVm, onChange);
+          }
+        }
+        return typeof onChange === "function" ? onChange(threadsVm) : void 0;
+      });
+      resource.$promise["catch"](function() {});
+      return resource.$promise["finally"](function() {});
+    };
+    buildAvatar = function(handle, threadsVm, onChange) {
+      var user, userParams;
+      if (!threadsVm.avatars[handle]) {
+        userParams = {
+          handle: handle
+        };
+        user = UserAPIService.get(userParams);
+        user.$promise.then(function(response) {
+          threadsVm.avatars[handle] = AVATAR_URL + (response != null ? response.photoLink : void 0);
+          return typeof onChange === "function" ? onChange(threadsVm) : void 0;
+        });
+        user.$promise["catch"](function() {});
+        return user.$promise["finally"](function() {});
       }
+    };
+    return {
+      get: get
     };
   };
 
-  directive.$inject = ['MessagingService'];
+  srv.$inject = ['ThreadsAPIService', 'AVATAR_URL', 'UserAPIService'];
 
-  angular.module('appirio-tech-messaging').directive('threads', directive);
+  angular.module('appirio-tech-messaging').factory('ThreadsService', srv);
 
 }).call(this);
 
@@ -33724,80 +33801,195 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
 
 (function() {
   'use strict';
-  var srv;
+  var filter;
 
-  srv = function(ThreadsAPIService, AVATAR_URL, UserAPIService) {
-    var buildAvatar, get;
-    get = function(subscriberId, onChange) {
-      var queryParams, resource, threadsVm;
-      queryParams = {
-        subscriberId: subscriberId
-      };
-      threadsVm = {
-        threads: [],
-        totalUnreadCount: {},
-        avatars: {}
-      };
-      resource = ThreadsAPIService.query(queryParams);
-      resource.$promise.then(function(response) {
-        var i, j, len, len1, message, ref, ref1, thread;
-        threadsVm.threads = response.threads;
-        ref = threadsVm.threads;
-        for (i = 0, len = ref.length; i < len; i++) {
-          thread = ref[i];
-          ref1 = thread.messages;
-          for (j = 0, len1 = ref1.length; j < len1; j++) {
-            message = ref1[j];
-            buildAvatar(message.publisherId, threadsVm, onChange);
-          }
-        }
-        return typeof onChange === "function" ? onChange(threadsVm) : void 0;
-      });
-      resource.$promise["catch"](function() {});
-      return resource.$promise["finally"](function() {});
-    };
-    buildAvatar = function(handle, threadsVm, onChange) {
-      var user, userParams;
-      if (!threadsVm.avatars[handle]) {
-        userParams = {
-          handle: handle
-        };
-        user = UserAPIService.get(userParams);
-        user.$promise.then(function(response) {
-          threadsVm.avatars[handle] = AVATAR_URL + (response != null ? response.photoLink : void 0);
-          return typeof onChange === "function" ? onChange(threadsVm) : void 0;
-        });
-        user.$promise["catch"](function() {});
-        return user.$promise["finally"](function() {});
-      }
-    };
-    return {
-      get: get
+  filter = function() {
+    return function(createdAt) {
+      return moment(createdAt).fromNow();
     };
   };
 
-  srv.$inject = ['ThreadsAPIService', 'AVATAR_URL', 'UserAPIService'];
+  angular.module('appirio-tech-messaging').filter('timeLapse', filter);
 
-  angular.module('appirio-tech-messaging').factory('ThreadsService', srv);
+}).call(this);
+
+angular.module("appirio-tech-messaging").run(["$templateCache", function($templateCache) {$templateCache.put("views/messaging.directive.html","<ul class=\"messages\"><li ng-repeat=\"message in vm.messaging.messages track by $index\"><avatar avatar-url=\"{{ vm.messaging.avatars[message.publisherId] }}\"></avatar><div class=\"message\"><p>{{ message.body }}</p><ul class=\"attachments\"><li ng-repeat=\"attachment in message.attachments track by $index\"><a href=\"#\">{{ message.attachments.originalUrl }}</a></li></ul><time>{{ message.createdAt | timeLapse }}</time></div></li><a id=\"messaging-bottom-{{ vm.threadId }}\"></a></ul><form ng-submit=\"vm.sendMessage()\"><textarea placeholder=\"Send a message&hellip;\" ng-model=\"vm.newMessage\"></textarea><button type=\"submit\" class=\"enter\">Enter</button><button type=\"button\" class=\"attach\"><div class=\"icon\"></div><span>Add Attachment</span></button></form>");
+$templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in vm.threads track by $index\"><a ui-sref=\"messaging({ id: thread.id })\"><header><h4>{{ thread.subject }}</h4><time>{{ thread.messages[0].createdAt | timeLapse }}</time></header><main><avatar avatar-url=\"{{ vm.avatars[thread.messages[0].publisherId]  }}\"></avatar><div ng-show=\"thread.unreadCount &gt; 0\" class=\"notification\">{{ thread.unreadCount }}</div><div class=\"message\"><div class=\"co-pilot\">{{ thread.messages[0].publisherId }}:</div><p>{{ thread.messages[0].body }}</p></div></main></a></li></ul><div ng-show=\"vm.threads.length == 0\" class=\"none\">None</div>");}]);
+(function() {
+  'use strict';
+  var dependencies;
+
+  dependencies = ['ui.router'];
+
+  angular.module('appirio-tech-ng-ui-components', dependencies);
+
+}).call(this);
+
+angular.module("appirio-tech-ng-ui-components").run(["$templateCache", function($templateCache) {$templateCache.put("views/avatar.directive.html","<img ng-src=\"{{ vm.avatarUrl }}\" ng-show=\"vm.avatarUrl\" class=\"avatar\"/><svg class=\"avatar\" ng-hide=\"vm.avatarUrl\" version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 512 512\" enable-background=\"new 0 0 512 512\" xml:space=\"preserve\"><path fill=\"#020201\" d=\"M454.426,392.582c-5.439-16.32-15.298-32.782-29.839-42.362c-27.979-18.572-60.578-28.479-92.099-39.085 c-7.604-2.664-15.33-5.568-22.279-9.7c-6.204-3.686-8.533-11.246-9.974-17.886c-0.636-3.512-1.026-7.116-1.228-10.661 c22.857-31.267,38.019-82.295,38.019-124.136c0-65.298-36.896-83.495-82.402-83.495c-45.515,0-82.403,18.17-82.403,83.468 c0,43.338,16.255,96.5,40.489,127.383c-0.221,2.438-0.511,4.876-0.95,7.303c-1.444,6.639-3.77,14.058-9.97,17.743 c-6.957,4.133-14.682,6.756-22.287,9.42c-31.521,10.605-64.119,19.957-92.091,38.529c-14.549,9.58-24.403,27.159-29.838,43.479 c-5.597,16.938-7.886,37.917-7.541,54.917h205.958h205.974C462.313,430.5,460.019,409.521,454.426,392.582z\"/></svg>");
+$templateCache.put("views/countdown.directive.html","<ul class=\"countdown\"><li ng-if=\"vm.days &gt; 0\"><span class=\"value\">{{ vm.days }}</span><span class=\"unit\">day<span ng-if=\"vm.days &gt; 1\">s</span></span></li><li ng-if=\"vm.hours &gt; 0 || vm.days &gt; 0\"><span class=\"value\">{{ vm.hours }}</span><span class=\"unit\">hr<span ng-if=\"vm.hours &gt; 1\">s</span></span></li><li ng-if=\"vm.minutes &gt; 0 || vm.hours &gt; 0 || vm.days &gt; 0\"><span class=\"value\">{{ vm.minutes }}</span><span class=\"unit\">min<span ng-if=\"vm.minutes &gt; 1\">s</span></span></li><li><span class=\"value\">{{ vm.seconds }}</span><span class=\"unit\">sec<span ng-if=\"vm.seconds &gt; 1\">s</span></span></li></ul>");
+$templateCache.put("views/loader.directive.html","<div class=\"container\"><div class=\"loader\"></div></div>");}]);
+(function() {
+  'use strict';
+  var directive;
+
+  directive = function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'views/avatar.directive.html',
+      controller: 'AvatarController',
+      controllerAs: 'vm',
+      scope: {
+        avatarUrl: '@avatarUrl'
+      }
+    };
+  };
+
+  angular.module('appirio-tech-ng-ui-components').directive('avatar', directive);
 
 }).call(this);
 
 (function() {
   'use strict';
-  var srv;
+  var directive;
 
-  srv = function($resource, API_URL_V2) {
-    var params, url;
-    url = API_URL_V2 + '/users/:handle';
-    params = {
-      handle: '@handle'
+  directive = function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'views/countdown.directive.html',
+      controller: 'CountdownController',
+      controllerAs: 'vm',
+      scope: {
+        end: '@end'
+      }
     };
-    return $resource(url, params);
   };
 
-  srv.$inject = ['$resource', 'API_URL_V2'];
+  angular.module('appirio-tech-ng-ui-components').directive('countdown', directive);
 
-  angular.module('appirio-tech-messaging').factory('UserAPIService', srv);
+}).call(this);
+
+(function() {
+  'use strict';
+  var directive;
+
+  directive = function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'views/loader.directive.html'
+    };
+  };
+
+  angular.module('appirio-tech-ng-ui-components').directive('loader', directive);
+
+}).call(this);
+
+(function() {
+  'use strict';
+  var directive;
+
+  directive = function() {
+    var link;
+    link = function(scope, element, attrs) {
+      var $element, close, closeButton, overlay, toggleShow;
+      overlay = $('#modal-overlay');
+      closeButton = $('<button type="button" class="clean close"><div class="icon cross"></div></button>');
+      $element = $(element[0]);
+      toggleShow = function(show) {
+        if (show && show !== 'false') {
+          $element.addClass('show');
+          return overlay.show();
+        } else {
+          $element.removeClass('show');
+          return overlay.hide();
+        }
+      };
+      close = function() {
+        scope.show = false;
+        return scope.$apply();
+      };
+      closeButton.prependTo($element).bind('click', close);
+      if (!overlay.length) {
+        overlay = $('<div id="modal-overlay"></div>');
+        overlay.appendTo('body');
+      }
+      $element.bind('click', function(e) {
+        if (e.target === $element[0]) {
+          return close();
+        }
+      });
+      return scope.$watch('show', toggleShow);
+    };
+    return {
+      restrict: 'E',
+      link: link,
+      scope: {
+        show: '='
+      }
+    };
+  };
+
+  directive.$inject = [];
+
+  angular.module('appirio-tech-ng-ui-components').directive('modal', directive);
+
+}).call(this);
+
+(function() {
+  'use strict';
+  var AvatarController;
+
+  AvatarController = function($scope) {
+    var activate, vm;
+    vm = this;
+    vm.avatarUrl = null;
+    activate = function() {
+      $scope.$watch('avatarUrl', function() {
+        if ($scope.avatarUrl) {
+          return vm.avatarUrl = $scope.avatarUrl;
+        }
+      });
+      return vm;
+    };
+    return activate();
+  };
+
+  AvatarController.$inject = ['$scope'];
+
+  angular.module('appirio-tech-ng-ui-components').controller('AvatarController', AvatarController);
+
+}).call(this);
+
+(function() {
+  'use strict';
+  var CountdownController;
+
+  CountdownController = function($scope) {
+    var activate, vm;
+    vm = this;
+    vm.days = 0;
+    vm.hours = 0;
+    vm.minutes = 0;
+    vm.seconds = 0;
+    activate = function() {
+      $scope.$watch('end', function() {
+        var diff, duration, end, now;
+        now = moment();
+        end = new Date($scope.end);
+        diff = moment(end).diff(now);
+        duration = moment.duration(diff);
+        vm.days = duration.days();
+        vm.hours = duration.hours();
+        vm.minutes = duration.minutes();
+        return vm.seconds = duration.seconds();
+      });
+      return vm;
+    };
+    return activate();
+  };
+
+  CountdownController.$inject = ['$scope'];
+
+  angular.module('appirio-tech-ng-ui-components').controller('CountdownController', CountdownController);
 
 }).call(this);
 
@@ -33811,12 +34003,12 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     };
   };
 
-  angular.module('appirio-tech-messaging').filter('timeLapse', filter);
+  angular.module('appirio-tech-ng-ui-components').filter('timeLapse', filter);
 
 }).call(this);
 
 //! moment.js
-//! version : 2.10.3
+//! version : 2.10.6
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
@@ -33911,6 +34103,7 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
                 flags.overflow < 0 &&
                 !flags.empty &&
                 !flags.invalidMonth &&
+                !flags.invalidWeekday &&
                 !flags.nullInput &&
                 !flags.invalidFormat &&
                 !flags.userInvalidated;
@@ -33991,7 +34184,7 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     // Moment prototype object
     function Moment(config) {
         copyConfig(this, config);
-        this._d = new Date(+config._d);
+        this._d = new Date(config._d != null ? config._d.getTime() : NaN);
         // Prevent infinite loop in case updateOffset creates new moment
         // objects.
         if (updateInProgress === false) {
@@ -34005,16 +34198,20 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
         return obj instanceof Moment || (obj != null && obj._isAMomentObject != null);
     }
 
+    function absFloor (number) {
+        if (number < 0) {
+            return Math.ceil(number);
+        } else {
+            return Math.floor(number);
+        }
+    }
+
     function toInt(argumentForCoercion) {
         var coercedNumber = +argumentForCoercion,
             value = 0;
 
         if (coercedNumber !== 0 && isFinite(coercedNumber)) {
-            if (coercedNumber >= 0) {
-                value = Math.floor(coercedNumber);
-            } else {
-                value = Math.ceil(coercedNumber);
-            }
+            value = absFloor(coercedNumber);
         }
 
         return value;
@@ -34112,9 +34309,7 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     function defineLocale (name, values) {
         if (values !== null) {
             values.abbr = name;
-            if (!locales[name]) {
-                locales[name] = new Locale();
-            }
+            locales[name] = locales[name] || new Locale();
             locales[name].set(values);
 
             // backwards compat for now: also set the locale
@@ -34218,16 +34413,14 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     }
 
     function zeroFill(number, targetLength, forceSign) {
-        var output = '' + Math.abs(number),
+        var absNumber = '' + Math.abs(number),
+            zerosToFill = targetLength - absNumber.length,
             sign = number >= 0;
-
-        while (output.length < targetLength) {
-            output = '0' + output;
-        }
-        return (sign ? (forceSign ? '+' : '') : '-') + output;
+        return (sign ? (forceSign ? '+' : '') : '-') +
+            Math.pow(10, Math.max(0, zerosToFill)).toString().substr(1) + absNumber;
     }
 
-    var formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|x|X|zz?|ZZ?|.)/g;
+    var formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g;
 
     var localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g;
 
@@ -34295,10 +34488,7 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
         }
 
         format = expandFormat(format, m.localeData());
-
-        if (!formatFunctions[format]) {
-            formatFunctions[format] = makeFormatFunction(format);
-        }
+        formatFunctions[format] = formatFunctions[format] || makeFormatFunction(format);
 
         return formatFunctions[format](m);
     }
@@ -34342,8 +34532,15 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
 
     var regexes = {};
 
+    function isFunction (sth) {
+        // https://github.com/moment/moment/issues/2325
+        return typeof sth === 'function' &&
+            Object.prototype.toString.call(sth) === '[object Function]';
+    }
+
+
     function addRegexToken (token, regex, strictRegex) {
-        regexes[token] = typeof regex === 'function' ? regex : function (isStrict) {
+        regexes[token] = isFunction(regex) ? regex : function (isStrict) {
             return (isStrict && strictRegex) ? strictRegex : regex;
         };
     }
@@ -34551,12 +34748,11 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     }
 
     function deprecate(msg, fn) {
-        var firstTime = true,
-            msgWithStack = msg + '\n' + (new Error()).stack;
+        var firstTime = true;
 
         return extend(function () {
             if (firstTime) {
-                warn(msgWithStack);
+                warn(msg + '\n' + (new Error()).stack);
                 firstTime = false;
             }
             return fn.apply(this, arguments);
@@ -34604,14 +34800,14 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
             getParsingFlags(config).iso = true;
             for (i = 0, l = isoDates.length; i < l; i++) {
                 if (isoDates[i][1].exec(string)) {
-                    // match[5] should be 'T' or undefined
-                    config._f = isoDates[i][0] + (match[6] || ' ');
+                    config._f = isoDates[i][0];
                     break;
                 }
             }
             for (i = 0, l = isoTimes.length; i < l; i++) {
                 if (isoTimes[i][1].exec(string)) {
-                    config._f += isoTimes[i][0];
+                    // match[6] should be 'T' or space
+                    config._f += (match[6] || ' ') + isoTimes[i][0];
                     break;
                 }
             }
@@ -34690,7 +34886,10 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     addRegexToken('YYYYY',  match1to6, match6);
     addRegexToken('YYYYYY', match1to6, match6);
 
-    addParseToken(['YYYY', 'YYYYY', 'YYYYYY'], YEAR);
+    addParseToken(['YYYYY', 'YYYYYY'], YEAR);
+    addParseToken('YYYY', function (input, array) {
+        array[YEAR] = input.length === 2 ? utils_hooks__hooks.parseTwoDigitYear(input) : toInt(input);
+    });
     addParseToken('YY', function (input, array) {
         array[YEAR] = utils_hooks__hooks.parseTwoDigitYear(input);
     });
@@ -34817,18 +35016,18 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
 
     //http://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
     function dayOfYearFromWeeks(year, week, weekday, firstDayOfWeekOfYear, firstDayOfWeek) {
-        var d = createUTCDate(year, 0, 1).getUTCDay();
-        var daysToAdd;
-        var dayOfYear;
+        var week1Jan = 6 + firstDayOfWeek - firstDayOfWeekOfYear, janX = createUTCDate(year, 0, 1 + week1Jan), d = janX.getUTCDay(), dayOfYear;
+        if (d < firstDayOfWeek) {
+            d += 7;
+        }
 
-        d = d === 0 ? 7 : d;
-        weekday = weekday != null ? weekday : firstDayOfWeek;
-        daysToAdd = firstDayOfWeek - d + (d > firstDayOfWeekOfYear ? 7 : 0) - (d < firstDayOfWeek ? 7 : 0);
-        dayOfYear = 7 * (week - 1) + (weekday - firstDayOfWeek) + daysToAdd + 1;
+        weekday = weekday != null ? 1 * weekday : firstDayOfWeek;
+
+        dayOfYear = 1 + week1Jan + 7 * (week - 1) - d + weekday;
 
         return {
-            year      : dayOfYear > 0 ? year      : year - 1,
-            dayOfYear : dayOfYear > 0 ? dayOfYear : daysInYear(year - 1) + dayOfYear
+            year: dayOfYear > 0 ? year : year - 1,
+            dayOfYear: dayOfYear > 0 ?  dayOfYear : daysInYear(year - 1) + dayOfYear
         };
     }
 
@@ -35114,9 +35313,19 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     }
 
     function createFromConfig (config) {
+        var res = new Moment(checkOverflow(prepareConfig(config)));
+        if (res._nextDay) {
+            // Adding is smart enough around DST
+            res.add(1, 'd');
+            res._nextDay = undefined;
+        }
+
+        return res;
+    }
+
+    function prepareConfig (config) {
         var input = config._i,
-            format = config._f,
-            res;
+            format = config._f;
 
         config._locale = config._locale || locale_locales__getLocale(config._l);
 
@@ -35140,14 +35349,7 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
             configFromInput(config);
         }
 
-        res = new Moment(checkOverflow(config));
-        if (res._nextDay) {
-            // Adding is smart enough around DST
-            res.add(1, 'd');
-            res._nextDay = undefined;
-        }
-
-        return res;
+        return config;
     }
 
     function configFromInput(config) {
@@ -35227,7 +35429,7 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
         }
         res = moments[0];
         for (i = 1; i < moments.length; ++i) {
-            if (moments[i][fn](res)) {
+            if (!moments[i].isValid() || moments[i][fn](res)) {
                 res = moments[i];
             }
         }
@@ -35339,7 +35541,6 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
         } else {
             return local__createLocal(input).local();
         }
-        return model._isUTC ? local__createLocal(input).zone(model._offset || 0) : local__createLocal(input).local();
     }
 
     function getDateOffset (m) {
@@ -35439,12 +35640,7 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     }
 
     function hasAlignedHourOffset (input) {
-        if (!input) {
-            input = 0;
-        }
-        else {
-            input = local__createLocal(input).utcOffset();
-        }
+        input = input ? local__createLocal(input).utcOffset() : 0;
 
         return (this.utcOffset() - input) % 60 === 0;
     }
@@ -35457,12 +35653,24 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     }
 
     function isDaylightSavingTimeShifted () {
-        if (this._a) {
-            var other = this._isUTC ? create_utc__createUTC(this._a) : local__createLocal(this._a);
-            return this.isValid() && compareArrays(this._a, other.toArray()) > 0;
+        if (typeof this._isDSTShifted !== 'undefined') {
+            return this._isDSTShifted;
         }
 
-        return false;
+        var c = {};
+
+        copyConfig(c, this);
+        c = prepareConfig(c);
+
+        if (c._a) {
+            var other = c._isUTC ? create_utc__createUTC(c._a) : local__createLocal(c._a);
+            this._isDSTShifted = this.isValid() &&
+                compareArrays(c._a, other.toArray()) > 0;
+        } else {
+            this._isDSTShifted = false;
+        }
+
+        return this._isDSTShifted;
     }
 
     function isLocal () {
@@ -35622,7 +35830,7 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     var add_subtract__add      = createAdder(1, 'add');
     var add_subtract__subtract = createAdder(-1, 'subtract');
 
-    function moment_calendar__calendar (time) {
+    function moment_calendar__calendar (time, formats) {
         // We want to compare the start of today, vs this.
         // Getting start-of-today depends on whether we're local/utc/offset or not.
         var now = time || local__createLocal(),
@@ -35634,7 +35842,7 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
                 diff < 1 ? 'sameDay' :
                 diff < 2 ? 'nextDay' :
                 diff < 7 ? 'nextWeek' : 'sameElse';
-        return this.format(this.localeData().calendar(format, this, local__createLocal(now)));
+        return this.format(formats && formats[format] || this.localeData().calendar(format, this, local__createLocal(now)));
     }
 
     function clone () {
@@ -35678,14 +35886,6 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
         } else {
             inputMs = +local__createLocal(input);
             return +(this.clone().startOf(units)) <= inputMs && inputMs <= +(this.clone().endOf(units));
-        }
-    }
-
-    function absFloor (number) {
-        if (number < 0) {
-            return Math.ceil(number);
-        } else {
-            return Math.floor(number);
         }
     }
 
@@ -35879,6 +36079,19 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
         return [m.year(), m.month(), m.date(), m.hour(), m.minute(), m.second(), m.millisecond()];
     }
 
+    function toObject () {
+        var m = this;
+        return {
+            years: m.year(),
+            months: m.month(),
+            date: m.date(),
+            hours: m.hours(),
+            minutes: m.minutes(),
+            seconds: m.seconds(),
+            milliseconds: m.milliseconds()
+        };
+    }
+
     function moment_valid__isValid () {
         return valid__isValid(this);
     }
@@ -36050,18 +36263,20 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     // HELPERS
 
     function parseWeekday(input, locale) {
-        if (typeof input === 'string') {
-            if (!isNaN(input)) {
-                input = parseInt(input, 10);
-            }
-            else {
-                input = locale.weekdaysParse(input);
-                if (typeof input !== 'number') {
-                    return null;
-                }
-            }
+        if (typeof input !== 'string') {
+            return input;
         }
-        return input;
+
+        if (!isNaN(input)) {
+            return parseInt(input, 10);
+        }
+
+        input = locale.weekdaysParse(input);
+        if (typeof input === 'number') {
+            return input;
+        }
+
+        return null;
     }
 
     // LOCALES
@@ -36084,9 +36299,7 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     function localeWeekdaysParse (weekdayName) {
         var i, mom, regex;
 
-        if (!this._weekdaysParse) {
-            this._weekdaysParse = [];
-        }
+        this._weekdaysParse = this._weekdaysParse || [];
 
         for (i = 0; i < 7; i++) {
             // make the regex if we don't have it already
@@ -36233,12 +36446,26 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
         return ~~(this.millisecond() / 10);
     });
 
-    function millisecond__milliseconds (token) {
-        addFormatToken(0, [token, 3], 0, 'millisecond');
-    }
+    addFormatToken(0, ['SSS', 3], 0, 'millisecond');
+    addFormatToken(0, ['SSSS', 4], 0, function () {
+        return this.millisecond() * 10;
+    });
+    addFormatToken(0, ['SSSSS', 5], 0, function () {
+        return this.millisecond() * 100;
+    });
+    addFormatToken(0, ['SSSSSS', 6], 0, function () {
+        return this.millisecond() * 1000;
+    });
+    addFormatToken(0, ['SSSSSSS', 7], 0, function () {
+        return this.millisecond() * 10000;
+    });
+    addFormatToken(0, ['SSSSSSSS', 8], 0, function () {
+        return this.millisecond() * 100000;
+    });
+    addFormatToken(0, ['SSSSSSSSS', 9], 0, function () {
+        return this.millisecond() * 1000000;
+    });
 
-    millisecond__milliseconds('SSS');
-    millisecond__milliseconds('SSSS');
 
     // ALIASES
 
@@ -36249,11 +36476,19 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     addRegexToken('S',    match1to3, match1);
     addRegexToken('SS',   match1to3, match2);
     addRegexToken('SSS',  match1to3, match3);
-    addRegexToken('SSSS', matchUnsigned);
-    addParseToken(['S', 'SS', 'SSS', 'SSSS'], function (input, array) {
-        array[MILLISECOND] = toInt(('0.' + input) * 1000);
-    });
 
+    var token;
+    for (token = 'SSSS'; token.length <= 9; token += 'S') {
+        addRegexToken(token, matchUnsigned);
+    }
+
+    function parseMs(input, array) {
+        array[MILLISECOND] = toInt(('0.' + input) * 1000);
+    }
+
+    for (token = 'S'; token.length <= 9; token += 'S') {
+        addParseToken(token, parseMs);
+    }
     // MOMENTS
 
     var getSetMillisecond = makeGetSet('Milliseconds', false);
@@ -36300,6 +36535,7 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     momentPrototype__proto.startOf      = startOf;
     momentPrototype__proto.subtract     = add_subtract__subtract;
     momentPrototype__proto.toArray      = toArray;
+    momentPrototype__proto.toObject     = toObject;
     momentPrototype__proto.toDate       = toDate;
     momentPrototype__proto.toISOString  = moment_format__toISOString;
     momentPrototype__proto.toJSON       = moment_format__toISOString;
@@ -36399,19 +36635,23 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
         LT   : 'h:mm A',
         L    : 'MM/DD/YYYY',
         LL   : 'MMMM D, YYYY',
-        LLL  : 'MMMM D, YYYY LT',
-        LLLL : 'dddd, MMMM D, YYYY LT'
+        LLL  : 'MMMM D, YYYY h:mm A',
+        LLLL : 'dddd, MMMM D, YYYY h:mm A'
     };
 
     function longDateFormat (key) {
-        var output = this._longDateFormat[key];
-        if (!output && this._longDateFormat[key.toUpperCase()]) {
-            output = this._longDateFormat[key.toUpperCase()].replace(/MMMM|MM|DD|dddd/g, function (val) {
-                return val.slice(1);
-            });
-            this._longDateFormat[key] = output;
+        var format = this._longDateFormat[key],
+            formatUpper = this._longDateFormat[key.toUpperCase()];
+
+        if (format || !formatUpper) {
+            return format;
         }
-        return output;
+
+        this._longDateFormat[key] = formatUpper.replace(/MMMM|MM|DD|dddd/g, function (val) {
+            return val.slice(1);
+        });
+
+        return this._longDateFormat[key];
     }
 
     var defaultInvalidDate = 'Invalid date';
@@ -36620,12 +36860,29 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
         return duration_add_subtract__addSubtract(this, input, value, -1);
     }
 
+    function absCeil (number) {
+        if (number < 0) {
+            return Math.floor(number);
+        } else {
+            return Math.ceil(number);
+        }
+    }
+
     function bubble () {
         var milliseconds = this._milliseconds;
         var days         = this._days;
         var months       = this._months;
         var data         = this._data;
-        var seconds, minutes, hours, years = 0;
+        var seconds, minutes, hours, years, monthsFromDays;
+
+        // if we have a mix of positive and negative values, bubble down first
+        // check: https://github.com/moment/moment/issues/2166
+        if (!((milliseconds >= 0 && days >= 0 && months >= 0) ||
+                (milliseconds <= 0 && days <= 0 && months <= 0))) {
+            milliseconds += absCeil(monthsToDays(months) + days) * 864e5;
+            days = 0;
+            months = 0;
+        }
 
         // The following code bubbles up values, see the tests for
         // examples of what that means.
@@ -36642,17 +36899,13 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
 
         days += absFloor(hours / 24);
 
-        // Accurately convert days to years, assume start from year 0.
-        years = absFloor(daysToYears(days));
-        days -= absFloor(yearsToDays(years));
-
-        // 30 days to a month
-        // TODO (iskren): Use anchor date (like 1st Jan) to compute this.
-        months += absFloor(days / 30);
-        days   %= 30;
+        // convert days to months
+        monthsFromDays = absFloor(daysToMonths(days));
+        months += monthsFromDays;
+        days -= absCeil(monthsToDays(monthsFromDays));
 
         // 12 months -> 1 year
-        years  += absFloor(months / 12);
+        years = absFloor(months / 12);
         months %= 12;
 
         data.days   = days;
@@ -36662,15 +36915,15 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
         return this;
     }
 
-    function daysToYears (days) {
+    function daysToMonths (days) {
         // 400 years have 146097 days (taking into account leap year rules)
-        return days * 400 / 146097;
+        // 400 years have 12 months === 4800
+        return days * 4800 / 146097;
     }
 
-    function yearsToDays (years) {
-        // years * 365 + absFloor(years / 4) -
-        //     absFloor(years / 100) + absFloor(years / 400);
-        return years * 146097 / 400;
+    function monthsToDays (months) {
+        // the reverse of daysToMonths
+        return months * 146097 / 4800;
     }
 
     function as (units) {
@@ -36682,11 +36935,11 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
 
         if (units === 'month' || units === 'year') {
             days   = this._days   + milliseconds / 864e5;
-            months = this._months + daysToYears(days) * 12;
+            months = this._months + daysToMonths(days);
             return units === 'month' ? months : months / 12;
         } else {
             // handle milliseconds separately because of floating point math errors (issue #1867)
-            days = this._days + Math.round(yearsToDays(this._months / 12));
+            days = this._days + Math.round(monthsToDays(this._months));
             switch (units) {
                 case 'week'   : return days / 7     + milliseconds / 6048e5;
                 case 'day'    : return days         + milliseconds / 864e5;
@@ -36736,7 +36989,7 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
         };
     }
 
-    var duration_get__milliseconds = makeGetter('milliseconds');
+    var milliseconds = makeGetter('milliseconds');
     var seconds      = makeGetter('seconds');
     var minutes      = makeGetter('minutes');
     var hours        = makeGetter('hours');
@@ -36814,13 +37067,36 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     var iso_string__abs = Math.abs;
 
     function iso_string__toISOString() {
+        // for ISO strings we do not use the normal bubbling rules:
+        //  * milliseconds bubble up until they become hours
+        //  * days do not bubble at all
+        //  * months bubble up until they become years
+        // This is because there is no context-free conversion between hours and days
+        // (think of clock changes)
+        // and also not between days and months (28-31 days per month)
+        var seconds = iso_string__abs(this._milliseconds) / 1000;
+        var days         = iso_string__abs(this._days);
+        var months       = iso_string__abs(this._months);
+        var minutes, hours, years;
+
+        // 3600 seconds -> 60 minutes -> 1 hour
+        minutes           = absFloor(seconds / 60);
+        hours             = absFloor(minutes / 60);
+        seconds %= 60;
+        minutes %= 60;
+
+        // 12 months -> 1 year
+        years  = absFloor(months / 12);
+        months %= 12;
+
+
         // inspired by https://github.com/dordille/moment-isoduration/blob/master/moment.isoduration.js
-        var Y = iso_string__abs(this.years());
-        var M = iso_string__abs(this.months());
-        var D = iso_string__abs(this.days());
-        var h = iso_string__abs(this.hours());
-        var m = iso_string__abs(this.minutes());
-        var s = iso_string__abs(this.seconds() + this.milliseconds() / 1000);
+        var Y = years;
+        var M = months;
+        var D = days;
+        var h = hours;
+        var m = minutes;
+        var s = seconds;
         var total = this.asSeconds();
 
         if (!total) {
@@ -36857,7 +37133,7 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     duration_prototype__proto.valueOf        = duration_as__valueOf;
     duration_prototype__proto._bubble        = bubble;
     duration_prototype__proto.get            = duration_get__get;
-    duration_prototype__proto.milliseconds   = duration_get__milliseconds;
+    duration_prototype__proto.milliseconds   = milliseconds;
     duration_prototype__proto.seconds        = seconds;
     duration_prototype__proto.minutes        = minutes;
     duration_prototype__proto.hours          = hours;
@@ -36895,7 +37171,7 @@ $templateCache.put("views/threads.directive.html","<ul><li ng-repeat=\"thread in
     // Side effect imports
 
 
-    utils_hooks__hooks.version = '2.10.3';
+    utils_hooks__hooks.version = '2.10.6';
 
     setHookCallback(local__createLocal);
 

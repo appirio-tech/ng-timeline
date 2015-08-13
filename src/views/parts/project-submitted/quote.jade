@@ -1,4 +1,7 @@
-li.quote(ng-class="{ completed: vm.events.quote.created, passed: vm.events.payment.created }")
+li.quote(
+  ng-class="{ completed: vm.events.quote.created, passed: vm.events.payment.created }"
+  ng-show="vm.expanded.submitted"
+)
   section.checkpoint
     .progress
       .percent 15%
@@ -43,4 +46,3 @@ li.quote(ng-class="{ completed: vm.events.quote.created, passed: vm.events.payme
 
       li
         button Reject
-

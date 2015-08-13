@@ -1,0 +1,13 @@
+li.winners.completed.no-progress.passed(
+  ng-show="vm.expanded.finalDesigns"
+)
+  section.checkpoint
+    .point
+
+    .lead-after
+
+    label Congratulations you have confirmed your winners for the final design phase.
+
+  ul.avatars
+    li(ng-repeat="avatar in vm.events.designConcepts.winnerAvatars track by $index")
+      avatar(avatar-url="{{ avatar }}")

@@ -39,7 +39,7 @@ timeline {
       }
     }
 
-    button.point {
+    button.point, a.point {
       position: relative;
 
       border-radius   : 4px;
@@ -47,14 +47,19 @@ timeline {
       box-shadow      : 3px 2px 4px 0px rgba(0, 0, 0, 0.75);
 
       .notification {
+        @include font-line($font-size-small);
+
         background-color: $color-danger;
         color           : white;
         position        : absolute;
         top             : -6px;
         right           : -6px;
-        padding         : 0px 4px;
+        padding         : 2px 3px;
         border-radius   : $border-radius;
-        font-size       : $font-size-small;
+      }
+
+      .icon {
+        margin: 0 auto;
       }
     }
 
@@ -85,7 +90,7 @@ timeline {
         border-width: $big-point-border-width;
 
         &:before {
-          content: '‐';
+          content: '+';
           line-height: $big-point-width - ($big-point-border-width * 2);
           font-size: 30px;
         }
@@ -111,7 +116,7 @@ timeline {
       .checkpoint {
         .point {
           &:before {
-            content: '+';
+            content: '-';
           }
         }
       }

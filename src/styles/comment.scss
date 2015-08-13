@@ -1,0 +1,13 @@
+@import "work-includes";
+@import "variables";
+
+timeline .comment {
+  ul.files {
+    @include flex-center(flex-start, $spacing-small);
+
+    img {
+      max-width: 30px;
+      max-height: 30px;
+    }
+  }
+}
