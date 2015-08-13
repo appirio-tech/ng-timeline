@@ -19,10 +19,10 @@ li(
     label
       .carat
 
-      span {{ vm.members.length }} member(s) have joined.
+      span {{ vm.events.members.length }} member(s) have joined.
 
   .expandable-content
-    button(type="button").clean.close x
+    button(type="button").clean.close &times;
 
     ul
       li(ng-repeat="member in vm.events.members track by $index")

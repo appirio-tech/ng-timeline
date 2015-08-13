@@ -1,5 +1,5 @@
 li(
-  ng-class="{ completed: vm.events.payment.created, passed: vm.events.launch.created }"
+  ng-class="{ completed: vm.events.paymentAccepted.created, passed: vm.events.launch.created }"
   ng-show="vm.expanded.submitted"
 )
   section.checkpoint
@@ -16,6 +16,6 @@ li(
 
     .lead-after
 
-    label(ng-hide="vm.events.payment.created") Add Payment Method
+    label(ng-hide="vm.events.paymentAccepted.created") Add Payment Method
 
-    label(ng-show="vm.events.payment.created") Payment Method Accepted.
+    label(ng-show="vm.events.paymentAccepted.created") Payment Method Accepted.
