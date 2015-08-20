@@ -19,7 +19,8 @@
     "angular": "1.4.x",
     "angular-ui-router": "0.2.x",
     "angular-resource": "1.4.x",
-    "appirio-tech-ng-messaging": "4.x.x"
+    "appirio-tech-ng-messaging": "5.x.x",
+    "appirio-tech-ng-api-services": "0.x.x"
   },
   "ignore": [
     "**/*",
