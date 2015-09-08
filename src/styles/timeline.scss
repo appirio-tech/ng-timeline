@@ -2,9 +2,8 @@
 @import "variables";
 
 timeline {
-  display         : block;
-  background-color: #E6E1E1;
-  padding         : 15px 20px;
+  display: block;
+  padding: 15px 20px;
 
   .avatars, .files {
      @include flex-center();
@@ -13,7 +12,7 @@ timeline {
   .avatar {
     width         : 35px;
     height        : 35px;
-    border        : 1px solid $primary-color-light;
+    border        : 1px solid $neutral-color-light;
     border-radius : 35px;
     margin-right  : 6px;
     display       : inline-block;
@@ -24,7 +23,7 @@ timeline {
     display     : inline-block;
     margin-right: 10px;
 
-    @include triangle($carat-width, $color-info, down);
+    @include triangle($carat-width, $neutral-color, down);
   }
 
   .expandable-content {
@@ -49,13 +48,38 @@ timeline {
     }
   }
 
+  li.completed {
+    &::before {
+      background-color: $success-color;
+    }
+
+    .point {
+      background-color: $primary-color;
+    }
+
+    button.point, a.point {
+      background-color: white;
+    }
+
+    .progress {
+      .percent {
+        color: $primary-color;
+      }
+    }
+  }
+
+  .events {
+    > li {
+      padding-bottom: $point-width;
+    }
+  }
+
   > ul {
     position : relative;
 
     > li {
-      border-left   : $timeline-width solid $primary-color-light;
-      color         : $primary-color;
-      padding-bottom: $point-width;
+      border-left   : $timeline-width solid $neutral-color-light;
+      padding-bottom: $padding-small;
       margin-left   : $head-width-big;
       display       : block;
 
@@ -66,7 +90,7 @@ timeline {
       //   width           : $timeline-width;
       //   margin-left     : -$timeline-width;
       //   height          : $point-width;
-      //   background-color: $primary-color-light;
+      //   background-color: $neutral-color-light;
       //   z-index         : 0;
       // }
 
@@ -86,7 +110,7 @@ timeline {
       //   }
       // }
 
-      > *:nth-child(n + 2) {
+      > *:nth-child(n + 2), > ul > li > *:nth-child(n + 2) {
         margin-left: $spacing + $lead-after-width + $point-width/2;
         margin-top: 10px;
       }
@@ -106,30 +130,6 @@ timeline {
 
       &.milestone {
         display: block;
-      }
-
-      &.passed {
-        border-color: $color-success;
-      }
-
-      &.completed {
-        &::before {
-          background-color: $color-success;
-        }
-
-        .point {
-          background-color: $color-success;
-        }
-
-        button.point, a.point {
-          background-color: white;
-        }
-
-        .progress {
-          .percent {
-            color: $color-success;
-          }
-        }
       }
     }
   }

@@ -18,7 +18,7 @@ timeline {
     .lead-after {
       border-top   : $lead-after-width solid transparent;
       border-bottom: $lead-after-width solid transparent;
-      border-right : $lead-after-width solid $color-info;
+      border-right : $lead-after-width solid $neutral-color;
       margin-left  : $spacing;
       visibility   : hidden;
     }
@@ -49,7 +49,7 @@ timeline {
       .notification {
         @include font-line($font-size-small);
 
-        background-color: $color-danger;
+        background-color: $danger-color;
         color           : white;
         position        : absolute;
         top             : -6px;
@@ -63,11 +63,7 @@ timeline {
       }
     }
 
-    label {
-      @include source-sans();
-      @include ellipsis(65%);
-
-      width      : 65%;
+    .headings {
       font-weight: none;
 
       time {
@@ -96,7 +92,7 @@ timeline {
         }
       }
 
-      label {
+      .headings {
         h4 {
           font-size: 20px;
           display  : inline-block;
@@ -132,7 +128,7 @@ timeline {
   .info {
     .checkpoint {
       .point {
-        background-color: $color-info;
+        background-color: $success-color;
 
         .info {
           display: block;
@@ -143,17 +139,17 @@ timeline {
         visibility: visible;
       }
 
-      label {
+      .headings {
         padding: $spacing-small;
       }
     }
 
     a {
-      color: $color-info;
+      color: $success-color;
     }
 
-    label {
-      background-color: $color-info;
+    .headings {
+      background-color: $success-color;
       color           : white;
     }
   }
