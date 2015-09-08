@@ -1,0 +1,23 @@
+section.checkpoint
+  .progress
+    .percent 0%
+
+    .status Complete
+
+    .day Day 1
+
+  .lead
+
+  button.clean.point
+
+  .lead-after
+
+  ul.headings
+    li
+      button.clean
+        h4 {{eventGroup.text}}
+
+    li
+      time {{ vm.completed[eventGroup.text] | date }}
+
+hr
