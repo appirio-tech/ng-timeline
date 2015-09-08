@@ -19,7 +19,7 @@ ul
 
       .lead
 
-      .point
+      button.clean.point
 
       .lead-after
 
@@ -57,15 +57,16 @@ ul
 
       .lead
 
-      .point
-        .info !
+      button.clean.point
 
       .lead-after
 
-      label
-        h4 Project Launched
+      ul.headings
+        li
+          h4 Project Launched
 
-        time {{ vm.events.launch.created }}
+        li
+          time {{ vm.events.launch.created }}
 
     hr
 
@@ -91,14 +92,16 @@ ul
 
       .lead
 
-      .point
+      button.clean.point
 
       .lead-after
 
-      label
-        h4 Design Concepts
+      ul.headings
+        li
+          h4 Design Concepts
 
-        time {{ vm.events.designConcepts.created }}
+        li
+          time {{ vm.events.designConcepts.created }}
 
     hr
 
@@ -131,14 +134,16 @@ ul
 
       .lead
 
-      .point
+      button.clean.point
 
       .lead-after
 
-      label
-        h4 Final Designs
+      ul.headings
+        li
+          h4 Final Designs
 
-        time {{ vm.events.finalDesigns.created }}
+        li
+          time {{ vm.events.finalDesigns.created }}
 
     hr
 
@@ -162,14 +167,16 @@ ul
 
       .lead
 
-      .point
+      button.clean.point
 
       .lead-after
 
-      label
-        h4 Final Fixes
+      ul.headings
+        li
+          h4 Final Fixes
 
-        time {{ vm.events.finalFixes.created }}
+        li
+          time {{ vm.events.finalFixes.created }}
 
     hr
 
@@ -196,14 +203,16 @@ ul
 
       .lead
 
-      .point
+      button.clean.point
 
       .lead-after
 
-      label
-        h4 Project Complete
+      ul.headings
+        li
+          h4 Project Complete
 
-        time {{vm.events.completed.created}}
+        li
+          time {{vm.events.completed.created}}
 
     hr
 

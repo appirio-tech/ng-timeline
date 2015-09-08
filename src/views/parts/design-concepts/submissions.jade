@@ -6,10 +6,9 @@ li.submissions.completed.no-progress(ng-show="vm.expanded.designConcepts")
 
     .lead-after
 
-    label
-      ul.avatars
-        li(ng-repeat="avatarUrl in vm.events.designConcepts.submissionAvatars track by $index")
-          avatar(avatar-url="{{ avatarUrl }}")
+    ul.avatars
+      li(ng-repeat="avatarUrl in vm.events.designConcepts.submissionAvatars track by $index")
+        avatar(avatar-url="{{ avatarUrl }}")
 
   p {{ vm.events.designConcepts.submissionAvatars.length }} people have submitted design concepts to your project.
 

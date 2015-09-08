@@ -13,12 +13,11 @@ li(
     .lead
 
     .point
-      .info !
 
     .lead-after
 
-    label(ng-hide="vm.events.confirmEmail.created") We sent an email to {{ vm.events.confirmEmail.address }}. <br /> Click the link in the email to verify your email address.
+    p(ng-hide="vm.events.confirmEmail.created") We sent an email to {{ vm.events.confirmEmail.address }}. <br /> Click the link in the email to verify your email address.
 
-    label(ng-show="vm.events.confirmEmail.created") Thanks! Your email is verified.
+    p(ng-show="vm.events.confirmEmail.created") Thanks! Your email is verified.
 
-  a.resend(href="#", ng-hide="vm.events.confirmEmail.created") Re-send Email
+  button(ng-hide="vm.events.confirmEmail.created") Re-send email

@@ -16,12 +16,16 @@ li(
 
     .lead-after
 
-    label(ng-hide="vm.events.assignCopilot.created") Assign Co-Pilot
+    p(ng-hide="vm.events.assignCopilot.created") Assign Co-Pilot
 
-    label(ng-show="vm.events.confirmEmail.created && !vm.events.assignCopilot.created") We are choosing a Co-Pilot best suited for your project.
+    p(ng-show="vm.events.confirmEmail.created && !vm.events.assignCopilot.created") We are choosing a Co-Pilot best suited for your project.
 
-    label(ng-show="vm.events.assignCopilot.created") Co-Pilot Assigned
-      time {{ vm.events.assignCopilot.created }}
+    ul.headings
+      li
+        p(ng-show="vm.events.assignCopilot.created") Co-Pilot Assigned
+
+      li
+        time {{ vm.events.assignCopilot.created }}
 
   .avatar-box(ng-show="vm.events.assignCopilot.handle")
     avatar(url="{{ vm.events.assignCopilot.avatar }}")

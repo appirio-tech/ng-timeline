@@ -11,6 +11,14 @@ timeline {
     position   : relative;
     overflow   : hidden;
 
+    > *:last-child {
+      @include flex-grow(2);
+    }
+
+    .headings {
+      @include flex-center(space-between);
+    }
+
     .progress, .lead {
       display: none;
     }
@@ -27,30 +35,27 @@ timeline {
       width           : $point-width;
       height          : $point-width;
       line-height     : $point-width - ($point-border-width * 2);
-      border          : $point-border-width solid white;
+      border          : $point-border-width solid $white;
       border-radius   : 50%;
-      background-color: grey;
       text-align      : center;
-      color           : #fff;
+      color           : $white;
       position        : relative;
-
-      .info {
-        display: none;
-      }
     }
+  }
 
+  ul.events {
     button.point, a.point {
       position: relative;
 
-      border-radius   : 4px;
-      color           : black;
+      border-radius   : $border-radius-small;
+      color           : $black;
       box-shadow      : 3px 2px 4px 0px rgba(0, 0, 0, 0.75);
 
       .notification {
         @include font-line($font-size-small);
 
         background-color: $danger-color;
-        color           : white;
+        color           : $white;
         position        : absolute;
         top             : -6px;
         right           : -6px;
@@ -62,17 +67,13 @@ timeline {
         margin: 0 auto;
       }
     }
-
-    .headings {
-      font-weight: none;
-
-      time {
-        margin-left: 10px;
-      }
-    }
   }
 
   .milestone {
+    hr {
+      margin-bottom: $margin-small;
+    }
+
     .checkpoint {
       margin-left: -$head-width-big;
 
@@ -87,23 +88,7 @@ timeline {
 
         &:before {
           content: '+';
-          line-height: $big-point-width - ($big-point-border-width * 2);
           font-size: 30px;
-        }
-      }
-
-      .headings {
-        h4 {
-          font-size: 20px;
-          display  : inline-block;
-          width    :  50%;
-        }
-
-        time {
-          width      : 50%;
-          text-align : right;
-          margin-left: 0;
-          display    : none;
         }
       }
     }
@@ -122,35 +107,6 @@ timeline {
   .no-progress {
     .checkpoint {
       margin-left: -$head-width;
-    }
-  }
-
-  .info {
-    .checkpoint {
-      .point {
-        background-color: $success-color;
-
-        .info {
-          display: block;
-        }
-      }
-
-      .lead-after {
-        visibility: visible;
-      }
-
-      .headings {
-        padding: $spacing-small;
-      }
-    }
-
-    a {
-      color: $success-color;
-    }
-
-    .headings {
-      background-color: $success-color;
-      color           : white;
     }
   }
 }

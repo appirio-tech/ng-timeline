@@ -16,9 +16,9 @@ li.quote(
 
     .lead-after
 
-    label(ng-hide="vm.events.quote.created") Generate Quote
+    p(ng-hide="vm.events.quote.created") Generate Quote
 
-    label(ng-show="vm.events.quote.created")
+    p(ng-show="vm.events.quote.created")
       .carat
 
       | Quote has been generated.
@@ -42,7 +42,7 @@ li.quote(
 
     ul
       li.accept
-        button.info Accept
+        button Accept
 
       li
         button Reject
