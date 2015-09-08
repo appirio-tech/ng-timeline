@@ -5,6 +5,7 @@ timeline {
   .checkpoint {
     @include transition (all 0.2s ease-in-out);
     @include flex-center();
+    @include flex-wrap(nowrap);
 
     margin-left: -$head-width;
     z-index    : 1;

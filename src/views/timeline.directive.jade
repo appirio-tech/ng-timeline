@@ -34,7 +34,7 @@ ul
     hr
 
   li
-    ul.events
+    ul.events(ng-show="vm.expanded.submitted")
       include parts/project-submitted/email
 
       include parts/project-submitted/copilot
@@ -71,7 +71,7 @@ ul
     hr
 
   li
-    ul.events
+    ul.events(ng-show="vm.expanded.launched")
       include parts/project-launched/members
 
       li.notification.messages.no-progress.completed(ng-show="vm.expanded.launched")
@@ -106,7 +106,7 @@ ul
     hr
 
   li
-    ul.events
+    ul.events(ng-show="vm.expanded.designConcepts")
       include parts/design-concepts/submissions
 
       li.comment.no-progress.completed(
@@ -115,10 +115,10 @@ ul
       )
         include parts/comment
 
-  include parts/design-concepts/winners
+      include parts/design-concepts/winners
 
-  li.notification.messages.no-progress.completed(ng-show="vm.expanded.designConcepts")
-    include parts/messages
+      li.notification.messages.no-progress.completed(ng-show="vm.expanded.designConcepts")
+        include parts/messages
 
   li.milestone(
     ng-class="{ completed: vm.events.finalDesigns.created, passed: vm.events.finalDesigns.created, expanded: vm.expanded.finalDesigns }"
@@ -148,7 +148,7 @@ ul
     hr
 
   li
-    ul.events
+    ul.events(ng-show="vm.expanded.finalDesigns")
       include parts/final-designs/submissions
 
       include parts/final-designs/winners
@@ -181,7 +181,7 @@ ul
     hr
 
   li
-    ul.events
+    ul.events(ng-show="vm.expanded.finalFixes")
       include parts/final-fixes/submissions
 
       li.comment.no-progress.completed(
