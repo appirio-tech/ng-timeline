@@ -1,11 +1,13 @@
-li.winners.completed.no-progress
-  section.checkpoint
-    .point
+div(ng-if="event.type == 'userAvatars' ")
+  ul
+    li.winners.completed.no-progress
+      section.checkpoint
+        .point
 
-    .lead-after
+        .lead-after
 
-    p Congratulations! You have confirmed your winners for the design concepts phase.
+        p(ng-if="eventGroup.createdTime") Congratulations! You have confirmed your winners for the design concepts phase.
 
-  ul.avatars
-    li(ng-repeat="avatar in vm.events.designConcepts.winnerAvatars track by $index")
-      avatar(avatar-url="{{ avatar }}")
+      ul.avatars
+        li(ng-repeat="avatar in event.avatars track by $index")
+          avatar(avatar-url="{{ avatar }}")

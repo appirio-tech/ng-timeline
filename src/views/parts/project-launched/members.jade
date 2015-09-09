@@ -1,5 +1,6 @@
-li(
-  ng-class="{ completed: vm.events.members.length, passed: 1, expanded: vm.expanded.launched }"
+div(
+  ng-if="event.type == 'memberRegistration'"
+  ng-class="{ completed: vm.events.members.length, expanded: vm.expanded['Project Launched'] }"
 )
   section.checkpoint
     .progress
@@ -18,14 +19,14 @@ li(
     p
       .carat
 
-      span {{ vm.events.members.length }} member(s) have joined.
+      span {{ event.members.length }} member(s) have joined.
 
   .expandable-content
     button(type="button").clean.close &times;
 
     ul
-      li(ng-repeat="member in vm.events.members track by $index")
-        avatar(url="{{ member.avatar }}")
+      li(ng-repeat="member in event.members track by $index")
+        avatar(url="{{ member.avatarUrl }}")
 
         a {{ member.handle }} 
 

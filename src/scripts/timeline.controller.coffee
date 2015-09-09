@@ -3,22 +3,16 @@
 TimelineController = ($scope, $stateParams, TimelineAPIService) ->
   vm        = this
   vm.eventGroups = []
+  vm.showMessagingWidget = false
 
   vm.expanded =
     'Project Submitted'     : false
     'Project Launched'      : false
-    # designConcepts: false
-    # finalDesigns  : false
-    # finalFixes    : false
+    'Design Concepts' : false
+    'Final Designs'  : false
+    'Final Fixes'    : false
 
   approve = ->
-
-  vm.itemCompleted = (events, item) ->
-    completed = false
-    events.forEach (event) ->
-      if event.type == item
-        completed = true
-    completed
 
   activate = ->
     vm.workId = $scope.workId

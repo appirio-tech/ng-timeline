@@ -30,189 +30,25 @@ ul
             h4 {{eventGroup.text}}
 
         li
-          time {{ vm.completed[eventGroup.text] | date }}
+          time {{ eventGroup.createdTime | date }}
 
     hr
 
   li(ng-repeat-end)
     ul.events(ng-show="vm.expanded[eventGroup.text]")
       li(ng-repeat="event in eventGroup.events track by $index")
+        include parts/messages
+        include parts/comment
+
         include parts/project-submitted/statusUpdate
         include parts/project-submitted/copilot
         include parts/project-submitted/quote
 
+        include parts/project-launched/members
 
-  //- li.milestone(
-  //-   ng-class="{ completed: vm.events.launch.created, passed: vm.events.launch.created, expanded: vm.expanded.launched }"
-  //-   ng-click="vm.expanded.launched = !vm.expanded.launched"
-  //- )
-  //-   section.checkpoint
-  //-     .progress
-  //-       .percent 25%
+        include parts/design-concepts/submissions
+        include parts/design-concepts/winners
 
-  //-       .status Complete
-
-  //-       .day Day 1
-
-  //-     .lead
-
-  //-     button.clean.point
-
-  //-     .lead-after
-
-  //-     ul.headings
-  //-       li
-  //-         h4 Project Launched
-
-  //-       li
-  //-         time {{ vm.events.launch.created }}
-
-  //-   hr
-
-  //- li
-  //-   ul.events(ng-show="vm.expanded.launched")
-  //-     include parts/project-launched/members
-
-  //-     li.notification.messages.no-progress.completed(ng-show="vm.expanded.launched")
-  //-       include parts/messages
-
-
-  //- li.milestone(
-  //-   ng-class="{ completed: vm.events.designConcepts.created, passed: vm.events.designConcepts.created, expanded: vm.expanded.designConcepts }"
-  //-   ng-click="vm.expanded.designConcepts = !vm.expanded.designConcepts"
-  //- )
-  //-   section.checkpoint
-  //-     .progress
-  //-       .percent 55%
-
-  //-       .status Complete
-
-  //-       .day Day 14
-
-  //-     .lead
-
-  //-     button.clean.point
-
-  //-     .lead-after
-
-  //-     ul.headings
-  //-       li
-  //-         h4 Design Concepts
-
-  //-       li
-  //-         time {{ vm.events.designConcepts.created }}
-
-  //-   hr
-
-  //- li
-  //-   ul.events(ng-show="vm.expanded.designConcepts")
-  //-     include parts/design-concepts/submissions
-
-  //-     li.comment.no-progress.completed(
-  //-       ng-repeat="comment in vm.events.designConcepts.comments track by $index"
-  //-       ng-show="vm.expanded.designConcepts"
-  //-     )
-  //-       include parts/comment
-
-  //-     include parts/design-concepts/winners
-
-  //-     li.notification.messages.no-progress.completed(ng-show="vm.expanded.designConcepts")
-  //-       include parts/messages
-
-  //- li.milestone(
-  //-   ng-class="{ completed: vm.events.finalDesigns.created, passed: vm.events.finalDesigns.created, expanded: vm.expanded.finalDesigns }"
-  //-   ng-click="vm.expanded.finalDesigns = !vm.expanded.finalDesigns"
-  //- )
-  //-   section.checkpoint
-  //-     .progress
-  //-       .percent 70%
-
-  //-       .status Complete
-
-  //-       .day Day 20
-
-  //-     .lead
-
-  //-     button.clean.point
-
-  //-     .lead-after
-
-  //-     ul.headings
-  //-       li
-  //-         h4 Final Designs
-
-  //-       li
-  //-         time {{ vm.events.finalDesigns.created }}
-
-  //-   hr
-
-  //- li
-  //-   ul.events(ng-show="vm.expanded.finalDesigns")
-  //-     include parts/final-designs/submissions
-
-  //-     include parts/final-designs/winners
-
-  //- li.milestone(
-  //-   ng-class="{ completed: vm.events.finalFixes.created, passed: vm.events.finalFixes.created, expanded: vm.expanded.finalFixes }"
-  //-   ng-click="vm.expanded.finalFixes = !vm.expanded.finalFixes"
-  //- )
-  //-   section.checkpoint
-  //-     .progress
-  //-       .percent 70%
-
-  //-       .status Complete
-
-  //-       .day Day 20
-
-  //-     .lead
-
-  //-     button.clean.point
-
-  //-     .lead-after
-
-  //-     ul.headings
-  //-       li
-  //-         h4 Final Fixes
-
-  //-       li
-  //-         time {{ vm.events.finalFixes.created }}
-
-  //-   hr
-
-  //- li
-  //-   ul.events(ng-show="vm.expanded.finalFixes")
-  //-     include parts/final-fixes/submissions
-
-  //-     li.comment.no-progress.completed(
-  //-       ng-repeat="comment in vm.events.finalFixes.comments track by $index"
-  //-       ng-show="vm.expanded.finalFixes"
-  //-     )
-  //-       include parts/comment
-
-  //-     include parts/final-fixes/completed
-
-  //- li.milestone(ng-class="{ completed: vm.events.completed, passed: vm.events.completed }")
-  //-   section.checkpoint
-  //-     .progress
-  //-       .percent 100%
-
-  //-       .status Complete
-
-  //-       .day Day 20
-
-  //-     .lead
-
-  //-     button.clean.point
-
-  //-     .lead-after
-
-  //-     ul.headings
-  //-       li
-  //-         h4 Project Complete
-
-  //-       li
-  //-         time {{vm.events.completed.created}}
-
-  //-   hr
-
+        include parts/final-designs/submissions
+        include parts/final-designs/winners
 

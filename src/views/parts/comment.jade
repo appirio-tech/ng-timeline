@@ -1,20 +1,21 @@
-section.checkpoint
-  button.clean.point(ng-click="vm.showMessagingWidget = true")
-    .notification {{ comment.notification }}
+div(ng-if="event.type == 'submissionThreadsInfo' ")
+  section.checkpoint
+    button.clean.point(ng-click="vm.showMessagingWidget = true")
+      .notification {{ event.threadInfo.unreadMessageCount }}
 
-    .icon.envelope.smallest
+      .icon.envelope.smallest
 
-  .lead-after
+    .lead-after
 
-  p
-    avatar(ng-src="{{ comment.avatar }}")
+    p
+      avatar(ng-src="{{ event.threadInfo.lastMessage.avatar }}")
 
-    | {{ comment.handle }}
+      | {{ event.threadInfo.lastMessage.handle }}
 
-p Ok, I'll give the yellow buttons at the top a try and see how it looks.
+  p Ok, I'll give the yellow buttons at the top a try and see how it looks.
 
-ul.files
-  li(ng-repeat="thumbnail in comment.thumbnails track by $index")
-    img(ng-src="{{ thumbnail }} ")
+  ul.files
+    li(ng-repeat="thumbnail in event.threadInfo.submissionThumbnails track by $index")
+      img(ng-src="{{ thumbnail }} ")
 
-a(href="#") view message
+  a(href="#") view message
