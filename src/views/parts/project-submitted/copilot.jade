@@ -1,5 +1,6 @@
 div(
-  ng-class="{ completed: event.eventTime, passed: vm.itemCompleted(eventGroup.events, 'quoteInfo'), expanded: 1 }"
+  ng-if="event.type == 'copilotAssigned' "
+  ng-class="{ completed: event.eventTime, expanded: 1 }"
 )
   section.checkpoint
     .progress

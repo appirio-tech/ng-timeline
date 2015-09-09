@@ -6,7 +6,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
 
   vm.expanded =
     'Project Submitted'     : false
-    # launched      : false
+    'Project Launched'      : false
     # designConcepts: false
     # finalDesigns  : false
     # finalFixes    : false

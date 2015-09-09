@@ -1,4 +1,4 @@
-div
+div(ng-if="event.type == 'statusUpdate'")
   p {{event.text}}
 
   time {{event.eventTime}}

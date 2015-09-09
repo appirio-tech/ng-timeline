@@ -37,10 +37,9 @@ ul
   li(ng-repeat-end)
     ul.events(ng-show="vm.expanded[eventGroup.text]")
       li(ng-repeat="event in eventGroup.events track by $index")
-        div(ng-if="event.type == 'statusUpdate'")
-          include parts/project-submitted/statusUpdate
-        div(ng-if="event.type == 'copilotAssigned' ")
-          include parts/project-submitted/copilot
+        include parts/project-submitted/statusUpdate
+        include parts/project-submitted/copilot
+        include parts/project-submitted/quote
 
 
   //- li.milestone(
