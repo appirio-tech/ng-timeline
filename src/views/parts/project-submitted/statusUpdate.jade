@@ -1,4 +1,6 @@
-div(ng-if="event.type == 'statusUpdate'")
+li(ng-if="event.type == 'statusUpdate' ")
+  .point
+
   p {{event.text}}
 
   time {{event.eventTime}}
