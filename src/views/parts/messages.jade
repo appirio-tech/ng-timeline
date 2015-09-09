@@ -1,4 +1,4 @@
-li(ng-if="event.type == 'threadInfo' ")
+div(ng-if="event.type == 'threadInfo' ")
   section.checkpoint
     button.point.count.clean(ng-click="vm.showMessagingWidget = true")
       .notification {{ event.unreadMessageCount }}

@@ -12,8 +12,6 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
     'Final Designs'  : false
     'Final Fixes'    : false
 
-  approve = ->
-
   activate = ->
     vm.workId = $scope.workId
 
