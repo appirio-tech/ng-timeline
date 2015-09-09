@@ -1,4 +1,4 @@
-li.submissions.completed.no-progress(ng-if="event.type == 'userAvatars' ")
+li.submissions.completed.no-progress(ng-if="event.type == 'workStepSubmitters' ")
   section.checkpoint
     a(href="#")
       button.point.count.clean(ng-click="vm.showMessagingWidget = true" title="download files")
@@ -10,7 +10,7 @@ li.submissions.completed.no-progress(ng-if="event.type == 'userAvatars' ")
       li(ng-repeat="avatarUrl in event.avatars track by $index")
         avatar(avatar-url="{{ avatarUrl }}")
 
-  p {{ event.avatars.length }} people have submitted design concepts to your project.
+  p {{ event.avatars.length }} people have submitted {{eventGroup.text}} to your project.
 
   p
     a(href="#") View all submissions

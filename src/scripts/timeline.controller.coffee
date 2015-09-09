@@ -18,7 +18,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
     params =
       workId: vm.workId
 
-    resource = TimelineAPIService.get params
+    resource = TimelineAPIService.query params
     resource.$promise.then (data) ->
       vm.eventGroups = data
 

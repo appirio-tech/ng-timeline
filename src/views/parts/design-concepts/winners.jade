@@ -1,10 +1,10 @@
-li.winners.completed.no-progress(ng-if="event.type == 'userAvatars' ")
+li.winners.completed.no-progress(ng-if="event.type == 'workStepWinners' ")
   section.checkpoint
     .point
 
     .lead-after
 
-    p(ng-if="eventGroup.createdTime") Congratulations! You have confirmed your winners for the design concepts phase.
+    p(ng-if="eventGroup.createdTime") Congratulations! You have confirmed your winners for the {{eventGroup.text}} phase.
 
   ul.avatars
     li(ng-repeat="avatar in event.avatars track by $index")
