@@ -34,19 +34,17 @@ ul
 
     hr
 
-  li(ng-repeat-end)
+  li(ng-repeat-end ng-repeat="event in eventGroup.events track by $index")
     ul.events(ng-show="vm.expanded[eventGroup.text]")
-      li(ng-repeat="event in eventGroup.events track by $index")
-        ul
-          include parts/messages
-          include parts/comment
+      include parts/messages
+      include parts/comment
 
-          include parts/project-submitted/statusUpdate
-          include parts/project-submitted/copilot
-          include parts/project-submitted/quote
+      include parts/project-submitted/statusUpdate
+      include parts/project-submitted/copilot
+      include parts/project-submitted/quote
 
-          include parts/project-launched/members
+      include parts/project-launched/members
 
-          include parts/design-concepts/submissions
-          include parts/design-concepts/winners
+      include parts/design-concepts/submissions
+      include parts/design-concepts/winners
 
