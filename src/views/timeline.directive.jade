@@ -7,8 +7,8 @@ hr
 ul
   li.milestone.completed(
     ng-repeat-start="eventGroup in vm.eventGroups"
-    ng-class="{ completed: vm.completed.submitted, expanded: vm.expanded.submitted }"
-    ng-click="vm.expanded.submitted = !vm.expanded.submitted"
+    ng-class="{ completed: vm.completed[eventGroup.text], expanded: vm.expanded[eventGroup.text] }"
+    ng-click="vm.expanded[eventGroup.text] = !vm.expanded[eventGroup.text]"
   )
     section.checkpoint
       .progress
@@ -35,10 +35,13 @@ ul
     hr
 
   li(ng-repeat-end)
-    ul.events(ng-show="vm.expanded.submitted")
+    ul.events(ng-show="vm.expanded[eventGroup.text]")
       li(ng-repeat="event in eventGroup.events track by $index")
-        if ("{{event.type}}"=== 'statusUpdate')
-         {{event.name}}
+        div(ng-if="event.type == 'statusUpdate'")
+          include parts/project-submitted/statusUpdate
+        div(ng-if="event.type == 'copilotAssigned' ")
+          include parts/project-submitted/copilot
+
 
   //- li.milestone(
   //-   ng-class="{ completed: vm.events.launch.created, passed: vm.events.launch.created, expanded: vm.expanded.launched }"
