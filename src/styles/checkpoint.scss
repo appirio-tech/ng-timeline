@@ -1,0 +1,113 @@
+@import "work-includes";
+@import "variables";
+
+timeline {
+  .checkpoint {
+    @include transition (all 0.2s ease-in-out);
+    @include flex-center();
+    @include flex-wrap(nowrap);
+
+    margin-left: -$head-width;
+    z-index    : 1;
+    position   : relative;
+    overflow   : hidden;
+
+    > *:last-child {
+      @include flex-grow(2);
+    }
+
+    .headings {
+      @include flex-center(space-between);
+    }
+
+    .progress, .lead {
+      display: none;
+    }
+
+    .lead-after {
+      border-top   : $lead-after-width solid transparent;
+      border-bottom: $lead-after-width solid transparent;
+      border-right : $lead-after-width solid $neutral-color;
+      margin-left  : $spacing;
+      visibility   : hidden;
+    }
+
+    .point {
+      width           : $point-width;
+      height          : $point-width;
+      line-height     : $point-width - ($point-border-width * 2);
+      border          : $point-border-width solid $white;
+      border-radius   : 50%;
+      text-align      : center;
+      color           : $white;
+      position        : relative;
+    }
+  }
+
+  ul.events {
+    button.point, a.point {
+      position: relative;
+
+      border-radius   : $border-radius-small;
+      color           : $black;
+      box-shadow      : 3px 2px 4px 0px rgba(0, 0, 0, 0.75);
+
+      .notification {
+        @include font-line($font-size-small);
+
+        background-color: $danger-color;
+        color           : $white;
+        position        : absolute;
+        top             : -6px;
+        right           : -6px;
+        padding         : 2px 3px;
+        border-radius   : $border-radius;
+      }
+
+      .icon {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .milestone {
+    hr {
+      margin-bottom: $margin-small;
+    }
+
+    .checkpoint {
+      margin-left: -$head-width-big;
+
+      .lead-after {
+        margin-left: $spacing - ($big-point-width/2 - $point-width/2);
+      }
+
+      .point {
+        width       : $big-point-width;
+        height      : $big-point-width;
+        border-width: $big-point-border-width;
+
+        &:before {
+          content: '+';
+          font-size: 30px;
+        }
+      }
+    }
+
+    &.expanded {
+      .checkpoint {
+        .point {
+          &:before {
+            content: '-';
+          }
+        }
+      }
+    }
+  }
+
+  .no-progress {
+    .checkpoint {
+      margin-left: -$head-width;
+    }
+  }
+}
