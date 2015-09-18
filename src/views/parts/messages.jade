@@ -1,23 +1,24 @@
-section.checkpoint
-  button.point.count.clean(ng-click="vm.showMessagingWidget = true")
-    .notification {{ message.notification }}
+li.notification.messages.no-progress.completed(ng-if="event.type == 'THREAD_INFO' ")
+  section.checkpoint
+    button.point.count.clean(ng-click="vm.showMessagingWidget = true")
+      .notification {{ event.unreadMessageCount }}
 
-  .lead-after
+    .lead-after
 
-  p
-    avatar(url="{{ message.avatar }}")
+    p
+      avatar(url="{{ event.lastMessage.avatarUrl }}")
 
-    | {{ message.message }}
+      | {{ event.lastMessage.content }}
 
-ul.links
-  li
-    button.clean(ng-click="vm.showMessagingWidget = true") View
+  ul.links
+    li
+      button.clean(ng-click="vm.showMessagingWidget = true") View
 
-  li
-    a(ui-sref="messaging({ id: message.threadId })") View full thread
+    li
+      a(ui-sref="messaging({ id: event.threadId })") View full thread
 
-.expandable-content(ng-class="{ active: vm.showMessagingWidget }")
-  button.clean.close(ng-click="vm.showMessagingWidget = false") &times;
+  .expandable-content(ng-class="{ active: vm.showMessagingWidget }")
+    button.clean.close(ng-click="vm.showMessagingWidget = false") &times;
 
-  messaging.widget(thread-id="{{ message.threadId }}" subscriber-id="Batman")
+    messaging.widget(thread-id="{{ event.threadId }}" subscriber-id="Batman")
 

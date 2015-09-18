@@ -1,5 +1,6 @@
 li(
-  ng-class="{ completed: vm.events.assignCopilot.created, passed: vm.events.quote.created, expanded: 1 }"
+  ng-if="event.type == 'COPILOT_ASSIGNED' "
+  ng-class="{ completed: event.eventTime, expanded: 1 }"
 )
   section.checkpoint
     .progress
@@ -15,22 +16,20 @@ li(
 
     .lead-after
 
-    p(ng-hide="vm.events.assignCopilot.created") Assign Co-Pilot
-
-    p(ng-show="vm.events.confirmEmail.created && !vm.events.assignCopilot.created") We are choosing a Co-Pilot best suited for your project.
+    p(ng-hide="event.eventTime") Assign Co-Pilot
 
     ul.headings
       li
-        p(ng-show="vm.events.assignCopilot.created") Co-Pilot Assigned
+        p(ng-show="event.eventTime") Co-Pilot Assigned
 
       li
-        time {{ vm.events.assignCopilot.created }}
+        time {{ event.eventTime }}
 
-  .avatar-box(ng-show="vm.events.assignCopilot.handle")
-    avatar(url="{{ vm.events.assignCopilot.avatar }}")
+  .avatar-box(ng-show="event.copilot.handle")
+    avatar(url="{{ event.copilot.avatarUrl }}")
 
     | Hi I'm 
 
-    a(href="#") {{ vm.events.assignCopilot.handle }}
+    a(href="#") {{ event.copilot.handle }}
 
     |. I'll be your project manager.

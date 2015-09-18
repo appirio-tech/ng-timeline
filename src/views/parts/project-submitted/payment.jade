@@ -1,5 +1,5 @@
 li(
-  ng-class="{ completed: vm.events.paymentAccepted.created, passed: vm.events.launch.created }"
+  ng-if="event.type == 'PAYMENT_ACCEPTED' "
 )
   section.checkpoint
     .progress
@@ -15,6 +15,4 @@ li(
 
     .lead-after
 
-    p(ng-hide="vm.events.paymentAccepted.created") Add Payment Method
-
-    p(ng-show="vm.events.paymentAccepted.created") Payment Method Accepted.
+    p(ng-hide="vm.events.paymentAccepted.created") {{event.text}}

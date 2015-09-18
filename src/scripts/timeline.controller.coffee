@@ -2,14 +2,15 @@
 
 TimelineController = ($scope, $stateParams, TimelineAPIService) ->
   vm        = this
-  vm.events = {}
+  vm.eventGroups = []
+  vm.showMessagingWidget = false
 
   vm.expanded =
-    submitted     : false
-    launched      : false
-    designConcepts: false
-    finalDesigns  : false
-    finalFixes    : false
+    'Project Submitted'     : false
+    'Project Launched'      : false
+    'Design Concepts' : false
+    'Final Designs'  : false
+    'Final Fixes'    : false
 
   activate = ->
     vm.workId = $scope.workId
@@ -17,9 +18,9 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
     params =
       workId: vm.workId
 
-    resource = TimelineAPIService.get params
+    resource = TimelineAPIService.query params
     resource.$promise.then (data) ->
-      vm.events = data
+      vm.eventGroups = data
 
     vm
 
