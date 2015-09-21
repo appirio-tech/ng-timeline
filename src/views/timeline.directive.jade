@@ -1,219 +1,218 @@
 - dateFilter = '| date : "h:mma MMMM d, y"'
 
-h1 Project Timeline
+h2 Timeline
 
-hr
+main
+  .timeline
 
-ul
-  li.milestone.completed(
-    ng-class="{ completed: vm.completed.submitted, expanded: vm.expanded.submitted }"
-    ng-click="vm.expanded.submitted = !vm.expanded.submitted"
-  )
-    section.checkpoint
-      .progress
-        .percent 0%
+  ul
+    li.event-group
+      header
+        button.clean.point(ng-click="vm.expanded.submitted = !vm.expanded.submitted") +
 
-        .status Complete
+        h4 Project submitted
 
-        .day Day 1
+        time 3 days ago
 
-      .lead
-
-      button.clean.point
-
-      .lead-after
-
-      ul.headings
+      ul.events(ng-class="{expanded: vm.expanded.submitted }")
         li
-          button.clean
-            h4 Project Submitted
+          hr
+
+        li.event
+          button.clean.point +
+
+          include parts/copilot
 
         li
-          time {{ vm.completed.submitted | date }}
+          hr.biggest
 
-    hr
+        li.event
+          button.clean.point +
 
-  li
-    ul.events(ng-show="vm.expanded.submitted")
-      include parts/project-submitted/email
-
-      include parts/project-submitted/copilot
-
-      include parts/project-submitted/quote
-
-      include parts/project-submitted/payment
-
-  li.milestone(
-    ng-class="{ completed: vm.events.launch.created, passed: vm.events.launch.created, expanded: vm.expanded.launched }"
-    ng-click="vm.expanded.launched = !vm.expanded.launched"
-  )
-    section.checkpoint
-      .progress
-        .percent 25%
-
-        .status Complete
-
-        .day Day 1
-
-      .lead
-
-      button.clean.point
-
-      .lead-after
-
-      ul.headings
-        li
-          h4 Project Launched
+          include parts/quote
 
         li
-          time {{ vm.events.launch.created }}
+          hr.biggest
 
-    hr
+        li.event
+          button.clean.point +
 
-  li
-    ul.events(ng-show="vm.expanded.launched")
-      include parts/project-launched/members
+          include parts/payment
 
-      li.notification.messages.no-progress.completed(ng-show="vm.expanded.launched")
-        include parts/messages
+        li.event.finish
+          button.clean.point +
 
+          include parts/payment-added
 
-  li.milestone(
-    ng-class="{ completed: vm.events.designConcepts.created, passed: vm.events.designConcepts.created, expanded: vm.expanded.designConcepts }"
-    ng-click="vm.expanded.designConcepts = !vm.expanded.designConcepts"
-  )
-    section.checkpoint
-      .progress
-        .percent 55%
+    li.splitter
 
-        .status Complete
+    li.event-group
+      header
+        button.clean.point +
 
-        .day Day 14
+        h4 Project launched
 
-      .lead
+        time 3 days ago
 
-      button.clean.point
-
-      .lead-after
-
-      ul.headings
+      ul.events
         li
-          h4 Design Concepts
+          hr
+
+        li.event
+          button.clean.point +
+
+          include parts/members
 
         li
-          time {{ vm.events.designConcepts.created }}
+          hr.biggest
 
-    hr
+        li.event
+          button.clean.point +
 
-  li
-    ul.events(ng-show="vm.expanded.designConcepts")
-      include parts/design-concepts/submissions
+          timeline-messaging
+            include parts/messages
 
-      li.comment.no-progress.completed(
-        ng-repeat="comment in vm.events.designConcepts.comments track by $index"
-        ng-show="vm.expanded.designConcepts"
-      )
-        include parts/comment
+    li.splitter
 
-      include parts/design-concepts/winners
+    li.event-group
+      header
+        button.clean.point +
 
-      li.notification.messages.no-progress.completed(ng-show="vm.expanded.designConcepts")
-        include parts/messages
+        h4 Design concepts
 
-  li.milestone(
-    ng-class="{ completed: vm.events.finalDesigns.created, passed: vm.events.finalDesigns.created, expanded: vm.expanded.finalDesigns }"
-    ng-click="vm.expanded.finalDesigns = !vm.expanded.finalDesigns"
-  )
-    section.checkpoint
-      .progress
-        .percent 70%
+        time 3 days ago
 
-        .status Complete
-
-        .day Day 20
-
-      .lead
-
-      button.clean.point
-
-      .lead-after
-
-      ul.headings
+      ul.events
         li
-          h4 Final Designs
+          hr.biggest
+
+        li.event
+          button.clean.point +
+
+          include parts/submissions
 
         li
-          time {{ vm.events.finalDesigns.created }}
+          hr.biggest
 
-    hr
+        li.event
+          button.clean.point +
 
-  li
-    ul.events(ng-show="vm.expanded.finalDesigns")
-      include parts/final-designs/submissions
-
-      include parts/final-designs/winners
-
-  li.milestone(
-    ng-class="{ completed: vm.events.finalFixes.created, passed: vm.events.finalFixes.created, expanded: vm.expanded.finalFixes }"
-    ng-click="vm.expanded.finalFixes = !vm.expanded.finalFixes"
-  )
-    section.checkpoint
-      .progress
-        .percent 70%
-
-        .status Complete
-
-        .day Day 20
-
-      .lead
-
-      button.clean.point
-
-      .lead-after
-
-      ul.headings
-        li
-          h4 Final Fixes
+          timeline-comments
+            include parts/comments
 
         li
-          time {{ vm.events.finalFixes.created }}
+          hr.biggest
 
-    hr
+        li.event
+          button.clean.point +
 
-  li
-    ul.events(ng-show="vm.expanded.finalFixes")
-      include parts/final-fixes/submissions
-
-      li.comment.no-progress.completed(
-        ng-repeat="comment in vm.events.finalFixes.comments track by $index"
-        ng-show="vm.expanded.finalFixes"
-      )
-        include parts/comment
-
-      include parts/final-fixes/completed
-
-  li.milestone(ng-class="{ completed: vm.events.completed, passed: vm.events.completed }")
-    section.checkpoint
-      .progress
-        .percent 100%
-
-        .status Complete
-
-        .day Day 20
-
-      .lead
-
-      button.clean.point
-
-      .lead-after
-
-      ul.headings
-        li
-          h4 Project Complete
+          timeline-messaging
+            include parts/messages
 
         li
-          time {{vm.events.completed.created}}
+          hr.biggest
 
-    hr
+        li.event.finish
+          button.clean.point +
 
+          include parts/select-winners
+
+          include parts/winners
+
+    li.splitter
+
+    li.event-group
+      header
+        button.clean.point +
+
+        h4 Final design phase
+
+        time 3 days ago
+
+      ul.events
+        li
+          hr.biggest
+
+        li.event
+          button.clean.point +
+
+          include parts/submissions
+
+        li
+          hr.biggest
+
+        li.event
+          button.clean.point +
+
+          timeline-comments
+            include parts/comments
+
+        li
+          hr.biggest
+
+        li.event
+          button.clean.point +
+
+          timeline-messaging
+            include parts/messages
+
+        li
+          hr.biggest
+
+        li.event.finish
+          button.clean.point +
+
+          include parts/select-winners
+
+          include parts/winners
+
+    li.splitter
+
+    li.event-group
+      header
+        button.clean.point +
+
+        h4 Development launched
+
+        time 3 days ago
+
+      ul.events
+        li
+          hr.biggest
+
+        li.event
+          button.clean.point +
+
+          include parts/copilot
+
+        li
+          hr.biggest
+
+        li.event
+          button.clean.point +
+
+          timeline-messaging
+            include parts/messages
+
+    li.splitter
+
+    li.event-group
+      header
+        button.clean.point +
+
+        h4 Development begins
+
+        time 3 days ago
+
+      ul.events
+        li
+          hr.biggest
+
+        li.event
+          button.clean.point +
+
+          h1 April 5th status report
+
+          p.time
+            time 20 days ago
 

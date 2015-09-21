@@ -1,21 +1,45 @@
 @import "work-includes";
-@import "variables";
 
-timeline {
-  li.messages {
-    .links {
-      button {
-        text-decoration: underline;
-        color: blue;
-      }
+timeline-messaging {
+  display: block;
+
+  .header {
+    @include flex-center;
+
+    width: 100%;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      background-color: pink;
     }
 
-    ul.links {
-      li {
-        display: inline-block;
-        margin-right: 20px;
+    avatar {
+      margin-left: $margin-small;
+    }
+
+    .name {
+      @include flex-grow(2);
+
+      text-align: left;
+      margin-left: $margin-smallest;
+
+      p {
+        margin-top: 0;
+      }
+
+      .role {
+        color: $neutral-color;
       }
     }
   }
 
+  textarea {
+    margin: 0 auto;
+    margin-top: $margin-small;
+  }
+
+  > button, > button.action {
+    margin: $margin-small;
+  }
 }

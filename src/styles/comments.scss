@@ -1,0 +1,68 @@
+@import "work-includes";
+
+timeline-comments {
+  display: block;
+
+  .header {
+    @include flex-center;
+
+    width: 100%;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+    }
+
+    avatar {
+      margin-left: $margin-small;
+    }
+
+    .name {
+      @include flex-grow(2);
+
+      text-align: left;
+      margin-left: $margin-smallest;
+
+      p {
+        margin-top: 0;
+      }
+
+      .role {
+        color: $neutral-color;
+      }
+    }
+  }
+
+  .notification {
+    background-color: $danger-color;
+    color           : white;
+    position        : absolute;
+    top             : -5px;
+    right           : -5px;
+    padding         : 4px;
+    border-radius   : $border-radius;
+  }
+
+  .submissions {
+    @include flex-center(center);
+
+    li {
+      margin: $margin-small;
+      position: relative;
+    }
+
+    .img {
+      width: 100px;
+      height: 100px;
+      background-color: purple;
+    }
+  }
+
+
+  > button {
+    display: block;
+    margin: 0 auto;
+    margin-top: $margin-small;
+  }
+}
