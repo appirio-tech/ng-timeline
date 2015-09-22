@@ -91,13 +91,14 @@ timeline {
     .events {
       @include transition (all 0.3s ease-in-out);
 
-      // max-height: 0px; uncomment for hide/show interaction
-      overflow: hidden;
-      position: relative;
+      // uncomment for hide/show interaction
+      // max-height: 0px;
+      // overflow: hidden;
+      // position: relative;
 
-      .point {
-        display: none;
-      }
+      // .point {
+      //   display: none;
+      // }
 
       &.expanded {
         max-height: 750px;
@@ -107,6 +108,16 @@ timeline {
           display: block;
         }
       }
+    }
+  }
+
+  .complete {
+    h1 {
+      text-align: left;
+    }
+
+    p {
+      color: $primary-color;
     }
   }
 

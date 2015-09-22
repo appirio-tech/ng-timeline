@@ -40,6 +40,6 @@ timeline-messaging {
   }
 
   > button, > button.action {
-    margin: $margin-small;
+    margin: $margin-small $margin-smallest 0 $margin-smallest;
   }
 }

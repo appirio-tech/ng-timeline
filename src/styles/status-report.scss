@@ -1,0 +1,24 @@
+@import "work-includes";
+
+timeline-status-report, timeline-final-deliverables {
+  > ul {
+    @include flex-center(center);
+
+    margin-top: $margin-small;
+
+    li {
+      margin: 0 $margin-smallest;
+    }
+
+    .img {
+      width: 180px;
+      height: 180px;
+
+      background-color: purple;
+    }
+  }
+
+  > button, > button.action {
+    margin: $margin-small $margin-smallest 0 $margin-smallest;
+  }
+}

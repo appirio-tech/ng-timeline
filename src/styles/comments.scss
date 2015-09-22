@@ -47,14 +47,16 @@ timeline-comments {
   .submissions {
     @include flex-center(center);
 
+    margin-top: $margin-small;
+
     li {
-      margin: $margin-small;
+      margin: 0 $margin-smallest;
       position: relative;
     }
 
     .img {
-      width: 100px;
-      height: 100px;
+      width: 180px;
+      height: 180px;
       background-color: purple;
     }
   }
