@@ -53,10 +53,13 @@ angular.module("appirio-tech-ng-timeline").run(["$templateCache", function($temp
         return !eventGroup.createdTime;
       });
       sorted = timeStamped.sort(function(prev, next) {
-        var nextTime, prevTime;
-        prevTime = '' + prev.createdTime;
-        nextTime = '' + next.createdTime;
-        return prevTime - nextTime;
+        if (prev.createdTime < next.createdTime) {
+          return -1;
+        } else if (prev.createdTime > next.createdTime) {
+          return 1;
+        } else {
+          return 0;
+        }
       });
       merged = sorted.concat(unStamped);
       return merged;
