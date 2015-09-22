@@ -48,13 +48,13 @@ main
 
     li.event-group
       header
-        button.clean.point +
+        button.clean.point(ng-click="vm.expanded.launched = !vm.expanded.launched") +
 
         h4 Project launched
 
         time 3 days ago
 
-      ul.events
+      ul.events(ng-class="{expanded: vm.expanded.launched }")
         li
           hr
 
@@ -76,13 +76,13 @@ main
 
     li.event-group
       header
-        button.clean.point +
+        button.clean.point(ng-click="vm.expanded.design = !vm.expanded.design") +
 
         h4 Design concepts
 
         time 3 days ago
 
-      ul.events
+      ul.events(ng-class="{expanded: vm.expanded.design }")
         li
           hr.biggest
 
@@ -123,13 +123,13 @@ main
 
     li.event-group
       header
-        button.clean.point +
+        button.clean.point(ng-click="vm.expanded.final = !vm.expanded.final") +
 
         h4 Final design phase
 
         time 3 days ago
 
-      ul.events
+      ul.events(ng-class="{expanded: vm.expanded.final }")
         li
           hr.biggest
 
@@ -170,13 +170,13 @@ main
 
     li.event-group
       header
-        button.clean.point +
+        button.clean.point(ng-click="vm.expanded.development = !vm.expanded.development") +
 
         h4 Development launched
 
         time 3 days ago
 
-      ul.events
+      ul.events(ng-class="{expanded: vm.expanded.development }")
         li
           hr.biggest
 
@@ -198,13 +198,13 @@ main
 
     li.event-group
       header
-        button.clean.point +
+        button.clean.point(ng-click="vm.expanded.begins = !vm.expanded.begins") +
 
         h4 Development begins
 
         time 3 days ago
 
-      ul.events
+      ul.events(ng-class="{expanded: vm.expanded.begins }")
         li
           hr
 
@@ -226,13 +226,13 @@ main
 
     li.event-group
       header
-        button.clean.point +
+        button.clean.point(ng-click="vm.expanded.developmentFixes = !vm.expanded.developmentFixes") +
 
         h4 Final development fixes
 
         time 3 days ago
 
-      ul.events
+      ul.events(ng-class="{expanded: vm.expanded.developmentFixes }")
         li
           hr
 

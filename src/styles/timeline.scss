@@ -28,7 +28,7 @@ timeline {
       width: 100%;
 
       .splitter {
-        height: $margin-big;
+        height: $margin-small;
       }
     }
   }
@@ -67,10 +67,6 @@ timeline {
     margin-top: 0;
   }
 
-  .point {
-    margin-top: 8px;
-  }
-
   .event-group {
     background-color: $white;
     padding: $padding;
@@ -92,13 +88,13 @@ timeline {
       @include transition (all 0.3s ease-in-out);
 
       // uncomment for hide/show interaction
-      // max-height: 0px;
-      // overflow: hidden;
-      // position: relative;
+      max-height: 0px;
+      overflow: hidden;
+      position: relative;
 
-      // .point {
-      //   display: none;
-      // }
+      .point {
+        display: none;
+      }
 
       &.expanded {
         max-height: 750px;
