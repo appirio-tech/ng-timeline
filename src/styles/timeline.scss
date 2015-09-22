@@ -53,14 +53,25 @@ timeline {
 
   .point {
     background-color: $primary-color;
+    border          : 1px solid $primary-color;
     width           : 24px;
-    line-height     : 24px;
+    height          : 24px;
     border-radius   : 50%;
     position        : absolute;
     left            : -(24px/2) + 2px;
     text-align      : center;
     color           : $white;
-    font-size       : $font-size-big;
+
+    &::before {
+      content: "+";
+      font-size: 20px;
+    }
+
+    &.expanded {
+      &::before {
+        content: "-";
+      }
+    }
   }
 
   h1, h4 {
@@ -93,7 +104,9 @@ timeline {
       position: relative;
 
       .point {
-        display: none;
+        background-color: $neutral-color-lightest;
+        color           : $primary-color;
+        display         : none;
       }
 
       &.expanded {

@@ -8,7 +8,10 @@ main
   ul
     li.event-group
       header
-        button.clean.point(ng-click="vm.expanded.submitted = !vm.expanded.submitted") +
+        button.clean.point(
+          ng-class="{expanded: vm.expanded.submitted}"
+          ng-click="vm.expanded.submitted = !vm.expanded.submitted"
+        )
 
         h4 Project submitted
 
@@ -19,7 +22,10 @@ main
           hr
 
         li.event
-          button.clean.point(ng-click="vm.expanded.submittedCopilot = !vm.expanded.submittedCopilot") +
+          button.clean.point(
+            ng-class="{expanded: vm.expanded.submittedCopilot}"
+            ng-click="vm.expanded.submittedCopilot = !vm.expanded.submittedCopilot"
+          )
 
           timeline-copilot(ng-class="{expanded: vm.expanded.submittedCopilot }")
             include parts/copilot
@@ -28,7 +34,10 @@ main
           hr.biggest
 
         li.event
-          button.clean.point(ng-click="vm.expanded.submittedQuote = !vm.expanded.submittedQuote") +
+          button.clean.point(
+            ng-class="{expanded: vm.expanded.submittedQuote}"
+            ng-click="vm.expanded.submittedQuote = !vm.expanded.submittedQuote"
+          )
 
           timeline-quote(ng-class="{expanded: vm.expanded.submittedQuote }")
             include parts/quote
@@ -37,12 +46,12 @@ main
           hr.biggest
 
         li.event
-          button.clean.point +
+          button.clean.point
 
           include parts/payment
 
         li.event.finish
-          button.clean.point +
+          button.clean.point
 
           include parts/payment-added
 
@@ -50,7 +59,10 @@ main
 
     li.event-group
       header
-        button.clean.point(ng-click="vm.expanded.launched = !vm.expanded.launched") +
+        button.clean.point(
+          ng-class="{expanded: vm.expanded.launched}"
+          ng-click="vm.expanded.launched = !vm.expanded.launched"
+        )
 
         h4 Project launched
 
@@ -61,7 +73,7 @@ main
           hr
 
         li.event
-          button.clean.point +
+          button.clean.point
 
           include parts/members
 
@@ -69,7 +81,7 @@ main
           hr.biggest
 
         li.event
-          button.clean.point +
+          button.clean.point
 
           timeline-messaging
             include parts/messages
@@ -78,7 +90,10 @@ main
 
     li.event-group
       header
-        button.clean.point(ng-click="vm.expanded.design = !vm.expanded.design") +
+        button.clean.point(
+          ng-class="{expanded: vm.expanded.design}"
+          ng-click="vm.expanded.design = !vm.expanded.design"
+        )
 
         h4 Design concepts
 
@@ -89,7 +104,7 @@ main
           hr.biggest
 
         li.event
-          button.clean.point +
+          button.clean.point
 
           include parts/submissions
 
@@ -97,7 +112,7 @@ main
           hr.biggest
 
         li.event
-          button.clean.point +
+          button.clean.point
 
           timeline-comments
             include parts/comments
@@ -106,7 +121,7 @@ main
           hr.biggest
 
         li.event
-          button.clean.point +
+          button.clean.point
 
           timeline-messaging
             include parts/messages
@@ -115,7 +130,7 @@ main
           hr.biggest
 
         li.event.finish
-          button.clean.point +
+          button.clean.point
 
           include parts/select-winners
 
@@ -125,7 +140,10 @@ main
 
     li.event-group
       header
-        button.clean.point(ng-click="vm.expanded.final = !vm.expanded.final") +
+        button.clean.point(
+          ng-class="{expanded: vm.expanded.final}"
+          ng-click="vm.expanded.final = !vm.expanded.final"
+        )
 
         h4 Final design phase
 
@@ -136,7 +154,7 @@ main
           hr.biggest
 
         li.event
-          button.clean.point +
+          button.clean.point
 
           include parts/submissions
 
@@ -144,7 +162,7 @@ main
           hr.biggest
 
         li.event
-          button.clean.point +
+          button.clean.point
 
           timeline-comments
             include parts/comments
@@ -153,7 +171,7 @@ main
           hr.biggest
 
         li.event
-          button.clean.point +
+          button.clean.point
 
           timeline-messaging
             include parts/messages
@@ -162,7 +180,7 @@ main
           hr.biggest
 
         li.event.finish
-          button.clean.point +
+          button.clean.point
 
           include parts/select-winners
 
@@ -172,7 +190,10 @@ main
 
     li.event-group
       header
-        button.clean.point(ng-click="vm.expanded.development = !vm.expanded.development") +
+        button.clean.point(
+          ng-class="{expanded: vm.expanded.development}"
+          ng-click="vm.expanded.development = !vm.expanded.development"
+        )
 
         h4 Development launched
 
@@ -183,7 +204,7 @@ main
           hr.biggest
 
         li.event
-          button.clean.point +
+          button.clean.point
 
           include parts/copilot
 
@@ -191,7 +212,7 @@ main
           hr.biggest
 
         li.event
-          button.clean.point +
+          button.clean.point
 
           timeline-messaging
             include parts/messages
@@ -200,7 +221,10 @@ main
 
     li.event-group
       header
-        button.clean.point(ng-click="vm.expanded.begins = !vm.expanded.begins") +
+        button.clean.point(
+          ng-class="{expanded: vm.expanded.begins}"
+          ng-click="vm.expanded.begins = !vm.expanded.begins"
+        )
 
         h4 Development begins
 
@@ -211,7 +235,7 @@ main
           hr
 
         li.event
-          button.clean.point +
+          button.clean.point
 
           timeline-status-report
             include parts/status-report
@@ -220,7 +244,7 @@ main
           hr.biggest
 
         li.event.finish
-          button.clean.point +
+          button.clean.point
 
           h1 Development complete
 
@@ -228,7 +252,10 @@ main
 
     li.event-group
       header
-        button.clean.point(ng-click="vm.expanded.developmentFixes = !vm.expanded.developmentFixes") +
+        button.clean.point(
+          ng-class="{expanded: vm.expanded.developmentFixes}"
+          ng-click="vm.expanded.developmentFixes = !vm.expanded.developmentFixes"
+        )
 
         h4 Final development fixes
 
@@ -239,7 +266,7 @@ main
           hr
 
         li.event
-          button.clean.point +
+          button.clean.point
 
           timeline-comments
             include parts/comments
@@ -248,7 +275,7 @@ main
           hr.biggest
 
         li.event
-          button.clean.point +
+          button.clean.point
 
           timeline-final-deliverables
             include parts/final-deliverables
@@ -257,7 +284,7 @@ main
 
     li.complete
       header
-        button.clean.point +
+        button.clean.point
 
         h1 Project complete
 
