@@ -6,7 +6,7 @@ hr
 
 ul
   li.milestone.completed(
-    ng-repeat-start="eventGroup in vm.eventGroups | orderBy: createdTime"
+    ng-repeat-start="eventGroup in vm.eventGroups"
     ng-class="{ completed: vm.completed[eventGroup.text], expanded: vm.expanded[eventGroup.text] }"
     ng-click="vm.expanded[eventGroup.text] = !vm.expanded[eventGroup.text]"
   )

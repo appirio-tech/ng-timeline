@@ -12,6 +12,20 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
     'Final Designs'  : false
     'Final Fixes'    : false
 
+  order = (data) ->
+    timeStamped = data.filter (eventGroup) ->
+      eventGroup.createdTime
+
+    unStamped = data.filter (eventGroup) ->
+      !eventGroup.createdTime
+
+    sorted = timeStamped.sort (prev, next) ->
+      prev.createdTime - next.createdTime
+
+    merged = sorted.concat unStamped
+
+    merged
+
   activate = ->
     vm.workId = $scope.workId
 
@@ -20,7 +34,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
 
     resource = TimelineAPIService.query params
     resource.$promise.then (data) ->
-      vm.eventGroups = data
+      vm.eventGroups = order(data)
 
     vm
 
