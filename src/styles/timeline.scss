@@ -83,6 +83,8 @@ timeline {
     padding: $padding;
 
     > header {
+      @include clearfix();
+
       h4 {
         float: left;
       }
@@ -91,8 +93,6 @@ timeline {
         display: block;
         float: right;
       }
-
-      overflow: hidden;
     }
 
     .events {
