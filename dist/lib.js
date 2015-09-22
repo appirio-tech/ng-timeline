@@ -34862,7 +34862,7 @@ $templateCache.put("views/selected-button.html","<selected-button ng-model=\"vm.
 
   srv = function($resource, API_URL) {
     var methods, params, url;
-    url = API_URL + '/v3/work/:workId/timeline';
+    url = API_URL + '/v3/projects/:workId/timeline';
     params = {
       workId: '@workId'
     };
