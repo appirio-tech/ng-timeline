@@ -19,17 +19,19 @@ main
           hr
 
         li.event
-          button.clean.point +
+          button.clean.point(ng-click="vm.expanded.submittedCopilot = !vm.expanded.submittedCopilot") +
 
-          include parts/copilot
+          timeline-copilot(ng-class="{expanded: vm.expanded.submittedCopilot }")
+            include parts/copilot
 
         li
           hr.biggest
 
         li.event
-          button.clean.point +
+          button.clean.point(ng-click="vm.expanded.submittedQuote = !vm.expanded.submittedQuote") +
 
-          include parts/quote
+          timeline-quote(ng-class="{expanded: vm.expanded.submittedQuote }")
+            include parts/quote
 
         li
           hr.biggest

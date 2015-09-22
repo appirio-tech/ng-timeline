@@ -127,6 +127,10 @@ timeline {
 
     .avatar-box, p, button, .avatars {
       margin-top: $margin-small;
+
+      &:first-child {
+        margin-top: 0;
+      }
     }
 
     &.finish {

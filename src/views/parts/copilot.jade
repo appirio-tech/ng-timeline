@@ -2,7 +2,7 @@ h1 Co-pilot assigned!
 
 time {{ vm.events.assignCopilot.created }}
 
-.avatar-box(ng-show="vm.events.assignCopilot.handle")
+main.avatar-box(ng-show="vm.events.assignCopilot.handle")
   avatar(url="{{ vm.events.assignCopilot.avatar }}")
 
   | Hi I'm 
