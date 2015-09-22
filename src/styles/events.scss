@@ -10,7 +10,8 @@ timeline-copilot {
     @include transition (all 0.2s ease-in-out);
 
     max-height: 0px;
-    overflow: hidden;
+    margin-top: $margin-smallest;
+    overflow  : hidden;
   }
 }
 
