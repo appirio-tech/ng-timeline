@@ -20,7 +20,9 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
       !eventGroup.createdTime
 
     sorted = timeStamped.sort (prev, next) ->
-      prev.createdTime - next.createdTime
+      prevTime = ''+ prev.createdTime
+      nextTime = ''+ next.createdTime
+      prevTime - nextTime
 
     merged = sorted.concat unStamped
 
