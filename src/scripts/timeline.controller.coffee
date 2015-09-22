@@ -4,6 +4,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
   vm        = this
   vm.eventGroups = []
   vm.showMessagingWidget = false
+  vm.loading = true
 
   vm.expanded =
     'Project Submitted'     : false
@@ -40,6 +41,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
     resource = TimelineAPIService.query params
     resource.$promise.then (data) ->
       vm.eventGroups = order(data)
+      vm.loading = false
 
     vm
 
