@@ -112,8 +112,12 @@ timeline {
       }
 
       &.expanded {
-        max-height: 750px;
+        max-height: 700px;
         position: initial;
+
+        &.expand-big {
+          max-height: 1400px;
+        }
 
         .point {
           display: block;
