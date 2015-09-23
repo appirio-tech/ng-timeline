@@ -61,6 +61,8 @@ timeline {
     left            : -(24px/2) + 2px;
     text-align      : center;
     color           : $white;
+    box-shadow      : 0 6px 6px -6px $neutral-color-dark;
+
 
     &::before {
       content    : '+';
@@ -81,8 +83,9 @@ timeline {
   }
 
   .event-group {
+    box-shadow      : 0 6px 6px -6px $neutral-color;
     background-color: $white;
-    padding: $padding;
+    padding         : $padding;
 
     > header {
       @include clearfix();
