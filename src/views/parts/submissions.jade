@@ -1,19 +1,8 @@
-h1 4 people have submitted Designs
+div(ng-if="event.type == 'WORKSTEP_SUBMITTERS' ")
+  h1 {{event.avatars.length}} people have submitted Designs
 
-time 200000 years ago
+  time {{eventGroup.createdTime | date}}
 
-ul.avatars
-  li
-    avatar
-
-  li
-    avatar
-
-  li
-    avatar
-
-  li
-    avatar
-
-  li
-    avatar
+  ul.avatars
+    li(ng-repeat="avatar in event.avatars")
+      avatar(avatar-url="avatar")

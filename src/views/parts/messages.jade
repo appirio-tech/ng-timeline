@@ -1,25 +1,41 @@
-ul.header
-  li
-    .icon
+div(ng-if="event.type == 'THREAD_INFO' || event.type == 'SUBMISSION_THREAD_INFO' ")
+  ul.header
+    li
+      .icon
 
-  li
-    avatar
+    li
+      avatar(
+        ng-if="event.type == 'THREAD_INFO'"
+        avatar-url="{{event.lastMessageInfo.publisherInfo.avatar}}"
+      )
 
-  li.name
-    p
-      a(href="#") Bilbo Baggins
+      avatar(
+        ng-if="event.type == 'SUBMISSION_THREAD_INFO'"
+        avatar-url="{{event.threadInfo.lastMessageInfo.publisherInfo.avatar}}"
+      )
 
-    p.role Project Contributor
 
-  li
-    time 4 days ago
+    li.name
+      p
+        a(ng-if="event.type == 'THREAD_INFO'" href="#") {{event.lastMessageInfo.publisherInfo.handle}}
 
-hr
+        a(ng-if="event.type == 'SUBMISSION_THREAD_INFO'" href="#") {{event.threadInfo.lastMessageInfo.publisherInfo.handle}}
 
-p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-textarea.wider(placeholder="Reply to this message")
+      p.role Project Contributor
 
-button.wider.action reply
+    li
+      time {{event.createdTime}}
 
-button.wider view all messages
+  hr
+
+  p(ng-if="event.type == 'THREAD_INFO'") {{event.lastMessageInfo.content}}
+
+  p(ng-if="event.type == 'SUBMISSION_THREAD_INFO'") {{event.threadInfo.lastMessageInfo.content}}
+
+
+  textarea.wider(placeholder="Reply to this message")
+
+  button.wider.action reply
+
+  button.wider view all messages

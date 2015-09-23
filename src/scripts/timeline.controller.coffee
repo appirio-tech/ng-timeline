@@ -7,17 +7,24 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
   vm.loading = true
 
   vm.expanded =
-    'Project Submitted':    false
-    'Project Launched':     false
-    'Design Concepts':      false
-    'Final Designs':        false
-    'Final Fixes':          false
+    # eventGroups
+    'Project Submitted': false
+    'Project Launched': false
+    'Design Concepts': false
+    'Final Designs': false
+    'Final Fixes': false
     'Development Launched': false
-    'Development Begins':   false
-    'EMAIL_CONFIRMED':      false
-    'COPILOT_ASSIGNED':     false
-    'QUOTE_INFO':           false
-    'PAYMENT_ACCEPTED':     false
+    'Development Begins': false
+    # events
+    'EMAIL_CONFIRMED': false
+    'COPILOT_ASSIGNED': false
+    'QUOTE_INFO': false
+    'PAYMENT_ACCEPTED': false
+    'MEMBER_REGISTRATION': false
+    'THREAD_INFO': false
+    'WORKSTEP_SUBMITTERS': false
+    'SUBMISSION_THREAD_INFO': false
+    'WORKSTEP_WINNERS': false
 
   order = (data) ->
     timeStamped = data.filter (eventGroup) ->

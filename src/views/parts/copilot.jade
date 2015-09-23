@@ -1,12 +1,13 @@
-h1 Co-pilot assigned!
+div(ng-if="event.type == 'COPILOT_ASSIGNED' ")
+  h1 Co-pilot assigned!
 
-time {{ vm.events.assignCopilot.created }}
+  time {{ event.createdTime }}
 
-main.avatar-box(ng-show="vm.events.assignCopilot.handle")
-  avatar(url="{{ vm.events.assignCopilot.avatar }}")
+  main.avatar-box(ng-show="event.copilot.handle")
+    avatar(url="{{ event.copilot.avatar }}")
 
-  | Hi I'm 
+    | Hi I'm 
 
-  a(href="#") {{ vm.events.assignCopilot.handle }}
+    a(href="#") {{ event.copilot.handle }}
 
-  |. I'll be your project manager.
+    |. I'll be your project manager.

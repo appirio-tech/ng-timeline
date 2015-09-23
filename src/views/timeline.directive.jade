@@ -6,7 +6,7 @@ main
   .timeline
 
   ul
-    li.event-group(ng-repeat="eventGroup in vm.eventGroups")
+    li.event-group(ng-repeat-start="eventGroup in vm.eventGroups")
       header
         button.clean.point(
           ng-class="{expanded: vm.expanded[eventGroup.text]}"
@@ -21,12 +21,12 @@ main
         li
           hr
 
-        li.event(ng-repeat-start="event in eventGroup.events")
+        li.event(ng-repeat-start="event in eventGroup.events" ng-class="{finish: event.type == 'PAYMENT_ACCEPTED' }")
           button.clean.point(
             ng-class="{expanded: vm.expanded[event.type]}"
             ng-click="vm.expanded[event.type] = !vm.expanded[event.type]"
           )
-
+          //- SUBMITTED
           timeline-copilot(ng-class="{expanded: vm.expanded[event.type] }")
             include parts/copilot
 
@@ -35,15 +35,31 @@ main
 
           include parts/payment
 
-        li.event.finish(ng-if="event.type == 'PAYMENT_ACCEPTED' ")
-          button.clean.point
-
           include parts/payment-added
 
-        li(ng-repeat-end)
+          //- LAUNCHED
+          include parts/members
+
+          timeline-messaging
+            include parts/messages
+
+          //- DESIGN CONCEPTS
+          include parts/submissions
+
+          timeline-comments
+            include parts/comments
+
+          timeline-messaging
+            include parts/messages
+
+          include parts/select-winners
+
+          include parts/winners
+
+        li(ng-repeat-end ng-if="event.type != 'PAYMENT_ACCEPTED' ")
           hr.biggest
 
-    li.splitter
+    li.splitter(ng-repeat-end)
 
     //- li.event-group
     //-   header
@@ -63,16 +79,12 @@ main
     //-     li.event
     //-       button.clean.point
 
-    //-       include parts/members
 
     //-     li
     //-       hr.biggest
 
     //-     li.event
     //-       button.clean.point
-
-    //-       timeline-messaging
-    //-         include parts/messages
 
     //- li.splitter
 

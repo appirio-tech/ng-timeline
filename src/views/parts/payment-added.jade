@@ -1,3 +1,4 @@
-h1 Payment method added
+div(ng-if="event.type == 'PAYMENT_ACCEPTED' ")
+  h1 Payment method added
 
-time 32 minutes ago
+  time {{event.createdTime}}

@@ -1,19 +1,8 @@
-h1 7 people have joined your project
+div(ng-if="event.type == 'MEMBER_REGISTRATION' ")
+  h1 {{event.members.length}} people have joined your project
 
-time 5 days ago
+  time {{event.createdTime}}
 
-ul.avatars
-  li
-    avatar
-
-  li
-    avatar
-
-  li
-    avatar
-
-  li
-    avatar
-
-  li
-    avatar
+  ul.avatars
+    li(ng-repeat="member in event.members")
+      avatar(avatar-url="{{member.avatar}}")
