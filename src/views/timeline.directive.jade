@@ -6,286 +6,274 @@ main
   .timeline
 
   ul
-    li.event-group
+    li.event-group(ng-repeat="eventGroup in vm.eventGroups")
       header
         button.clean.point(
-          ng-class="{expanded: vm.expanded.submitted}"
-          ng-click="vm.expanded.submitted = !vm.expanded.submitted"
+          ng-class="{expanded: vm.expanded[eventGroup.text]}"
+          ng-click="vm.expanded[eventGroup.text] = !vm.expanded[eventGroup.text]"
         )
 
-        h4 Project submitted
+        h4 {{eventGroup.text}}
 
-        time 3 days ago
+        time {{eventGroup.createdTime | date}}
 
-      ul.events(ng-class="{expanded: vm.expanded.submitted }")
+      ul.events(ng-class="{expanded: vm.expanded[eventGroup.text] }")
         li
           hr
 
-        li.event
+        li.event(ng-repeat-start="event in eventGroup.events")
           button.clean.point(
-            ng-class="{expanded: vm.expanded.submittedCopilot}"
-            ng-click="vm.expanded.submittedCopilot = !vm.expanded.submittedCopilot"
+            ng-class="{expanded: vm.expanded[event.type]}"
+            ng-click="vm.expanded[event.type] = !vm.expanded[event.type]"
           )
 
-          timeline-copilot(ng-class="{expanded: vm.expanded.submittedCopilot }")
+          timeline-copilot(ng-class="{expanded: vm.expanded[event.type] }")
             include parts/copilot
-
-        li
-          hr.biggest
-
-        li.event
-          button.clean.point(
-            ng-class="{expanded: vm.expanded.submittedQuote}"
-            ng-click="vm.expanded.submittedQuote = !vm.expanded.submittedQuote"
-          )
 
           timeline-quote(ng-class="{expanded: vm.expanded.submittedQuote }")
             include parts/quote
 
-        li
-          hr.biggest
-
-        li.event
-          button.clean.point
-
           include parts/payment
 
-        li.event.finish
+        li.event.finish(ng-if="event.type == 'PAYMENT_ACCEPTED' ")
           button.clean.point
 
           include parts/payment-added
 
-    li.splitter
-
-    li.event-group
-      header
-        button.clean.point(
-          ng-class="{expanded: vm.expanded.launched}"
-          ng-click="vm.expanded.launched = !vm.expanded.launched"
-        )
-
-        h4 Project launched
-
-        time 3 days ago
-
-      ul.events(ng-class="{expanded: vm.expanded.launched }")
-        li
-          hr
-
-        li.event
-          button.clean.point
-
-          include parts/members
-
-        li
+        li(ng-repeat-end)
           hr.biggest
-
-        li.event
-          button.clean.point
-
-          timeline-messaging
-            include parts/messages
 
     li.splitter
 
-    li.event-group
-      header
-        button.clean.point(
-          ng-class="{expanded: vm.expanded.design}"
-          ng-click="vm.expanded.design = !vm.expanded.design"
-        )
+    //- li.event-group
+    //-   header
+    //-     button.clean.point(
+    //-       ng-class="{expanded: vm.expanded.launched}"
+    //-       ng-click="vm.expanded.launched = !vm.expanded.launched"
+    //-     )
 
-        h4 Design concepts
+    //-     h4 Project launched
 
-        time 3 days ago
+    //-     time 3 days ago
 
-      ul.events(ng-class="{expanded: vm.expanded.design }")
-        li
-          hr.biggest
+    //-   ul.events(ng-class="{expanded: vm.expanded.launched }")
+    //-     li
+    //-       hr
 
-        li.event
-          button.clean.point
+    //-     li.event
+    //-       button.clean.point
 
-          include parts/submissions
+    //-       include parts/members
 
-        li
-          hr.biggest
+    //-     li
+    //-       hr.biggest
 
-        li.event
-          button.clean.point
+    //-     li.event
+    //-       button.clean.point
 
-          timeline-comments
-            include parts/comments
+    //-       timeline-messaging
+    //-         include parts/messages
 
-        li
-          hr.biggest
+    //- li.splitter
 
-        li.event
-          button.clean.point
+    //- li.event-group
+    //-   header
+    //-     button.clean.point(
+    //-       ng-class="{expanded: vm.expanded.design}"
+    //-       ng-click="vm.expanded.design = !vm.expanded.design"
+    //-     )
 
-          timeline-messaging
-            include parts/messages
+    //-     h4 Design concepts
 
-        li
-          hr.biggest
+    //-     time 3 days ago
 
-        li.event.finish
-          button.clean.point
+    //-   ul.events(ng-class="{expanded: vm.expanded.design }")
+    //-     li
+    //-       hr.biggest
 
-          include parts/select-winners
+    //-     li.event
+    //-       button.clean.point
 
-          include parts/winners
+    //-       include parts/submissions
 
-    li.splitter
+    //-     li
+    //-       hr.biggest
 
-    li.event-group
-      header
-        button.clean.point(
-          ng-class="{expanded: vm.expanded.final}"
-          ng-click="vm.expanded.final = !vm.expanded.final"
-        )
+    //-     li.event
+    //-       button.clean.point
 
-        h4 Final design phase
+    //-       timeline-comments
+    //-         include parts/comments
 
-        time 3 days ago
+    //-     li
+    //-       hr.biggest
 
-      ul.events(ng-class="{expanded: vm.expanded.final }")
-        li
-          hr.biggest
+    //-     li.event
+    //-       button.clean.point
 
-        li.event
-          button.clean.point
+    //-       timeline-messaging
+    //-         include parts/messages
 
-          include parts/submissions
+    //-     li
+    //-       hr.biggest
 
-        li
-          hr.biggest
+    //-     li.event.finish
+    //-       button.clean.point
 
-        li.event
-          button.clean.point
+    //-       include parts/select-winners
 
-          timeline-comments
-            include parts/comments
+    //-       include parts/winners
 
-        li
-          hr.biggest
+    //- li.splitter
 
-        li.event
-          button.clean.point
+    //- li.event-group
+    //-   header
+    //-     button.clean.point(
+    //-       ng-class="{expanded: vm.expanded.final}"
+    //-       ng-click="vm.expanded.final = !vm.expanded.final"
+    //-     )
 
-          timeline-messaging
-            include parts/messages
+    //-     h4 Final design phase
 
-        li
-          hr.biggest
+    //-     time 3 days ago
 
-        li.event.finish
-          button.clean.point
+    //-   ul.events(ng-class="{expanded: vm.expanded.final }")
+    //-     li
+    //-       hr.biggest
 
-          include parts/select-winners
+    //-     li.event
+    //-       button.clean.point
 
-          include parts/winners
+    //-       include parts/submissions
 
-    li.splitter
+    //-     li
+    //-       hr.biggest
 
-    li.event-group
-      header
-        button.clean.point(
-          ng-class="{expanded: vm.expanded.development}"
-          ng-click="vm.expanded.development = !vm.expanded.development"
-        )
+    //-     li.event
+    //-       button.clean.point
 
-        h4 Development launched
+    //-       timeline-comments
+    //-         include parts/comments
 
-        time 3 days ago
+    //-     li
+    //-       hr.biggest
 
-      ul.events(ng-class="{expanded: vm.expanded.development }")
-        li
-          hr.biggest
+    //-     li.event
+    //-       button.clean.point
 
-        li.event
-          button.clean.point
+    //-       timeline-messaging
+    //-         include parts/messages
 
-          include parts/copilot
+    //-     li
+    //-       hr.biggest
 
-        li
-          hr.biggest
+    //-     li.event.finish
+    //-       button.clean.point
 
-        li.event
-          button.clean.point
+    //-       include parts/select-winners
 
-          timeline-messaging
-            include parts/messages
+    //-       include parts/winners
 
-    li.splitter
+    //- li.splitter
 
-    li.event-group
-      header
-        button.clean.point(
-          ng-class="{expanded: vm.expanded.begins}"
-          ng-click="vm.expanded.begins = !vm.expanded.begins"
-        )
+    //- li.event-group
+    //-   header
+    //-     button.clean.point(
+    //-       ng-class="{expanded: vm.expanded.development}"
+    //-       ng-click="vm.expanded.development = !vm.expanded.development"
+    //-     )
 
-        h4 Development begins
+    //-     h4 Development launched
 
-        time 3 days ago
+    //-     time 3 days ago
 
-      ul.events(ng-class="{expanded: vm.expanded.begins }")
-        li
-          hr
+    //-   ul.events(ng-class="{expanded: vm.expanded.development }")
+    //-     li
+    //-       hr.biggest
 
-        li.event
-          button.clean.point
+    //-     li.event
+    //-       button.clean.point
 
-          timeline-status-report
-            include parts/status-report
+    //-       include parts/copilot
 
-        li
-          hr.biggest
+    //-     li
+    //-       hr.biggest
 
-        li.event.finish
-          button.clean.point
+    //-     li.event
+    //-       button.clean.point
 
-          h1 Development complete
+    //-       timeline-messaging
+    //-         include parts/messages
 
-    li.splitter
+    //- li.splitter
 
-    li.event-group
-      header
-        button.clean.point(
-          ng-class="{expanded: vm.expanded.developmentFixes}"
-          ng-click="vm.expanded.developmentFixes = !vm.expanded.developmentFixes"
-        )
+    //- li.event-group
+    //-   header
+    //-     button.clean.point(
+    //-       ng-class="{expanded: vm.expanded.begins}"
+    //-       ng-click="vm.expanded.begins = !vm.expanded.begins"
+    //-     )
 
-        h4 Final development fixes
+    //-     h4 Development begins
 
-        time 3 days ago
+    //-     time 3 days ago
 
-      ul.events(ng-class="{expanded: vm.expanded.developmentFixes }")
-        li
-          hr
+    //-   ul.events(ng-class="{expanded: vm.expanded.begins }")
+    //-     li
+    //-       hr
 
-        li.event
-          button.clean.point
+    //-     li.event
+    //-       button.clean.point
 
-          timeline-comments
-            include parts/comments
+    //-       timeline-status-report
+    //-         include parts/status-report
 
-        li
-          hr.biggest
+    //-     li
+    //-       hr.biggest
 
-        li.event
-          button.clean.point
+    //-     li.event.finish
+    //-       button.clean.point
 
-          timeline-final-deliverables
-            include parts/final-deliverables
+    //-       h1 Development complete
 
-    li.splitter
+    //- li.splitter
 
-    li.complete
-      header
-        button.clean.point
+    //- li.event-group
+    //-   header
+    //-     button.clean.point(
+    //-       ng-class="{expanded: vm.expanded.developmentFixes}"
+    //-       ng-click="vm.expanded.developmentFixes = !vm.expanded.developmentFixes"
+    //-     )
 
-        h1 Project complete
+    //-     h4 Final development fixes
 
-        p September 23 2015
+    //-     time 3 days ago
+
+    //-   ul.events(ng-class="{expanded: vm.expanded.developmentFixes }")
+    //-     li
+    //-       hr
+
+    //-     li.event
+    //-       button.clean.point
+
+    //-       timeline-comments
+    //-         include parts/comments
+
+    //-     li
+    //-       hr.biggest
+
+    //-     li.event
+    //-       button.clean.point
+
+    //-       timeline-final-deliverables
+    //-         include parts/final-deliverables
+
+    //- li.splitter
+
+    //- li.complete
+    //-   header
+    //-     button.clean.point
+
+    //-     h1 Project complete
+
+    //-     p September 23 2015

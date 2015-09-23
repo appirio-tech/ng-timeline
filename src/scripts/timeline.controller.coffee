@@ -2,14 +2,41 @@
 
 TimelineController = ($scope, $stateParams, TimelineAPIService) ->
   vm        = this
-  vm.events = {}
+  vm.eventGroups = []
+  vm.showMessagingWidget = false
+  vm.loading = true
 
   vm.expanded =
-    submitted     : false
-    launched      : false
-    designConcepts: false
-    finalDesigns  : false
-    finalFixes    : false
+    'Project Submitted':    false
+    'Project Launched':     false
+    'Design Concepts':      false
+    'Final Designs':        false
+    'Final Fixes':          false
+    'Development Launched': false
+    'Development Begins':   false
+    'EMAIL_CONFIRMED':      false
+    'COPILOT_ASSIGNED':     false
+    'QUOTE_INFO':           false
+    'PAYMENT_ACCEPTED':     false
+
+  order = (data) ->
+    timeStamped = data.filter (eventGroup) ->
+      eventGroup.createdTime
+
+    unStamped = data.filter (eventGroup) ->
+      !eventGroup.createdTime
+
+    sorted = timeStamped.sort (prev, next) ->
+      if prev.createdTime < next.createdTime
+        return -1
+      else if prev.createdTime > next.createdTime
+        return 1
+      else
+        return 0
+
+    merged = sorted.concat unStamped
+
+    merged
 
   activate = ->
     vm.workId = $scope.workId
@@ -17,9 +44,10 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
     params =
       workId: vm.workId
 
-    resource = TimelineAPIService.get params
+    resource = TimelineAPIService.query params
     resource.$promise.then (data) ->
-      vm.events = data
+      vm.eventGroups = order(data)
+      vm.loading = false
 
     vm
 
