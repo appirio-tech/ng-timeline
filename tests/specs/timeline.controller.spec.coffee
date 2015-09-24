@@ -18,10 +18,10 @@ describe 'TimelineController', ->
       expect(controller).to.be.defined
 
     it 'should initialize events', ->
-      expect(controller.events).to.be.ok
+      expect(controller.eventGroups).to.be.ok
 
     it 'should call TimelineAPIService to initialize events', ->
-      expect(TimelineAPIService.get.called).to.be.ok
+      expect(TimelineAPIService.query.called).to.be.ok
 
     it 'should have a vm.expanded property', ->
       expect(controller.expanded).to.be.ok
