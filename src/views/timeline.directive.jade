@@ -17,12 +17,13 @@ main
 
         time {{eventGroup.createdTime | date}}
 
-      ul.events(ng-class="{expanded: vm.expanded[eventGroup.text] }")
+      ul.expanded-big.events(ng-class="{expanded: vm.expanded[eventGroup.text] }")
         li
-          hr
+          hr.biggest
 
         li.event(
             ng-repeat-start="event in eventGroup.events"
+            ng-if="vm.expanded[event.type] != undefined"
             )
           button.clean.point(
             ng-class="{expanded: vm.expanded[event.type]}"
@@ -66,7 +67,7 @@ main
           timeline-final-deliverables
             include parts/final-deliverables
 
-        li(ng-repeat-end ng-if="eventGroup.events.indexOf(event) != eventGroup.events.length - 1")
+        li(ng-repeat-end ng-if="eventGroup.events.indexOf(event) != eventGroup.events.length - 1 && vm.expanded[event.type] != undefined")
           hr.biggest
 
     li.splitter(ng-repeat-end)

@@ -61,10 +61,14 @@ timeline {
     left            : -(24px/2) + 2px;
     text-align      : center;
     color           : $white;
+    box-shadow      : 0 6px 6px -6px $neutral-color-dark;
+
 
     &::before {
-      content: "+";
-      font-size: 20px;
+      content    : '+';
+      font-size  : 20px;
+      font-family: arial;
+      line-height: 24px;
     }
 
     &.expanded {
@@ -79,8 +83,9 @@ timeline {
   }
 
   .event-group {
+    box-shadow      : 0 6px 6px -6px $neutral-color;
     background-color: $white;
-    padding: $padding;
+    padding         : $padding;
 
     > header {
       @include clearfix();
@@ -110,8 +115,12 @@ timeline {
       }
 
       &.expanded {
-        max-height: 750px;
+        max-height: 700px;
         position: initial;
+
+        &.expand-big {
+          max-height: 1400px;
+        }
 
         .point {
           display: block;

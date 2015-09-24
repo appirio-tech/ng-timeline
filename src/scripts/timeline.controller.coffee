@@ -17,7 +17,6 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
     'Development Begins': false
     'Project Complete': false
     # events
-    'EMAIL_CONFIRMED': false
     'COPILOT_ASSIGNED': false
     'QUOTE_INFO': false
     'PAYMENT_ACCEPTED': false
@@ -54,35 +53,6 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
         ]
       else if eventGroup.text == 'Project Complete'
         vm.projectCompletionDate = eventGroup.createdTime
-
-    data.push(
-      {
-        "type": "EVENT_GROUP",
-        "text": "Development Begins",
-        "createdTime": "2015-09-18T12:28:33.843-07:00",
-        "events": [
-            {
-                "type": "SUBMISSION_THREAD_INFO",
-                "threadInfo": {
-                    "type": "THREAD_INFO",
-                    "threadId": "abc123",
-                    "unreadMessageCount": 5,
-                    "lastMessageInfo": {
-                        "content": "Maybe its best if we stick with something something something something.",
-                        "publisherInfo": {
-                            "userId": "id",
-                            "handle": "Batman",
-                            "avatar": "http://pict.ly"
-                        }
-                    }
-                },
-                "submissionThumbnails": [
-                    "http://thumbnail.url/"
-                ]
-            }
-        ]
-        }
-      )
 
     timeStamped = data.filter (eventGroup) ->
       eventGroup.createdTime
