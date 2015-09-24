@@ -1,7 +1,7 @@
 div(ng-if="event.type == 'QUOTE_INFO' ")
   h1 Quote generated
 
-  time {{event.createdTime}}
+  time {{event.eventTime | date}}
 
   main
     p Your project has been reviewed and a quote has been generated.
