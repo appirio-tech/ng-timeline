@@ -1,7 +1,7 @@
 div(ng-if="event.type == 'COPILOT_ASSIGNED' ")
   h1 Co-pilot assigned!
 
-  time {{ event.eventTime | date}}
+  time {{ event.eventTime | timeLapse}}
 
   main.avatar-box(ng-show="event.copilot.handle")
     avatar(url="{{ event.copilot.avatar }}")

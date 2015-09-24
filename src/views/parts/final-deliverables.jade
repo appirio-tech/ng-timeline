@@ -1,7 +1,7 @@
 div(ng-if="eventGroup.text == 'Final Fixes' && event.type == 'SUBMISSION_THREAD_INFO' ")
   h1 Final deliverables
 
-  time {{event.createdTime | date }}
+  time {{event.eventTime | timeLapse }}
 
   p {{event.threadInfo.lastMessageInfo.content}}
 

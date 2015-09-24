@@ -15,7 +15,7 @@ div(ng-if="event.type == 'THREAD_INFO' ")
       p.role Project Contributor
 
     li
-      time {{event.createdTime}}
+      time {{event.eventTime | timeLapse}}
 
   hr
 

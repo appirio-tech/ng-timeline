@@ -1,7 +1,7 @@
 div(ng-if="event.type == 'PAYMENT_ADDED' && !event.eventTime ")
   h1 Add payment method
 
-  time {{event.eventTime | date}}
+  time {{event.eventTime | timeLapse}}
 
   p Add a payment method to launch your project.
 

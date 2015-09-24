@@ -1,7 +1,7 @@
 div(ng-if="event.type == 'SUBMISSION_THREAD_INFO' && eventGroup.text == 'Development Begins' ")
   h1 {{eventGroup.createdTime | date : 'MMMM d' }} status report
 
-  time {{eventGroup.createdTime | date}}
+  time {{eventGroup.createdTime | timeLapse}}
 
   p {{event.threadInfo.lastMessageInfo.content}}
 
