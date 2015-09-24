@@ -1,25 +1,15 @@
-div(ng-if="event.type == 'THREAD_INFO' || event.type == 'SUBMISSION_THREAD_INFO' ")
+div(ng-if="event.type == 'THREAD_INFO' ")
   ul.header
     li
       .icon
 
     li
-      avatar(
-        ng-if="event.type == 'THREAD_INFO'"
-        avatar-url="{{event.lastMessageInfo.publisherInfo.avatar}}"
-      )
-
-      avatar(
-        ng-if="event.type == 'SUBMISSION_THREAD_INFO'"
-        avatar-url="{{event.threadInfo.lastMessageInfo.publisherInfo.avatar}}"
-      )
+      avatar(avatar-url="{{event.lastMessageInfo.publisherInfo.avatar}}")
 
 
     li.name
       p
-        a(ng-if="event.type == 'THREAD_INFO'" href="#") {{event.lastMessageInfo.publisherInfo.handle}}
-
-        a(ng-if="event.type == 'SUBMISSION_THREAD_INFO'" href="#") {{event.threadInfo.lastMessageInfo.publisherInfo.handle}}
+        a(href="#") {{event.lastMessageInfo.publisherInfo.handle}}
 
 
       p.role Project Contributor
@@ -29,13 +19,10 @@ div(ng-if="event.type == 'THREAD_INFO' || event.type == 'SUBMISSION_THREAD_INFO'
 
   hr
 
-  p(ng-if="event.type == 'THREAD_INFO'") {{event.lastMessageInfo.content}}
-
-  p(ng-if="event.type == 'SUBMISSION_THREAD_INFO'") {{event.threadInfo.lastMessageInfo.content}}
-
+  p {{event.lastMessageInfo.content}}
 
   textarea.wider(placeholder="Reply to this message")
 
   button.wider.action reply
 
-  button.wider view all messages
+  button.wider(ui-sref="messaging({ id: event.threadId })") view all messages

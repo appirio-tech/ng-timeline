@@ -1,19 +1,16 @@
-h1 April 5th status report
+div(ng-if="event.type == 'SUBMISSION_THREAD_INFO' && eventGroup.text == 'Development Begins' ")
+  h1 {{eventGroup.createdTime | date : 'MMMM d' }} status report
 
-time 20 days ago
+  time {{eventGroup.createdTime | date}}
 
-p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  p {{event.threadInfo.lastMessageInfo.content}}
 
-ul
-  li
-    .img
+  ul.submissions
+    li(ng-repeat="submission in event.submissionThumbnails")
+      .notification {{event.threadInfo.unreadMessageCount}}
 
-  li
-    .img
+      .img(ng-src="submission")
 
-  li
-    .img
+  button.action.wider view prototype
 
-button.action.wider view prototype
-
-button.wider share link
+  button.wider share link

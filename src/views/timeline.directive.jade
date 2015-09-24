@@ -6,7 +6,7 @@ main
   .timeline
 
   ul
-    li.event-group(ng-repeat-start="eventGroup in vm.eventGroups")
+    li.event-group(ng-repeat-start="eventGroup in vm.eventGroups" ng-if="eventGroup.text != 'Project Complete' ")
       header
         button.clean.point(
           ng-class="{expanded: vm.expanded[eventGroup.text]}"
@@ -21,7 +21,9 @@ main
         li
           hr
 
-        li.event(ng-repeat-start="event in eventGroup.events" ng-class="{finish: event.type == 'PAYMENT_ACCEPTED' }")
+        li.event(
+            ng-repeat-start="event in eventGroup.events"
+            )
           button.clean.point(
             ng-class="{expanded: vm.expanded[event.type]}"
             ng-click="vm.expanded[event.type] = !vm.expanded[event.type]"
@@ -30,7 +32,7 @@ main
           timeline-copilot(ng-class="{expanded: vm.expanded[event.type] }")
             include parts/copilot
 
-          timeline-quote(ng-class="{expanded: vm.expanded.submittedQuote }")
+          timeline-quote(ng-class="{expanded: vm.expanded[event.type] }")
             include parts/quote
 
           include parts/payment
@@ -43,20 +45,28 @@ main
           timeline-messaging
             include parts/messages
 
-          //- DESIGN CONCEPTS
+          //- DESIGN CONCEPTS, FINAL DESIGNS
           include parts/submissions
 
           timeline-comments
             include parts/comments
 
-          timeline-messaging
-            include parts/messages
-
           include parts/select-winners
 
           include parts/winners
 
-        li(ng-repeat-end ng-if="event.type != 'PAYMENT_ACCEPTED' ")
+          //- DEVELOPMENT LAUNCHED
+
+          //- DEVELOPMENT BEGINS
+          timeline-status-report
+            include parts/status-report
+
+          include parts/development-complete
+
+          timeline-final-deliverables
+            include parts/final-deliverables
+
+        li(ng-repeat-end ng-if="eventGroup.events.indexOf(event) != eventGroup.events.length - 1")
           hr.biggest
 
     li.splitter(ng-repeat-end)
@@ -282,10 +292,10 @@ main
 
     //- li.splitter
 
-    //- li.complete
-    //-   header
-    //-     button.clean.point
+    li.complete
+      header
+        button.clean.point
 
-    //-     h1 Project complete
+        h1 Project complete
 
-    //-     p September 23 2015
+        p {{vm.projectCompletionDate | date}}

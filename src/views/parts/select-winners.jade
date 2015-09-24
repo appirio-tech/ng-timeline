@@ -1,5 +1,6 @@
-h1 Select the winners
+.event.finish(ng-if="event.type == 'WORKSTEP_SUBMITTERS' ")
+  h1 Select the winners
 
-p 48 hours left
+  p 48 hours left
 
-button.wider view submissions
+  button.wider(ui-sref="design-concepts({projectId: vm.workId})") view submissions

@@ -1,10 +1,10 @@
-div(ng-if="event.type == 'SUBMISSION_THREAD_INFO' ")
+div(ng-if="event.type == 'SUBMISSION_THREAD_INFO' && (eventGroup.text == 'Final Designs' || eventGroup.text == 'Design Concepts') ")
   ul.header
     li
       .icon
 
     li
-      avatar(avatar-url="{{event.lastMessageInfo.publisherInfo.avatar}}")
+      avatar(avatar-url="{{event.threadInfo.lastMessageInfo.publisherInfo.avatar}}")
 
     li.name
       p
@@ -13,7 +13,7 @@ div(ng-if="event.type == 'SUBMISSION_THREAD_INFO' ")
       p.role Project Contributor
 
     li
-      time {{event.lastMessageInfo.createdTime}}
+      time {{event.threadInfo.lastMessageInfo.createdTime}}
 
   hr
 
@@ -23,6 +23,6 @@ div(ng-if="event.type == 'SUBMISSION_THREAD_INFO' ")
     li(ng-repeat="submission in event.submissionThumbnails")
       .notification {{event.threadInfo.unreadMessageCount}}
 
-      .img
+      .img(ng-src="submission")
 
   button.wider.view-all view all comments
