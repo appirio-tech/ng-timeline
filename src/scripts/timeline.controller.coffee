@@ -28,7 +28,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
     'WORKSTEP_WINNERS': false
 
   order = (data) ->
-    # TODO: REMOVE
+    # TODO: REMOVE MOCK DATA
     data.forEach (eventGroup) ->
       if eventGroup.text == "Final Fixes" || eventGroup.text =="Final Designs"
         eventGroup.events = [
