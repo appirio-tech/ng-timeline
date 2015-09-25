@@ -6,10 +6,10 @@ div(ng-if="eventGroup.text == 'Final Fixes' && event.type == 'SUBMISSION_THREAD_
   p {{event.threadInfo.lastMessageInfo.content}}
 
   ul.submissions
-    li(ng-repeat="submission in event.submissionThumbnails")
-      .notification {{event.threadInfo.unreadMessageCount}}
+    li(ng-repeat="submission in event.submissionThreads")
+      .notification {{submission.unreadMessageCount}}
 
-      .img(ng-src="submission")
+      .img(ng-src="submission.thumbnailUrl")
 
   button.action.wider view prototype
 

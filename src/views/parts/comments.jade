@@ -10,19 +10,19 @@ div(ng-if="event.type == 'SUBMISSION_THREAD_INFO' && (eventGroup.text == 'Final 
       p
         a(href="#") {{event.threadInfo.lastMessageInfo.publisherInfo.handle}}
 
-      p.role Project Contributor
+      p.role {{event.threadInfo.lastMessageInfo.publisherInfo.role}}
 
     li
       time {{event.threadInfo.lastMessageInfo.createdTime | timeLapse}}
 
   hr
 
-  p {{event.threadInfo.lastMessageInfo.publisherInfo.handle}} has commented on {{event.submissionThumbnails.length}} submission images.
+  p {{event.threadInfo.lastMessageInfo.publisherInfo.handle}} has commented on {{event.submissionThreads.length}} submission images.
 
   ul.submissions
-    li(ng-repeat="submission in event.submissionThumbnails")
-      .notification {{event.threadInfo.unreadMessageCount}}
+    li(ng-repeat="submission in event.submissionThreads")
+      .notification {{submission.unreadMessageCount}}
 
-      .img(ng-src="submission")
+      .img(ng-src="submission.thumbnailUrl")
 
   button.wider.view-all view all comments

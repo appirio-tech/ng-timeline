@@ -1,15 +1,14 @@
-div(ng-if="event.type == 'SUBMISSION_THREAD_INFO' && eventGroup.text == 'Development Begins' ")
-  h1 {{eventGroup.createdTime | date : 'MMMM d' }} status report
+div(ng-if="event.type == 'STATUS_REPORT' ")
+  h1 {{eventTime.createdTime | date : 'MMMM d' }} status report
 
-  time {{eventGroup.createdTime | timeLapse}}
+  time {{event.eventTime | timeLapse}}
 
-  p {{event.threadInfo.lastMessageInfo.content}}
+  p {{event.text}}
 
   ul.submissions
-    li(ng-repeat="submission in event.submissionThumbnails")
-      .notification {{event.threadInfo.unreadMessageCount}}
+    li(ng-repeat="image in event.images")
 
-      .img(ng-src="submission")
+      .img(ng-src="image")
 
   button.action.wider view prototype
 
