@@ -25,10 +25,10 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
     'SUBMISSION_THREAD_INFO': false
     'WORKSTEP_WINNERS': false
 
-  order = (data) ->
+  mockify = (data) ->
     # TODO: REMOVE MOCK DATA
     data.forEach (eventGroup) ->
-      if eventGroup.text == "Final Fixes" || eventGroup.text =="Final Designs"
+      if eventGroup.text == "Final Fixes"
         eventGroup.events = [
           {
             "type": "SUBMISSION_THREAD_INFO",
@@ -41,35 +41,25 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
                 "publisherInfo": {
                   "userId": "id",
                   "handle": "Batman",
-                  "avatar": "http://pict.ly"
+                  "avatar": "http://pict.ly",
+                  "role": "Project Creator"
                 }
               }
             },
-            "submissionThumbnails": [
-              "http://thumbnail.url/"
+            "submissionThreads": [
+              {
+                "submissionId": "123",
+                "threadId": "abc123",
+                "unreadMessageCount": 2,
+                "thumbnailUrl": "http://thumbnail.url/"
+              }
             ]
           }
         ]
       else if eventGroup.text == 'Project Complete'
         vm.projectCompletionDate = eventGroup.createdTime
 
-    timeStamped = data.filter (eventGroup) ->
-      eventGroup.createdTime
-
-    unStamped = data.filter (eventGroup) ->
-      !eventGroup.createdTime
-
-    sorted = timeStamped.sort (prev, next) ->
-      if prev.createdTime < next.createdTime
-        return -1
-      else if prev.createdTime > next.createdTime
-        return 1
-      else
-        return 0
-
-    merged = sorted.concat unStamped
-
-    merged
+    data
 
   activate = ->
     vm.workId = $scope.workId
@@ -79,7 +69,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
 
     resource = TimelineAPIService.query params
     resource.$promise.then (data) ->
-      vm.eventGroups = order(data)
+      vm.eventGroups = mockify(data)
       vm.loading = false
 
     vm
