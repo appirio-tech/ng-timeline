@@ -13,7 +13,7 @@ div(ng-if="event.type == 'SUBMISSION_THREAD_INFO' && (eventGroup.text == 'Final 
       p.role Project Contributor
 
     li
-      time {{event.threadInfo.lastMessageInfo.createdTime}}
+      time {{event.threadInfo.lastMessageInfo.createdTime | timeLapse}}
 
   hr
 

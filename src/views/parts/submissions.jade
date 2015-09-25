@@ -1,7 +1,7 @@
 div(ng-if="event.type == 'WORKSTEP_SUBMITTERS' ")
   h1 {{event.avatars.length}} people have submitted Designs
 
-  time {{eventGroup.createdTime | date}}
+  time {{eventGroup.createdTime | timeLapse}}
 
   ul.avatars
     li(ng-repeat="avatar in event.avatars")

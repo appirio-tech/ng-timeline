@@ -1,7 +1,7 @@
 div(ng-if="event.type == 'MEMBER_REGISTRATION' ")
   h1 {{event.members.length}} people have joined your project
 
-  time {{event.createdTime}}
+  time {{event.eventTime | timeLapse}}
 
   ul.avatars
     li(ng-repeat="member in event.members")

@@ -3,7 +3,6 @@
 TimelineController = ($scope, $stateParams, TimelineAPIService) ->
   vm        = this
   vm.eventGroups = []
-  vm.showMessagingWidget = false
   vm.loading = true
 
   vm.expanded =
