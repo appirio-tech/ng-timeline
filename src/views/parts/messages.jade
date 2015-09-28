@@ -3,23 +3,25 @@ ul.header
     .icon
 
   li
-    avatar
+    avatar(avatar-url="{{event.lastMessageInfo.publisherInfo.avatar}}")
+
 
   li.name
     p
-      a(href="#") Bilbo Baggins
+      a(href="#") {{event.lastMessageInfo.publisherInfo.handle}}
+
 
     p.role Project Contributor
 
   li
-    time 4 days ago
+    time {{event.eventTime | timeLapse}}
 
 hr
 
-p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+p {{event.lastMessageInfo.content}}
 
 textarea.wider(placeholder="Reply to this message")
 
 button.wider.action reply
 
-button.wider view all messages
+button.wider(ui-sref="messaging({ id: event.threadId })") view all messages

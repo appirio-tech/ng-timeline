@@ -3,35 +3,25 @@ ul.header
     .icon
 
   li
-    avatar
+    avatar(avatar-url="{{event.threadInfo.lastMessageInfo.publisherInfo.avatar}}")
 
   li.name
     p
-      a(href="#") Bilbo Baggins
+      a(href="#") {{event.threadInfo.lastMessageInfo.publisherInfo.handle}}
 
-    p.role Project Contributor
+    p.role {{event.threadInfo.lastMessageInfo.publisherInfo.role}}
 
   li
-    time 4 days ago
+    time {{event.threadInfo.lastMessageInfo.createdTime | timeLapse}}
 
 hr
 
-p Bilbo Baggins has commented on 3 submission images.
+p {{event.threadInfo.lastMessageInfo.publisherInfo.handle}} has commented on {{event.submissionThreads.length}} submission images.
 
 ul.submissions
-  li
-    .notification 10
+  li(ng-repeat="submission in event.submissionThreads")
+    .notification {{submission.unreadMessageCount}}
 
-    .img
-
-  li
-    .notification 10
-
-    .img
-
-  li
-    .notification 10
-
-    .img
+    img.img(ng-src="{{submission.thumbnailUrl}}")
 
 button.wider.view-all view all comments

@@ -1,13 +1,8 @@
-h1 Congratulations!
+.event.finish
+  h1 Congratulations!
 
-p You have chosen 3 winners
+  p You have chosen {{event.avatars.length}} winner(s)
 
-ul.avatars
-  li
-    avatar
-
-  li
-    avatar
-
-  li
-    avatar
+  ul.avatars
+    li(ng-repeat="avatar in event.avatars")
+      avatar(avatar-url="{{avatar}}")

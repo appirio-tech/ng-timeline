@@ -6,281 +6,86 @@ main
   .timeline
 
   ul
-    li.event-group
+    li.event-group(ng-repeat-start="eventGroup in vm.eventGroups" ng-if="eventGroup.text != 'Project Complete' ")
       header
         button.clean.point(
-          ng-class="{expanded: vm.expanded.submitted}"
-          ng-click="vm.expanded.submitted = !vm.expanded.submitted"
+          ng-class="{expanded: vm.expanded[eventGroup.text]}"
+          ng-click="vm.expanded[eventGroup.text] = !vm.expanded[eventGroup.text]"
         )
 
-        h4 Project submitted
+        h4 {{eventGroup.text}}
 
-        time 3 days ago
+        time {{eventGroup.createdTime | date}}
 
-      ul.events(ng-class="{expanded: vm.expanded.submitted }")
+      ul.expand-big.events(ng-class="{expanded: vm.expanded[eventGroup.text] }")
         li
-          hr
+          hr.biggest
 
-        li.event
-          button.clean.point(
-            ng-class="{expanded: vm.expanded.submittedCopilot}"
-            ng-click="vm.expanded.submittedCopilot = !vm.expanded.submittedCopilot"
+        li.event(
+            ng-repeat-start="event in eventGroup.events"
+            ng-if="vm.expanded[event.type] != undefined"
           )
-
-          timeline-copilot(ng-class="{expanded: vm.expanded.submittedCopilot }")
+          button.clean.point(
+            ng-class="{expanded: vm.expanded[event.type]}"
+            ng-click="vm.expanded[event.type] = !vm.expanded[event.type]"
+          )
+          //- SUBMITTED
+          timeline-copilot(
+            ng-if="event.type == 'COPILOT_ASSIGNED'"
+            ng-class="{expanded: vm.expanded[event.type] }"
+          )
             include parts/copilot
 
-        li
-          hr.biggest
-
-        li.event
-          button.clean.point(
-            ng-class="{expanded: vm.expanded.submittedQuote}"
-            ng-click="vm.expanded.submittedQuote = !vm.expanded.submittedQuote"
+          timeline-quote(
+            ng-if="event.type == 'QUOTE_INFO' "
+            ng-class="{expanded: vm.expanded[event.type] }"
           )
-
-          timeline-quote(ng-class="{expanded: vm.expanded.submittedQuote }")
             include parts/quote
 
-        li
-          hr.biggest
+          timeline-payment(ng-if="event.type == 'PAYMENT_ADDED' && !event.eventTime ")
+            include parts/payment
 
-        li.event
-          button.clean.point
+          timeline-payment-added(ng-if="event.type == 'PAYMENT_ACCEPTED' ")
+            include parts/payment-added
 
-          include parts/payment
+          //- LAUNCHED
+          timeline-members(ng-if="event.type == 'MEMBER_REGISTRATION' ")
+            include parts/members
 
-        li.event.finish
-          button.clean.point
-
-          include parts/payment-added
-
-    li.splitter
-
-    li.event-group
-      header
-        button.clean.point(
-          ng-class="{expanded: vm.expanded.launched}"
-          ng-click="vm.expanded.launched = !vm.expanded.launched"
-        )
-
-        h4 Project launched
-
-        time 3 days ago
-
-      ul.events(ng-class="{expanded: vm.expanded.launched }")
-        li
-          hr
-
-        li.event
-          button.clean.point
-
-          include parts/members
-
-        li
-          hr.biggest
-
-        li.event
-          button.clean.point
-
-          timeline-messaging
+          timeline-messaging(ng-if="event.type == 'THREAD_INFO' ")
             include parts/messages
 
-    li.splitter
+          //- DESIGN CONCEPTS, FINAL DESIGNS
+          timeline-submissions(ng-if="event.type == 'WORKSTEP_SUBMITTERS' ")
+            include parts/submissions
 
-    li.event-group
-      header
-        button.clean.point(
-          ng-class="{expanded: vm.expanded.design}"
-          ng-click="vm.expanded.design = !vm.expanded.design"
-        )
-
-        h4 Design concepts
-
-        time 3 days ago
-
-      ul.expand-big.events(ng-class="{expanded: vm.expanded.design }")
-        li
-          hr.biggest
-
-        li.event
-          button.clean.point
-
-          include parts/submissions
-
-        li
-          hr.biggest
-
-        li.event
-          button.clean.point
-
-          timeline-comments
+          timeline-comments(
+            ng-if="event.type == 'SUBMISSION_THREAD_INFO' && (eventGroup.text == 'Final Designs' || eventGroup.text == 'Design Concepts') "
+            )
             include parts/comments
 
-        li
-          hr.biggest
+          timeline-select-winners(ng-if="event.type == 'WORKSTEP_SUBMITTERS' ")
+            include parts/select-winners
 
-        li.event
-          button.clean.point
+          timeline-winners(ng-if="event.type == 'WORKSTEP_WINNERS' ")
+            include parts/winners
 
-          timeline-messaging
-            include parts/messages
+          //- DEVELOPMENT LAUNCHED
 
-        li
-          hr.biggest
-
-        li.event.finish
-          button.clean.point
-
-          include parts/select-winners
-
-          include parts/winners
-
-    li.splitter
-
-    li.event-group
-      header
-        button.clean.point(
-          ng-class="{expanded: vm.expanded.final}"
-          ng-click="vm.expanded.final = !vm.expanded.final"
-        )
-
-        h4 Final design phase
-
-        time 3 days ago
-
-      ul.expand-big.events(ng-class="{ expanded: vm.expanded.final }")
-        li
-          hr.biggest
-
-        li.event
-          button.clean.point
-
-          include parts/submissions
-
-        li
-          hr.biggest
-
-        li.event
-          button.clean.point
-
-          timeline-comments
-            include parts/comments
-
-        li
-          hr.biggest
-
-        li.event
-          button.clean.point
-
-          timeline-messaging
-            include parts/messages
-
-        li
-          hr.biggest
-
-        li.event.finish
-          button.clean.point
-
-          include parts/select-winners
-
-          include parts/winners
-
-    li.splitter
-
-    li.event-group
-      header
-        button.clean.point(
-          ng-class="{expanded: vm.expanded.development}"
-          ng-click="vm.expanded.development = !vm.expanded.development"
-        )
-
-        h4 Development launched
-
-        time 3 days ago
-
-      ul.events(ng-class="{expanded: vm.expanded.development }")
-        li
-          hr.biggest
-
-        li.event
-          button.clean.point
-
-          include parts/copilot
-
-        li
-          hr.biggest
-
-        li.event
-          button.clean.point
-
-          timeline-messaging
-            include parts/messages
-
-    li.splitter
-
-    li.event-group
-      header
-        button.clean.point(
-          ng-class="{expanded: vm.expanded.begins}"
-          ng-click="vm.expanded.begins = !vm.expanded.begins"
-        )
-
-        h4 Development begins
-
-        time 3 days ago
-
-      ul.events(ng-class="{expanded: vm.expanded.begins }")
-        li
-          hr
-
-        li.event
-          button.clean.point
-
-          timeline-status-report
+          //- DEVELOPMENT BEGINS
+          timeline-status-report(ng-if="event.type == 'STATUS_REPORT' ")
             include parts/status-report
 
-        li
-          hr.biggest
+          timeline-development-complete(ng-if="eventGroup.text == 'Development Begins' && eventGroup.createdTime ")
+            include parts/development-complete
 
-        li.event.finish
-          button.clean.point
-
-          h1 Development complete
-
-    li.splitter
-
-    li.event-group
-      header
-        button.clean.point(
-          ng-class="{expanded: vm.expanded.developmentFixes}"
-          ng-click="vm.expanded.developmentFixes = !vm.expanded.developmentFixes"
-        )
-
-        h4 Final development fixes
-
-        time 3 days ago
-
-      ul.expand-big.events(ng-class="{expanded: vm.expanded.developmentFixes }")
-        li
-          hr
-
-        li.event
-          button.clean.point
-
-          timeline-comments
-            include parts/comments
-
-        li
-          hr.biggest
-
-        li.event
-          button.clean.point
-
-          timeline-final-deliverables
+          timeline-final-deliverables(ng-if="eventGroup.text == 'Final Fixes' && event.type == 'SUBMISSION_THREAD_INFO' ")
             include parts/final-deliverables
 
-    li.splitter
+        li(ng-repeat-end ng-if="eventGroup.events.indexOf(event) != eventGroup.events.length - 1 && vm.expanded[event.type] != undefined")
+          hr.biggest
+
+    li.splitter(ng-repeat-end)
 
     li.complete
       header
@@ -288,4 +93,4 @@ main
 
         h1 Project complete
 
-        p September 23 2015
+        p {{vm.projectCompletionDate | date}}

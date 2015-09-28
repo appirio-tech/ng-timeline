@@ -1,19 +1,7 @@
-h1 4 people have submitted Designs
+h1 {{event.avatars.length}} people have submitted Designs
 
-time 200000 years ago
+time {{eventGroup.createdTime | timeLapse}}
 
 ul.avatars
-  li
-    avatar
-
-  li
-    avatar
-
-  li
-    avatar
-
-  li
-    avatar
-
-  li
-    avatar
+  li(ng-repeat="avatar in event.avatars")
+    avatar(avatar-url="avatar")

@@ -2,14 +2,34 @@
 
 TimelineController = ($scope, $stateParams, TimelineAPIService) ->
   vm        = this
-  vm.events = {}
+  vm.eventGroups = []
+  vm.loading = true
+  vm.projectCompletionDate = null
 
   vm.expanded =
-    submitted     : false
-    launched      : false
-    designConcepts: false
-    finalDesigns  : false
-    finalFixes    : false
+    # eventGroups
+    'Project Submitted': false
+    'Project Launched': false
+    'Design Concepts': false
+    'Final Designs': false
+    'Final Fixes': false
+    'Development Launched': false
+    'Development Begins': false
+    'Project Complete': false
+    # events
+    'COPILOT_ASSIGNED': false
+    'QUOTE_INFO': false
+    'PAYMENT_ACCEPTED': false
+    'MEMBER_REGISTRATION': false
+    'THREAD_INFO': false
+    'WORKSTEP_SUBMITTERS': false
+    'SUBMISSION_THREAD_INFO': false
+    'WORKSTEP_WINNERS': false
+
+  findCompletionDate = (data) ->
+    data.forEach (eventGroup) ->
+      if eventGroup.text == 'Project Complete'
+        vm.projectCompletionDate = eventGroup.createdTime
 
   activate = ->
     vm.workId = $scope.workId
@@ -17,9 +37,11 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
     params =
       workId: vm.workId
 
-    resource = TimelineAPIService.get params
+    resource = TimelineAPIService.query params
     resource.$promise.then (data) ->
-      vm.events = data
+      vm.eventGroups = data
+      findCompletionDate(data)
+      vm.loading = false
 
     vm
 

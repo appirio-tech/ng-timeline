@@ -1,18 +1,13 @@
-h1 April 5th status report
+h1 {{eventTime.createdTime | date : 'MMMM d' }} status report
 
-time 20 days ago
+time {{event.eventTime | timeLapse}}
 
-p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+p {{event.text}}
 
-ul
-  li
-    .img
+ul.submissions
+  li(ng-repeat="image in event.images")
 
-  li
-    .img
-
-  li
-    .img
+    img.img(ng-src="{{image}}")
 
 button.action.wider view prototype
 
