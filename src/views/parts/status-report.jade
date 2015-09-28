@@ -1,15 +1,14 @@
-div
-  h1 {{eventTime.createdTime | date : 'MMMM d' }} status report
+h1 {{eventTime.createdTime | date : 'MMMM d' }} status report
 
-  time {{event.eventTime | timeLapse}}
+time {{event.eventTime | timeLapse}}
 
-  p {{event.text}}
+p {{event.text}}
 
-  ul.submissions
-    li(ng-repeat="image in event.images")
+ul.submissions
+  li(ng-repeat="image in event.images")
 
-      .img(ng-src="image")
+    img.img(ng-src="{{image}}")
 
-  button.action.wider view prototype
+button.action.wider view prototype
 
-  button.wider share link
+button.wider share link

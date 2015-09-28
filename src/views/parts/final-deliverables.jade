@@ -1,16 +1,13 @@
-div
-  h1 Final deliverables
+h1 Final deliverables
 
-  time {{event.eventTime | timeLapse }}
+time {{event.eventTime | timeLapse }}
 
-  p {{event.threadInfo.lastMessageInfo.content}}
+p {{event.threadInfo.lastMessageInfo.content}}
 
-  ul.submissions
-    li(ng-repeat="submission in event.submissionThreads")
-      .notification {{submission.unreadMessageCount}}
+ul.submissions
+  li(ng-repeat="submission in event.submissionThreads")
+    img.img(ng-src="{{submission.thumbnailUrl}}")
 
-      .img(ng-src="submission.thumbnailUrl")
+button.action.wider view prototype
 
-  button.action.wider view prototype
-
-  button.wider share link
+button.wider share link

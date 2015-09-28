@@ -1,28 +1,27 @@
-div
-  ul.header
-    li
-      .icon
+ul.header
+  li
+    .icon
 
-    li
-      avatar(avatar-url="{{event.threadInfo.lastMessageInfo.publisherInfo.avatar}}")
+  li
+    avatar(avatar-url="{{event.threadInfo.lastMessageInfo.publisherInfo.avatar}}")
 
-    li.name
-      p
-        a(href="#") {{event.threadInfo.lastMessageInfo.publisherInfo.handle}}
+  li.name
+    p
+      a(href="#") {{event.threadInfo.lastMessageInfo.publisherInfo.handle}}
 
-      p.role {{event.threadInfo.lastMessageInfo.publisherInfo.role}}
+    p.role {{event.threadInfo.lastMessageInfo.publisherInfo.role}}
 
-    li
-      time {{event.threadInfo.lastMessageInfo.createdTime | timeLapse}}
+  li
+    time {{event.threadInfo.lastMessageInfo.createdTime | timeLapse}}
 
-  hr
+hr
 
-  p {{event.threadInfo.lastMessageInfo.publisherInfo.handle}} has commented on {{event.submissionThreads.length}} submission images.
+p {{event.threadInfo.lastMessageInfo.publisherInfo.handle}} has commented on {{event.submissionThreads.length}} submission images.
 
-  ul.submissions
-    li(ng-repeat="submission in event.submissionThreads")
-      .notification {{submission.unreadMessageCount}}
+ul.submissions
+  li(ng-repeat="submission in event.submissionThreads")
+    .notification {{submission.unreadMessageCount}}
 
-      .img(ng-src="submission.thumbnailUrl")
+    img.img(ng-src="{{submission.thumbnailUrl}}")
 
-  button.wider.view-all view all comments
+button.wider.view-all view all comments

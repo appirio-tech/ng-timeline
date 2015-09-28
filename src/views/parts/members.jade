@@ -1,8 +1,7 @@
-div
-  h1 {{event.members.length}} people have joined your project
+h1 {{event.members.length}} people have joined your project
 
-  time {{event.eventTime | timeLapse}}
+time {{event.eventTime | timeLapse}}
 
-  ul.avatars
-    li(ng-repeat="member in event.members")
-      avatar(avatar-url="{{member.avatar}}")
+ul.avatars
+  li(ng-repeat="member in event.members")
+    avatar(avatar-url="{{member.avatar}}")

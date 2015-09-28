@@ -45,7 +45,7 @@ main
           timeline-payment(ng-if="event.type == 'PAYMENT_ADDED' && !event.eventTime ")
             include parts/payment
 
-          timeline-payment-added.event.finish(ng-if="event.type == 'PAYMENT_ACCEPTED' ")
+          timeline-payment-added(ng-if="event.type == 'PAYMENT_ACCEPTED' ")
             include parts/payment-added
 
           //- LAUNCHED
@@ -60,15 +60,14 @@ main
             include parts/submissions
 
           timeline-comments(
-            ng-if="event.type == 'SUBMISSION_THREAD_INFO' && 
-            (eventGroup.text == 'Final Designs' || eventGroup.text == 'Design Concepts') "
+            ng-if="event.type == 'SUBMISSION_THREAD_INFO' && (eventGroup.text == 'Final Designs' || eventGroup.text == 'Design Concepts') "
             )
             include parts/comments
 
-          timeline-select-winners.event.finish(ng-if="event.type == 'WORKSTEP_SUBMITTERS' ")
+          timeline-select-winners(ng-if="event.type == 'WORKSTEP_SUBMITTERS' ")
             include parts/select-winners
 
-          timeline-winners.event.finish(ng-if="event.type == 'WORKSTEP_WINNERS' ")
+          timeline-winners(ng-if="event.type == 'WORKSTEP_WINNERS' ")
             include parts/winners
 
           //- DEVELOPMENT LAUNCHED
@@ -77,7 +76,7 @@ main
           timeline-status-report(ng-if="event.type == 'STATUS_REPORT' ")
             include parts/status-report
 
-          timeline-development-complete.event.finish(ng-if="eventGroup.text == 'Development Begins' && eventGroup.createdTime ")
+          timeline-development-complete(ng-if="eventGroup.text == 'Development Begins' && eventGroup.createdTime ")
             include parts/development-complete
 
           timeline-final-deliverables(ng-if="eventGroup.text == 'Final Fixes' && event.type == 'SUBMISSION_THREAD_INFO' ")

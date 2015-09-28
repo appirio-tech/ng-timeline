@@ -1,28 +1,27 @@
-div
-  ul.header
-    li
-      .icon
+ul.header
+  li
+    .icon
 
-    li
-      avatar(avatar-url="{{event.lastMessageInfo.publisherInfo.avatar}}")
-
-
-    li.name
-      p
-        a(href="#") {{event.lastMessageInfo.publisherInfo.handle}}
+  li
+    avatar(avatar-url="{{event.lastMessageInfo.publisherInfo.avatar}}")
 
 
-      p.role Project Contributor
+  li.name
+    p
+      a(href="#") {{event.lastMessageInfo.publisherInfo.handle}}
 
-    li
-      time {{event.eventTime | timeLapse}}
 
-  hr
+    p.role Project Contributor
 
-  p {{event.lastMessageInfo.content}}
+  li
+    time {{event.eventTime | timeLapse}}
 
-  textarea.wider(placeholder="Reply to this message")
+hr
 
-  button.wider.action reply
+p {{event.lastMessageInfo.content}}
 
-  button.wider(ui-sref="messaging({ id: event.threadId })") view all messages
+textarea.wider(placeholder="Reply to this message")
+
+button.wider.action reply
+
+button.wider(ui-sref="messaging({ id: event.threadId })") view all messages
