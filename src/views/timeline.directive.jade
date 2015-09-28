@@ -17,54 +17,70 @@ main
 
         time {{eventGroup.createdTime | date}}
 
-      ul.expanded-big.events(ng-class="{expanded: vm.expanded[eventGroup.text] }")
+      ul.expand-big.events(ng-class="{expanded: vm.expanded[eventGroup.text] }")
         li
           hr.biggest
 
         li.event(
             ng-repeat-start="event in eventGroup.events"
             ng-if="vm.expanded[event.type] != undefined"
-            )
+          )
           button.clean.point(
             ng-class="{expanded: vm.expanded[event.type]}"
             ng-click="vm.expanded[event.type] = !vm.expanded[event.type]"
           )
           //- SUBMITTED
-          timeline-copilot(ng-class="{expanded: vm.expanded[event.type] }")
+          timeline-copilot(
+            ng-if="event.type == 'COPILOT_ASSIGNED'"
+            ng-class="{expanded: vm.expanded[event.type] }"
+          )
             include parts/copilot
 
-          timeline-quote(ng-class="{expanded: vm.expanded[event.type] }")
+          timeline-quote(
+            ng-if="event.type == 'QUOTE_INFO' "
+            ng-class="{expanded: vm.expanded[event.type] }"
+          )
             include parts/quote
 
-          include parts/payment
+          timeline-payment(ng-if="event.type == 'PAYMENT_ADDED' && !event.eventTime ")
+            include parts/payment
 
-          include parts/payment-added
+          timeline-payment-added.event.finish(ng-if="event.type == 'PAYMENT_ACCEPTED' ")
+            include parts/payment-added
 
           //- LAUNCHED
-          include parts/members
+          timeline-members(ng-if="event.type == 'MEMBER_REGISTRATION' ")
+            include parts/members
 
-          timeline-messaging
+          timeline-messaging(ng-if="event.type == 'THREAD_INFO' ")
             include parts/messages
 
           //- DESIGN CONCEPTS, FINAL DESIGNS
-          include parts/submissions
+          timeline-submissions(ng-if="event.type == 'WORKSTEP_SUBMITTERS' ")
+            include parts/submissions
 
-          timeline-comments
+          timeline-comments(
+            ng-if="event.type == 'SUBMISSION_THREAD_INFO' && 
+            (eventGroup.text == 'Final Designs' || eventGroup.text == 'Design Concepts') "
+            )
             include parts/comments
 
-          include parts/select-winners
+          timeline-select-winners.event.finish(ng-if="event.type == 'WORKSTEP_SUBMITTERS' ")
+            include parts/select-winners
 
-          include parts/winners
+          timeline-winners.event.finish(ng-if="event.type == 'WORKSTEP_WINNERS' ")
+            include parts/winners
 
           //- DEVELOPMENT LAUNCHED
 
           //- DEVELOPMENT BEGINS
-          timeline-status-report
+          timeline-status-report(ng-if="event.type == 'STATUS_REPORT' ")
             include parts/status-report
 
-          include parts/development-complete
+          timeline-development-complete.event.finish(ng-if="eventGroup.text == 'Development Begins' && eventGroup.createdTime ")
+            include parts/development-complete
 
-          timeline-final-deliverables
+          timeline-final-deliverables(ng-if="eventGroup.text == 'Final Fixes' && event.type == 'SUBMISSION_THREAD_INFO' ")
             include parts/final-deliverables
 
         li(ng-repeat-end ng-if="eventGroup.events.indexOf(event) != eventGroup.events.length - 1 && vm.expanded[event.type] != undefined")
