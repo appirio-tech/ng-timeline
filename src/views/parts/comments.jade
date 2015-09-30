@@ -20,7 +20,7 @@ p {{event.threadInfo.lastMessageInfo.publisherInfo.handle}} has commented on {{e
 
 ul.submissions
   li(ng-repeat="submission in event.submissionThreads")
-    .notification {{submission.unreadMessageCount}}
+    .notification.absolute {{submission.unreadMessageCount}}
 
     img.img(ng-src="{{submission.thumbnailUrl}}")
 

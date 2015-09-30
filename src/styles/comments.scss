@@ -34,16 +34,6 @@ timeline-comments {
     }
   }
 
-  .notification {
-    background-color: $danger-color;
-    color           : white;
-    position        : absolute;
-    top             : -5px;
-    right           : -5px;
-    padding         : 4px;
-    border-radius   : $border-radius;
-  }
-
   .submissions {
     @include flex-center(center);
 
