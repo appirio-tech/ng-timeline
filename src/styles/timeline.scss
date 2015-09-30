@@ -5,7 +5,7 @@ timeline {
   padding         : $padding-big;
   background-color: $neutral-color-lightest;
 
-  h2 {
+  > h2 {
     text-align: center;
     font-weight: bold;
   }
