@@ -176,6 +176,10 @@ timeline {
       padding         : $padding;
       color           : $white;
       text-align      : center;
+
+      time {
+        color: $white;
+      }
     }
 
     .avatars {
