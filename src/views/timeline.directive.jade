@@ -24,7 +24,7 @@ main
         li.event(
           ng-repeat-start="event in eventGroup.events"
           ng-if="vm.expanded[event.type] != undefined"
-          ng-class="{finish: eventGroup.text == 'Development Begins' || event.type == 'PAYMENT_ACCEPTED' || event.type == 'WORKSTEP_SUBMITTERS' || event.type == 'WORKSTEP_WINNERS'}"
+          ng-class="{finish: vm.isAFinishEvent(eventGroup.text, event.type) }"
         )
           button.clean.point(
             ng-class="{expanded: vm.expanded[event.type]}"
@@ -83,7 +83,10 @@ main
           timeline-final-deliverables(ng-if="eventGroup.text == 'Final Fixes' && event.type == 'SUBMISSION_THREAD_INFO' ")
             include parts/final-deliverables
 
-        li(ng-repeat-end ng-if="eventGroup.events.indexOf(event) != eventGroup.events.length - 1 && vm.expanded[event.type] != undefined")
+        li(
+          ng-repeat-end=true
+          ng-if="eventGroup.events.indexOf(event) != eventGroup.events.length - 1 && vm.expanded[event.type] != undefined"
+        )
           hr.biggest
 
     li.splitter(ng-repeat-end)

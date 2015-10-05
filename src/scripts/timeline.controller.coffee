@@ -26,6 +26,9 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
     'SUBMISSION_THREAD_INFO': false
     'WORKSTEP_WINNERS': false
 
+  vm.isAFinishEvent = (text, type) ->
+    text == 'Development Begins' || type == 'PAYMENT_ACCEPTED' || type == 'WORKSTEP_SUBMITTERS' || type == 'WORKSTEP_WINNERS'
+
   findCompletionDate = (data) ->
     data.forEach (eventGroup) ->
       if eventGroup.text == 'Project Complete'

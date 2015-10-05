@@ -86,7 +86,11 @@ timeline {
   .event-group {
     box-shadow      : 0 6px 6px -6px $neutral-color;
     background-color: $white;
-    padding         : $padding;
+
+    > header { /* simulate white padding */
+      border          : $padding solid $white;
+      background-color: $white;
+    }
 
     > header {
       @include clearfix();
@@ -108,6 +112,17 @@ timeline {
       max-height: 0px;
       overflow: hidden;
       position: relative;
+
+      > * { /* simulate white padding */
+        border          : $padding solid $white;
+        background-color: $white;
+      }
+
+      > li {
+        > hr {
+          margin: 0;
+        }
+      }
 
       .point {
         background-color: $neutral-color-lightest;
@@ -176,6 +191,7 @@ timeline {
       padding         : $padding;
       color           : $white;
       text-align      : center;
+      border          : 0; /* remove simulated padding */
 
       time {
         color: $white;
