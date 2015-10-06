@@ -4,8 +4,6 @@ timeline-messaging {
   display: block;
 
   .header {
-    @include flex-center;
-
     width: 100%;
 
     .icon {

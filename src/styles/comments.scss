@@ -4,8 +4,6 @@ timeline-comments {
   display: block;
 
   .header {
-    @include flex-center;
-
     width: 100%;
 
     .icon {
@@ -19,8 +17,6 @@ timeline-comments {
     }
 
     .name {
-      @include flex-grow(2);
-
       text-align: left;
       margin-left: $margin-smallest;
 
@@ -35,8 +31,6 @@ timeline-comments {
   }
 
   .submissions {
-    @include flex-center(center);
-
     margin-top: $margin-small;
 
     li {

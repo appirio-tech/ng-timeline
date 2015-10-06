@@ -1,11 +1,11 @@
-ul.header
+ul.header.flex-center
   li
     .icon
 
   li
     avatar(avatar-url="{{event.threadInfo.lastMessageInfo.publisherInfo.avatar}}")
 
-  li.name
+  li.name.flex-grow
     p
       a(href="#") {{event.threadInfo.lastMessageInfo.publisherInfo.handle}}
 
@@ -18,7 +18,7 @@ hr
 
 p {{event.threadInfo.lastMessageInfo.publisherInfo.handle}} has commented on {{event.submissionThreads.length}} submission images.
 
-ul.submissions
+ul.submissions.flex-center
   li(ng-repeat="submission in event.submissionThreads")
     .notification.absolute {{submission.unreadMessageCount}}
 
