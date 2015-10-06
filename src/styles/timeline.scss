@@ -10,7 +10,7 @@ timeline {
     font-weight: bold;
   }
 
-  > main {
+  > main.flex-center {
     @include align-items(stretch);
     @include flex-wrap(nowrap);
 
