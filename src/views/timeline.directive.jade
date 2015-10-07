@@ -38,7 +38,7 @@ main.flex-center
             include parts/copilot
 
           timeline-quote(
-            ng-if="event.type == 'QUOTE_INFO' "
+            ng-if="event.type == 'QUOTE_INFO' && event.status == 'Created' "
             ng-class="{expanded: vm.expanded[event.type] }"
           )
             include parts/quote
