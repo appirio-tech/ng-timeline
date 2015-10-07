@@ -1,6 +1,6 @@
 'use strict'
 
-TimelineController = ($scope, $stateParams, TimelineAPIService) ->
+TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotProjectDetailsAPIService) ->
   vm        = this
   vm.eventGroups = []
   vm.loading = true
@@ -29,10 +29,29 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
   vm.isAFinishEvent = (text, type) ->
     text == 'Development Begins' || type == 'PAYMENT_ACCEPTED' || type == 'WORKSTEP_SUBMITTERS' || type == 'WORKSTEP_WINNERS'
 
+  vm.acceptQuote = (event) ->
+    if vm.copilotId
+
+      params =
+        userId: vm.copilotId
+        projectId: vm.workId
+
+      body =
+        "status": "approved"
+
+    CopilotProjectDetailsAPIService.put params, body
+
   findCompletionDate = (data) ->
     data.forEach (eventGroup) ->
       if eventGroup.text == 'Project Complete'
         vm.projectCompletionDate = eventGroup.createdTime
+
+  findCopilot = (data) ->
+    data.forEach (eventGroup) ->
+      if eventGroup.text == 'Project Submitted'
+        eventGroup.events.forEach (event) ->
+          if event.type == 'COPILOT_ASSIGNED'
+            vm.copilotId = event.copilot.userId
 
   activate = ->
     vm.workId = $scope.workId
@@ -44,6 +63,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
     resource.$promise.then (data) ->
       vm.eventGroups = data
       findCompletionDate(data)
+      findCopilot(data)
       vm.loading = false
 
     vm
@@ -51,7 +71,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService) ->
   activate()
 
 TimelineController.$inject = [
-  '$scope', '$stateParams', 'TimelineAPIService'
+  '$scope', '$stateParams', 'TimelineAPIService', 'CopilotProjectDetailsAPIService'
 ]
 
 angular.module('appirio-tech-ng-timeline').controller 'TimelineController', TimelineController
