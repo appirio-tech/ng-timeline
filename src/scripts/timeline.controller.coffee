@@ -33,11 +33,11 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotProjectDe
     if vm.copilotId
 
       params =
-        userId: vm.copilot.id
+        userId: vm.copilotId
         projectId: vm.workId
 
       body =
-        status: "approved"
+        "status": "approved"
 
     CopilotProjectDetailsAPIService.put params, body
 
@@ -51,7 +51,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotProjectDe
       if eventGroup.text == 'Project Submitted'
         eventGroup.events.forEach (event) ->
           if event.type == 'COPILOT_ASSIGNED'
-            vm.copilotId = event.copilot.id
+            vm.copilotId = event.copilot.userId
 
   activate = ->
     vm.workId = $scope.workId

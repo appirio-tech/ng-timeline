@@ -63,11 +63,11 @@ angular.module("appirio-tech-ng-timeline").run(["$templateCache", function($temp
       var body, params;
       if (vm.copilotId) {
         params = {
-          userId: vm.copilot.id,
+          userId: vm.copilotId,
           projectId: vm.workId
         };
         body = {
-          status: "approved"
+          "status": "approved"
         };
       }
       return CopilotProjectDetailsAPIService.put(params, body);
@@ -84,7 +84,7 @@ angular.module("appirio-tech-ng-timeline").run(["$templateCache", function($temp
         if (eventGroup.text === 'Project Submitted') {
           return eventGroup.events.forEach(function(event) {
             if (event.type === 'COPILOT_ASSIGNED') {
-              return vm.copilotId = event.copilot.id;
+              return vm.copilotId = event.copilot.userId;
             }
           });
         }
