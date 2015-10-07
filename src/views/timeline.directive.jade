@@ -38,10 +38,16 @@ main.flex-center
             include parts/copilot
 
           timeline-quote(
-            ng-if="event.type == 'QUOTE_INFO' "
+            ng-if="event.type == 'QUOTE_INFO' && event.status != 'Accepted' "
             ng-class="{expanded: vm.expanded[event.type] }"
           )
             include parts/quote
+
+          timeline-quote-accepted(
+            ng-if="event.type == 'QUOTE_INFO' && event.status == 'Accepted' "
+            ng-class="{expanded: vm.expanded[event.type] }"
+          )
+            include parts/quote-accepted
 
           timeline-payment(ng-if="event.type == 'PAYMENT_ADDED' && !event.eventTime ")
             include parts/payment
