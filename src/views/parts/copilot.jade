@@ -2,7 +2,7 @@ h2 Co-pilot assigned!
 
 time {{ event.eventTime | timeLapse}}
 
-main.avatar-box(ng-show="event.copilot.handle")
+main.avatar-box.flex.center(ng-show="event.copilot.handle")
   avatar(avatar-url="{{ event.copilot.avatar }}")
 
   | Hi I'm 

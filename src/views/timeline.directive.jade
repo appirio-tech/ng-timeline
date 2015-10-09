@@ -2,7 +2,7 @@
 
 h2 Timeline
 
-main.flex-center
+main.flex.center.stretch
   .timeline
 
   ul
@@ -80,13 +80,13 @@ main.flex-center
           //- DEVELOPMENT LAUNCHED
 
           //- DEVELOPMENT BEGINS
-          timeline-status-report.flex-center(ng-if="event.type == 'STATUS_REPORT' ")
+          timeline-status-report.flex.center(ng-if="event.type == 'STATUS_REPORT' ")
             include parts/status-report
 
           timeline-development-complete(ng-if="eventGroup.text == 'Development Begins' && eventGroup.createdTime ")
             include parts/development-complete
 
-          timeline-final-deliverables.flex-center(ng-if="eventGroup.text == 'Final Fixes' && event.type == 'SUBMISSION_THREAD_INFO' ")
+          timeline-final-deliverables.flex.center(ng-if="eventGroup.text == 'Final Fixes' && event.type == 'SUBMISSION_THREAD_INFO' ")
             include parts/final-deliverables
 
         li(

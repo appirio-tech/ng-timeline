@@ -10,10 +10,7 @@ timeline {
     font-weight: bold;
   }
 
-  > main.flex-center {
-    @include align-items(stretch);
-    @include flex-wrap(nowrap);
-
+  > main.flex {
     margin-top: $margin;
     position: relative;
 
@@ -33,10 +30,6 @@ timeline {
     }
   }
 
-  .avatars, .files {
-    @include flex-center(center);
-  }
-
   .avatar {
     width         : 35px;
     height        : 35px;
@@ -44,8 +37,6 @@ timeline {
   }
 
   .avatar-box {
-    @include flex-center(center);
-
     avatar {
       margin-right: $margin-small;
     }
@@ -110,7 +101,6 @@ timeline {
       // uncomment for hide/show interaction
       max-height: 0px;
       overflow: hidden;
-      position: relative;
 
       > * { /* simulate white padding */
         border          : $padding solid $white;
@@ -131,7 +121,6 @@ timeline {
 
       &.expanded {
         max-height: 700px;
-        position: initial;
 
         &.expand-big {
           max-height: 1400px;

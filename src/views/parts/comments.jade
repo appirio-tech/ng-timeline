@@ -1,4 +1,4 @@
-ul.header.flex-center
+ul.header.flex.center.middle
   li
     .icon.warning.smallest
 
@@ -18,7 +18,7 @@ hr
 
 p {{event.threadInfo.lastMessageInfo.publisherInfo.handle}} has commented on {{event.submissionThreads.length}} submission images.
 
-ul.submissions.flex-center
+ul.submissions.flex.center
   li(ng-repeat="submission in event.submissionThreads")
     .notification.absolute {{submission.unreadMessageCount}}
 
