@@ -14,14 +14,15 @@ ul.header.flex.center.middle
   li
     time {{event.threadInfo.lastMessageInfo.createdTime | timeLapse}}
 
-hr
+main
+  hr
 
-p {{event.threadInfo.lastMessageInfo.publisherInfo.handle}} has commented on {{event.submissionThreads.length}} submission images.
+  p {{event.threadInfo.lastMessageInfo.publisherInfo.handle}} has commented on {{event.submissionThreads.length}} submission images.
 
-ul.submissions.flex.center
-  li(ng-repeat="submission in event.submissionThreads")
-    .notification.absolute {{submission.unreadMessageCount}}
+  ul.submissions.flex.center
+    li(ng-repeat="submission in event.submissionThreads")
+      .notification.absolute {{submission.unreadMessageCount}}
 
-    img.img(ng-src="{{submission.thumbnailUrl}}")
+      img.img(ng-src="{{submission.thumbnailUrl}}")
 
-button.wider.view-all view all comments
+  button.wider.view-all view all comments

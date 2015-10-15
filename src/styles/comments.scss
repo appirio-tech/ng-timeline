@@ -24,6 +24,19 @@ timeline-comments {
     }
   }
 
+  > main {
+    @include transition (all 0.3s ease-in-out);
+
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  &.expanded {
+    > main {
+      max-height: 500px;
+    }
+  }
+
   .submissions {
     margin-top: $margin-small;
 

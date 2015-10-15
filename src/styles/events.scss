@@ -43,3 +43,34 @@ timeline-status-report, timeline-final-deliverables {
     margin: $margin-small $margin-smallest 0 $margin-smallest;
   }
 }
+
+timeline-members, timeline-submissions, timeline-winners {
+  > ul {
+    @include transition (all 0.3s ease-in-out);
+
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  &.expanded {
+    > ul {
+      max-height: 100px;
+    }
+  }
+}
+
+timeline-select-winners {
+  > main {
+    @include transition (all 0.3s ease-in-out);
+
+    max-height : 0;
+    overflow   : hidden;
+    padding-top: $padding;
+  }
+
+  &.expanded {
+    > main {
+      max-height: 50px;
+    }
+  }
+}

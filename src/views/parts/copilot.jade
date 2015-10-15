@@ -2,11 +2,7 @@ h2 Co-pilot assigned!
 
 time {{ event.eventTime | timeLapse}}
 
-main.avatar-box.flex.center(ng-show="event.copilot.handle")
+main.avatar-box.flex.center.middle(ng-show="event.copilot.handle")
   avatar(avatar-url="{{ event.copilot.avatar }}")
 
-  | Hi I'm 
-
-  a(href="#") {{ event.copilot.handle }}
-
-  |. I'll be your project manager.
+  p.co-pilot Hi I'm <a href="#"> {{ event.copilot.handle }} </a>. I'll be your project manager.
