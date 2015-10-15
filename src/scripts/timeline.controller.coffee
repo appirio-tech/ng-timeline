@@ -1,6 +1,6 @@
 'use strict'
 
-TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotProjectDetailsAPIService) ->
+TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalAPIService) ->
   vm        = this
   vm.eventGroups = []
   vm.loading = true
@@ -39,7 +39,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotProjectDe
       body =
         "status": "approved"
 
-    CopilotProjectDetailsAPIService.post params, body
+    CopilotApprovalAPIService.post params, body
 
   findCompletionDate = (data) ->
     data.forEach (eventGroup) ->
@@ -71,7 +71,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotProjectDe
   activate()
 
 TimelineController.$inject = [
-  '$scope', '$stateParams', 'TimelineAPIService', 'CopilotProjectDetailsAPIService'
+  '$scope', '$stateParams', 'TimelineAPIService', 'CopilotApprovalAPIService'
 ]
 
 angular.module('appirio-tech-ng-timeline').controller 'TimelineController', TimelineController

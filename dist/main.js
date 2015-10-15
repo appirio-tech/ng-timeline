@@ -32,7 +32,7 @@ angular.module("appirio-tech-ng-timeline").run(["$templateCache", function($temp
   'use strict';
   var TimelineController;
 
-  TimelineController = function($scope, $stateParams, TimelineAPIService, CopilotProjectDetailsAPIService) {
+  TimelineController = function($scope, $stateParams, TimelineAPIService, CopilotApprovalAPIService) {
     var activate, findCompletionDate, findCopilot, vm;
     vm = this;
     vm.eventGroups = [];
@@ -70,7 +70,7 @@ angular.module("appirio-tech-ng-timeline").run(["$templateCache", function($temp
           "status": "approved"
         };
       }
-      return CopilotProjectDetailsAPIService.post(params, body);
+      return CopilotApprovalAPIService.post(params, body);
     };
     findCompletionDate = function(data) {
       return data.forEach(function(eventGroup) {
@@ -108,7 +108,7 @@ angular.module("appirio-tech-ng-timeline").run(["$templateCache", function($temp
     return activate();
   };
 
-  TimelineController.$inject = ['$scope', '$stateParams', 'TimelineAPIService', 'CopilotProjectDetailsAPIService'];
+  TimelineController.$inject = ['$scope', '$stateParams', 'TimelineAPIService', 'CopilotApprovalAPIService'];
 
   angular.module('appirio-tech-ng-timeline').controller('TimelineController', TimelineController);
 
