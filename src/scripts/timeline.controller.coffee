@@ -39,7 +39,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotProjectDe
       body =
         "status": "approved"
 
-    CopilotProjectDetailsAPIService.put params, body
+    CopilotProjectDetailsAPIService.post params, body
 
   findCompletionDate = (data) ->
     data.forEach (eventGroup) ->

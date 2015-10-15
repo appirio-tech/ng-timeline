@@ -70,7 +70,7 @@ angular.module("appirio-tech-ng-timeline").run(["$templateCache", function($temp
           "status": "approved"
         };
       }
-      return CopilotProjectDetailsAPIService.put(params, body);
+      return CopilotProjectDetailsAPIService.post(params, body);
     };
     findCompletionDate = function(data) {
       return data.forEach(function(eventGroup) {
