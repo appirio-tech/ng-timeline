@@ -73,6 +73,35 @@ timeline {
     }
   }
 
+  .disabled {
+    .point {
+      background-color: $white;
+      border-color: $neutral-color-light;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    > header {
+      > h4 {
+        color: $neutral-color;
+      }
+    }
+
+    &.complete {
+      h3 {
+        color: $neutral-color;
+      }
+
+      .point {
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+
   h1, h4 {
     margin-top: 0;
   }

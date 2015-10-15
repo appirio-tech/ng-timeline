@@ -8,7 +8,7 @@ main.flex.center.stretch
   .timeline
 
   ul
-    li.event-group(ng-repeat-start="eventGroup in vm.eventGroups" ng-if="eventGroup.text != 'Project Complete' ")
+    li.disabled.event-group(ng-repeat-start="eventGroup in vm.eventGroups" ng-if="eventGroup.text != 'Project Complete' ")
       header
         button.clean.point(
           ng-class="{ expanded: vm.expanded[eventGroup.text]}"
@@ -118,7 +118,7 @@ main.flex.center.stretch
 
     li.splitter(ng-repeat-end)
 
-    li.complete
+    li.complete.disabled
       header
         button.clean.point
 
