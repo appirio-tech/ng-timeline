@@ -1,19 +1,17 @@
 @import "work-includes";
 
 timeline {
-  display         : block;
-  padding         : $padding-big;
-  background-color: $neutral-color-lightest;
+  display: block;
 
   > main.flex {
     margin-top: $margin;
     position: relative;
 
     .timeline {
-      width: 2px;
+      width           : 2px;
       background-color: $neutral-color-light;
-      margin: $margin;
-      margin-left: 0;
+      margin          : $margin;
+      margin-left     : 0;
     }
 
     > ul {
@@ -85,6 +83,8 @@ timeline {
     }
 
     &.complete {
+      height: 50px; /* need static height due to timeline line */
+
       h3 {
         color: $neutral-color;
       }

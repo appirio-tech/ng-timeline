@@ -5,7 +5,8 @@ h1 {
 }
 
 .layout-main {
-  background-color: white;
+  background-color: $neutral-color-lightest;
+  padding: $padding-big;
 }
 
 body > .nav {
