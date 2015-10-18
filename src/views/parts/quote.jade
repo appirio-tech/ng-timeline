@@ -5,4 +5,4 @@ time {{event.eventTime | timeLapse}}
 main
   p Your project has been reviewed and a quote has been generated.
 
-  button.action.wider(ng-click="vm.acceptQuote()") accept quote
+  button.action.wider(ng-click="vm.acceptQuote()" ng-if="vm.showAcceptQuoteButton") accept quote
