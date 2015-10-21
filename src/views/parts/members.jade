@@ -1,4 +1,7 @@
-h2 {{event.members.length}} people have joined your project
+h2(ng-if="event.members.length == 1") {{event.members.length}} person has joined your project
+
+h2(ng-if="event.members.length > 1") {{event.members.length}} people have joined your project
+
 
 time {{event.eventTime | timeLapse}}
 

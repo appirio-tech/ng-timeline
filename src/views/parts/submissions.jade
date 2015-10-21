@@ -1,4 +1,6 @@
-h2 {{event.avatars.length}} people have submitted Designs
+h2(ng-if="event.avatars.length == 1") {{event.avatars.length}} person has submitted Designs
+
+h2(ng-if="event.avatars.length > 1") {{event.avatars.length}} people have submitted Designs
 
 time {{eventGroup.createdTime | timeLapse}}
 
