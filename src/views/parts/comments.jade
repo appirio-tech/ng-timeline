@@ -3,7 +3,7 @@ ul.header.flex.center.middle
     .icon.warning.smallest
 
   li
-    avatar(avatar-url="{{event.threadInfo.lastMessageInfo.publisherInfo.avatar}}")
+    avatar(ng-src="{{event.threadInfo.lastMessageInfo.publisherInfo.avatar}}")
 
   li.name.flex-grow
     p
@@ -12,9 +12,9 @@ ul.header.flex.center.middle
     p.role {{event.threadInfo.lastMessageInfo.publisherInfo.role}}
 
   li
-    time {{event.threadInfo.lastMessageInfo.createdTime | timeLapse}}
+    time {{event.threadInfo.eventTime | timeLapse}}
 
-main
+main(ng-if="event.submissionThreads.length > 0")
   hr
 
   p {{event.threadInfo.lastMessageInfo.publisherInfo.handle}} has commented on {{event.submissionThreads.length}} submission images.
