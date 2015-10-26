@@ -25,4 +25,4 @@ main(ng-if="event.submissionThreads.length > 0")
 
       img.img(ng-src="{{submission.thumbnailUrl}}")
 
-  button.wider.view-all view all comments
+  button.wider.view-all(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionThreads[0].submissionId, fileId: event.submissionThreads[0].submissionFileId})") view all comments
