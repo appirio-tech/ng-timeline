@@ -5,7 +5,7 @@ time {{event.eventTime | timeLapse}}
 p {{event.text}}
 
 ul.submissions
-  li(ng-repeat="image in event.images")
+  li(ng-repeat="image in event.images track by $index")
 
     img.img(ng-src="{{image}}")
 

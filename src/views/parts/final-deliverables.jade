@@ -5,7 +5,7 @@ time {{event.eventTime | timeLapse }}
 p {{event.threadInfo.lastMessageInfo.content}}
 
 ul.submissions
-  li(ng-repeat="submission in event.submissionThreads")
+  li(ng-repeat="submission in event.submissionThreads track by $index")
     img.img(ng-src="{{submission.thumbnailUrl}}")
 
 button.action.wider view prototype

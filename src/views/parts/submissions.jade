@@ -5,5 +5,5 @@ h2(ng-if="event.avatars.length > 1") {{event.avatars.length}} people have submit
 time {{event.eventTime | timeLapse}}
 
 ul.avatars.flex.center
-  li(ng-repeat="avatar in event.avatars")
+  li(ng-repeat="avatar in event.avatars track by $index")
     avatar(ng-src="{{avatar}}")

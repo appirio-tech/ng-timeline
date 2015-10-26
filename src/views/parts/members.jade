@@ -6,5 +6,5 @@ h2(ng-if="event.members.length > 1") {{event.members.length}} people have joined
 time {{event.eventTime | timeLapse}}
 
 ul.avatars.flex.center
-  li(ng-repeat="member in event.members")
+  li(ng-repeat="member in event.members track by $index")
     avatar(avatar-url="{{member.avatar}}")

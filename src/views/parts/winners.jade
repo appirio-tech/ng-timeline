@@ -3,5 +3,5 @@ h2 Congratulations!
 p You have chosen {{event.avatars.length}} winner(s)
 
 ul.avatars.flex.center
-  li(ng-repeat="avatar in event.avatars")
+  li(ng-repeat="avatar in event.avatars track by $index")
     avatar(ng-src="{{avatar}}")
