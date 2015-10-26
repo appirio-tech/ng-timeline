@@ -18,6 +18,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
     'Development Begins': false
     'Project Complete': false
     # events
+    'STATUS_UPDATE': false
     'COPILOT_ASSIGNED': false
     'QUOTE_INFO': false
     'PAYMENT_ACCEPTED': false
@@ -27,8 +28,8 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
     'SUBMISSION_THREAD_INFO': false
     'WORKSTEP_WINNERS': false
 
-  vm.isAFinishEvent = (text, type) ->
-    text == 'Development Begins' || type == 'PAYMENT_ACCEPTED' || type == 'WORKSTEP_SUBMITTERS' || type == 'WORKSTEP_WINNERS'
+  vm.isAFinishEvent = (text, type, completed) ->
+    text == 'Development Begins' || type == 'PAYMENT_ACCEPTED' || (type == 'WORKSTEP_SUBMITTERS' && !completed) || type == 'WORKSTEP_WINNERS'
 
   vm.acceptQuote = (event) ->
     if vm.copilotId
@@ -62,6 +63,14 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
           if event.type == 'QUOTE_INFO' && event.status == 'Accepted'
             vm.showAcceptQuoteButton = false
 
+  setExpanded = (data) ->
+    data.forEach (eventGroup) ->
+      if eventGroup.expanded == true
+        vm.expanded[eventGroup.text] = true
+        eventGroup.events.forEach (event) ->
+          if event.expanded
+            vm.expanded[event.type] = true
+
   activate = ->
     vm.workId = $scope.workId
 
@@ -71,6 +80,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
     resource = TimelineAPIService.query params
     resource.$promise.then (data) ->
       vm.eventGroups = data
+      setExpanded(data)
       findCompletionDate(data)
       configureProjectSubmittedComponents(data)
 

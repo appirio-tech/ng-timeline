@@ -2,8 +2,8 @@ h2(ng-if="event.avatars.length == 1") {{event.avatars.length}} person has submit
 
 h2(ng-if="event.avatars.length > 1") {{event.avatars.length}} people have submitted Designs
 
-time {{eventGroup.createdTime | timeLapse}}
+time {{event.eventTime | timeLapse}}
 
 ul.avatars.flex.center
   li(ng-repeat="avatar in event.avatars")
-    avatar(avatar-url="avatar")
+    avatar(ng-src="{{avatar}}")
