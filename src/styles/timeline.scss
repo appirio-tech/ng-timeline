@@ -96,10 +96,6 @@ timeline {
     }
   }
 
-  h1, h4 {
-    margin-top: 0;
-  }
-
   .event-group {
     box-shadow      : 0 6px 6px -6px $neutral-color;
     background-color: $white;
@@ -109,16 +105,9 @@ timeline {
       background-color: $white;
     }
 
-    > header {
-      @include clearfix();
-
+    &.expanded {
       h4 {
-        float: left;
-      }
-
-      time {
-        display: block;
-        float: right;
+        font-weight: $font-weight-bold;
       }
     }
 
@@ -137,6 +126,7 @@ timeline {
       > li {
         > hr {
           margin: 0;
+          background-color: $neutral-color-lightest;
         }
       }
 
@@ -161,11 +151,6 @@ timeline {
   }
 
   .complete {
-    h3 {
-      text-align: left;
-      margin-top: 0;
-    }
-
     p {
       color: $primary-color;
     }
