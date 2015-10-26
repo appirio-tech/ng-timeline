@@ -83,7 +83,7 @@ main.flex.center.stretch
             include parts/submissions
 
           timeline-comments(
-            ng-if="event.type == 'SUBMISSION_THREAD_INFO' && (eventGroup.text == 'Final Designs' || eventGroup.text == 'Design Concepts') "
+            ng-if="event.submissionThreads.length > 0 && event.type == 'SUBMISSION_THREAD_INFO' && (eventGroup.text == 'Final Designs' || eventGroup.text == 'Design Concepts') "
             ng-class="{ expanded: vm.expanded[event.type] }"
           )
             include parts/comments
