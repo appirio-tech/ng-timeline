@@ -3,7 +3,7 @@ ul.header.flex.center.middle
     .icon.bubble.smallest
 
   li
-    avatar(ng-src="{{event.threadInfo.lastMessageInfo.publisherInfo.avatar}}")
+    avatar(avatar-url="{{event.threadInfo.lastMessageInfo.publisherInfo.avatar}}")
 
   li.name.flex-grow
     p
@@ -23,6 +23,7 @@ main(ng-if="event.submissionThreads.length > 0")
     li(ng-repeat="submission in event.submissionThreads track by $index")
       .notification.absolute {{submission.unreadMessageCount}}
 
-      img.img(ng-src="{{submission.thumbnailUrl}}")
+      a(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: submission.submissionId, fileId: submission.submissionFileId})")
+        img.img(ng-src="{{submission.thumbnailUrl}}")
 
-  button.wider.view-all(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionThreads[0].submissionId, fileId: event.submissionThreads[0].submissionFileId})") view all comments
+  button.wider.view-all(ui-sref="submission-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionThreads[0].submissionId})") view all comments

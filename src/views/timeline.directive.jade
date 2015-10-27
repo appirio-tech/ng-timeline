@@ -83,16 +83,16 @@ main.flex.center.stretch
             include parts/submissions
 
           timeline-comments(
-            ng-if="event.submissionThreads.length > 0 && event.type == 'SUBMISSION_THREAD_INFO' && (eventGroup.text == 'Final Designs' || eventGroup.text == 'Design Concepts') "
+            ng-if="event.type == 'SUBMISSION_THREAD_INFO' && (eventGroup.text == 'Final Designs' || eventGroup.text == 'Design Concepts') "
             ng-class="{ expanded: vm.expanded[event.type] }"
           )
             include parts/comments
 
-          timeline-select-winners(
-            ng-if="event.type == 'WORKSTEP_SUBMITTERS' && event.completed == false"
-            ng-class="{ expanded: vm.expanded[event.type] }"
-          )
-            include parts/select-winners
+          //- timeline-select-winners(
+          //-   ng-if="event.type == 'WORKSTEP_SUBMITTERS' && event.completed == false"
+          //-   ng-class="{ expanded: vm.expanded[event.type] }"
+          //- )
+          //-   include parts/select-winners
 
           timeline-winners(
             ng-if="event.type == 'WORKSTEP_WINNERS'"

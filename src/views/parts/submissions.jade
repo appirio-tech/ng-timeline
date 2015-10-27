@@ -1,9 +1,14 @@
-h2(ng-if="event.avatars.length == 1") {{event.avatars.length}} person has submitted Designs
+h2(ng-if="event.userProfiles.length == 1") {{event.userProfiles.length}} person has submitted Designs
 
-h2(ng-if="event.avatars.length > 1") {{event.avatars.length}} people have submitted Designs
+h2(ng-if="event.userProfiles.length > 1") {{event.userProfiles.length}} people have submitted Designs
 
 time {{event.eventTime | timeLapse}}
 
 ul.avatars.flex.center
-  li(ng-repeat="avatar in event.avatars track by $index")
-    avatar(ng-src="{{avatar}}")
+  li(ng-repeat="user in event.userProfiles track by $index")
+    avatar(avatar-url="{{user.avatar}}")
+
+p(ng-if="event.completed == false") 48 hours left to select your winners
+
+main(ng-if="event.completed == false")
+  button.wider(ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view submissions
