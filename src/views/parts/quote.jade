@@ -3,6 +3,22 @@ h2 Quote generated
 time {{event.eventTime | timeLapse}}
 
 main
-  p Your project has been reviewed and a quote has been generated.
+  p View quote and accept to continue your project.
+
+  .estimate
+    ul.flex.middle.space-between
+      li.cost
+        .range
+          ${{ event.price.min }} - ${{ event.price.max }}
+
+        h6 Cost estimate
+
+      li.splitter
+
+      li.duration
+        .range
+          {{ event.duration.min }} - {{ event.duration.max }} {{ event.duration.unit }}
+
+        h6 Time estimate
 
   button.action.wider(ng-click="vm.acceptQuote()" ng-if="vm.showAcceptQuoteButton") accept quote

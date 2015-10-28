@@ -38,6 +38,7 @@ main.flex.center.stretch
 
           timeline-copilot(
             ng-if="event.type == 'COPILOT_ASSIGNED'"
+            ng-class="{ expanded: vm.expanded[event.type] }"
           )
             include parts/copilot
 
@@ -103,7 +104,7 @@ main.flex.center.stretch
           //- DEVELOPMENT LAUNCHED
 
           //- DEVELOPMENT BEGINS
-          timeline-status-report.flex.center(ng-if="event.type == 'STATUS_REPORT' ")
+          timeline-status-report.flex.center.column(ng-if="event.type == 'STATUS_REPORT' ")
             include parts/status-report
 
           timeline-development-complete(ng-if="eventGroup.text == 'Development Begins' && eventGroup.createdTime ")

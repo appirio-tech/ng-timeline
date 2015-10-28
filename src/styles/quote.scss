@@ -1,0 +1,36 @@
+@import "work-includes";
+
+timeline-quote {
+  &.expanded {
+    main {
+      max-height: 200px;
+    }
+  }
+
+  .estimate {
+    background-color: $primary-color;
+    padding         : $padding;
+    margin-top      : $margin-small;
+
+    * {
+      color: $white;
+    }
+
+    .splitter {
+      width: 2px;
+      background-color: $white;
+    }
+
+    h6 {
+      margin-top: $margin-smallest;
+    }
+
+    ul {
+      @include align-content(stretch);
+      @include align-items(stretch);
+
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+}
