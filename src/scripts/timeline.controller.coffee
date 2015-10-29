@@ -71,6 +71,14 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
           if event.expanded
             vm.expanded[event.type] = true
 
+# TODO: Get rid of this hack once empty submissionThreads stop returning
+  hideEmptySubmissionThreads = (data) ->
+    data.forEach (eventGroup) ->
+      eventGroup.events.forEach (event) ->
+        if event.type == 'SUBMISSION_THREAD_INFO'
+          if event.submissionThreads.length == 0
+            vm.expanded[event.type] = undefined
+
   activate = ->
     vm.workId = $scope.workId
 
@@ -80,9 +88,10 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
     resource = TimelineAPIService.query params
     resource.$promise.then (data) ->
       vm.eventGroups = data
-      setExpanded(data)
-      findCompletionDate(data)
-      configureProjectSubmittedComponents(data)
+      setExpanded data
+      findCompletionDate data
+      configureProjectSubmittedComponents data
+      hideEmptySubmissionThreads data
 
     resource.$promise.catch ->
 
