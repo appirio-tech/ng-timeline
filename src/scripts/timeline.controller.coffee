@@ -39,7 +39,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
         projectId: vm.workId
 
       body =
-        "status": "approved"
+        "status": "APPROVED"
 
     resource = CopilotApprovalAPIService.post params, body
 
