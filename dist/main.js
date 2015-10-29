@@ -33,7 +33,7 @@ angular.module("appirio-tech-ng-timeline").run(["$templateCache", function($temp
   var TimelineController;
 
   TimelineController = function($scope, $stateParams, TimelineAPIService, CopilotApprovalAPIService) {
-    var activate, configureProjectSubmittedComponents, findCompletionDate, setExpanded, vm;
+    var activate, configureProjectSubmittedComponents, findCompletionDate, hideEmptySubmissionThreads, setExpanded, vm;
     vm = this;
     vm.eventGroups = [];
     vm.loading = true;
@@ -112,6 +112,17 @@ angular.module("appirio-tech-ng-timeline").run(["$templateCache", function($temp
         }
       });
     };
+    hideEmptySubmissionThreads = function(data) {
+      return data.forEach(function(eventGroup) {
+        return eventGroup.events.forEach(function(event) {
+          if (event.type === 'SUBMISSION_THREAD_INFO') {
+            if (event.submissionThreads.length === 0) {
+              return vm.expanded[event.type] = void 0;
+            }
+          }
+        });
+      });
+    };
     activate = function() {
       var params, resource;
       vm.workId = $scope.workId;
@@ -123,7 +134,8 @@ angular.module("appirio-tech-ng-timeline").run(["$templateCache", function($temp
         vm.eventGroups = data;
         setExpanded(data);
         findCompletionDate(data);
-        return configureProjectSubmittedComponents(data);
+        configureProjectSubmittedComponents(data);
+        return hideEmptySubmissionThreads(data);
       });
       resource.$promise["catch"](function() {});
       resource.$promise["finally"](function() {
