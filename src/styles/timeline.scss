@@ -3,6 +3,10 @@
 timeline {
   display: block;
 
+  h5 {
+    color: $black;
+  }
+
   > main.flex {
     position: relative;
 
@@ -17,7 +21,7 @@ timeline {
       width: 100%;
 
       .splitter {
-        height: $margin-small;
+        height: $margin-smallest;
       }
     }
   }
@@ -61,6 +65,7 @@ timeline {
     &.expanded {
       &::before {
         content: "-";
+        line-height: 14px;
       }
     }
   }
@@ -76,7 +81,7 @@ timeline {
     }
 
     > header {
-      > h4 {
+      > h5 {
         color: $neutral-color;
       }
     }
@@ -97,7 +102,6 @@ timeline {
   }
 
   .event-group {
-    box-shadow      : 0 6px 6px -6px $neutral-color;
     background-color: $white;
 
     > header { /* simulate white padding */
@@ -106,7 +110,7 @@ timeline {
     }
 
     &.expanded {
-      h4 {
+      h5 {
         font-weight: $font-weight-bold;
       }
     }
@@ -119,7 +123,16 @@ timeline {
       overflow: hidden;
 
       > * { /* simulate white padding */
-        border          : $padding solid $white;
+        border: $padding solid $white;
+
+        &:last-child {
+          border-bottom-width: $padding-big;
+        }
+
+        &.hr {
+          border-top: 0;
+        }
+
         background-color: $white;
       }
 
@@ -175,7 +188,6 @@ timeline {
 
     time {
       display: block;
-      margin-top: $margin-smallest;
     }
 
     .avatar-box, p, button, .avatars {

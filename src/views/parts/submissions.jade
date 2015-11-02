@@ -1,6 +1,6 @@
-h2(ng-if="event.userProfiles.length == 1") {{event.userProfiles.length}} person has submitted Designs
+h1(ng-if="event.userProfiles.length == 1") {{event.userProfiles.length}} person has submitted Designs
 
-h2(ng-if="event.userProfiles.length > 1") {{event.userProfiles.length}} people have submitted Designs
+h1(ng-if="event.userProfiles.length > 1") {{event.userProfiles.length}} people have submitted Designs
 
 time {{event.eventTime | timeLapse}}
 

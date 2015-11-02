@@ -7,14 +7,12 @@ timeline-messaging {
     width: 100%;
 
     avatar {
-      margin-left: $margin-smallest;
+      margin-left: $margin-small;
     }
 
     .name {
-      @include flex-grow(2);
-
       text-align: left;
-      margin-left: $margin-smallest;
+      margin-left: $margin-small;
 
       p {
         margin-top: 0;

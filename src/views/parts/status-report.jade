@@ -1,14 +1,16 @@
-h2 {{eventTime.createdTime | date : 'MMMM d' }} status report
+h1 {{ eventTime.createdTime | date : 'MMMM d' }} status report
 
-time {{event.eventTime | timeLapse}}
+time {{ event.eventTime | timeLapse }}
 
-p {{event.text}}
+p {{ event.text }}
+
+ul.links
+  li(ng-repeat="image in [0, 1, 3]")
+    a(href="#") http://www.example.com
 
 ul.submissions
   li(ng-repeat="image in event.images track by $index")
 
-    img.img(ng-src="{{image}}")
+    img.img(ng-src="{{ image }}")
 
-button.action.wider view prototype
-
-button.wider share link
+button.action view all

@@ -6,19 +6,19 @@ main.flex.center.stretch
   .timeline
 
   ul
-    li.event-group(ng-repeat-start="eventGroup in vm.eventGroups" ng-if="eventGroup.text != 'Project Complete' " ng-class="{ expanded: vm.expanded[eventGroup.text], disabled: eventGroup.events.length == 0 }")
+    li.event-group.elevated-bottom(ng-repeat-start="eventGroup in vm.eventGroups" ng-if="eventGroup.text != 'Project Complete' " ng-class="{ expanded: vm.expanded[eventGroup.text], disabled: eventGroup.events.length == 0 }")
       header.flex
         button.clean.point(
           ng-class="{ expanded: vm.expanded[eventGroup.text]}"
           ng-click="vm.expanded[eventGroup.text] = !vm.expanded[eventGroup.text]"
         )
 
-        h4.flex-grow {{eventGroup.text}}
+        h5.flex-grow {{eventGroup.text}}
 
         time {{eventGroup.createdTime | date}}
 
       ul.expand-big.events(ng-class="{ expanded: vm.expanded[eventGroup.text] }")
-        li
+        li.hr
           hr
 
         li.event(
@@ -104,7 +104,7 @@ main.flex.center.stretch
           //- DEVELOPMENT LAUNCHED
 
           //- DEVELOPMENT BEGINS
-          timeline-status-report.flex.center.column(ng-if="event.type == 'STATUS_REPORT' ")
+          timeline-status-report(ng-if="event.type == 'STATUS_REPORT' ")
             include parts/status-report
 
           timeline-development-complete(ng-if="eventGroup.text == 'Development Begins' && eventGroup.createdTime ")
@@ -125,6 +125,6 @@ main.flex.center.stretch
       header
         button.clean.point
 
-        h2 Project complete
+        h1 Project complete
 
-        p {{vm.projectCompletionDate | date}}
+        p {{ vm.projectCompletionDate | date }}
