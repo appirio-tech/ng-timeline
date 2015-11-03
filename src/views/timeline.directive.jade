@@ -13,7 +13,7 @@ main.flex.center.stretch
           ng-click="vm.expanded[eventGroup.text] = !vm.expanded[eventGroup.text]"
         )
 
-        h5.flex-grow {{eventGroup.text}}
+        h6.flex-grow {{eventGroup.text}}
 
         time {{eventGroup.createdTime | date}}
 
@@ -125,6 +125,6 @@ main.flex.center.stretch
       header
         button.clean.point
 
-        h1 Project complete
+        h4 Project complete
 
         p {{ vm.projectCompletionDate | date }}

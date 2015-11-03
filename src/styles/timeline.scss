@@ -3,7 +3,7 @@
 timeline {
   display: block;
 
-  h5 {
+  h6 {
     color: $black;
   }
 
@@ -81,7 +81,7 @@ timeline {
     }
 
     > header {
-      > h5 {
+      > h6 {
         color: $neutral-color;
       }
     }
@@ -110,7 +110,7 @@ timeline {
     }
 
     &.expanded {
-      h5 {
+      h6 {
         font-weight: $font-weight-bold;
       }
     }
