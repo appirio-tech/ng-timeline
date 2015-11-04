@@ -5,10 +5,14 @@ time {{event.eventTime | timeLapse}}
 p {{event.text}}
 
 ul.submissions
+  li(ng-repeat="link in event.links track by $index")
+
+    a(href="{{link.url}}") {{link.url}}
+
   li(ng-repeat="image in event.images track by $index")
 
-    img.img(ng-src="{{image}}")
+    img.img(ng-src="{{image.url}}")
 
-button.action.wider view prototype
+//- button.action.wider view prototype
 
-button.wider share link
+//- button.wider share link
