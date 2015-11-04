@@ -1,10 +1,10 @@
-h2 {{eventTime.createdTime | date : 'MMMM d' }} status report
+h2 {{ eventTime.createdTime | date : 'MMMM d' }} status report
 
-time {{event.eventTime | timeLapse}}
+time {{ event.eventTime | timeLapse }}
 
-p {{event.text}}
+p {{ event.text }}
 
-ul.submissions
+ul.links
   li(ng-repeat="link in event.links track by $index")
 
     a(href="{{link.url}}") {{link.url}}
