@@ -84,6 +84,7 @@ angular.module("appirio-tech-ng-timeline").run(["$templateCache", function($temp
     findCompletionDate = function(data) {
       return data.forEach(function(eventGroup) {
         if (eventGroup.text === 'Project Complete') {
+          vm.projectCompleted = true;
           return vm.projectCompletionDate = eventGroup.createdTime;
         }
       });
