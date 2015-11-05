@@ -54,7 +54,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
   findCompletionDate = (data) ->
     data.forEach (eventGroup) ->
       if eventGroup.text == 'Project Complete'
-        # vm.projectCompleted = true
+        vm.projectCompleted = true
         vm.projectCompletionDate = eventGroup.createdTime
 
   configureProjectSubmittedComponents = (data) ->
