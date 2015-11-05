@@ -115,7 +115,7 @@ main.flex.center.stretch
 
         li(
           ng-repeat-end=true
-          ng-if="eventGroup.events.indexOf(event) != eventGroup.events.length - 1 && vm.expanded[event.type] != undefined && eventGroup.events[$index + 1].type != 'WORKSTEP_ENDS' "
+          ng-if="eventGroup.events.indexOf(event) != eventGroup.events.length - 1 && vm.expanded[event.type] != undefined"
         )
           hr.biggest
 
