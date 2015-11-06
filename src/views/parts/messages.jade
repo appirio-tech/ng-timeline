@@ -14,7 +14,6 @@
     li
       avatar(avatar-url="{{event.lastMessageInfo.publisherInfo.avatar}}")
 
-
     li.name.flex-grow
       p
         a(href="#") {{event.lastMessageInfo.publisherInfo.handle}}
@@ -29,8 +28,6 @@ event-card-main.transition(
   ng-class="{ 'no-height': !vm.expanded[event.type] }"
   lock-height="no-height"
 )
-  hr
-
   p {{event.lastMessageInfo.content}}
 
   button.wider.action(ng-if="event.lastMessageInfo.publisherInfo.isCopilot == true" ui-sref="messaging({ id: vm.workId, threadId: event.lastMessageInfo.threadId })") reply

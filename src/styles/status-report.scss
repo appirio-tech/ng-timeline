@@ -1,9 +1,28 @@
 @import "work-includes";
+@import "variables";
 
 event-card.status-report {
-  .links {
+  ul {
+    margin-top: $vertical-spacing;
+  }
+
+  li {
+    margin-top: $vertical-spacing-smallest;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .thumbnails {
     li {
-      margin-top: $margin-smallest;
+      margin: 0 $horizontal-spacing-smallest;
+      max-height: 147px;
+      overflow: hidden;
+
+      img {
+        width: 197px;
+      }
     }
   }
 }

@@ -1,0 +1,18 @@
+@import "work-includes";
+@import "variables";
+
+event-card.final-fixes-submissions {
+  .user-detail {
+    .user-name {
+      margin-left: $horizontal-spacing-small;
+      text-align: left;
+    }
+  }
+
+  event-card-main {
+    > p {
+      margin-top: $vertical-spacing;
+    }
+  }
+}
+

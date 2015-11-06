@@ -7,21 +7,23 @@
 
     .icon.minus.hollow
 
-    h2 Final Designs Submitted
+  h2 Final Designs Submitted
 
 time {{event.eventTime | timeLapse}}
 
-main.transition(
+event-card-main.transition(
   ng-if="event.completed == false"
   ng-class="{ 'no-height': !vm.expanded[event.type] }"
   lock-height="no-height"
 )
-  .avatar.flex.center
-    avatar(avatar-url="{{event.submitter.avatar}}")
+  ul.user-detail.flex.center.middle
+    li
+      avatar(avatar-url="{{event.submitter.avatar}}")
 
-  a(href="#") {{event.submitter.handle}}
+    li.user-name
+      a(href="#") {{event.submitter.handle}}
 
-  p Project Winner
+      p.secondary Project WINNER
 
   ul.submissions.flex.center
     li(ng-repeat="file in event.files track by $index")
@@ -31,4 +33,4 @@ main.transition(
 
     button.wider(ng-if="event.completed == false" ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view submissions
 
-    p(ng-if="event.completed == false") You have 24 hours left
+  p(ng-if="event.completed == false") You have 24 hours left
