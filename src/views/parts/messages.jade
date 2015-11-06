@@ -16,7 +16,10 @@ ul.header.flex.center.middle
   li
     time {{event.eventTime | timeLapse}}
 
-main
+main.transition(
+  ng-class="{ 'no-height': !vm.expanded[event.type] }"
+  lock-height="no-height"
+)
   hr
 
   p {{event.lastMessageInfo.content}}

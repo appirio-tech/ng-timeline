@@ -3,12 +3,11 @@
 timeline {
   display: block;
 
-  h6 {
-    color: $black;
+  .transition {
+    overflow: hidden;
   }
 
-  h4{
-
+  h5 {
     &.inactive {
       color: $neutral-color-light;
     }
@@ -27,8 +26,8 @@ timeline {
     > ul {
       width: 100%;
 
-      .splitter {
-        height: $margin-smallest;
+      > .splitter {
+        height: 10px;
       }
     }
   }
@@ -50,29 +49,34 @@ timeline {
   }
 
   .point {
-    background-color: $primary-color;
-    border          : 1px solid $primary-color;
     width           : 24px;
     height          : 24px;
-    border-radius   : 50%;
     position        : absolute;
     left            : -(24px/2) + 2px;
-    text-align      : center;
-    color           : $white;
     box-shadow      : 0 6px 6px -6px $neutral-color-dark;
+    border-radius   : 50%;
+    background-color: $neutral-color-lightest;
 
+    .icon {
+      width: 100%;
+      height: 100%;
+    }
 
-    &::before {
-      content    : '+';
-      font-size  : 20px;
-      font-family: arial;
-      line-height: 24px;
+    .plus {
+      display: block;
+    }
+
+    .minus {
+      display: none;
     }
 
     &.expanded {
-      &::before {
-        content: "-";
-        line-height: 14px;
+      .plus {
+        display: none;
+      }
+
+      .minus {
+        display: block;
       }
     }
   }
@@ -88,7 +92,7 @@ timeline {
     }
 
     > header {
-      > h6 {
+      > h5 {
         color: $neutral-color;
       }
     }
@@ -112,23 +116,18 @@ timeline {
     background-color: $white;
 
     > header { /* simulate white padding */
-      border          : $padding solid $white;
-      background-color: $white;
+      border             : $margin solid $white;
+      border-bottom-width: $margin-small;
+      background-color   : $white;
     }
 
     &.expanded {
-      h6 {
+      h5 {
         font-weight: $font-weight-bold;
       }
     }
 
     .events {
-      @include transition (all 0.3s ease-in-out);
-
-      // uncomment for hide/show interaction
-      max-height: 0px;
-      overflow: hidden;
-
       > * { /* simulate white padding */
         border: $padding solid $white;
 
@@ -152,19 +151,12 @@ timeline {
 
       .point {
         background-color: $neutral-color-lightest;
-        color           : $primary-color;
-        display         : none;
+        display         : block;
       }
 
-      &.expanded {
-        max-height: 700px;
-
-        &.expand-big {
-          max-height: 1400px;
-        }
-
+      &.no-height {
         .point {
-          display: block;
+          display: none;
         }
       }
     }
@@ -194,15 +186,8 @@ timeline {
     text-align: center;
 
     time {
-      display: block;
-    }
-
-    .avatar-box, p, button, .avatars {
-      margin-top: $margin-small;
-
-      &:first-child {
-        margin-top: 0;
-      }
+      display   : block;
+      margin-top: 10px;
     }
 
     &.finish {

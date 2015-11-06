@@ -12,12 +12,18 @@ main.flex.center.stretch
           ng-class="{ expanded: vm.expanded[eventGroup.text]}"
           ng-click="vm.expanded[eventGroup.text] = !vm.expanded[eventGroup.text]"
         )
+          .icon.plus
 
-        h6.flex-grow {{eventGroup.text}}
+          .icon.minus
 
-        time {{eventGroup.createdTime | date}}
+        h5.flex-grow {{eventGroup.text}}
 
-      ul.expand-big.events(ng-class="{ expanded: vm.expanded[eventGroup.text] }")
+        p.secondary {{eventGroup.createdTime | date}}
+
+      ul.expand-big.events.transition(
+        lock-height="no-height"
+        ng-class="{ 'no-height': !vm.expanded[eventGroup.text] }"
+      )
         li.hr
           hr
 
@@ -30,6 +36,10 @@ main.flex.center.stretch
             ng-class="{ expanded: vm.expanded[event.type]}"
             ng-click="vm.expanded[event.type] = !vm.expanded[event.type]"
           )
+            .icon.plus.hollow
+
+            .icon.minus.hollow
+
           //- SUBMITTED
           timeline-status-update(
             ng-if="event.type == 'STATUS_UPDATE' "

@@ -24,19 +24,6 @@ timeline-messaging {
     }
   }
 
-  > main {
-    @include transition (all 0.3s ease-in-out);
-
-    max-height: 0;
-    overflow: hidden;
-  }
-
-  &.expanded {
-    > main {
-      max-height: 300px;
-    }
-  }
-
   > button, > button.action {
     margin: $margin-small $margin-smallest 0 $margin-smallest;
   }

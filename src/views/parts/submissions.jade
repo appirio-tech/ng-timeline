@@ -10,5 +10,9 @@ ul.avatars.flex.center
 
 p(ng-if="event.completed == false") 48 hours left to select your winners
 
-main(ng-if="event.completed == false")
+main.transition(
+  ng-if="event.completed == false"
+  ng-class="{ 'no-height': !vm.expanded[event.type] }"
+  lock-height="no-height"
+)
   button.wider(ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view submissions

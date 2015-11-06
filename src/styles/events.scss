@@ -7,19 +7,7 @@ timeline-copilot {
   display: block;
 
   > main {
-    @include transition (all 0.2s ease-in-out);
-
-    max-height: 0px;
     margin-top: $margin-smallest;
-    overflow  : hidden;
-  }
-}
-
-timeline-copilot {
-  &.expanded {
-    > main {
-      max-height: 100px;
-    }
   }
 }
 
@@ -44,12 +32,6 @@ timeline-members, timeline-submissions, timeline-winners {
     max-height: 0;
     overflow: hidden;
   }
-
-  &.expanded {
-    > ul {
-      max-height: 100px;
-    }
-  }
 }
 
 timeline-select-winners {
@@ -59,11 +41,5 @@ timeline-select-winners {
     max-height : 0;
     overflow   : hidden;
     padding-top: $padding;
-  }
-
-  &.expanded {
-    > main {
-      max-height: 50px;
-    }
   }
 }
