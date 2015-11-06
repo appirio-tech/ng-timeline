@@ -107,16 +107,24 @@ main.flex.center.stretch
             include parts/final-deliverables
 
         li.event.finish(
-          ng-if="($index == eventGroup.events.length - 1) && eventGroup.text == 'Design Concepts' && !vm.isSubmissionCompleted(eventGroup)"
+          ng-if="eventGroup.text == 'Design Concepts' && !vm.isSubmissionCompleted(eventGroup)"
         )
           event-card.select-winners
             include parts/select-winners
 
         li.event.finish(
-          ng-if="($index == eventGroup.events.length - 1) && eventGroup.text == 'Design Concepts' && vm.isSubmissionCompleted(eventGroup)"
+          ng-if="eventGroup.text == 'Design Concepts' && vm.isSubmissionCompleted(eventGroup)"
         )
           event-card.winners
             include parts/winners
+
+        li.event.finish(
+          ng-if="event.type == 'PAYMENT_ACCEPTED'"
+        )
+
+        li.event.finish(
+          ng-if="event.type == 'WORKSTEP_WINNERS'"
+        )
 
         li(
           ng-repeat-end=true
