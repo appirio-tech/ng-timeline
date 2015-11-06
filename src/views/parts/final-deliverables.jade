@@ -12,12 +12,10 @@
 time {{event.eventTime | timeLapse }}
 
 event-card-main
-  p {{event.threadInfo.lastMessageInfo.content}}
+  p {{ event.threadInfo.lastMessageInfo.content || 'no subject' }}
 
   ul.submissions
     li(ng-repeat="submission in event.submissionThreads track by $index")
       img.img(ng-src="{{submission.thumbnailUrl}}")
 
-  button.action.wider view prototype
-
-  button.wider share link
+  button.action.wider view all

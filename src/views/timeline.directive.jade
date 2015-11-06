@@ -91,11 +91,11 @@ main.flex.center.stretch
           )
             include parts/comments
 
-          event-card.final-fixes-submitter(
+          event-card.final-fixes-submissions(
             ng-if="event.type == 'FINALFIXES_SUBMISSION'"
             ng-class="{ expanded: vm.expanded[event.type] }"
           )
-            include parts/final-fixes-submitter
+            include parts/final-fixes-submissions
 
           event-card.status-report(ng-if="event.type == 'STATUS_REPORT' ")
             include parts/status-report

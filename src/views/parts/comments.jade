@@ -23,12 +23,11 @@
     li
       time {{event.submissionThreads[event.submissionThreads.length - 1].lastMessageDate | timeLapse}}
 
-main.transition(
+event-card-main.transition(
   ng-if="event.submissionThreads.length > 0"
   ng-class="{ 'no-height': !vm.expanded[event.type] }"
   lock-height="no-height"
 )
-  hr
 
   p(ng-if="event.publishers.length == 1 && !vm.allMessagesRead(event.submissionThreads)") {{event.publishers[0].handle}} has commented on {{event.submissionThreads.length}} submission images.
 
@@ -44,13 +43,13 @@ main.transition(
       .notification.absolute(ng-if="submission.unreadMessageCount > 0") {{submission.unreadMessageCount}}
 
       a(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId, fileId: submission.submissionFileId})")
-        img.img(ng-src="{{submission.thumbnailUrl}}")
+        img(ng-src="{{submission.thumbnailUrl}}")
 
   ul.submissions.flex.center(ng-if="!vm.allMessagesRead(event.submissionThreads)")
     li(ng-repeat="submission in event.submissionThreads.filter(vm.messageUnread) track by $index")
       .notification.absolute(ng-if="submission.unreadMessageCount > 0") {{submission.unreadMessageCount}}
 
       a(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId, fileId: submission.submissionFileId})")
-        img.img(ng-src="{{submission.thumbnailUrl}}")
+        img(ng-src="{{submission.thumbnailUrl}}")
 
   button.wider.view-all(ui-sref="submission-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId})") view all comments

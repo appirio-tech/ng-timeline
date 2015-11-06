@@ -1,4 +1,5 @@
 @import "work-includes";
+@import "variables";
 
 event-card.comments {
   display: block;
@@ -7,7 +8,7 @@ event-card.comments {
     width: 100%;
 
     avatar {
-      margin-left: $margin-smallest;
+      margin-left: $horizontal-spacing-small;
     }
 
     .name {
@@ -24,31 +25,23 @@ event-card.comments {
     }
   }
 
-  > main {
-    @include transition (all 0.3s ease-in-out);
-
-    max-height: 0;
-    overflow: hidden;
-  }
-
-  &.expanded {
-    > main {
-      max-height: 500px;
-    }
-  }
-
   .submissions {
-    margin-top: $margin-small;
+    margin-top: $vertical-spacing;
 
     li {
-      margin: 0 $margin-smallest;
+      margin: 0 $horizontal-spacing-smallest;
       position: relative;
     }
 
-    .img {
-      width: 180px;
-      height: 180px;
-      background-color: purple;
+    a {
+      display   : block;
+      max-height: 147px;
+      max-width : 197px;
+      overflow  : hidden;
+
+      img {
+        width: 197px;
+      }
     }
   }
 
