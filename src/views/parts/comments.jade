@@ -3,27 +3,30 @@ ul.header.flex.center.middle
     .icon.bubble.smallest
 
   li
-    avatar(avatar-url="{{event.threadInfo.lastMessageInfo.publisherInfo.avatar}}")
+    avatar(avatar-url="{{event.submitter.avatar}}")
 
   li.name.flex-grow
     p
-      a(href="#") {{event.threadInfo.lastMessageInfo.publisherInfo.handle}}
+      a(href="#") {{event.submitter.handle}}
 
-    p.role {{event.threadInfo.lastMessageInfo.publisherInfo.role}}
+    p.role {{event.submitter.role}}
 
   li
-    time {{event.threadInfo.eventTime | timeLapse}}
+    time {{event.submissionThreads[event.submissionThreads.length - 1].lastMessageDate | timeLapse}}
 
 main(ng-if="event.submissionThreads.length > 0")
   hr
 
-  p {{event.threadInfo.lastMessageInfo.publisherInfo.handle}} has commented on {{event.submissionThreads.length}} submission images.
+  p(ng-if="event.publishers.length == 1") {{event.publishers[0].handle}} has commented on {{event.submissionThreads.length}} submission images.
+
+  p(ng-if="event.publishers.length == 2") {{event.publishers[0].handle}} and {{event.publishers[1]}} have commented on {{event.submissionThreads.length}} submission images.
+
 
   ul.submissions.flex.center
     li(ng-repeat="submission in event.submissionThreads track by $index")
-      .notification.absolute {{submission.unreadMessageCount}}
+      .notification.absolute(ng-if="submission.unreadMessageCount > 0") {{submission.unreadMessageCount}}
 
-      a(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: submission.submissionId, fileId: submission.submissionFileId})")
+      a(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId, fileId: submission.submissionFileId})")
         img.img(ng-src="{{submission.thumbnailUrl}}")
 
-  button.wider.view-all(ui-sref="submission-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionThreads[0].submissionId})") view all comments
+  button.wider.view-all(ui-sref="submission-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId})") view all comments
