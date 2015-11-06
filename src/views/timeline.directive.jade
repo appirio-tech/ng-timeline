@@ -30,7 +30,7 @@ main.flex.center.stretch
         li.event(
           ng-repeat-start="event in eventGroup.events"
           ng-if="vm.expanded[event.type] != undefined"
-          ng-class="{expanded: vm.expanded[event.type], finish: vm.isAFinishEvent(eventGroup.text, event.type, event.completed) }"
+          ng-class="{ finish: vm.isAFinishEvent(eventGroup.text, event.type, event.completed) }"
         )
           button.clean.point(
             ng-class="{ expanded: vm.expanded[event.type]}"
