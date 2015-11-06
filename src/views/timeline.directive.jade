@@ -91,9 +91,12 @@ main.flex.center.stretch
           )
             include parts/comments
 
-          //- DEVELOPMENT LAUNCHED
+          timeline-final-fixes-submitter(
+            ng-if="event.type == 'FINALFIXES_SUBMISSION'"
+            ng-class="{ expanded: vm.expanded[event.type] }"
+          )
+            include parts/final-fixes-submitter
 
-          //- DEVELOPMENT BEGINS
           event-card.status-report(ng-if="event.type == 'STATUS_REPORT' ")
             include parts/status-report
 

@@ -1,0 +1,25 @@
+h2 Final Designs Submitted
+
+time {{event.eventTime | timeLapse}}
+
+main.transition(
+  ng-if="event.completed == false"
+  ng-class="{ 'no-height': !vm.expanded[event.type] }"
+  lock-height="no-height"
+)
+  .avatar.flex.center
+    avatar(avatar-url="{{event.submitter.avatar}}")
+
+  a(href="#") {{event.submitter.handle}}
+
+  p Project Winner
+
+  ul.submissions.flex.center
+    li(ng-repeat="file in event.files track by $index")
+
+      a(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId, fileId: file.id})")
+        img.img(ng-src="{{submission.thumbnailUrl}}")
+
+    button.wider(ng-if="event.completed == false" ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view submissions
+
+    p(ng-if="event.completed == false") You have 24 hours left

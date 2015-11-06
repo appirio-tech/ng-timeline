@@ -9,6 +9,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
   vm.showAcceptQuoteButton = true
 
   vm.expanded =
+<<<<<<< HEAD
     'Project Submitted'     : true
     'Project Launched'      : true
     'Design Concepts'       : true
@@ -27,6 +28,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
     'WORKSTEP_SUBMITTERS'   : true
     'SUBMISSION_THREAD_INFO': true
     'WORKSTEP_WINNERS'      : true
+    'FINALFIXES_SUBMISSION' : true
 
   vm.isAFinishEvent = (text, type, completed) ->
     # text == 'Development Begins' || type == 'PAYMENT_ACCEPTED' || (type == 'WORKSTEP_SUBMITTERS' && !completed) || type == 'WORKSTEP_WINNERS'
@@ -50,6 +52,14 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
       activate()
 
     resource.$promise.finally ->
+
+  vm.messageUnread = (message) ->
+    message.unreadMessageCount > 0
+
+  vm.allMessagesRead = (messages) ->
+    unread = messages.filter(vm.messageUnread)
+
+    unread.length == 0
 
   findCompletionDate = (data) ->
     data.forEach (eventGroup) ->
