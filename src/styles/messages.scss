@@ -1,7 +1,15 @@
 @import "work-includes";
 
-timeline-messaging {
+event-card.messaging {
   display: block;
+
+  main {
+    padding-top: 30px;
+
+    hr {
+      margin-top: 20px;
+    }
+  }
 
   .header {
     width: 100%;

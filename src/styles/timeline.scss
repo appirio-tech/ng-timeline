@@ -1,10 +1,19 @@
 @import "work-includes";
+@import "variables";
 
 timeline {
   display: block;
 
   .transition {
     overflow: hidden;
+  }
+
+  button.action, button.wider {
+    margin-top: $vertical-spacing;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
   h5 {
@@ -19,8 +28,7 @@ timeline {
     .timeline {
       width           : 2px;
       background-color: $neutral-color-light;
-      margin          : $margin;
-      margin-left     : 0;
+      margin          : $vertical-spacing-big $horizontal-spacing $vertical-spacing-big 0;
     }
 
     > ul {
@@ -32,9 +40,9 @@ timeline {
     }
   }
 
-  .avatar {
-    width         : 35px;
-    height        : 35px;
+  avatar {
+    width         : 48px;
+    height        : 48px;
     border-radius : 50%;
   }
 
@@ -52,8 +60,7 @@ timeline {
     width           : 24px;
     height          : 24px;
     position        : absolute;
-    left            : -(24px/2) + 2px;
-    box-shadow      : 0 6px 6px -6px $neutral-color-dark;
+    left            : -(24px/2) + 1px;
     border-radius   : 50%;
     background-color: $neutral-color-lightest;
 
@@ -116,8 +123,9 @@ timeline {
     background-color: $white;
 
     > header { /* simulate white padding */
-      border             : $margin solid $white;
-      border-bottom-width: $margin-small;
+      border             : $horizontal-spacing solid $white;
+      border-top-width   : $vertical-spacing-big;
+      border-bottom-width: $vertical-spacing-small;
       background-color   : $white;
     }
 
@@ -129,10 +137,12 @@ timeline {
 
     .events {
       > * { /* simulate white padding */
-        border: $padding solid $white;
+        border: $horizontal-spacing-small solid $white;
+        border-bottom-width: 0;
+        border-top-width: 0;
 
         &:last-child {
-          border-bottom-width: $padding-big;
+          border-bottom-width: $vertical-spacing-big;
         }
 
         &.hr {
@@ -168,28 +178,16 @@ timeline {
     }
 
     .point {
-      margin-top: $margin-smallest;
+      width           : 24px;
+      height          : 24px;
+      border          : 1px solid $neutral-color;
+      border-radius   : 50%;
+      margin-top      : $margin-smallest;
       background-color: $neutral-color-lightest;
-
-      &::before {
-        content         : "";
-        display         : inline-block;
-        background-color: $primary-color;
-        width           : 8px;
-        height          : 8px;
-        border-radius   : 50%;
-      }
     }
   }
 
   .event {
-    text-align: center;
-
-    time {
-      display   : block;
-      margin-top: 10px;
-    }
-
     &.finish {
       background-color: $primary-color;
       padding         : $padding;
@@ -197,7 +195,7 @@ timeline {
       text-align      : center;
       border          : 0; /* remove simulated padding */
 
-      time {
+      * {
         color: $white;
       }
     }

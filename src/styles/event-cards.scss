@@ -1,0 +1,27 @@
+@import "work-includes";
+@import "variables";
+
+event-card {
+  display   : block;
+  text-align: center;
+  padding   : $vertical-spacing-big $horizontal-spacing-small;
+
+  > time {
+    margin-top: 10px;
+    display: block;
+  }
+
+  .point {
+    margin-top: -12px;
+  }
+
+  event-card-main {
+    display: block;
+    padding-top: $vertical-spacing;
+
+    &.no-height {
+      padding: 0;
+    }
+  }
+}
+

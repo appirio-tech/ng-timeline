@@ -22,112 +22,101 @@ main.flex.center.stretch
 
       ul.expand-big.events.transition(
         lock-height="no-height"
+        retain-class="!vm.expanded[eventGroup.text]"
         ng-class="{ 'no-height': !vm.expanded[eventGroup.text] }"
       )
         li.hr
           hr
 
         li.event(
-          ng-repeat-start="event in eventGroup.events"
+          ng-repeat-start="event in eventGroup.events track by $index"
           ng-if="vm.expanded[event.type] != undefined"
-          ng-class="{ finish: vm.isAFinishEvent(eventGroup.text, event.type, event.completed) }"
         )
-          button.clean.point(
-            ng-class="{ expanded: vm.expanded[event.type]}"
-            ng-click="vm.expanded[event.type] = !vm.expanded[event.type]"
-          )
-            .icon.plus.hollow
-
-            .icon.minus.hollow
-
           //- SUBMITTED
-          timeline-status-update(
+          event-card.status-update(
             ng-if="event.type == 'STATUS_UPDATE' "
           )
             include parts/status-update.jade
 
-          timeline-copilot(
+          event-card.copilot(
             ng-if="event.type == 'COPILOT_ASSIGNED'"
             ng-class="{ expanded: vm.expanded[event.type] }"
           )
             include parts/copilot
 
-          timeline-quote(
+          event-card.quote(
             ng-if="event.type == 'QUOTE_INFO' && event.status != 'Accepted' "
             ng-class="{ expanded: vm.expanded[event.type] }"
           )
             include parts/quote
 
-          timeline-quote-accepted(
-            ng-if="event.type == 'QUOTE_INFO' && event.status == 'Accepted' "
+          event-card.quote-accepted(
+            ng-if="event.type == 'QUOTE_INFO' && event.status == 'Accepted'"
             ng-class="{ expanded: vm.expanded[event.type] }"
           )
             include parts/quote-accepted
 
-          timeline-payment(
+          event-card.payment(
             ng-if="event.type == 'PAYMENT_ADDED' && !event.eventTime"
             ng-class="{ expanded: vm.expanded[event.type] }"
           )
             include parts/payment
 
-          timeline-payment-added(ng-if="event.type == 'PAYMENT_ACCEPTED' ")
+          event-card.payment-added(ng-if="event.type == 'PAYMENT_ACCEPTED' ")
             include parts/payment-added
 
           //- LAUNCHED
-          timeline-members(
+          event-card.members(
             ng-if="event.type == 'MEMBER_REGISTRATION'"
             ng-class="{ expanded: vm.expanded[event.type] }"
           )
             include parts/members
 
-          timeline-messaging(
+          event-card.messaging(
             ng-if="event.type == 'THREAD_INFO'"
             ng-class="{ expanded: vm.expanded[event.type] }"
           )
             include parts/messages
 
           //- DESIGN CONCEPTS, FINAL DESIGNS
-          timeline-submissions(
+          event-card.submissions(
             ng-if="event.type == 'WORKSTEP_SUBMITTERS'"
             ng-class="{ expanded: vm.expanded[event.type] }"
           )
             include parts/submissions
 
-          timeline-comments(
+          event-card.comments(
             ng-if="event.type == 'SUBMISSION_THREAD_INFO' && (eventGroup.text == 'Final Designs' || eventGroup.text == 'Design Concepts') "
             ng-class="{ expanded: vm.expanded[event.type] }"
           )
             include parts/comments
 
-          //- timeline-select-winners(
-          //-   ng-if="event.type == 'WORKSTEP_SUBMITTERS' && event.completed == false"
-          //-   ng-class="{ expanded: vm.expanded[event.type] }"
-          //- )
-          //-   include parts/select-winners
-
-          timeline-winners(
-            ng-if="event.type == 'WORKSTEP_WINNERS'"
-            ng-class="{ expanded: vm.expanded[event.type] }"
-          )
-            include parts/winners
-
-          timeline-final-fixes-submitter(
+          event-card.final-fixes-submitter(
             ng-if="event.type == 'FINALFIXES_SUBMISSION'"
             ng-class="{ expanded: vm.expanded[event.type] }"
           )
             include parts/final-fixes-submitter
 
-          //- DEVELOPMENT LAUNCHED
-
-          //- DEVELOPMENT BEGINS
-          timeline-status-report(ng-if="event.type == 'STATUS_REPORT' ")
+          event-card.status-report(ng-if="event.type == 'STATUS_REPORT' ")
             include parts/status-report
 
-          timeline-development-complete(ng-if="eventGroup.text == 'Development Begins' && eventGroup.createdTime ")
+          event-card.development-complete(ng-if="eventGroup.text == 'Development Begins' && eventGroup.createdTime ")
             include parts/development-complete
 
-          timeline-final-deliverables.flex.center(ng-if="eventGroup.text == 'Final Fixes' && event.type == 'SUBMISSION_THREAD_INFO' ")
+          event-card.final-deliverables(ng-if="eventGroup.text == 'Final Fixes' && event.type == 'SUBMISSION_THREAD_INFO' ")
             include parts/final-deliverables
+
+        li.event.finish(
+          ng-if="($index == eventGroup.events.length - 1) && eventGroup.text == 'Design Concepts' && !vm.isSubmissionCompleted(eventGroup)"
+        )
+          event-card.select-winners
+            include parts/select-winners
+
+        li.event.finish(
+          ng-if="($index == eventGroup.events.length - 1) && eventGroup.text == 'Design Concepts' && vm.isSubmissionCompleted(eventGroup)"
+        )
+          event-card.winners
+            include parts/winners
 
         li(
           ng-repeat-end=true

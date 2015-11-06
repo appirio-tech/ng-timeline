@@ -1,42 +1,41 @@
 'use strict'
 
 TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalAPIService) ->
-  vm        = this
-  vm.eventGroups = []
-  vm.loading = true
+  vm                       = this
+  vm.eventGroups           = []
+  vm.loading               = true
   vm.projectCompletionDate = null
-  vm.projectCompleted = false
+  vm.projectCompleted      = false
   vm.showAcceptQuoteButton = true
 
   vm.expanded =
-    # eventGroups
-    'Project Submitted': false
-    'Project Launched': false
-    'Design Concepts': false
-    'Final Designs': false
-    'Final Fixes': false
-    'Development Launched': false
-    'Development Begins': false
-    'Project Complete': false
-    # events
-    'STATUS_UPDATE': false
-    'STATUS_REPORT': false
-    'COPILOT_ASSIGNED': false
-    'QUOTE_INFO': false
-    'PAYMENT_ACCEPTED': false
-    'MEMBER_REGISTRATION': false
-    'THREAD_INFO': false
-    'WORKSTEP_SUBMITTERS': false
-    'SUBMISSION_THREAD_INFO': false
-    'WORKSTEP_WINNERS': false
-    'FINALFIXES_SUBMISSION': false
+    'Project Submitted'     : true
+    'Project Launched'      : true
+    'Design Concepts'       : true
+    'Final Designs'         : true
+    'Final Fixes'           : true
+    'Development Launched'  : true
+    'Development Begins'    : true
+    'Project Complete'      : true
+    'STATUS_UPDATE'         : true
+    'STATUS_REPORT'         : true
+    'COPILOT_ASSIGNED'      : true
+    'QUOTE_INFO'            : true
+    'PAYMENT_ACCEPTED'      : true
+    'MEMBER_REGISTRATION'   : true
+    'THREAD_INFO'           : true
+    'WORKSTEP_SUBMITTERS'   : true
+    'SUBMISSION_THREAD_INFO': true
+    'WORKSTEP_WINNERS'      : true
+    'FINALFIXES_SUBMISSION' : true
 
   vm.isAFinishEvent = (text, type, completed) ->
-    text == 'Development Begins' || type == 'PAYMENT_ACCEPTED' || (type == 'WORKSTEP_SUBMITTERS' && !completed) || type == 'WORKSTEP_WINNERS'
+    # text == 'Development Begins' || type == 'PAYMENT_ACCEPTED' || (type == 'WORKSTEP_SUBMITTERS' && !completed) || type == 'WORKSTEP_WINNERS'
+
+    text == 'Development Begins' || type == 'PAYMENT_ACCEPTED' || type == 'WORKSTEP_WINNERS'
 
   vm.acceptQuote = (event) ->
     if vm.copilotId
-
       params =
         userId: vm.copilotId
         projectId: vm.workId
@@ -48,6 +47,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
 
     resource.$promise.then (response) ->
       vm.showAcceptQuoteButton = false
+
       activate()
 
     resource.$promise.finally ->
@@ -63,7 +63,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
   findCompletionDate = (data) ->
     data.forEach (eventGroup) ->
       if eventGroup.text == 'Project Complete'
-        vm.projectCompleted = true
+        vm.projectCompleted      = true
         vm.projectCompletionDate = eventGroup.createdTime
 
   configureProjectSubmittedComponents = (data) ->
@@ -72,24 +72,18 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
         eventGroup.events.forEach (event) ->
           if event.type == 'COPILOT_ASSIGNED'
             vm.copilotId = event.copilot.userId
+
           if event.type == 'QUOTE_INFO' && event.status == 'Accepted'
             vm.showAcceptQuoteButton = false
 
-  setExpanded = (data) ->
-    data.forEach (eventGroup) ->
-      if eventGroup.expanded == true
-        vm.expanded[eventGroup.text] = true
-        eventGroup.events.forEach (event) ->
-          if event.expanded
-            vm.expanded[event.type] = true
+  vm.isSubmissionCompleted = (eventGroup) ->
+    show = false
 
-# TODO: Get rid of this hack once empty submissionThreads stop returning
-  hideEmptySubmissionThreads = (data) ->
-    data.forEach (eventGroup) ->
-      eventGroup.events.forEach (event) ->
-        if event.type == 'SUBMISSION_THREAD_INFO'
-          if event.submissionThreads.length == 0
-            vm.expanded[event.type] = undefined
+    for e in eventGroup.events
+      show = true if e.type == 'WORKSTEP_SUBMITTERS' && e.completed
+
+    show
+
 
   activate = ->
     vm.workId = $scope.workId
@@ -98,12 +92,13 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
       workId: vm.workId
 
     resource = TimelineAPIService.query params
+
     resource.$promise.then (data) ->
       vm.eventGroups = data
-      setExpanded data
+
       findCompletionDate data
+
       configureProjectSubmittedComponents data
-      hideEmptySubmissionThreads data
 
     resource.$promise.catch ->
 
@@ -115,7 +110,10 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
   activate()
 
 TimelineController.$inject = [
-  '$scope', '$stateParams', 'TimelineAPIService', 'CopilotApprovalAPIService'
+  '$scope'
+  '$stateParams'
+  'TimelineAPIService'
+  'CopilotApprovalAPIService'
 ]
 
 angular.module('appirio-tech-ng-timeline').controller 'TimelineController', TimelineController

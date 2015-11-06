@@ -1,18 +1,32 @@
-h2 {{ eventTime.createdTime | date : 'MMMM d' }} status report
+.flex.middle.center
+  button.clean.point(
+    ng-class="{ expanded: vm.expanded[event.type]}"
+    ng-click="vm.expanded[event.type] = !vm.expanded[event.type]"
+  )
+    .icon.plus.hollow
+
+    .icon.minus.hollow
+
+  h2 {{ eventTime.createdTime | date : 'MMMM d' }} status report
 
 time {{ event.eventTime | timeLapse }}
 
-p {{ event.text }}
+event-card-main.transition(
+  ng-if="event.completed == false"
+  ng-class="{ 'no-height': !vm.expanded[event.type] }"
+  lock-height="no-height"
+)
+  p {{ event.text }}
 
-ul.links
-  li(ng-repeat="link in event.links track by $index")
+  ul.links
+    li(ng-repeat="link in event.links track by $index")
 
-    a(href="{{link.url}}") {{link.url}}
+      a(href="{{link.url}}") {{link.url}}
 
-  li(ng-repeat="image in event.images track by $index")
+    li(ng-repeat="image in event.images track by $index")
 
-    img.img(ng-src="{{image.url}}")
+      img.img(ng-src="{{image.url}}")
 
-//- button.action.wider view prototype
+  //- button.action.wider view prototype
 
-//- button.wider share link
+  //- button.wider share link

@@ -1,8 +1,17 @@
-h2 Co-pilot assigned
+.flex.middle.center
+  button.clean.point(
+    ng-class="{ expanded: vm.expanded[event.type]}"
+    ng-click="vm.expanded[event.type] = !vm.expanded[event.type]"
+  )
+    .icon.plus.hollow
+
+    .icon.minus.hollow
+
+  h2 Co-pilot assigned
 
 time {{ event.eventTime | timeLapse}}
 
-main.transition.avatar-box.flex.center.middle(
+event-card-main.transition.avatar-box.flex.center.middle(
   ng-show="event.copilot.handle"
   ng-class="{ 'no-height': !vm.expanded[event.type] }"
   lock-height="no-height"
