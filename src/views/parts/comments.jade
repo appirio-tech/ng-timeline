@@ -14,7 +14,11 @@ ul.header.flex.center.middle
   li
     time {{event.submissionThreads[event.submissionThreads.length - 1].lastMessageDate | timeLapse}}
 
-main(ng-if="event.submissionThreads.length > 0")
+main.transition(
+  ng-if="event.submissionThreads.length > 0"
+  ng-class="{ 'no-height': !vm.expanded[event.type] }"
+  lock-height="no-height"
+)
   hr
 
   p(ng-if="event.publishers.length == 1") {{event.publishers[0].handle}} has commented on {{event.submissionThreads.length}} submission images.

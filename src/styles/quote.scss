@@ -1,15 +1,13 @@
 @import "work-includes";
 
 timeline-quote {
-  &.expanded {
-    main {
-      max-height: 200px;
-    }
+  p {
+    margin: 30px;
   }
 
   .estimate {
     background-color: $primary-color;
-    padding         : $padding;
+    padding         : $padding-big;
     margin-top      : $margin-small;
 
     * {
@@ -26,11 +24,9 @@ timeline-quote {
     }
 
     ul {
-      @include align-content(stretch);
-      @include align-items(stretch);
-
-      max-width: 400px;
-      margin: 0 auto;
+      max-width : 400px;
+      margin    : 0 auto;
+      margin-top: 20px;
     }
   }
 }

@@ -2,11 +2,16 @@ h2 Quote generated
 
 time {{event.eventTime | timeLapse}}
 
-main
+main.transition(
+  ng-class="{ 'no-height': !vm.expanded[event.type] }"
+  lock-height="no-height"
+)
   p View quote and accept to continue your project.
 
   .estimate
-    ul.flex.middle.space-between
+    h6 quote
+
+    ul.flex.middle.space-between.stretch
       li.cost
         .range
           ${{ event.price.min }} - ${{ event.price.max }}
