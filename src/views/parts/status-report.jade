@@ -12,21 +12,18 @@
 time {{ event.eventTime | timeLapse }}
 
 event-card-main.transition(
-  ng-if="event.completed == false"
   ng-class="{ 'no-height': !vm.expanded[event.type] }"
   lock-height="no-height"
 )
-  p {{ event.text }}
+  p {{ event.text || 'no subject' }}
 
   ul.links
     li(ng-repeat="link in event.links track by $index")
 
       a(href="{{link.url}}") {{link.url}}
 
+  ul.thumbnails.flex.center
     li(ng-repeat="image in event.images track by $index")
+      img(ng-src="{{image.url}}")
 
-      img.img(ng-src="{{image.url}}")
-
-  //- button.action.wider view prototype
-
-  //- button.wider share link
+  button.action.wider view all
