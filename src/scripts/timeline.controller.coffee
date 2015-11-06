@@ -9,7 +9,6 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
   vm.showAcceptQuoteButton = true
 
   vm.expanded =
-<<<<<<< HEAD
     'Project Submitted'     : true
     'Project Launched'      : true
     'Design Concepts'       : true
@@ -77,6 +76,15 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
           if event.type == 'QUOTE_INFO' && event.status == 'Accepted'
             vm.showAcceptQuoteButton = false
 
+  vm.isSubmissionCompleted = (eventGroup) ->
+    show = false
+
+    for e in eventGroup.events
+      show = true if e.type == 'WORKSTEP_SUBMITTERS' && e.completed
+
+    show
+
+
   activate = ->
     vm.workId = $scope.workId
 
@@ -91,8 +99,6 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
       findCompletionDate data
 
       configureProjectSubmittedComponents data
-
-      hideEmptySubmissionThreads data
 
     resource.$promise.catch ->
 

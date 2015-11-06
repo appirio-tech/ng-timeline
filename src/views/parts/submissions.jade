@@ -19,8 +19,7 @@ event-card-main.transition(
   lock-height="no-height"
 )
   ul.avatars.flex.center
-    //- li(ng-repeat="user in event.userProfiles track by $index")
-    li(ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7, 8]")
+    li(ng-repeat="user in event.userProfiles track by $index")
       avatar(avatar-url="{{user.avatar}}")
 
   button.wider(ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view submissions
