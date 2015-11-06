@@ -111,6 +111,12 @@ main.flex.center.stretch
           )
             include parts/winners
 
+          timeline-final-fixes-submitter(
+            ng-if="event.type == 'FINALFIXES_SUBMISSION'"
+            ng-class="{ expanded: vm.expanded[event.type] }"
+          )
+            include parts/final-fixes-submitter
+
           //- DEVELOPMENT LAUNCHED
 
           //- DEVELOPMENT BEGINS

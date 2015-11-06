@@ -29,6 +29,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
     'WORKSTEP_SUBMITTERS': false
     'SUBMISSION_THREAD_INFO': false
     'WORKSTEP_WINNERS': false
+    'FINALFIXES_SUBMISSION': false
 
   vm.isAFinishEvent = (text, type, completed) ->
     text == 'Development Begins' || type == 'PAYMENT_ACCEPTED' || (type == 'WORKSTEP_SUBMITTERS' && !completed) || type == 'WORKSTEP_WINNERS'
