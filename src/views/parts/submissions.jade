@@ -1,18 +1,26 @@
-h2(ng-if="event.userProfiles.length == 1") {{event.userProfiles.length}} person has submitted Designs
+.flex.middle.center
+  button.clean.point(
+    ng-class="{ expanded: vm.expanded[event.type]}"
+    ng-click="vm.expanded[event.type] = !vm.expanded[event.type]"
+  )
+    .icon.plus.hollow
 
-h2(ng-if="event.userProfiles.length > 1") {{event.userProfiles.length}} people have submitted Designs
+    .icon.minus.hollow
+
+  h2(ng-if="!(event.userProfiles.length > 1)") {{event.userProfiles.length || 0}} person has submitted Designs
+
+  h2(ng-if="event.userProfiles.length > 1") {{event.userProfiles.length || 0}} people have submitted Designs
 
 time {{event.eventTime | timeLapse}}
 
-ul.avatars.flex.center
-  li(ng-repeat="user in event.userProfiles track by $index")
-    avatar(avatar-url="{{user.avatar}}")
-
-p(ng-if="event.completed == false") 48 hours left to select your winners
-
-main.transition(
+event-card-main.transition(
   ng-if="event.completed == false"
   ng-class="{ 'no-height': !vm.expanded[event.type] }"
   lock-height="no-height"
 )
+  ul.avatars.flex.center
+    //- li(ng-repeat="user in event.userProfiles track by $index")
+    li(ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7, 8]")
+      avatar(avatar-url="{{user.avatar}}")
+
   button.wider(ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view submissions

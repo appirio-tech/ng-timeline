@@ -1,18 +1,27 @@
-ul.header.flex.center.middle
-  li
-    .icon.bubble.smallest
+.flex.middle.center
+  button.clean.point(
+    ng-class="{ expanded: vm.expanded[event.type]}"
+    ng-click="vm.expanded[event.type] = !vm.expanded[event.type]"
+  )
+    .icon.plus.hollow
 
-  li
-    avatar(avatar-url="{{event.threadInfo.lastMessageInfo.publisherInfo.avatar}}")
+    .icon.minus.hollow
 
-  li.name.flex-grow
-    p
-      a(href="#") {{event.threadInfo.lastMessageInfo.publisherInfo.handle}}
+  ul.header.flex.center.middle
+    li
+      .icon.bubble.smallest
 
-    p.role {{event.threadInfo.lastMessageInfo.publisherInfo.role}}
+    li
+      avatar(avatar-url="{{event.threadInfo.lastMessageInfo.publisherInfo.avatar}}")
 
-  li
-    time {{event.threadInfo.eventTime | timeLapse}}
+    li.name.flex-grow
+      p
+        a(href="#") {{event.threadInfo.lastMessageInfo.publisherInfo.handle}}
+
+      p.role {{event.threadInfo.lastMessageInfo.publisherInfo.role}}
+
+    li
+      time {{event.threadInfo.eventTime | timeLapse}}
 
 main.transition(
   ng-if="event.submissionThreads.length > 0"

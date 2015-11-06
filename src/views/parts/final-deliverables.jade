@@ -1,13 +1,23 @@
-h2 Final deliverables
+.flex.middle.center
+  button.clean.point(
+    ng-class="{ expanded: vm.expanded[event.type]}"
+    ng-click="vm.expanded[event.type] = !vm.expanded[event.type]"
+  )
+    .icon.plus.hollow
+
+    .icon.minus.hollow
+
+  h2 Final deliverables
 
 time {{event.eventTime | timeLapse }}
 
-p {{event.threadInfo.lastMessageInfo.content}}
+event-card-main
+  p {{event.threadInfo.lastMessageInfo.content}}
 
-ul.submissions
-  li(ng-repeat="submission in event.submissionThreads track by $index")
-    img.img(ng-src="{{submission.thumbnailUrl}}")
+  ul.submissions
+    li(ng-repeat="submission in event.submissionThreads track by $index")
+      img.img(ng-src="{{submission.thumbnailUrl}}")
 
-button.action.wider view prototype
+  button.action.wider view prototype
 
-button.wider share link
+  button.wider share link

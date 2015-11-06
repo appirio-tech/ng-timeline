@@ -2,8 +2,5 @@ h2 Select the winners
 
 p 48 hours left
 
-main.transition(
-  ng-class="{ 'no-height': !vm.expanded[event.type] }"
-  lock-height="no-height"
-)
-  button.wider(ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view submissions
+event-card-main
+  button.wider.hollow(ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view submissions

@@ -1,14 +1,14 @@
 @import "work-includes";
 
-timeline-quote {
-  p {
-    margin: 30px;
+event-card.quote {
+  main > * {
+    margin-top: 30px;
   }
 
   .estimate {
     background-color: $primary-color;
     padding         : $padding-big;
-    margin-top      : $margin-small;
+    margin-top      : 30px;
 
     * {
       color: $white;
@@ -19,14 +19,15 @@ timeline-quote {
       background-color: $white;
     }
 
-    h6 {
+    .cost h6, .duration h6 {
       margin-top: $margin-smallest;
     }
 
     ul {
-      max-width : 400px;
-      margin    : 0 auto;
-      margin-top: 20px;
+      margin-left : auto;
+      margin-right: auto;
+      max-width   : 400px;
+      margin-top  : 20px;
     }
   }
 }
