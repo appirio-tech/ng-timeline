@@ -51,6 +51,14 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
 
     resource.$promise.finally ->
 
+  vm.messageUnread = (message) ->
+    message.unreadMessageCount > 0
+
+  vm.allMessagesRead = (messages) ->
+    unread = messages.filter(vm.messageUnread)
+
+    unread.length == 0
+
   findCompletionDate = (data) ->
     data.forEach (eventGroup) ->
       if eventGroup.text == 'Project Complete'

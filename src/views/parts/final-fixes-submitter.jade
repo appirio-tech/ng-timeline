@@ -1,0 +1,22 @@
+h2 Final Designs Submitted
+
+time {{event.eventTime | timeLapse}}
+
+.avatar.flex.center
+  avatar(avatar-url="{{user.avatar}}")
+
+ul.submissions.flex.center(ng-if="!vm.allMessagesRead(event.submissionThreads)")
+  li(ng-repeat="submission in event.submissionThreads.filter(vm.messageUnread) track by $index")
+    .notification.absolute(ng-if="submission.unreadMessageCount > 0") {{submission.unreadMessageCount}}
+
+    a(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId, fileId: submission.submissionFileId})")
+      img.img(ng-src="{{submission.thumbnailUrl}}")
+
+main.transition(
+  ng-if="event.completed == false"
+  ng-class="{ 'no-height': !vm.expanded[event.type] }"
+  lock-height="no-height"
+)
+p(ng-if="event.completed == false") 48 hours left to select your winners
+
+button.wider(ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view submissions
