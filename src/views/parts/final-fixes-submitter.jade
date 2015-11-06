@@ -10,9 +10,9 @@ main.transition(
   .avatar.flex.center
     avatar(avatar-url="{{event.submitter.avatar}}")
 
-    a(href="#") {{event.submitter.handle}}
+  a(href="#") {{event.submitter.handle}}
 
-    p Project Winner
+  p Project Winner
 
   ul.submissions.flex.center
     li(ng-repeat="file in event.files track by $index")
@@ -20,6 +20,6 @@ main.transition(
       a(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId, fileId: file.id})")
         img.img(ng-src="{{submission.thumbnailUrl}}")
 
-    p(ng-if="event.completed == false") 48 hours left to select your winners
-
     button.wider(ng-if="event.completed == false" ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view submissions
+
+    p(ng-if="event.completed == false") You have 24 hours left
