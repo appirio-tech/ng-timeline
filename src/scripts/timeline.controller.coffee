@@ -83,7 +83,6 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
 
     show
 
-
   activate = ->
     vm.workId = $scope.workId
 

@@ -14,7 +14,6 @@
 time {{event.eventTime | timeLapse}}
 
 event-card-main.transition(
-  ng-if="event.completed == false"
   ng-class="{ 'no-height': !vm.expanded[event.type] }"
   lock-height="no-height"
 )

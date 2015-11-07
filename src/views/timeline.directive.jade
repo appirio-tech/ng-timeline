@@ -103,28 +103,24 @@ main.flex.center.stretch
           event-card.development-complete(ng-if="eventGroup.text == 'Development Begins' && eventGroup.createdTime ")
             include parts/development-complete
 
-          event-card.final-deliverables(ng-if="eventGroup.text == 'Final Fixes' && event.type == 'SUBMISSION_THREAD_INFO' ")
-            include parts/final-deliverables
+          //- event-card.final-deliverables(ng-if="eventGroup.text == 'Final Fixes' && event.type == 'SUBMISSION_THREAD_INFO' ")
+          //-   include parts/final-deliverables
 
         li.event.finish(
-          ng-if="($index == eventGroup.events.length - 1) && eventGroup.text == 'Design Concepts' && !vm.isSubmissionCompleted(eventGroup)"
+          ng-if="(eventGroup.text == 'Design Concepts' || eventGroup.text == 'Final Designs') && ($index == eventGroup.events.length - 1) && !vm.isSubmissionCompleted(eventGroup)"
         )
           event-card.select-winners
             include parts/select-winners
 
         li.event.finish(
-          ng-if="($index == eventGroup.events.length - 1) && eventGroup.text == 'Design Concepts' && vm.isSubmissionCompleted(eventGroup)"
+          ng-if="(eventGroup.text == 'Design Concepts' || eventGroup.text == 'Final Designs') && ($index == eventGroup.events.length - 1) && vm.isSubmissionCompleted(eventGroup) "
         )
           event-card.winners
             include parts/winners
 
-        li.event.finish(
-          ng-if="($index == eventGroup.events.length - 1) && event.type == 'WORKSTEP_WINNERS'"
-        )
-
         li(
           ng-repeat-end=true
-          ng-if="eventGroup.events.indexOf(event) != eventGroup.events.length - 1 && vm.expanded[event.type] != undefined"
+          ng-if="$index != eventGroup.events.length - 1 && vm.expanded[event.type] != undefined"
         )
           hr.biggest
 
