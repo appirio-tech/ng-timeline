@@ -21,7 +21,6 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
     'STATUS_REPORT'         : true
     'COPILOT_ASSIGNED'      : true
     'QUOTE_INFO'            : true
-    'PAYMENT_ACCEPTED'      : true
     'MEMBER_REGISTRATION'   : true
     'THREAD_INFO'           : true
     'WORKSTEP_SUBMITTERS'   : true

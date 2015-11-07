@@ -31,11 +31,11 @@ event-card-main.transition(
 
   p(ng-if="event.publishers.length == 1 && !vm.allMessagesRead(event.submissionThreads)") {{event.publishers[0].handle}} has commented on {{event.submissionThreads.length}} submission images.
 
-  p(ng-if="event.publishers.length == 2 && !vm.allMessagesRead(event.submissionThreads)") {{event.publishers[0].handle}} and {{event.publishers[1]}} have commented on {{event.submissionThreads.length}} submission images.
+  p(ng-if="event.publishers.length == 2 && !vm.allMessagesRead(event.submissionThreads)") {{event.publishers[0].handle}} and {{event.publishers[1].handle}} have commented on {{event.submissionThreads.length}} submission images.
 
   p(ng-if="event.publishers.length == 1 && vm.allMessagesRead(event.submissionThreads)") {{event.publishers[0].handle}} commented on {{event.submissionThreads.length}} submission images.
 
-  p(ng-if="event.publishers.length == 2 && vm.allMessagesRead(event.submissionThreads)") {{event.publishers[0].handle}} and {{event.publishers[1]}} commented on {{event.submissionThreads.length}} submission images.
+  p(ng-if="event.publishers.length == 2 && vm.allMessagesRead(event.submissionThreads)") {{event.publishers[0].handle}} and {{event.publishers[1].handle}} commented on {{event.submissionThreads.length}} submission images.
 
 
   ul.submissions.flex.center(ng-if="vm.allMessagesRead(event.submissionThreads)")
