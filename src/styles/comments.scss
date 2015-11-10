@@ -12,7 +12,7 @@ event-card.comments {
     }
 
     .name {
-      text-align: left;
+      text-align : left;
       margin-left: $margin-smallest;
 
       p {
@@ -37,6 +37,8 @@ event-card.comments {
       display   : block;
       max-height: 147px;
       max-width : 197px;
+      min-height: 147px;
+      min-width : 197px;
       overflow  : hidden;
 
       img {

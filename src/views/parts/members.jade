@@ -7,9 +7,9 @@
 
     .icon.minus.hollow
 
-  h2(ng-if="event.members.length == 1") {{event.members.length}} person has joined your project
+  h1(ng-if="event.members.length == 1") {{event.members.length}} person has joined your project
 
-  h2(ng-if="event.members.length > 1") {{event.members.length}} people have joined your project
+  h1(ng-if="event.members.length > 1") {{event.members.length}} people have joined your project
 
 time {{event.eventTime | timeLapse}}
 

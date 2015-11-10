@@ -6,17 +6,13 @@ event-card.quote {
   }
 
   .estimate {
-    background-color: $primary-color;
+    background-color: $neutral-color-lightest;
     padding         : $padding-big;
     margin-top      : 30px;
 
-    * {
-      color: $white;
-    }
-
     .splitter {
       width: 1px;
-      background-color: $white;
+      background-color: $neutral-color;
     }
 
     .cost h6, .duration h6 {
@@ -28,6 +24,18 @@ event-card.quote {
       margin-right: auto;
       max-width   : 400px;
       margin-top  : 20px;
+    }
+
+    &.active {
+      background-color: $primary-color;
+
+      * {
+        color: $white;
+      }
+
+      .splitter {
+        background-color: $white;
+      }
     }
   }
 }

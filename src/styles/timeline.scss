@@ -155,7 +155,11 @@ timeline {
       > li {
         > hr {
           margin: 0;
-          background-color: $neutral-color-lightest;
+          background-color: $neutral-color-light;
+
+          &.biggest {
+            background-color: $neutral-color-lightest;
+          }
         }
       }
 

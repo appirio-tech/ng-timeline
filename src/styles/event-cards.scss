@@ -8,7 +8,8 @@ event-card {
 
   > time {
     margin-top: 10px;
-    display: block;
+    color     : $neutral-color;
+    display   : block;
   }
 
   .point {
@@ -18,6 +19,11 @@ event-card {
   event-card-main {
     display: block;
     padding-top: $vertical-spacing;
+
+    > p {
+      font-size: $font-size-biggest;
+      line-height: $line-height-biggest;
+    }
 
     &.no-height {
       padding: 0;
