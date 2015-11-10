@@ -17,7 +17,7 @@ event-card-main.transition(
 )
   p View quote and accept to continue your project.
 
-  .estimate.active
+  .estimate(ng-class="{active: event.status != 'Accepted'}")
     h6 quote
 
     ul.flex.middle.space-between.stretch

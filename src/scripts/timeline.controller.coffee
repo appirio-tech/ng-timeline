@@ -76,6 +76,11 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
           if event.type == 'QUOTE_INFO' && event.status == 'Accepted'
             vm.showAcceptQuoteButton = false
 
+  setExpanded = (data) ->
+    data.forEach (eventGroup) ->
+      if eventGroup.events.length == 0
+        vm.expanded[eventGroup.text] = false
+
   vm.isSubmissionCompleted = (eventGroup) ->
     show = false
 
@@ -98,6 +103,8 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
       findCompletionDate data
 
       configureProjectSubmittedComponents data
+
+      setExpanded data
 
     resource.$promise.catch ->
 

@@ -22,7 +22,7 @@ main.flex.center.stretch
 
       ul.expand-big.events.transition(
         lock-height="no-height"
-        retain-class="!vm.expanded[eventGroup.text]"
+        retain-class="{{ !vm.expanded[eventGroup.text] }}"
         ng-class="{ 'no-height': !vm.expanded[eventGroup.text] }"
       )
         li.hr
@@ -45,16 +45,10 @@ main.flex.center.stretch
             include parts/copilot
 
           event-card.quote(
-            ng-if="event.type == 'QUOTE_INFO' && event.status != 'Accepted' "
+            ng-if="event.type == 'QUOTE_INFO' "
             ng-class="{ expanded: vm.expanded[event.type] }"
           )
             include parts/quote
-
-          event-card.quote-accepted(
-            ng-if="event.type == 'QUOTE_INFO' && event.status == 'Accepted'"
-            ng-class="{ expanded: vm.expanded[event.type] }"
-          )
-            include parts/quote-accepted
 
           event-card.payment(
             ng-if="event.type == 'PAYMENT_ADDED' && !event.eventTime"
@@ -106,11 +100,11 @@ main.flex.center.stretch
           //- event-card.final-deliverables(ng-if="eventGroup.text == 'Final Fixes' && event.type == 'SUBMISSION_THREAD_INFO' ")
           //-   include parts/final-deliverables
 
-        //- li.event.finish(
-        //-   ng-if="(event.type == 'QUOTE_INFO' && event.status == 'Accepted') && ($index == eventGroup.events.length - 1)"
-        //- )
-        //-   event-card.payment-added
-        //-     include parts/payment-added
+        li.event.finish(
+          ng-if="(event.type == 'QUOTE_INFO' && event.status == 'Accepted') && ($index == eventGroup.events.length - 1)"
+        )
+          event-card.quote-accepted
+            include parts/quote-accepted
 
         li.event.finish(
           ng-if="(eventGroup.text == 'Design Concepts' || eventGroup.text == 'Final Designs') && ($index == eventGroup.events.length - 1) && !vm.isSubmissionCompleted(eventGroup)"
