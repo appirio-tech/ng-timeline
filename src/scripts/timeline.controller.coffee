@@ -14,6 +14,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
     'Design Concepts'       : true
     'Final Designs'         : true
     'Final Fixes'           : true
+    'Code'                  : true
     'Development Launched'  : true
     'Development Begins'    : true
     'Project Complete'      : true

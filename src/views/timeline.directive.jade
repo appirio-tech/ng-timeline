@@ -106,6 +106,12 @@ main.flex.center.stretch
           //- event-card.final-deliverables(ng-if="eventGroup.text == 'Final Fixes' && event.type == 'SUBMISSION_THREAD_INFO' ")
           //-   include parts/final-deliverables
 
+        //- li.event.finish(
+        //-   ng-if="(event.type == 'QUOTE_INFO' && event.status == 'Accepted') && ($index == eventGroup.events.length - 1)"
+        //- )
+        //-   event-card.payment-added
+        //-     include parts/payment-added
+
         li.event.finish(
           ng-if="(eventGroup.text == 'Design Concepts' || eventGroup.text == 'Final Designs') && ($index == eventGroup.events.length - 1) && !vm.isSubmissionCompleted(eventGroup)"
         )
@@ -120,7 +126,7 @@ main.flex.center.stretch
 
         li(
           ng-repeat-end=true
-          ng-if="$index != eventGroup.events.length - 1 && vm.expanded[event.type] != undefined"
+          ng-if="($index != eventGroup.events.length - 1) && (vm.expanded[event.type] != undefined) && (eventGroup.events[$index + 1].type != 'WORKSTEP_WINNERS' )"
         )
           hr.biggest
 
