@@ -33,4 +33,4 @@ event-card-main.transition(
 
     button.wider(ng-if="event.completed == false" ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view submissions
 
-  p(ng-if="event.completed == false") You have 24 hours left
+  simple-countdown(ng-if="event.completed == false" end="{{eventGroup.endsAt}}")
