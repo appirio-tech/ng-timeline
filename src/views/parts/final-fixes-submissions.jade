@@ -29,7 +29,7 @@ event-card-main.transition(
     li(ng-repeat="file in event.files track by $index")
 
       a(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId, fileId: file.id})")
-        img.img(ng-src="{{submission.thumbnailUrl}}")
+        img.img(ng-src="{{file.url}}")
 
     button.wider(ng-if="event.completed == false" ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view submissions
 
