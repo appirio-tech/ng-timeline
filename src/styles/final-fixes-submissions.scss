@@ -9,10 +9,33 @@ event-card.final-fixes-submissions {
     }
   }
 
+  .submissions {
+    margin-top: $vertical-spacing;
+
+    img {
+      max-width: 197px;
+    }
+
+    li {
+      margin: 0 10px;
+    }
+
+    a {
+      max-height: 147px;
+      overflow  : hidden;
+      display   : block;
+    }
+  }
+
   event-card-main {
     > p {
       margin-top: $vertical-spacing;
     }
+  }
+
+  simple-countdown {
+    display: block;
+    margin-top: $vertical-spacing;
   }
 }
 
