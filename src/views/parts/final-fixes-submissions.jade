@@ -9,7 +9,7 @@
 
   h1(ng-if="eventGroup.events.indexOf(event) == 0") Winning Designs
 
-  h1(ng-if="eventGroup.events.indexOf(event) == 1") Final Fixes Ready
+  h1(ng-if="eventGroup.events.indexOf(event) != 0") Final Fixes Ready
 
 time {{event.eventTime | timeLapse}}
 
