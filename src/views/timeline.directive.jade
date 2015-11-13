@@ -6,11 +6,11 @@ main.flex.center.stretch
   .timeline
 
   ul
-    li.event-group.elevated-bottom(ng-repeat-start="eventGroup in vm.eventGroups" ng-if="eventGroup.text != 'Project Complete' " ng-class="{ expanded: vm.expanded[eventGroup.text], disabled: eventGroup.events.length == 0 }")
+    li.event-group.elevated-bottom(ng-repeat-start="eventGroup in vm.eventGroups track by $index" ng-if="eventGroup.text != 'Project Complete' " ng-class="{ expanded: vm.expanded[$index].expanded, disabled: eventGroup.events.length == 0 }")
       header.flex
         button.clean.point(
-          ng-class="{ expanded: vm.expanded[eventGroup.text], disabled: !vm.expanded[eventGroup.text]}"
-          ng-click="vm.expanded[eventGroup.text] = !vm.expanded[eventGroup.text]"
+          ng-class="{ expanded: vm.expanded[$index].expanded, disabled: !vm.expanded[$index].expanded}"
+          ng-click="vm.expanded[$index].expanded = !vm.expanded[$index].expanded"
         )
           .icon.plus
 
@@ -22,15 +22,14 @@ main.flex.center.stretch
 
       ul.expand-big.events.transition(
         lock-height="no-height"
-        retain-class="{{ !vm.expanded[eventGroup.text] }}"
-        ng-class="{ 'no-height': !vm.expanded[eventGroup.text] }"
+        retain-class="{{ !vm.expanded[$index].expanded }}"
+        ng-class="{ 'no-height': !vm.expanded[$index].expanded }"
       )
         li.hr
           hr.smallest
 
         li.event(
           ng-repeat-start="event in eventGroup.events track by $index"
-          ng-if="vm.expanded[event.type] != undefined"
         )
           //- SUBMITTED
           event-card.status-update(
@@ -40,19 +39,19 @@ main.flex.center.stretch
 
           event-card.copilot(
             ng-if="event.type == 'COPILOT_ASSIGNED'"
-            ng-class="{ expanded: vm.expanded[event.type] }"
+            ng-class="{ expanded: vm.expanded[$parent.$index].events[$index] }"
           )
             include parts/copilot
 
           event-card.quote(
             ng-if="event.type == 'QUOTE_INFO' "
-            ng-class="{ expanded: vm.expanded[event.type] }"
+            ng-class="{ expanded: vm.expanded[$parent.$index].events[$index] }"
           )
             include parts/quote
 
           event-card.payment(
             ng-if="event.type == 'PAYMENT_ADDED' && !event.eventTime"
-            ng-class="{ expanded: vm.expanded[event.type] }"
+            ng-class="{ expanded: vm.expanded[$parent.$index].events[$index] }"
           )
             include parts/payment
 
@@ -62,32 +61,32 @@ main.flex.center.stretch
           //- LAUNCHED
           event-card.members(
             ng-if="event.type == 'MEMBER_REGISTRATION'"
-            ng-class="{ expanded: vm.expanded[event.type] }"
+            ng-class="{ expanded: vm.expanded[$parent.$index].events[$index] }"
           )
             include parts/members
 
           event-card.messaging(
             ng-if="event.type == 'THREAD_INFO'"
-            ng-class="{ expanded: vm.expanded[event.type] }"
+            ng-class="{ expanded: vm.expanded[$parent.$index].events[$index] }"
           )
             include parts/messages
 
           //- DESIGN CONCEPTS, FINAL DESIGNS
           event-card.submissions(
             ng-if="event.type == 'WORKSTEP_SUBMITTERS'"
-            ng-class="{ expanded: vm.expanded[event.type] }"
+            ng-class="{ expanded: vm.expanded[$parent.$index].events[$index] }"
           )
             include parts/submissions
 
           event-card.comments(
             ng-if="event.type == 'SUBMISSION_THREAD_INFO' && (eventGroup.text == 'Final Designs' || eventGroup.text == 'Design Concepts') "
-            ng-class="{ expanded: vm.expanded[event.type] }"
+            ng-class="{ expanded: vm.expanded[$parent.$index].events[$index] }"
           )
             include parts/comments
 
           event-card.final-fixes-submissions(
             ng-if="event.type == 'FINALFIXES_SUBMISSION'"
-            ng-class="{ expanded: vm.expanded[event.type] }"
+            ng-class="{ expanded: vm.expanded[$parent.$index].events[$index] }"
           )
             include parts/final-fixes-submissions
 
@@ -120,7 +119,7 @@ main.flex.center.stretch
 
         li(
           ng-repeat-end=true
-          ng-if="($index != eventGroup.events.length - 1) && (vm.expanded[event.type] != undefined) && (eventGroup.events[$index + 1].type != 'WORKSTEP_WINNERS' )"
+          ng-if="($index != eventGroup.events.length - 1) && (eventGroup.events[$index + 1].type != 'WORKSTEP_WINNERS' )"
         )
           hr.biggest
 

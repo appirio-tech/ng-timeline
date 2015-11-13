@@ -8,7 +8,8 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
   vm.projectCompleted      = false
   vm.showAcceptQuoteButton = true
 
-  vm.expanded =
+  vm.expanded = {}
+  vm.eventNames =
     'Project Submitted'     : true
     'Project Launched'      : true
     'Design Concepts'       : true
@@ -77,9 +78,18 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
             vm.showAcceptQuoteButton = false
 
   setExpanded = (data) ->
-    data.forEach (eventGroup) ->
+    data.forEach (eventGroup, index) ->
       if eventGroup.events.length == 0
-        vm.expanded[eventGroup.text] = false
+        vm.expanded[index].expanded = false
+
+  setIndexes = (data) ->
+    data.forEach (eventGroup, index) ->
+      vm.expanded[index] = {}
+      vm.expanded[index].expanded = true
+      vm.expanded[index].events = {}
+
+      eventGroup.events.forEach (event, eventIndex) ->
+        vm.expanded[index].events[eventIndex] = true
 
   vm.isSubmissionCompleted = (eventGroup) ->
     show = false
@@ -104,7 +114,10 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
 
       configureProjectSubmittedComponents data
 
+      setIndexes data
+
       setExpanded data
+
 
     resource.$promise.catch ->
 

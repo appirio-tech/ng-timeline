@@ -1,7 +1,7 @@
 .flex.middle.center
   button.clean.point(
-    ng-class="{ expanded: vm.expanded[event.type]}"
-    ng-click="vm.expanded[event.type] = !vm.expanded[event.type]"
+    ng-class="{ expanded: vm.expanded[$parent.$parent.$index].events[$index]}"
+    ng-click="vm.expanded[$parent.$parent.$index].events[$index] = !vm.expanded[$parent.$parent.$index].events[$index]"
   )
     .icon.plus.hollow
 
