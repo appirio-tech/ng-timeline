@@ -36004,13 +36004,18 @@ $templateCache.put("views/simple-countdown.directive.html","<p>{{vm.timeRemainin
     var elements, link, lockHeight;
     elements = [];
     lockHeight = function($element) {
-      var attr, childrenWithClass, classToToggle;
+      var attr, childrenWithClass, classToToggle, ignoreContent, ref;
       attr = $element.attr('lock-height');
-      if (typeof attr === 'string') {
+      if (attr !== 'lock-height') {
         classToToggle = attr;
       }
+      ignoreContent = (ref = $element.attr('ignore-content')) != null ? ref.length : void 0;
       $element.css('height', 'auto');
       $element.css('max-height', 'none');
+      $element.addClass('lock-height');
+      if (ignoreContent) {
+        $element.addClass('ignore-content');
+      }
       if (classToToggle) {
         childrenWithClass = $element.find('.' + classToToggle);
         childrenWithClass.removeClass(classToToggle);
@@ -36024,8 +36029,11 @@ $templateCache.put("views/simple-countdown.directive.html","<p>{{vm.timeRemainin
           $element.addClass(classToToggle);
         }
         if (childrenWithClass) {
-          return childrenWithClass.addClass(classToToggle);
+          childrenWithClass.addClass(classToToggle);
         }
+      }
+      if (ignoreContent) {
+        return $element.removeClass('ignore-content');
       }
     };
     $($window).bind('resize', function() {
@@ -36048,7 +36056,8 @@ $templateCache.put("views/simple-countdown.directive.html","<p>{{vm.timeRemainin
       link: link,
       priority: -1,
       scope: {
-        retainClass: '@retainClass'
+        retainClass: '@',
+        ignoreContent: '@'
       }
     };
   };
@@ -36236,12 +36245,35 @@ $templateCache.put("views/simple-countdown.directive.html","<p>{{vm.timeRemainin
   var filter;
 
   filter = function() {
-    return function(createdAt) {
-      return moment(createdAt).fromNow();
+    return function(createdAt, hideSuffix) {
+      if (hideSuffix == null) {
+        hideSuffix = false;
+      }
+      return moment(createdAt).fromNow(hideSuffix);
     };
   };
 
   angular.module('appirio-tech-ng-ui-components').filter('timeLapse', filter);
+
+}).call(this);
+
+(function() {
+  'use strict';
+  var filter;
+
+  filter = function() {
+    return function(number) {
+      var ordinalMap;
+      ordinalMap = {
+        1: '1st',
+        2: '2nd',
+        3: '3rd'
+      };
+      return ordinalMap[number];
+    };
+  };
+
+  angular.module('appirio-tech-ng-ui-components').filter('ordinalNumber', filter);
 
 }).call(this);
 
