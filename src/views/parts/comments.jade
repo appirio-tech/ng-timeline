@@ -25,7 +25,7 @@
 
 event-card-main.transition(
   ng-if="event.submissionThreads.length > 0"
-  ng-class="{ 'no-height': !vm.expanded[$parent.$parent.$index].events[$index] }"
+  ng-class="{ 'no-height': !vm.expanded[$parent.$parent.$parent.$index].events[$index] }"
   lock-height="no-height"
 )
 
@@ -36,7 +36,6 @@ event-card-main.transition(
   p(ng-if="event.publishers.length == 1 && vm.allMessagesRead(event.submissionThreads)") {{event.publishers[0].handle}} commented on {{event.submissionThreads.length}} submission image(s).
 
   p(ng-if="event.publishers.length == 2 && vm.allMessagesRead(event.submissionThreads)") {{event.publishers[0].handle}} and {{event.publishers[1].handle}} commented on {{event.submissionThreads.length}} submission image(s).
-
 
   ul.submissions.flex.center(ng-if="vm.allMessagesRead(event.submissionThreads)")
     li(ng-repeat="submission in event.submissionThreads track by $index")
