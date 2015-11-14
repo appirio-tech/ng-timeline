@@ -129,6 +129,8 @@ main.flex.center.stretch
       header
         button.clean.point
 
-        h4(ng-class="{inactive: !vm.projectCompleted}") Project complete
+        h4(ng-class="{inactive: !vm.projectCompleted}") project complete
 
-        p(ng-if="vm.projectCompleted") {{ vm.projectCompletionDate | date }}
+        p.completed-date(ng-if="vm.projectCompleted") {{ vm.projectCompletionDate | date }}
+
+        p.secondary(ng-if="!vm.projectCompleted") date pending
