@@ -1,6 +1,6 @@
 'use strict'
 
-TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalAPIService) ->
+TimelineController = ($scope, $stateParams, $document, TimelineAPIService, CopilotApprovalAPIService) ->
   vm                       = this
   vm.eventGroups           = []
   vm.loading               = true
@@ -9,26 +9,6 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
   vm.showAcceptQuoteButton = true
 
   vm.expanded = {}
-  vm.eventNames =
-    'Project Submitted'     : true
-    'Project Launched'      : true
-    'Design Concepts'       : true
-    'Final Designs'         : true
-    'Final Fixes'           : true
-    'Code'                  : true
-    'Development Launched'  : true
-    'Development Begins'    : true
-    'Project Complete'      : true
-    'STATUS_UPDATE'         : true
-    'STATUS_REPORT'         : true
-    'COPILOT_ASSIGNED'      : true
-    'QUOTE_INFO'            : true
-    'MEMBER_REGISTRATION'   : true
-    'THREAD_INFO'           : true
-    'WORKSTEP_SUBMITTERS'   : true
-    'SUBMISSION_THREAD_INFO': true
-    'WORKSTEP_WINNERS'      : true
-    'FINALFIXES_SUBMISSION' : true
 
   vm.isAFinishEvent = (text, type, completed) ->
     # text == 'Development Begins' || type == 'PAYMENT_ACCEPTED' || (type == 'WORKSTEP_SUBMITTERS' && !completed) || type == 'WORKSTEP_WINNERS'
@@ -57,7 +37,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
     message.unreadMessageCount > 0
 
   vm.allMessagesRead = (messages) ->
-    unread = messages.filter(vm.messageUnread)
+    unread = messages.filter vm.messageUnread
 
     unread.length == 0
 
@@ -77,15 +57,34 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
           if event.type == 'QUOTE_INFO' && event.status == 'Accepted'
             vm.showAcceptQuoteButton = false
 
+  findLastActiveIndex = (eventGroups) ->
+    activeGroups = eventGroups.filter (eventGroup) ->
+      eventGroup.events.length > 0
+
+    lastIndex = activeGroups.length - 1
+
+    eventGroups.indexOf activeGroups[lastIndex]
+
+  setScrollElement = (index) ->
+    angular.element(document).ready ->
+      element = angular.element document.getElementById index
+      $document.scrollToElement element
+
   setExpanded = (data) ->
     data.forEach (eventGroup, index) ->
       if eventGroup.events.length == 0
         vm.expanded[index].expanded = false
 
+      else
+        lastIndex = findLastActiveIndex(data)
+        vm.expanded[lastIndex].expanded = true
+        setScrollElement "#{vm.expanded[lastIndex].id}"
+
   setIndexes = (data) ->
     data.forEach (eventGroup, index) ->
       vm.expanded[index] = {}
-      vm.expanded[index].expanded = true
+      vm.expanded[index].id = index
+      vm.expanded[index].expanded = false
       vm.expanded[index].events = {}
 
       eventGroup.events.forEach (event, eventIndex) ->
@@ -131,6 +130,7 @@ TimelineController = ($scope, $stateParams, TimelineAPIService, CopilotApprovalA
 TimelineController.$inject = [
   '$scope'
   '$stateParams'
+  '$document'
   'TimelineAPIService'
   'CopilotApprovalAPIService'
 ]
