@@ -16,7 +16,7 @@
 
     li.name.flex-grow
       p
-        a(href="#") {{event.lastMessageInfo.publisherInfo.handle}}
+        a(href="{{ vm.generateProfileUrl(event.lastMessageInfo.publisherInfo.handle) }}" target="_blank") {{event.lastMessageInfo.publisherInfo.handle}}
 
 
       p.role {{event.lastMessageInfo.publisherInfo.role}}

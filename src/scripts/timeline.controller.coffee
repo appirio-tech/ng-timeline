@@ -98,6 +98,9 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
 
     show
 
+  vm.generateProfileUrl = (handle) ->
+    "https://www.topcoder.com/members/#{handle}"
+
   activate = ->
     vm.workId = $scope.workId
 

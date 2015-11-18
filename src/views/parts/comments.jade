@@ -16,7 +16,7 @@
 
     li.name.flex-grow
       p
-        a(href="#") {{event.submitter.handle}}
+        a(href="{{ vm.generateProfileUrl(event.submitter.handle) }}" target="_blank") {{event.submitter.handle}}
 
       p.role {{event.submitter.role}}
 

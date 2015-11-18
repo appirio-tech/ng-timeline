@@ -22,7 +22,7 @@ event-card-main.transition(
       avatar(avatar-url="{{event.submitter.avatar}}")
 
     li.user-name
-      a(href="#") {{event.submitter.handle}}
+      a(href="{{ vm.generateProfileUrl(event.submitter.handle) }}" target="_blank") {{event.submitter.handle}}
 
       p.secondary Project WINNER
 
