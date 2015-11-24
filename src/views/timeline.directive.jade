@@ -115,7 +115,7 @@ main.flex.center.stretch
             include parts/select-winners
 
         li.event.finish(
-          ng-if="(eventGroup.text == 'Design Concepts' || eventGroup.text == 'Final Designs') && ($index == eventGroup.events.length - 1) && vm.isSubmissionCompleted(eventGroup) vm.submissionsDueDatePassed(eventGroup)"
+          ng-if="(eventGroup.text == 'Design Concepts' || eventGroup.text == 'Final Designs') && ($index == eventGroup.events.length - 1) && vm.isSubmissionCompleted(eventGroup) && vm.submissionsDueDatePassed(eventGroup)"
         )
           event-card.winners
             include parts/winners

@@ -100,7 +100,7 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
 
   vm.submissionsDueDatePassed = (eventGroup) ->
     dueDatePassed = false
-    if new Date(Date.now()) > new Date(eventGroup.submissionsDueBy)
+    if new Date(Date.now()) > new Date(eventGroup.submissionDueBy)
       dueDatePassed = true
 
     dueDatePassed
