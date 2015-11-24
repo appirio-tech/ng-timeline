@@ -30,8 +30,6 @@ event-card-main.transition(
 )
   p {{event.lastMessageInfo.content}}
 
-  button.wider.action(ng-if="event.lastMessageInfo.publisherInfo.isCopilot == true" ui-sref="messaging({ id: vm.workId, threadId: event.lastMessageInfo.threadId })") reply
-
-  button.wider.action(ng-if="event.lastMessageInfo.publisherInfo.isCopilot == false" ui-sref="messaging({ id: vm.workId, threadId: event.lastMessageInfo.threadId })") send another message
+  button.wider.action(ui-sref="messaging({ id: vm.workId, threadId: event.lastMessageInfo.threadId })") view entire thread
 
 

@@ -7,7 +7,7 @@
 
     .icon.minus.hollow
 
-  h1 Quote generated
+  h1 Quote received
 
 time {{event.eventTime | timeLapse}}
 
@@ -15,7 +15,7 @@ event-card-main.transition(
   ng-class="{ 'no-height': !vm.expanded[$parent.$parent.$index].events[$index] }"
   lock-height="no-height"
 )
-  p View quote and accept to continue your project.
+  p Please review the quote below. If you have any questions or concerns, please message your copilot. Once you approve the quote, your copilot will launch the project in the community.
 
   .estimate(ng-class="{active: event.status != 'Accepted'}")
     h6 quote
@@ -35,4 +35,4 @@ event-card-main.transition(
 
         h6 Time estimate
 
-  button.action.wider(ng-click="vm.acceptQuote()" ng-if="vm.showAcceptQuoteButton") accept quote
+  button.action.wider(ng-click="vm.acceptQuote()" ng-if="vm.showAcceptQuoteButton") approve quote
