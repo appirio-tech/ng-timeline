@@ -98,6 +98,13 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
 
     show
 
+  vm.submissionsDueDatePassed = (eventGroup) ->
+    dueDatePassed = false
+    if new Date(Date.now()) > new Date(eventGroup.submissionsDueBy)
+      dueDatePassed = true
+
+    dueDatePassed
+
   vm.generateProfileUrl = (handle) ->
     "https://www.topcoder.com/members/#{handle}"
 

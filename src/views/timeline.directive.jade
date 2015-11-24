@@ -90,7 +90,10 @@ main.flex.center.stretch
           )
             include parts/final-fixes-submissions
 
-          event-card.status-report(ng-if="event.type == 'STATUS_REPORT' ")
+          event-card.status-report(
+            ng-if="event.type == 'STATUS_REPORT'"
+            ng-class="{ expanded: vm.expanded[$parent.$index].events[$index] }"
+          )
             include parts/status-report
 
           event-card.development-complete(ng-if="eventGroup.text == 'Development Begins' && eventGroup.createdTime ")
@@ -106,13 +109,13 @@ main.flex.center.stretch
             include parts/quote-accepted
 
         li.event.finish(
-          ng-if="(eventGroup.text == 'Design Concepts' || eventGroup.text == 'Final Designs') && ($index == eventGroup.events.length - 1) && !vm.isSubmissionCompleted(eventGroup)"
+          ng-if="(eventGroup.text == 'Design Concepts' || eventGroup.text == 'Final Designs') && ($index == eventGroup.events.length - 1) && !vm.isSubmissionCompleted(eventGroup) && vm.submissionsDueDatePassed(eventGroup)"
         )
           event-card.select-winners
             include parts/select-winners
 
         li.event.finish(
-          ng-if="(eventGroup.text == 'Design Concepts' || eventGroup.text == 'Final Designs') && ($index == eventGroup.events.length - 1) && vm.isSubmissionCompleted(eventGroup) "
+          ng-if="(eventGroup.text == 'Design Concepts' || eventGroup.text == 'Final Designs') && ($index == eventGroup.events.length - 1) && vm.isSubmissionCompleted(eventGroup) vm.submissionsDueDatePassed(eventGroup)"
         )
           event-card.winners
             include parts/winners
