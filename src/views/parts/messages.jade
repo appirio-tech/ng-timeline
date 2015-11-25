@@ -12,7 +12,8 @@
       .icon.envelope.smallest
 
     li
-      avatar(avatar-url="{{event.lastMessageInfo.publisherInfo.avatar}}")
+      a(href="{{ vm.generateProfileUrl(event.lastMessageInfo.publisherInfo.handle) }}" target="_blank")
+        avatar(avatar-url="{{event.lastMessageInfo.publisherInfo.avatar}}")
 
     li.name.flex-grow
       p

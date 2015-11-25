@@ -7,4 +7,5 @@ event-card-main
 
   ul.avatars.flex.center
     li(ng-repeat="user in event.userProfiles track by $index")
-      avatar(avatar-url="{{user.avatar}}")
+      a(href="{{ vm.generateProfileUrl(user.handle) }}" target="_blank")
+        avatar(avatar-url="{{user.avatar}}")

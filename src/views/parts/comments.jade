@@ -12,7 +12,8 @@
       .icon.bubble.smallest
 
     li
-      avatar(avatar-url="{{event.submitter.avatar}}")
+      a(href="{{ vm.generateProfileUrl(event.submitter.handle) }}" target="_blank")
+        avatar(avatar-url="{{event.submitter.avatar}}")
 
     li.name.flex-grow
       p

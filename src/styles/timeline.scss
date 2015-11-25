@@ -25,6 +25,12 @@ timeline {
   > main.flex {
     position: relative;
 
+    p {
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .timeline {
       width           : 2px;
       background-color: $neutral-color-light;
@@ -40,14 +46,10 @@ timeline {
     }
   }
 
-  p {
-    &.co-pilot {
-    }
-  }
-
   avatar {
     width         : 48px;
     height        : 48px;
+    min-width     : 48px;
     border-radius : 50%;
   }
 

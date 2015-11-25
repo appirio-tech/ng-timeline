@@ -19,7 +19,8 @@ event-card-main.transition(
 )
   ul.user-detail.flex.center.middle
     li
-      avatar(avatar-url="{{event.submitter.avatar}}")
+      a(href="{{ vm.generateProfileUrl(event.submitter.handle) }}" target="_blank")
+        avatar(avatar-url="{{event.submitter.avatar}}")
 
     li.user-name
       a(href="{{ vm.generateProfileUrl(event.submitter.handle) }}" target="_blank") {{event.submitter.handle}}

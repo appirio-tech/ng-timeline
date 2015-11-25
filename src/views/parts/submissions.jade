@@ -19,6 +19,7 @@ event-card-main.transition(
 )
   ul.avatars.flex.center
     li(ng-repeat="user in event.userProfiles track by $index")
-      avatar(avatar-url="{{user.avatar}}")
+      a(href="{{ vm.generateProfileUrl(user.handle) }}" target="_blank")
+        avatar(avatar-url="{{user.avatar}}")
 
   button.wider(ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view submissions
