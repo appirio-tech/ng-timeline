@@ -136,4 +136,4 @@ main.flex.center.stretch
 
         p.completed-date(ng-if="vm.projectCompleted") {{ vm.projectCompletionDate | date }}
 
-        p.secondary(ng-if="!vm.projectCompleted") date pending
+        p.secondary.completed-date(ng-if="!vm.projectCompleted") date pending
