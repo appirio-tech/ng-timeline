@@ -9,7 +9,7 @@ main.flex.center.stretch
     li.event-group.elevated-bottom(ng-repeat-start="eventGroup in vm.eventGroups track by $index" ng-if="eventGroup.text != 'Project Complete' " ng-class="{ expanded: vm.expanded[$index].expanded, disabled: eventGroup.events.length == 0 }" id="{{vm.expanded[$index].id}}")
       header.flex
         button.clean.point(
-          ng-disabled="{{!vm.expanded[$index].expanded}}"
+          ng-disabled="{{eventGroup.events.length == 0}}"
           ng-class="{ expanded: vm.expanded[$index].expanded, disabled: !vm.expanded[$index].expanded}"
           ng-click="vm.expanded[$index].expanded = !vm.expanded[$index].expanded"
         )
