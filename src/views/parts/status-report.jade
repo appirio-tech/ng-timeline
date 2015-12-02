@@ -24,4 +24,5 @@ event-card-main.transition(
 
   ul.thumbnails.flex.center
     li(ng-repeat="image in event.images track by $index")
-      img(ng-src="{{image.url}}")
+      a(href="{{image.url}}" target="_blank")
+        img(ng-src="{{image.url}}")
