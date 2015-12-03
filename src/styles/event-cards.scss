@@ -16,6 +16,10 @@ event-card {
     margin-top: -12px;
   }
 
+  > p, > simple-countdown {
+    margin-top: 10px;
+  }
+
   event-card-main {
     display: block;
     padding-top: $vertical-spacing;
