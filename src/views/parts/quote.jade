@@ -35,4 +35,6 @@ event-card-main.transition(
 
         h6 Time estimate
 
-  button.action.wider(ng-click="vm.acceptQuote()" ng-if="vm.showAcceptQuoteButton") approve quote
+  button.action(ng-click="vm.acceptQuote()" ng-if="vm.showAcceptQuoteButton") approve quote
+
+  a.decline.button(ng-click="vm.acceptQuote()" ng-if="vm.showAcceptQuoteButton") decline

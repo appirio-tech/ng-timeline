@@ -25,7 +25,11 @@ event-card {
     padding-top: $vertical-spacing;
 
     > p {
-      font-size: 18px;
+      @include font-line(18px);
+
+      max-width: 500px;
+      margin-right: auto;
+      margin-left: auto;
     }
 
     &.no-height {
