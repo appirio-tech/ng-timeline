@@ -1,4 +1,4 @@
-@import "work-includes";
+@import "work/work-includes";
 @import "variables";
 
 event-card {
@@ -8,7 +8,7 @@ event-card {
 
   > time {
     margin-top: 10px;
-    color     : $neutral-color;
+    color     : $grey;
     display   : block;
   }
 
@@ -21,8 +21,7 @@ event-card {
     padding-top: $vertical-spacing;
 
     > p {
-      font-size: $font-size-biggest;
-      line-height: $line-height-biggest;
+      font-size: 18px;
     }
 
     &.no-height {

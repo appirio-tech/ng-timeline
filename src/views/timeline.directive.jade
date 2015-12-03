@@ -5,8 +5,8 @@ main.flex.center.stretch
 
   .timeline
 
-  ul
-    li.event-group.elevated-bottom(ng-repeat-start="eventGroup in vm.eventGroups track by $index" ng-if="eventGroup.text != 'Project Complete' " ng-class="{ expanded: vm.expanded[$index].expanded, disabled: eventGroup.events.length == 0 }" id="{{vm.expanded[$index].id}}")
+  ul.event-groups
+    li.event-group.light-bg.elevated-bottom(ng-repeat-start="eventGroup in vm.eventGroups track by $index" ng-if="eventGroup.text != 'Project Complete' " ng-class="{ expanded: vm.expanded[$index].expanded, disabled: eventGroup.events.length == 0 }" id="{{vm.expanded[$index].id}}")
       header.flex
         button.clean.point(
           ng-disabled="{{eventGroup.events.length == 0}}"
@@ -127,14 +127,14 @@ main.flex.center.stretch
         )
           hr.biggest
 
-    li.splitter(ng-repeat-end)
+    li.splitter(ng-repeat-end ng-if="eventGroup.text != 'Project Complete'")
 
-    li.complete.disabled
+    li.complete(ng-class="{ disabled: !vm.projectCompleted }")
       header
         button.clean.point
 
-        h4(ng-class="{inactive: !vm.projectCompleted}") project complete
+        h5(ng-class="{inactive: !vm.projectCompleted}") project complete
 
-        p.completed-date(ng-if="vm.projectCompleted") {{ vm.projectCompletionDate | date }}
+        p.date {{ vm.projectCompletionDate | date }}
 
-        p.secondary.completed-date(ng-if="!vm.projectCompleted") date pending
+        p.pending date pending

@@ -1,4 +1,4 @@
-@import "work-includes";
+@import "work/work-includes";
 @import "variables";
 
 event-card.comments {
@@ -13,14 +13,14 @@ event-card.comments {
 
     .name {
       text-align : left;
-      margin-left: $margin-smallest;
+      margin-left: 10px;
 
       p {
         margin-top: 0;
       }
 
       .role {
-        color: $neutral-color;
+        color: $grey;
       }
     }
   }
@@ -51,6 +51,6 @@ event-card.comments {
   > button {
     display: block;
     margin: 0 auto;
-    margin-top: $margin-small;
+    margin-top: 15px;
   }
 }

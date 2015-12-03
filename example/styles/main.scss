@@ -1,13 +1,11 @@
-@import "work-styles";
+@import "work/work-styles";
 
 .layout-main {
-  background-color: $neutral-color-lightest;
-  padding: $padding-big;
+  background-color: $grey-lighter;
+  padding: 20px;
 }
 
 body > .nav {
-  @include flex-center(flex-start, $spacing);
-
   a {
     color: white;
     margin: 10px;

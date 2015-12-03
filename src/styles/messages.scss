@@ -1,4 +1,4 @@
-@import "work-includes";
+@import "work/work-includes";
 
 event-card.messaging {
   display: block;
@@ -15,24 +15,24 @@ event-card.messaging {
     width: 100%;
 
     avatar {
-      margin-left: $margin-small;
+      margin-left: 15px;
     }
 
     .name {
       text-align: left;
-      margin-left: $margin-small;
+      margin-left: 15px;
 
       p {
         margin-top: 0;
       }
 
       .role {
-        color: $neutral-color;
+        color: $grey;
       }
     }
   }
 
   > button, > button.action {
-    margin: $margin-small $margin-smallest 0 $margin-smallest;
+    margin: 15px 10px 0 10px;
   }
 }

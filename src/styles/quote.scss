@@ -1,4 +1,4 @@
-@import "work-includes";
+@import "work/work-includes";
 
 event-card.quote {
   main > * {
@@ -6,17 +6,17 @@ event-card.quote {
   }
 
   .estimate {
-    background-color: $neutral-color-lightest;
-    padding         : $padding-big;
+    background-color: $grey-lighter;
+    padding         : 20px;
     margin-top      : 30px;
 
     .splitter {
       width: 1px;
-      background-color: $neutral-color;
+      background-color: $grey;
     }
 
     .cost h6, .duration h6 {
-      margin-top: $margin-smallest;
+      margin-top: 10px;
     }
 
     ul {

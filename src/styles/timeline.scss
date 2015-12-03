@@ -1,4 +1,4 @@
-@import "work-includes";
+@import "work/work-includes";
 @import "variables";
 
 timeline {
@@ -16,38 +16,41 @@ timeline {
     }
   }
 
+  hr.biggest {
+    height: 10px;
+  }
+
+  h1 {
+    line-height: 36px;
+  }
+
   h4 {
     &.inactive {
-      color: $neutral-color-light;
+      color: $grey-light;
     }
   }
 
-  > main.flex {
+  h5 {
+    font-weight: 700;
+    color: $text-color-light;
+  }
+
+  .timeline {
+    width           : 2px;
+    background-color: $grey-light;
+    margin          : 45px $horizontal-spacing $vertical-spacing-big 0;
+  }
+
+  .event-groups {
+    width: 100%;
+
+    > .splitter {
+      height: 10px;
+    }
+  }
+
+  > main {
     position: relative;
-
-    p {
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-
-      &.completed-date {
-        margin-left: 0;
-      }
-    }
-
-    .timeline {
-      width           : 2px;
-      background-color: $neutral-color-light;
-      margin          : $vertical-spacing-big $horizontal-spacing $vertical-spacing-big 0;
-    }
-
-    > ul {
-      width: 100%;
-
-      > .splitter {
-        height: 10px;
-      }
-    }
   }
 
   avatar {
@@ -59,7 +62,7 @@ timeline {
 
   .avatar-box {
     avatar {
-      margin-right: $margin-small;
+      margin-right: 15px;
     }
 
     .co-pilot {
@@ -73,7 +76,8 @@ timeline {
     position        : absolute;
     left            : -(24px/2) + 1px;
     border-radius   : 50%;
-    background-color: $neutral-color-lightest;
+    background-color: $grey-lighter;
+    margin-top      : 5px;
 
     .icon {
       width: 100%;
@@ -101,8 +105,8 @@ timeline {
 
   .disabled {
     .point {
-      background-color: $neutral-color-lightest;
-      border: 1px solid $neutral-color;
+      background-color: $grey-lighter;
+      border: 1px solid $grey;
 
       .icon.plus, .icon.minus {
         display: none;
@@ -111,16 +115,12 @@ timeline {
 
     > header {
       > h5 {
-        color: $neutral-color;
+        color: $grey;
       }
     }
 
     &.complete {
       height: 50px; /* need static height due to timeline line */
-
-      h3 {
-        color: $neutral-color;
-      }
 
       .point {
         &::before {
@@ -140,12 +140,6 @@ timeline {
       background-color   : $white;
     }
 
-    &.expanded {
-      h5 {
-        font-weight: $font-weight-boldest;
-      }
-    }
-
     .events {
       > * { /* simulate white padding */
         border: $horizontal-spacing-small solid $white;
@@ -163,19 +157,8 @@ timeline {
         background-color: $white;
       }
 
-      > li {
-        > hr {
-          margin: 0;
-          background-color: $neutral-color-light;
-
-          &.biggest {
-            background-color: $neutral-color-lightest;
-          }
-        }
-      }
-
       .point {
-        background-color: $neutral-color-lightest;
+        background-color: $grey-lighter;
         display         : block;
       }
 
@@ -188,24 +171,40 @@ timeline {
   }
 
   .complete {
-    .completed-date {
+    margin-top: 65px;
+
+    .date {
       color: $primary-color;
+    }
+
+    .pending {
+      display: none;
+    }
+
+    &.disabled {
+      .pending {
+        display: block;
+      }
+
+      .date {
+        display: none;
+      }
     }
 
     .point {
       width           : 24px;
       height          : 24px;
-      border          : 1px solid $neutral-color;
+      border          : 1px solid $grey;
       border-radius   : 50%;
-      margin-top      : $margin-smallest;
-      background-color: $neutral-color-lightest;
+      margin-top      : 10px;
+      background-color: $grey-lighter;
     }
   }
 
   .event {
     &.finish {
       background-color: $primary-color;
-      padding         : $padding;
+      padding         : 15px;
       color           : $white;
       text-align      : center;
       border          : 0; /* remove simulated padding */
@@ -217,7 +216,7 @@ timeline {
 
     .avatars {
       li {
-        margin-left: $margin-smallest;
+        margin-left: 10px;
 
         &:first-child {
           margin-left: 0;
