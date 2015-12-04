@@ -11,7 +11,7 @@
 
 time {{ event.eventTime | timeLapse}}
 
-event-card-main.transition.avatar-box.flex.middle.center(
+event-card-main.transition.flex.column.middle(
   ng-show="event.copilot.handle"
   ng-class="{ 'no-height': !vm.expanded[$parent.$parent.$index].events[$index] }"
   lock-height="no-height"
