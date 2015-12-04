@@ -1,8 +1,9 @@
 - dateFilter = '| date : "h:mma MMMM d, y"'
 
-main.flex.center.stretch
-  loader(ng-if="vm.loading")
 
+loader(ng-show="vm.loading")
+
+main.flex.center.stretch(ng-hide="vm.loading")
   .timeline
 
   ul.event-groups

@@ -2,7 +2,8 @@
 @import "variables";
 
 timeline {
-  display: block;
+  display : block;
+  position: relative;
 
   .transition {
     overflow: hidden;
