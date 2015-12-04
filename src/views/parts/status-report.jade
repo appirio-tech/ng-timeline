@@ -7,7 +7,7 @@
 
     .icon.minus.hollow
 
-  h1 {{ eventTime.createdTime | date : 'MMMM d' }} status report
+  h1 {{ event.eventTime | date : 'MMMM d' }} status report
 
 time {{ event.eventTime | timeLapse }}
 
