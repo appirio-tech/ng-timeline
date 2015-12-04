@@ -17,11 +17,12 @@ event-card.status-report {
   .thumbnails {
     li {
       margin: 0 $horizontal-spacing-smallest;
-      max-height: 147px;
+      height: 147px;
+      width: 197px;
       overflow: hidden;
 
       img {
-        width: 197px;
+        width: 100%;
       }
     }
   }
