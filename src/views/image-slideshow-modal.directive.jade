@@ -1,0 +1,4 @@
+modal(show="vm.showModal")
+  image-viewer-header(avatar="{{vm.avatar}}" handle="{{vm.handle}}" title="{{vm.title}}" download-allowed=true)
+
+  image-slide-viewer(files="vm.files" starting-file="vm.startingFile" show-notifications="vm.showNotifications")

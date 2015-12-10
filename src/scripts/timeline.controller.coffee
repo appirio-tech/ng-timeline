@@ -7,18 +7,14 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
   vm.projectCompletionDate = null
   vm.projectCompleted      = false
   vm.showAcceptQuoteButton = true
+  vm.showImageSlideViewer  = false
 
   vm.expanded = {}
 
-  vm.isAFinishEvent = (text, type, completed) ->
-    # text == 'Development Begins' || type == 'PAYMENT_ACCEPTED' || (type == 'WORKSTEP_SUBMITTERS' && !completed) || type == 'WORKSTEP_WINNERS'
-
-    text == 'Development Begins' || type == 'PAYMENT_ACCEPTED' || type == 'WORKSTEP_WINNERS'
-
   vm.acceptQuote = (event) ->
-    if vm.copilotId
+    if vm.copilot?.id
       params =
-        userId: vm.copilotId
+        userId: vm.copilot.id
         projectId: vm.workId
 
       body =
@@ -36,6 +32,15 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
   vm.messageUnread = (message) ->
     message.unreadMessageCount > 0
 
+  vm.activateImageSlideViewer = (projectId, reportId, reportDate, fileId) ->
+    vm.currentStatusReportId = reportId
+    vm.currentStatusReportFileId = fileId
+    vm.currentStatusReportDate = reportDate
+    vm.showImageSlideViewer = true
+
+  vm.hideImageSlideViewer = ->
+    vm.showImageSlideViewer = false
+
   vm.allMessagesRead = (messages) ->
     unread = messages.filter vm.messageUnread
 
@@ -52,7 +57,7 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
       if eventGroup.text == 'Project Submitted'
         eventGroup.events.forEach (event) ->
           if event.type == 'COPILOT_ASSIGNED'
-            vm.copilotId = event.copilot.userId
+            vm.copilot = event.copilot
 
           if event.type == 'QUOTE_INFO' && event.status == 'Accepted'
             vm.showAcceptQuoteButton = false
@@ -97,13 +102,6 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
       show = true if e.type == 'WORKSTEP_SUBMITTERS' && e.completed
 
     show
-
-  vm.submissionsDueDatePassed = (eventGroup) ->
-    dueDatePassed = false
-    if new Date(Date.now()) > new Date(eventGroup.submissionDueBy)
-      dueDatePassed = true
-
-    dueDatePassed
 
   vm.generateProfileUrl = (handle) ->
     "https://www.topcoder.com/members/#{handle}"
