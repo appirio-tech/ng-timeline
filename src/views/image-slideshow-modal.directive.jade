@@ -1,4 +1,4 @@
 modal(show="vm.showModal")
-  image-viewer-header(ng-if="vm.file" avatar="{{vm.avatar}}" handle="{{vm.handle}}" title="{{vm.title}}" download-allowed=true download-url="{{downloadUrl}}")
+  image-viewer-header(ng-if="vm.file" avatar="{{vm.avatar}}" handle="{{vm.handle}}" title="{{vm.title}}" download-allowed=true download-url="vm.downloadUrl")
 
   image-slide-viewer(files="vm.files" starting-file="vm.startingFile" show-notifications="vm.showNotifications" on-file-change="vm.onFileChange(file)")
