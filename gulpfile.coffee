@@ -5,6 +5,7 @@ configs.templateCache = []
 configs.templateCache.push
   files : [
     '.tmp/views/timeline.directive.html'
+    '.tmp/views/image-slideshow-modal.directive.html'
   ]
   root  : 'views/'
   module: 'appirio-tech-ng-timeline'

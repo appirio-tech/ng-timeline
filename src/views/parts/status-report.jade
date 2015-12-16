@@ -23,6 +23,6 @@ event-card-main.transition(
       a(href="{{link.url}}") {{link.url}}
 
   ul.thumbnails.flex.center
-    li(ng-repeat="image in event.images track by $index")
-      a(href="{{image.url}}" target="_blank")
+    li(ng-repeat="image in event.images track by $index" )
+      button.clean(ng-click="vm.activateImageSlideViewer(vm.workId, event.id, event.eventTime, image.fileId )")
         img(ng-src="{{image.url}}")

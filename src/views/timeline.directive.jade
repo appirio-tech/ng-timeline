@@ -1,6 +1,5 @@
 - dateFilter = '| date : "h:mma MMMM d, y"'
 
-
 loader(ng-show="vm.loading")
 
 main.flex.center.stretch(ng-hide="vm.loading")
@@ -111,13 +110,13 @@ main.flex.center.stretch(ng-hide="vm.loading")
             include parts/quote-accepted
 
         li.event.finish(
-          ng-if="(eventGroup.text == 'Design Concepts' || eventGroup.text == 'Final Designs') && ($index == eventGroup.events.length - 1) && !vm.isSubmissionCompleted(eventGroup) && vm.submissionsDueDatePassed(eventGroup)"
+          ng-if="(eventGroup.text == 'Design Concepts' || eventGroup.text == 'Final Designs') && ($index == eventGroup.events.length - 1) && !vm.isSubmissionCompleted(eventGroup)"
         )
           event-card.select-winners
             include parts/select-winners
 
         li.event.finish(
-          ng-if="(eventGroup.text == 'Design Concepts' || eventGroup.text == 'Final Designs') && ($index == eventGroup.events.length - 1) && vm.isSubmissionCompleted(eventGroup) && vm.submissionsDueDatePassed(eventGroup)"
+          ng-if="(eventGroup.text == 'Design Concepts' || eventGroup.text == 'Final Designs') && ($index == eventGroup.events.length - 1) && vm.isSubmissionCompleted(eventGroup)"
         )
           event-card.winners
             include parts/winners
@@ -139,3 +138,14 @@ main.flex.center.stretch(ng-hide="vm.loading")
         p.date {{ vm.projectCompletionDate | date }}
 
         p.pending date pending
+
+image-slide-container(
+  ng-if="vm.showImageSlideViewer"
+  project-id="{{vm.workId}}"
+  report-id="{{vm.currentStatusReportId}}"
+  report-date="{{vm.currentStatusReportDate}}"
+  starting-file-id="{{vm.currentStatusReportFileId}}"
+  handle-close="vm.hideImageSlideViewer"
+  handle="{{vm.copilot.handle}}"
+  avatar="{{vm.copilot.avatar}}"
+)

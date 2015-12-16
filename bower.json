@@ -20,7 +20,7 @@
     "angular-ui-router": "0.2.x",
     "angular-resource": "1.4.x",
     "appirio-tech-ng-api-services": "0.x.x",
-    "appirio-tech-ng-ui-components": "0.x.x"
+    "appirio-tech-ng-ui-components": "1.x.x"
   },
   "ignore": [
     "**/*",
