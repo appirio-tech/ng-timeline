@@ -200,7 +200,7 @@ $templateCache.put("views/image-slideshow-modal.directive.html","<modal show=\"v
       var startingFile;
       startingFile = files[0];
       files.forEach(function(file) {
-        if (file.id === vm.startingFile) {
+        if (file.fileId === vm.startingFileId) {
           return startingFile = file;
         }
       });
