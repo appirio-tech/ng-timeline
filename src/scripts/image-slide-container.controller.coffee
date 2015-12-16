@@ -14,7 +14,7 @@ ImageSlideContainerController = ($scope, StatusReportAPIService) ->
     startingFile = files[0]
 
     files.forEach (file) ->
-      if file.id == vm.startingFile
+      if file.fileId == vm.startingFileId
         startingFile = file
 
     startingFile
