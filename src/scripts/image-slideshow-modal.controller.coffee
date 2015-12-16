@@ -3,6 +3,7 @@
 ImageSlideShowModalController = ($scope, $filter) ->
   vm                   = this
   vm.files             = $scope.files
+  vm.file              = null
   vm.startingFile      = $scope.startingFile
   vm.handleClose       = $scope.handleClose
   vm.handle            = $scope.handle
@@ -13,10 +14,15 @@ ImageSlideShowModalController = ($scope, $filter) ->
   date                 = $filter('date')(vm.reportDate, "MMMM d")
   vm.title             = "#{date} Status Report"
 
+  vm.onFileChange = (file) ->
+    vm.file = file
+    vm.downloadUrl = file?.url
+
   activate = ->
     $scope.$watch 'vm.showModal', (newValue, oldValue) ->
       if oldValue && !newValue
         vm.handleClose()
+
 
     vm
 
