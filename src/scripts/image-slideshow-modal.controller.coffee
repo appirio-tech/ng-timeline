@@ -23,7 +23,6 @@ ImageSlideShowModalController = ($scope, $filter) ->
       if oldValue && !newValue
         vm.handleClose()
 
-
     vm
 
   activate()
