@@ -12,9 +12,9 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
   vm.expanded = {}
 
   vm.acceptQuote = (event) ->
-    if vm.copilot?.id
+    if vm.copilot?.userId
       params =
-        userId: vm.copilot.id
+        userId: vm.copilot.userId
         projectId: vm.workId
 
       body =
