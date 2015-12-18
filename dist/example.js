@@ -56,4 +56,4 @@ angular.module("app.constants", [])
 
 }).call(this);
 
-angular.module("example").run(["$templateCache", function($templateCache) {$templateCache.put("views/timeline.html","<timeline work-id=\"abc123\"></timeline>");}]);
+angular.module("example").run(["$templateCache", function($templateCache) {$templateCache.put("views/timeline.html","<timeline work-id=abc123></timeline>");}]);
