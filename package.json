@@ -1,5 +1,5 @@
 {
-  "name": "appirio-tech-ng-projects",
+  "name": "appirio-tech-ng-timeline",
   "version": "7.0.0",
   "main": "./src/src.coffee",
   "devDependencies": {
