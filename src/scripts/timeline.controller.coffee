@@ -58,6 +58,7 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
         eventGroup.events.forEach (event) ->
           if event.type == 'COPILOT_ASSIGNED'
             vm.copilot = event.copilot
+            vm.threadId = event.threadId
 
           if event.type == 'QUOTE_INFO' && event.status == 'Accepted'
             vm.showAcceptQuoteButton = false

@@ -26,7 +26,6 @@ ImageSlideContainerController = ($scope, StatusReportAPIService) ->
 
     urlFiles
 
-
   activate = ->
     params =
       projectId: vm.projectId
