@@ -24,6 +24,7 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
 
     resource.$promise.then (response) ->
       vm.showAcceptQuoteButton = false
+      vm.refresh = true
 
       activate()
 

@@ -23,6 +23,7 @@ main.flex.center.stretch(ng-hide="vm.loading")
 
       ul.expand-big.events.transition(
         lock-height="no-height"
+        refresh="{{vm.refresh}}"
         retain-class="{{ !vm.expanded[$index].expanded }}"
         ng-class="{ 'no-height': !vm.expanded[$index].expanded }"
       )
