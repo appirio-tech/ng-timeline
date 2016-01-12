@@ -24,7 +24,6 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
 
     resource.$promise.then (response) ->
       vm.showAcceptQuoteButton = false
-      vm.refresh = true
 
       activate()
 
@@ -114,9 +113,13 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
     params =
       workId: vm.workId
 
+    vm.refresh = false
+
     resource = TimelineAPIService.query params
 
     resource.$promise.then (data) ->
+      vm.refresh = true
+
       vm.eventGroups = data
 
       findCompletionDate data
