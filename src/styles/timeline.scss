@@ -107,6 +107,7 @@ timeline {
     .point {
       background-color: $grey-lighter;
       border: 1px solid $grey;
+      border-radius: 50%;
 
       .icon.plus, .icon.minus {
         display: none;
