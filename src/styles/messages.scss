@@ -33,6 +33,12 @@ event-card.messaging {
     }
   }
 
+  p {
+    &.message-content {
+      white-space: pre-wrap;
+    }
+  }
+
   > button, > button.action {
     margin: 15px 10px 0 10px;
   }

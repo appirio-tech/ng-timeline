@@ -29,7 +29,7 @@ event-card-main.transition(
   ng-class="{ 'no-height': !vm.expanded[$parent.$parent.$index].events[$index] }"
   lock-height="no-height"
 )
-  p {{event.lastMessageInfo.content}}
+  p.message-content {{event.lastMessageInfo.content}}
 
   button.wider.action(ui-sref="messaging({ id: vm.workId, threadId: event.lastMessageInfo.threadId })") view entire thread
 
