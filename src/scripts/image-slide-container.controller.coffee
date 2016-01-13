@@ -1,6 +1,6 @@
 'use strict'
 
-ImageSlideContainerController = ($scope, StatusReportAPIService) ->
+ImageSlideContainerController = ($scope, StatusReportDetailAPIService) ->
   vm                = this
   vm.projectId      = $scope.projectId
   vm.reportId       = $scope.reportId
@@ -28,10 +28,9 @@ ImageSlideContainerController = ($scope, StatusReportAPIService) ->
 
   activate = ->
     params =
-      projectId: vm.projectId
       reportId: vm.reportId
 
-    resource = StatusReportAPIService.get params
+    resource = StatusReportDetailAPIService.get params
 
     resource.$promise.then (data) ->
       vm.modalActive = true
@@ -49,6 +48,6 @@ ImageSlideContainerController = ($scope, StatusReportAPIService) ->
 
   activate()
 
-ImageSlideContainerController.$inject = ['$scope', 'StatusReportAPIService']
+ImageSlideContainerController.$inject = ['$scope', 'StatusReportDetailAPIService']
 
 angular.module('appirio-tech-ng-timeline').controller 'ImageSlideContainerController', ImageSlideContainerController
