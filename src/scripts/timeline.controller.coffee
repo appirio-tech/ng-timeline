@@ -3,7 +3,7 @@
 TimelineController = ($scope, $stateParams, $document, TimelineAPIService, CopilotApprovalAPIService) ->
   vm                       = this
   vm.eventGroups           = []
-  vm.userType              = $scope.userType || 'customer'
+  vm.permissions           = $scope.permissions || []
   vm.loading               = true
   vm.projectCompletionDate = null
   vm.projectCompleted      = false
@@ -13,23 +13,22 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
   vm.expanded = {}
 
   vm.acceptQuote = (event) ->
-    if vm.userType != 'admin'
-      if vm.copilot?.userId
-        params =
-          userId: vm.copilot.userId
-          projectId: vm.workId
+    if vm.copilot?.userId
+      params =
+        userId: vm.copilot.userId
+        projectId: vm.workId
 
-        body =
-          "status": "APPROVED"
+      body =
+        "status": "APPROVED"
 
-      resource = CopilotApprovalAPIService.post params, body
+    resource = CopilotApprovalAPIService.post params, body
 
-      resource.$promise.then (response) ->
-        vm.showAcceptQuoteButton = false
+    resource.$promise.then (response) ->
+      vm.showAcceptQuoteButton = false
 
-        activate()
+      activate()
 
-      resource.$promise.finally ->
+    resource.$promise.finally ->
 
   vm.messageUnread = (message) ->
     message.unreadMessageCount > 0
