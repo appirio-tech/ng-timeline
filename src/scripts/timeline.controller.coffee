@@ -3,6 +3,7 @@
 TimelineController = ($scope, $stateParams, $document, TimelineAPIService, CopilotApprovalAPIService) ->
   vm                       = this
   vm.eventGroups           = []
+  vm.permissions           = $scope.permissions || []
   vm.loading               = true
   vm.projectCompletionDate = null
   vm.projectCompleted      = false
