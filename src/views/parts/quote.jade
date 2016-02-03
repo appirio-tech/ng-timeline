@@ -35,6 +35,6 @@ event-card-main.transition(
 
         h6 Time estimate
 
-  button.action(ng-click="vm.acceptQuote()" ng-if="vm.showAcceptQuoteButton" ng-disabled="vm.permissions.indexOf('CREATE') == -1") approve quote
+  button.action(ng-click="vm.acceptQuote()" ng-if="vm.showAcceptQuoteButton" ng-disabled="vm.permissions.indexOf('UPDATE') == -1") approve quote
 
   a.decline.button(ui-sref="messaging({ id: vm.workId, threadId: vm.threadId })" ng-if="vm.showAcceptQuoteButton") message copilot
