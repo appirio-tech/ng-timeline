@@ -7,7 +7,7 @@
 
     .icon.minus.hollow
 
-  h1 Final Fixes Ready
+  h1 Final Deliverables
 
 time {{event.eventTime | timeLapse}}
 
@@ -15,6 +15,8 @@ event-card-main.transition(
   ng-class="{ 'no-height': !vm.expanded[$parent.$parent.$index].events[$index] }"
   lock-height="no-height"
 )
+  p {{event.body}}
+
   ul.user-detail.flex.center.middle
     li
       a(href="{{ vm.generateProfileUrl(event.submitter.handle) }}" target="_blank")
@@ -30,6 +32,6 @@ event-card-main.transition(
       a(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId, fileId: file.id})")
         img(ng-src="{{file.url}}")
 
-  button.wider(ng-if="event.completed == false" ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view final submission
+  button.wider(ng-if="event.completed == false" ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view final deliverable
 
   simple-countdown(ng-if="event.completed == false" end="{{eventGroup.endsAt}}")

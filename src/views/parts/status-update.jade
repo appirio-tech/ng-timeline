@@ -5,4 +5,4 @@ time {{ event.eventTime | timeLapse }}
 event-card-main
   p {{ event.text }}
 
-  button.wider(ng-if="event.header == 'Request Changes'" ui-sref="submission-detail({projectId: vm.workId, stepId: vm.completeDesignsStepId, submissionId: vm.finalFixesSubmissionId})") Add Comments
+  button.wider(ng-if="event.header == 'Request Changes' && !event.completed" ui-sref="step({projectId: vm.workId, stepId: vm.completeDesignsStepId})") Add Comments
