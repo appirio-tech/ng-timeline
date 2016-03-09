@@ -81,7 +81,7 @@ main.flex.center.stretch(ng-hide="vm.loading")
             include parts/submissions
 
           event-card.comments(
-            ng-if="event.type == 'SUBMISSION_THREAD_INFO' && (eventGroup.text == 'Final Designs' || eventGroup.text == 'Design Concepts') "
+            ng-if="event.type == 'SUBMISSION_THREAD_INFO'"
             ng-class="{ expanded: vm.expanded[$parent.$index].events[$index] }"
           )
             include parts/comments

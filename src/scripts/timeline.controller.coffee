@@ -1,14 +1,16 @@
 'use strict'
 
 TimelineController = ($scope, $stateParams, $document, TimelineAPIService, CopilotApprovalAPIService) ->
-  vm                       = this
-  vm.eventGroups           = []
-  vm.permissions           = $scope.permissions || ['CREATE', 'UPDATE', 'DELETE']
-  vm.loading               = true
-  vm.projectCompletionDate = null
-  vm.projectCompleted      = false
-  vm.showAcceptQuoteButton = true
-  vm.showImageSlideViewer  = false
+  vm                        = this
+  vm.eventGroups            = []
+  vm.permissions            = $scope.permissions || ['CREATE', 'UPDATE', 'DELETE']
+  vm.loading                = true
+  vm.projectCompletionDate  = null
+  vm.finalFixesSubmissionId = null
+  vm.completeDesignsStepId  = null
+  vm.projectCompleted       = false
+  vm.showAcceptQuoteButton  = true
+  vm.showImageSlideViewer   = false
 
   vm.expanded = {}
 
@@ -47,15 +49,21 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
 
     unread.length == 0
 
-  findCompletionDate = (data) ->
+  configureTimelineEvents = (data) ->
     data.forEach (eventGroup) ->
       if eventGroup.text == 'Project Complete'
         vm.projectCompleted      = true
         vm.projectCompletionDate = eventGroup.createdTime
 
-  configureProjectSubmittedComponents = (data) ->
-    data.forEach (eventGroup) ->
-      if eventGroup.text == 'Project Submitted'
+      else if eventGroup.text == 'Final Fixes'
+        eventGroup.events.forEach (event) ->
+          if event.type == 'FINALFIXES_SUBMISSION'
+            vm.finalFixesSubmissionId = event.submissionId
+
+      else if eventGroup.text == 'Final Designs'
+        vm.completeDesignsStepId = eventGroup.workStepId
+
+      else if eventGroup.text == 'Project Submitted'
         eventGroup.events.forEach (event) ->
           if event.type == 'COPILOT_ASSIGNED'
             vm.copilot = event.copilot
@@ -123,9 +131,7 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
 
       vm.eventGroups = data
 
-      findCompletionDate data
-
-      configureProjectSubmittedComponents data
+      configureTimelineEvents data
 
       setIndexes data
 
