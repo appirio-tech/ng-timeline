@@ -3,12 +3,6 @@
 
 event-card.final-fixes-submissions {
 
-  background-color: $primary-color;
-  padding         : 15px;
-  color           : $white;
-  text-align      : center;
-  border          : 0; /* remove simulated padding */
-
   .user-detail {
     .user-name {
       margin-left: $horizontal-spacing-small;
