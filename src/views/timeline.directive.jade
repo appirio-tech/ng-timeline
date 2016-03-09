@@ -130,7 +130,7 @@ main.flex.center.stretch(ng-hide="vm.loading")
 
         li(
           ng-repeat-end=true
-          ng-if="($index != eventGroup.events.length - 1) && (eventGroup.events[$index + 1].type != 'WORKSTEP_WINNERS' )"
+          ng-if="($index != eventGroup.events.length - 1) && (eventGroup.events[$index + 1].type != 'WORKSTEP_WINNERS' ) && (eventGroup.events[$index + 1].header != 'Final fixes completed')"
         )
           hr.biggest
 
