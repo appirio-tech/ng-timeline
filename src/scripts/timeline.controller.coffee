@@ -113,7 +113,7 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
         if e.type == 'WORKSTEP_SUBMITTERS' && e.completed
           show = true
       else
-        if e.type == 'STATUS_UPDATE' && (eventGroup.events.indexOf(e) == -1)
+        if e.type == 'STATUS_UPDATE' && (eventGroup.events.indexOf(e) == eventGroup.events.length - 1)
           show = true
 
     show
