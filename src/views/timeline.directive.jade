@@ -35,7 +35,7 @@ main.flex.center.stretch(ng-hide="vm.loading")
         )
           //- SUBMITTED
           event-card.status-update(
-            ng-if="event.type == 'STATUS_UPDATE' "
+            ng-if="event.type == 'STATUS_UPDATE' && event.header != 'Final fixes completed' "
           )
             include parts/status-update.jade
 
@@ -122,9 +122,15 @@ main.flex.center.stretch(ng-hide="vm.loading")
           event-card.winners
             include parts/winners
 
+        li.event.finish(
+          ng-if="eventGroup.text == 'Final Fixes' &&  ($index == eventGroup.events.length - 1) && vm.isSubmissionCompleted(eventGroup)"
+        )
+          event-card.status-update
+            include parts/status-update
+
         li(
           ng-repeat-end=true
-          ng-if="($index != eventGroup.events.length - 1) && (eventGroup.events[$index + 1].type != 'WORKSTEP_WINNERS' )"
+          ng-if="($index != eventGroup.events.length - 1) && (eventGroup.events[$index + 1].type != 'WORKSTEP_WINNERS' ) && (eventGroup.events[$index + 1].header != 'Final fixes completed')"
         )
           hr.biggest
 
