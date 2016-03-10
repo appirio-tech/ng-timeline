@@ -16,6 +16,6 @@ event-card-main
 
   ul.submissions
     li(ng-repeat="submission in event.submissionThreads track by $index")
-      img.img(ng-src="{{submission.thumbnailUrl}}")
+      img.img.elevated(ng-src="{{submission.thumbnailUrl}}")
 
   button.action.wider view all
