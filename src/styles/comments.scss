@@ -35,14 +35,12 @@ event-card.comments {
     }
 
     a {
-      display   : block;
-      max-height: 147px;
-      max-width : 197px;
-      overflow  : hidden;
-
-      img {
-        width: 197px;
-      }
+      height: 147px;
+      width: 197px;
+      overflow: hidden;
+      display: block;
+      background-position: top;
+      background-size: cover;
     }
   }
 
