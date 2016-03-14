@@ -42,14 +42,14 @@ event-card-main.transition(
     li(ng-repeat="submission in event.submissionThreads track by $index")
       .notification.absolute(ng-if="submission.unreadMessageCount > 0") {{submission.unreadMessageCount}}
 
-      a(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId, fileId: submission.submissionFileId})")
-        img.elevated(ng-src="{{submission.thumbnailUrl}}")
+      a.elevated(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId, fileId: submission.submissionFileId})")
+        img(ng-src="{{submission.thumbnailUrl}}")
 
   ul.submissions.flex.center(ng-if="!vm.allMessagesRead(event.submissionThreads)")
     li(ng-repeat="submission in event.submissionThreads.filter(vm.messageUnread) track by $index")
       .notification.absolute(ng-if="submission.unreadMessageCount > 0") {{submission.unreadMessageCount}}
 
-      a(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId, fileId: submission.submissionFileId})")
-        img.elevated(ng-src="{{submission.thumbnailUrl}}")
+      a.elevated(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId, fileId: submission.submissionFileId})")
+        img(ng-src="{{submission.thumbnailUrl}}")
 
   button.wider.view-all(ui-sref="submission-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId})") view all comments
