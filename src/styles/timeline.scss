@@ -9,6 +9,17 @@ timeline {
     overflow: hidden;
   }
 
+  a {
+    &.thumbnail {
+      height: 147px;
+      width: 197px;
+      overflow: hidden;
+      display: block;
+      background-position: top;
+      background-size: cover;
+    }
+  }
+
   button.action, button.wider {
     margin-top: $vertical-spacing;
 

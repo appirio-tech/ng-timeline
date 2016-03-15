@@ -23,6 +23,9 @@ event-card-main.transition(
       a(href="{{link.url}}") {{link.url}}
 
   ul.thumbnails.flex.center
-    li(ng-repeat="image in event.images track by $index" )
-      button.clean(ng-click="vm.activateImageSlideViewer(vm.workId, event.id, event.eventTime, image.fileId )")
-        img(ng-src="{{image.url}}")
+    li.elevated(ng-repeat="image in event.images track by $index" ng-if="vm.isImage(image)")
+      .image-thumbnail(ng-click="vm.activateImageSlideViewer(vm.workId, event.id, event.eventTime, image.fileId )" style="background-image: url({{ image.url }})")
+
+    li(ng-repeat="image in event.images track by $index" ng-if="!vm.isImage(image)")
+      a.file-thumbnail.flex.center.middle(href="{{image.url}}" target="_blank")
+        img(ng-src=require('../../images/file-icon.svg'))

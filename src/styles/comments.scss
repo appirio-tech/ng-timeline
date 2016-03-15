@@ -33,21 +33,7 @@ event-card.comments {
       margin: 0 $horizontal-spacing-smallest;
       position: relative;
     }
-
-    a {
-      display   : block;
-      max-height: 147px;
-      max-width : 197px;
-      min-height: 147px;
-      min-width : 197px;
-      overflow  : hidden;
-
-      img {
-        width: 197px;
-      }
-    }
   }
-
 
   > button {
     display: block;
