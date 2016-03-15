@@ -14,6 +14,10 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
 
   vm.expanded = {}
 
+  vm.isImage = (file) ->
+    extension = file.path.substr(-3)
+    extension == "png" || extension == "jpg" || extension == 'tif' || extension == 'gif' || extension == "svg"
+
   vm.acceptQuote = (event) ->
     if vm.copilot?.userId
       params =

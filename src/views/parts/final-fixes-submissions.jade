@@ -29,8 +29,7 @@ event-card-main.transition(
 
   ul.submissions.flex.center
     li(ng-repeat="file in event.files track by $index")
-      a(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId, fileId: file.id})")
-        img.elevated(ng-src="{{file.url}}")
+      a.thumbnail.elevated(ui-sref="file-detail({projectId: vm.workId, stepId: eventGroup.workStepId, submissionId: event.submissionId, fileId: file.id})" style="background-image: url({{ file.url }})")
 
   button.wider(ng-if="event.completed == false" ui-sref="step({projectId: vm.workId, stepId: eventGroup.workStepId})") view final deliverable
 

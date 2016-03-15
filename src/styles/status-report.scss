@@ -17,12 +17,29 @@ event-card.status-report {
   .thumbnails {
     li {
       margin: 0 $horizontal-spacing-smallest;
-      height: 147px;
-      width: 197px;
       overflow: hidden;
 
-      img {
-        width: 100%;
+      button {
+        &.thumbnail {
+          height: 147px;
+          width: 197px;
+          background-position: top;
+          background-size: cover;
+        }
+      }
+
+      a {
+
+        &.file {
+          background-color: $gray;
+          // height: 100%;
+          // width: 100%;
+
+          .file-icon {
+            height: 35px;
+            width: 35px;
+          }
+        }
       }
     }
   }

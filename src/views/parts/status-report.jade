@@ -24,5 +24,7 @@ event-card-main.transition(
 
   ul.thumbnails.flex.center
     li(ng-repeat="image in event.images track by $index" )
-      button.clean(ng-click="vm.activateImageSlideViewer(vm.workId, event.id, event.eventTime, image.fileId )")
-        img.elevated(ng-src="{{image.url}}")
+      button.clean.thumbnail.elevated(ng-click="vm.activateImageSlideViewer(vm.workId, event.id, event.eventTime, image.fileId )" style="background-image: url({{ image.url }})" ng-if="vm.isImage(image)")
+
+      a.thumbnail.file.flex.center.middle(ng-if="!vm.isImage(image)")
+        img(ng-src=require('../images/file-icon.svg'))
