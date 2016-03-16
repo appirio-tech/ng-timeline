@@ -17,16 +17,15 @@ event-card.status-report {
   .thumbnails {
     li {
       margin: 0 $horizontal-spacing-smallest;
-      overflow: hidden;
-      height: 147px;
-      width: 197px;
+      height: 148px;
+      width: 198px;
 
       .image-thumbnail {
-        height: 100%;
-        width: 100%;
-        cursor: pointer;
+        width: 97%;
+        height: 98%;
         background-position: top;
         background-size: cover;
+        cursor: pointer;
       }
 
       a {
