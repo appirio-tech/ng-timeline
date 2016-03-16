@@ -31,8 +31,8 @@ event-card.status-report {
       a {
         &.file-thumbnail {
           background-color: $gray;
-          height: 147px;
-          width: 197px;
+          height: 100%;
+          width: 100%;
 
           img {
             height: 35px;
