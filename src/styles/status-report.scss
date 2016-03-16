@@ -20,13 +20,13 @@ event-card.status-report {
       height: 148px;
       width: 198px;
 
-        .image-thumbnail {
-          width: 97%;
-          height: 98%;
-          background-position: top;
-          background-size: cover;
-          cursor: pointer;
-        }
+      .image-thumbnail {
+        width: 97%;
+        height: 98%;
+        background-position: top;
+        background-size: cover;
+        cursor: pointer;
+      }
 
       a {
         &.file-thumbnail {
