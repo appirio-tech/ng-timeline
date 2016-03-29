@@ -1,6 +1,6 @@
 'use strict'
 
-TimelineController = ($scope, $stateParams, $document, TimelineAPIService, CopilotApprovalAPIService) ->
+TimelineController = ($scope, $stateParams, $document, TimelineAPIService, CopilotApprovalAPIService, UpsellAPIService) ->
   vm                        = this
   vm.eventGroups            = []
   vm.permissions            = $scope.permissions || ['CREATE', 'UPDATE', 'DELETE']
@@ -33,6 +33,19 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
       vm.showAcceptQuoteButton = false
 
       activate()
+
+    resource.$promise.finally ->
+
+  vm.upsellProject = ->
+    params =
+      id: vm.workId
+
+    resource = UpsellAPIService.post params
+
+    resource.$promise.then (data) ->
+      activate()
+
+    resource.$promise.catch ->
 
     resource.$promise.finally ->
 
@@ -162,6 +175,7 @@ TimelineController.$inject = [
   '$document'
   'TimelineAPIService'
   'CopilotApprovalAPIService'
+  'UpsellAPIService'
 ]
 
 angular.module('appirio-tech-ng-timeline').controller 'TimelineController', TimelineController

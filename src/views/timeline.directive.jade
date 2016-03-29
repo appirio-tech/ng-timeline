@@ -146,7 +146,8 @@ main.flex.center.stretch(ng-hide="vm.loading")
 
         p.pending date pending
 
-    upsell-button(ng-if="vm.projectCompleted" project-id="vm.workId")
+        .upsell
+          button.action.wider(ng-click="vm.upsellProject()") Build My App
 
 image-slide-container(
   ng-if="vm.showImageSlideViewer"
