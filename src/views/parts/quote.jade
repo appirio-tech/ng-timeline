@@ -17,13 +17,13 @@ event-card-main.transition(
 )
   p Please review the quote below. If you have any questions or concerns, please message your copilot. Once you approve the quote, your copilot will launch the project in the community.
 
-  .estimate(ng-class="{active: event.status != 'Accepted'}")
+  .estimate(ng-repeat="estimate in event.estimates" ng-class="{active: estimate.status != 'Accepted'}")
     h6 quote
 
     ul.flex.middle.space-between.stretch
       li.cost
         .range
-          ${{ event.price.min }} - ${{ event.price.max }}
+          ${{ estimate.estimateMin }} - ${{ estimate.estimateMax }}
 
         h6 Cost estimate
 
@@ -31,7 +31,7 @@ event-card-main.transition(
 
       li.duration
         .range
-          {{ event.duration.min }} - {{ event.duration.max }} {{ event.duration.unit }}s
+          {{ estimate.durationMin }} - {{ estimate.durationMax }} Weeks
 
         h6 Time estimate
 
