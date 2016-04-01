@@ -18,14 +18,14 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
     extension = file.path.substr(-3)
     extension == "png" || extension == "jpg" || extension == 'tif' || extension == 'gif' || extension == "svg"
 
-  vm.acceptQuote = (event) ->
+  vm.acceptQuote = (estimateType) ->
     if vm.copilot?.userId
       params =
         userId: vm.copilot.userId
         projectId: vm.workId
 
       body =
-        "status": "APPROVED"
+        type: estimateType
 
     resource = CopilotApprovalAPIService.post params, body
 
