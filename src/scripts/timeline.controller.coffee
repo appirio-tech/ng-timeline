@@ -110,17 +110,22 @@ TimelineController = ($scope, $stateParams, $document, TimelineAPIService, Copil
         vm.expanded[index].events[eventIndex] = true
 
   vm.isSubmissionCompleted = (eventGroup) ->
-    show = false
+    completed = false
 
     for e in eventGroup.events
-      if eventGroup.text != 'Final Fixes'
-        if e.type == 'WORKSTEP_SUBMITTERS' && e.completed
-          show = true
-      else
-        if e.type == 'STATUS_UPDATE' && (eventGroup.events.indexOf(e) == eventGroup.events.length - 1) && e.header == 'Final Fixes Completed'
-          show = true
+      if e.type == 'WORKSTEP_SUBMITTERS' && e.completed
+        completed = true
 
-    show
+    completed
+
+  vm.FinalFixesCompleted = (eventGroup) ->
+    completed = false
+
+    for e in eventGroup.events
+      if e.type == 'STATUS_UPDATE' && (eventGroup.events.indexOf(e) == eventGroup.events.length - 1) && e.header == 'Final Fixes Completed'
+        completed = true
+
+    completed
 
   vm.generateProfileUrl = (handle) ->
     "https://www.topcoder.com/members/#{handle}"

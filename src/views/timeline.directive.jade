@@ -123,7 +123,7 @@ main.flex.center.stretch(ng-hide="vm.loading")
             include parts/winners
 
         li.event.finish(
-          ng-if="eventGroup.text == 'Final Fixes' &&  ($index == eventGroup.events.length - 1) && vm.isSubmissionCompleted(eventGroup)"
+          ng-if="eventGroup.text == 'Final Fixes' &&  ($index == eventGroup.events.length - 1) && vm.FinalFixesCompleted(eventGroup)"
         )
           event-card.status-update
             include parts/status-update
