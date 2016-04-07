@@ -3,7 +3,7 @@
 directive = ->
   restrict    : 'E'
   controller  : 'ImageSlideShowModalController as vm'
-  templateUrl : 'views/image-slideshow-modal.directive.html'
+  template    : require('../views/image-slideshow-modal.directive.jade')()
   scope       :
     showModal:    '@'
     handle:       '@'

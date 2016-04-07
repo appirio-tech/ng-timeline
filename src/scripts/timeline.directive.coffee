@@ -3,7 +3,7 @@
 directive = ->
   restrict    : 'E'
   controller  : 'TimelineController as vm'
-  templateUrl : 'views/timeline.directive.html'
+  template    : require('../views/timeline.directive.jade')()
   scope       :
     workId    : '@workId'
     permissions: '='
